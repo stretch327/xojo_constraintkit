@@ -1,0 +1,8 @@
+#tag ColorGroup
+	CodeName=RedColor
+	#tag Color
+		Type=2
+		Platform=2
+		Name=systemRedColor
+	#tag EndColor
+#tag EndColorGroup

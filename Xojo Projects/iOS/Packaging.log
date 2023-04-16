@@ -1,0 +1,342 @@
+2023-04-14 17:58:59 +0000 [MT] Initial pipeline context: <IDEDistributionProcessingPipelineContext: 0x127e29fa0; archive(resolved)="<IDEArchive: 0x600002273900>", distributionTask(resolved)="2", distributionDestination(resolved)="1", distributionMethod(resolved)="<IDEDistributionMethodiOSAppStoreDistribution: 0x60000047bbf0>", team(resolved)="<IDEProvisioningBasicTeam: 0x600000747560; teamID='H6JJNL5AF3', teamName='(null)'>">
+	Chain (15, self inclusive):
+	<IDEDistributionProcessingPipelineContext: 0x127e29fa0; archive = "<IDEArchive: 0x600002273900>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x60000047bbf0>", team="<IDEProvisioningBasicTeam: 0x600000747560; teamID='H6JJNL5AF3', teamName='(null)'>">
+	<IDEDistributionProcessingPipelineContext: 0x127e50a70; archive = "<IDEArchive: 0x600002273900>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x60000047bbf0>", team="<IDEProvisioningBasicTeam: 0x600000747560; teamID='H6JJNL5AF3', teamName='(null)'>">
+	<IDEDistributionContext: 0x127e6a4a0; archive = "<IDEArchive: 0x600002273900>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x60000047bbf0>", team="<IDEProvisioningBasicTeam: 0x600000747560; teamID='H6JJNL5AF3', teamName='(null)'>">
+	<IDEDistributionContext: 0x10be76560; archive = "<IDEArchive: 0x600002273900>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x60000047bbf0>", team="<IDEProvisioningBasicTeam: 0x600000747560; teamID='H6JJNL5AF3', teamName='(null)'>">
+	<IDEDistributionContext: 0x10be75920; archive = "<IDEArchive: 0x600002273900>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x60000047bbf0>", team="<IDEProvisioningBasicTeam: 0x600000747560; teamID='H6JJNL5AF3', teamName='(null)'>">
+	<IDEDistributionContext: 0x10be74c00; archive = "<IDEArchive: 0x600002273900>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x60000047bbf0>", team="<IDEProvisioningBasicTeam: 0x600000747560; teamID='H6JJNL5AF3', teamName='(null)'>">
+	<IDEDistributionContext: 0x127e23490; archive = "<IDEArchive: 0x600002273900>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x60000047bbf0>", team="<IDEProvisioningBasicTeam: 0x600000747560; teamID='H6JJNL5AF3', teamName='(null)'>">
+	<IDEDistributionContext: 0x10be74270; archive = "<IDEArchive: 0x600002273900>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x60000047bbf0>", team="<IDEProvisioningBasicTeam: 0x600000747560; teamID='H6JJNL5AF3', teamName='(null)'>">
+	<IDEDistributionContext: 0x10be72d00; archive = "<IDEArchive: 0x600002273900>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x60000047bbf0>", team="<IDEProvisioningBasicTeam: 0x600000747560; teamID='H6JJNL5AF3', teamName='(null)'>">
+	<IDEDistributionContext: 0x10be72f80; archive = "<IDEArchive: 0x600002273900>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x60000047bbf0>", team="<IDEProvisioningBasicTeam: 0x600000747560; teamID='H6JJNL5AF3', teamName='(null)'>">
+	<IDEDistributionContext: 0x127e417d0; archive = "<IDEArchive: 0x600002273900>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x60000047bbf0>", team="<IDEProvisioningBasicTeam: 0x600000747560; teamID='H6JJNL5AF3', teamName='(null)'>">
+	<IDEDistributionContext: 0x127e405b0; archive = "<IDEArchive: 0x600002273900>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x60000047bbf0>", team="<IDEProvisioningBasicTeam: 0x600000747560; teamID='H6JJNL5AF3', teamName='(null)'>">
+	<IDEDistributionContext: 0x10be65760; archive = "<IDEArchive: 0x600002273900>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x60000047bbf0>", team="<IDEProvisioningBasicTeam: 0x600000747560; teamID='H6JJNL5AF3', teamName='(null)'>">
+	<IDEDistributionContext: 0x1106042a0; archive = "<IDEArchive: 0x600002273900>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x60000047bbf0>", team="(null)">
+	<IDEDistributionContext: 0x110604080; archive = "<IDEArchive: 0x600002273900>", distributionMethod="(null)", team="(null)">
+</IDEDistributionProcessingPipelineContext: 0x127e29fa0>
+2023-04-14 17:58:59 +0000 [MT] Processing step: IDEDistributionCreateDestRootStep
+2023-04-14 17:58:59 +0000 [MT] Processing step: IDEDistributionCopyItemStep
+2023-04-14 17:58:59 +0000 [MT] Running /usr/bin/ditto '-V' '/var/folders/jp/0pd8mzj17g1_rrzw0pxtsn_00000gn/T/My iOS App.debug.xcarchive/Products/Applications/My iOS App.debug.app' '/var/folders/jp/0pd8mzj17g1_rrzw0pxtsn_00000gn/T/XcodeDistPipeline.~~~QC3VAL/Root/Payload/My iOS App.debug.app'
+2023-04-14 17:58:59 +0000  >>> Copying /var/folders/jp/0pd8mzj17g1_rrzw0pxtsn_00000gn/T/My iOS App.debug.xcarchive/Products/Applications/My iOS App.debug.app 
+2023-04-14 17:58:59 +0000  copying file ./_CodeSignature/CodeResources ... 
+2023-04-14 17:58:59 +0000  5387 bytes for ./_CodeSignature/CodeResources
+2023-04-14 17:58:59 +0000  copying file ./Plugins/ExtNameExtension.appex/_CodeSignature/CodeResources ... 
+2023-04-14 17:58:59 +0000  2040 bytes for ./Plugins/ExtNameExtension.appex/_CodeSignature/CodeResources
+2023-04-14 17:58:59 +0000  copying file ./Plugins/ExtNameExtension.appex/ExtName.intentdefinition ... 
+2023-04-14 17:58:59 +0000  1607 bytes for ./Plugins/ExtNameExtension.appex/ExtName.intentdefinition
+2023-04-14 17:58:59 +0000  copying file ./Plugins/ExtNameExtension.appex/ExtNameExtension ... 
+2023-04-14 17:58:59 +0000  301072 bytes for ./Plugins/ExtNameExtension.appex/ExtNameExtension
+2023-04-14 17:58:59 +0000  copying file ./Plugins/ExtNameExtension.appex/Info.plist ... 
+2023-04-14 17:58:59 +0000  867 bytes for ./Plugins/ExtNameExtension.appex/Info.plist
+2023-04-14 17:58:59 +0000  copying file ./Base.lproj/LaunchScreen.storyboardc/01J-lp-oVM-view-amx-1d-liz.nib ... 
+2023-04-14 17:58:59 +0000  1835 bytes for ./Base.lproj/LaunchScreen.storyboardc/01J-lp-oVM-view-amx-1d-liz.nib
+2023-04-14 17:58:59 +0000  copying file ./Base.lproj/LaunchScreen.storyboardc/UIViewController-01J-lp-oVM.nib ... 
+2023-04-14 17:58:59 +0000  896 bytes for ./Base.lproj/LaunchScreen.storyboardc/UIViewController-01J-lp-oVM.nib
+2023-04-14 17:58:59 +0000  copying file ./Base.lproj/LaunchScreen.storyboardc/Info.plist ... 
+2023-04-14 17:58:59 +0000  258 bytes for ./Base.lproj/LaunchScreen.storyboardc/Info.plist
+2023-04-14 17:58:59 +0000  copying file ./archived-expanded-entitlements.xcent ... 
+2023-04-14 17:58:59 +0000  382 bytes for ./archived-expanded-entitlements.xcent
+2023-04-14 17:58:59 +0000  copying file ./ExtName.intentdefinition ... 
+2023-04-14 17:58:59 +0000  1607 bytes for ./ExtName.intentdefinition
+2023-04-14 17:58:59 +0000  copying file ./embedded.mobileprovision ... 
+2023-04-14 17:58:59 +0000  16817 bytes for ./embedded.mobileprovision
+2023-04-14 17:58:59 +0000  copying file ./My iOS App.debug ... 
+2023-04-14 17:58:59 +0000  5997536 bytes for ./My iOS App.debug
+2023-04-14 17:58:59 +0000  copying file ./Info.plist ... 
+2453 bytes for ./Info.plist
+copying file ./PkgInfo ... 
+2023-04-14 17:58:59 +0000  8 bytes for ./PkgInfo
+2023-04-14 17:58:59 +0000 [MT] /usr/bin/ditto exited with 0
+2023-04-14 17:58:59 +0000 [MT] Processing step: IDEDistributionEmbedProfileStep
+2023-04-14 17:58:59 +0000 [MT] Skipping profile for item: <IDEDistributionItem: 0x6000022af3c0; bundleID='com.stretchedout.test.ExtName', path='<DVTFilePath:0x600002d98af0:'/var/folders/jp/0pd8mzj17g1_rrzw0pxtsn_00000gn/T/My iOS App.debug.xcarchive/Products/Applications/My iOS App.debug.app/Plugins/ExtNameExtension.appex'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x6000025dbde0; isSigned='1', isAdHocSigned='1', signingCertificate='(null)', entitlements='{
+    "com.apple.security.get-task-allow" = 1;
+}', teamID='(null)', identifier='com.stretchedout.test.ExtName', executablePath='<DVTFilePath:0x600002d99420:'/var/folders/jp/0pd8mzj17g1_rrzw0pxtsn_00000gn/T/My iOS App.debug.xcarchive/Products/Applications/My iOS App.debug.app/Plugins/ExtNameExtension.appex/ExtNameExtension'>', hardenedRuntime='0'>'>
+2023-04-14 17:58:59 +0000 [MT] Processing step: IDEDistributionInfoPlistStep
+2023-04-14 17:58:59 +0000 [MT] Skipping setting DTXcodeBuildDistribution because toolsBuildVersionName was nil.
+2023-04-14 17:58:59 +0000 [MT] Skipping setting DTXcodeBuildDistribution because toolsBuildVersionName was nil.
+2023-04-14 17:58:59 +0000 [MT] Processing step: IDEDistributionItemRemovalStep
+2023-04-14 17:58:59 +0000 [MT] Processing step: IDEDistributionAppThinningPlistStep
+2023-04-14 17:58:59 +0000 [MT] Skipping step: IDEDistributionAppThinningPlistStep because it said so
+2023-04-14 17:58:59 +0000 [MT] Processing step: IDEDistributionCompileBitcodeStep
+2023-04-14 17:58:59 +0000 [MT] Skipping step: IDEDistributionCompileBitcodeStep because it said so
+2023-04-14 17:58:59 +0000 [MT] Processing step: IDEDistributionCodeSlimmingStep
+2023-04-14 17:58:59 +0000 [MT] Processing step: IDEDistributionCopyBCSymbolMapsStep
+2023-04-14 17:58:59 +0000 [MT] Processing step: IDEDistributionSymbolsStep
+2023-04-14 17:58:59 +0000 [MT] Processing symbols for ExtNameExtension.appex
+2023-04-14 17:58:59 +0000 [MT] Running /usr/bin/rsync '-8aPhhE' '/var/folders/jp/0pd8mzj17g1_rrzw0pxtsn_00000gn/T/XcodeDistPipeline.~~~QC3VAL/Root/Payload/My iOS App.debug.app/Plugins/ExtNameExtension.appex' '--link-dest' '/var/folders/jp/0pd8mzj17g1_rrzw0pxtsn_00000gn/T/XcodeDistPipeline.~~~QC3VAL/Root/Payload/My iOS App.debug.app/Plugins' '/var/folders/jp/0pd8mzj17g1_rrzw0pxtsn_00000gn/T/XcodeDistPipeline.~~~QC3VAL'
+2023-04-14 17:58:59 +0000  building file list ... 
+2023-04-14 17:58:59 +0000   0 files...2023-04-14 17:58:59 +0000  12 files to consider
+2023-04-14 17:58:59 +0000  ExtNameExtension.appex/
+2023-04-14 17:58:59 +0000  ._ExtNameExtension.appex
+2023-04-14 17:58:59 +0000           163 100%    0.00kB/s    0:00:00         163 100%    0.00kB/s    0:00:00 (xfer#1, to-check=11/12)
+2023-04-14 17:58:59 +0000  ExtNameExtension.appex/._ExtName.intentdefinition
+2023-04-14 17:58:59 +0000           163 100%  159.18kB/s    0:00:00         163 100%  159.18kB/s    0:00:00 (xfer#2, to-check=9/12)
+2023-04-14 17:58:59 +0000  ExtNameExtension.appex/._ExtNameExtension
+2023-04-14 17:58:59 +0000           163 100%  159.18kB/s    0:00:00         163 100%  159.18kB/s    0:00:00 (xfer#3, to-check=8/12)
+2023-04-14 17:58:59 +0000  ExtNameExtension.appex/._Info.plist
+2023-04-14 17:58:59 +0000           163 100%   79.59kB/s    0:00:00         163 100%   79.59kB/s    0:00:00 (xfer#4, to-check=7/12)
+2023-04-14 17:58:59 +0000  ExtNameExtension.appex/_CodeSignature/
+2023-04-14 17:58:59 +0000  ExtNameExtension.appex/.__CodeSignature
+2023-04-14 17:58:59 +0000           163 100%   79.59kB/s    0:00:00         163 100%   79.59kB/s    0:00:00 (xfer#5, to-check=6/12)
+2023-04-14 17:58:59 +0000  rsync: link "/var/folders/jp/0pd8mzj17g1_rrzw0pxtsn_00000gn/T/XcodeDistPipeline.~~~QC3VAL/ExtNameExtension.appex/_CodeSignature/CodeResources" => /var/folders/jp/0pd8mzj17g1_rrzw0pxtsn_00000gn/T/XcodeDistPipeline.~~~QC3VAL/Root/Payload/My iOS App.debug.app/Plugins/ExtNameExtension.appex/_CodeSignature/CodeResources failed: Operation not permitted (1)
+2023-04-14 17:58:59 +0000  ExtNameExtension.appex/_CodeSignature/._CodeResources
+2023-04-14 17:58:59 +0000           163 100%   79.59kB/s    0:00:00         163 100%   79.59kB/s    0:00:00 (xfer#6, to-check=1/12)
+2023-04-14 17:58:59 +0000  
+sent 1.69K bytes  received 164 bytes  3.70K bytes/sec
+total size is 298.42K  speedup is 161.26
+2023-04-14 17:58:59 +0000 [MT] /usr/bin/rsync exited with 0
+2023-04-14 17:58:59 +0000 [MT] Running /usr/bin/rsync '-8aPhhE' '/var/folders/jp/0pd8mzj17g1_rrzw0pxtsn_00000gn/T/My iOS App.debug.xcarchive/dSYMs/' '--link-dest' '/var/folders/jp/0pd8mzj17g1_rrzw0pxtsn_00000gn/T/My iOS App.debug.xcarchive/dSYMs/' '/var/folders/jp/0pd8mzj17g1_rrzw0pxtsn_00000gn/T/XcodeDistPipeline.~~~QC3VAL'
+2023-04-14 17:58:59 +0000  building file list ... 
+2023-04-14 17:58:59 +0000   0 files...2023-04-14 17:58:59 +0000  14 files to consider
+2023-04-14 17:58:59 +0000  ./
+2023-04-14 17:58:59 +0000  ._.
+2023-04-14 17:58:59 +0000           163 100%    0.00kB/s    0:00:00         163 100%    0.00kB/s    0:00:00 (xfer#1, to-check=12/14)
+2023-04-14 17:58:59 +0000  My iOS App.debug.app.dSYM/
+2023-04-14 17:58:59 +0000  ._My iOS App.debug.app.dSYM
+2023-04-14 17:58:59 +0000           163 100%  159.18kB/s    0:00:00         163 100%  159.18kB/s    0:00:00 (xfer#2, to-check=11/14)
+2023-04-14 17:58:59 +0000  My iOS App.debug.app.dSYM/Contents/
+2023-04-14 17:58:59 +0000  My iOS App.debug.app.dSYM/._Contents
+2023-04-14 17:58:59 +0000           163 100%  159.18kB/s    0:00:00         163 100%  159.18kB/s    0:00:00 (xfer#3, to-check=9/14)
+2023-04-14 17:58:59 +0000  My iOS App.debug.app.dSYM/Contents/._Info.plist
+2023-04-14 17:58:59 +0000           163 100%  159.18kB/s    0:00:00         163 100%  159.18kB/s    0:00:00 (xfer#4, to-check=7/14)
+2023-04-14 17:58:59 +0000  My iOS App.debug.app.dSYM/Contents/Resources/
+2023-04-14 17:58:59 +0000  My iOS App.debug.app.dSYM/Contents/._Resources
+2023-04-14 17:58:59 +0000           163 100%  159.18kB/s    0:00:00         163 100%  159.18kB/s    0:00:00 (xfer#5, to-check=6/14)
+2023-04-14 17:58:59 +0000  My iOS App.debug.app.dSYM/Contents/Resources/DWARF/
+2023-04-14 17:58:59 +0000  My iOS App.debug.app.dSYM/Contents/Resources/._DWARF
+2023-04-14 17:58:59 +0000           163 100%  159.18kB/s    0:00:00         163 100%  159.18kB/s    0:00:00 (xfer#6, to-check=3/14)
+2023-04-14 17:58:59 +0000  My iOS App.debug.app.dSYM/Contents/Resources/DWARF/._My iOS App.debug
+2023-04-14 17:58:59 +0000           163 100%   79.59kB/s    0:00:00         163 100%   79.59kB/s    0:00:00 (xfer#7, to-check=1/14)
+2023-04-14 17:58:59 +0000  
+sent 1.89K bytes  received 204 bytes  4.17K bytes/sec
+total size is 5.11M  speedup is 2505.83
+2023-04-14 17:58:59 +0000 [MT] /usr/bin/rsync exited with 0
+2023-04-14 17:58:59 +0000 [MT] Writing /var/folders/jp/0pd8mzj17g1_rrzw0pxtsn_00000gn/T/XcodeDistPipeline.~~~QC3VAL/Symbols/F279EBA1-04EC-3C3F-AD64-2902BAE8CF75.symbols
+2023-04-14 17:58:59 +0000 [MT] Processing symbols for My iOS App.debug.app
+2023-04-14 17:58:59 +0000 [MT] Running /usr/bin/rsync '-8aPhhE' '/var/folders/jp/0pd8mzj17g1_rrzw0pxtsn_00000gn/T/XcodeDistPipeline.~~~QC3VAL/Root/Payload/My iOS App.debug.app' '--link-dest' '/var/folders/jp/0pd8mzj17g1_rrzw0pxtsn_00000gn/T/XcodeDistPipeline.~~~QC3VAL/Root/Payload' '/var/folders/jp/0pd8mzj17g1_rrzw0pxtsn_00000gn/T/XcodeDistPipeline.~~~QC3VAL'
+2023-04-14 17:58:59 +0000  building file list ... 
+2023-04-14 17:58:59 +0000   0 files...2023-04-14 17:58:59 +0000  42 files to consider
+2023-04-14 17:58:59 +0000  My iOS App.debug.app/
+2023-04-14 17:58:59 +0000  ._My iOS App.debug.app
+2023-04-14 17:58:59 +0000           163 100%    0.00kB/s    0:00:00         163 100%    0.00kB/s    0:00:00 (xfer#1, to-check=41/42)
+2023-04-14 17:58:59 +0000  My iOS App.debug.app/Base.lproj/
+2023-04-14 17:58:59 +0000  My iOS App.debug.app/._Base.lproj
+2023-04-14 17:58:59 +0000           163 100%   79.59kB/s    0:00:00         163 100%   79.59kB/s    0:00:00 (xfer#2, to-check=39/42)
+2023-04-14 17:58:59 +0000  My iOS App.debug.app/._ExtName.intentdefinition
+2023-04-14 17:58:59 +0000           163 100%   53.06kB/s    0:00:00         163 100%   53.06kB/s    0:00:00 (xfer#3, to-check=38/42)
+2023-04-14 17:58:59 +0000  My iOS App.debug.app/._Info.plist
+2023-04-14 17:58:59 +0000           163 100%   53.06kB/s    0:00:00         163 100%   53.06kB/s    0:00:00 (xfer#4, to-check=37/42)
+2023-04-14 17:58:59 +0000  My iOS App.debug.app/._My iOS App.debug
+2023-04-14 17:58:59 +0000           163 100%   53.06kB/s    0:00:00         163 100%   53.06kB/s    0:00:00 (xfer#5, to-check=36/42)
+2023-04-14 17:58:59 +0000  My iOS App.debug.app/._PkgInfo
+2023-04-14 17:58:59 +0000           163 100%   39.79kB/s    0:00:00         163 100%   39.79kB/s    0:00:00 (xfer#6, to-check=35/42)
+2023-04-14 17:58:59 +0000  My iOS App.debug.app/Plugins/
+2023-04-14 17:58:59 +0000  My iOS App.debug.app/._Plugins
+2023-04-14 17:58:59 +0000           163 100%   39.79kB/s    0:00:00         163 100%   39.79kB/s    0:00:00 (xfer#7, to-check=34/42)
+2023-04-14 17:58:59 +0000  My iOS App.debug.app/_CodeSignature/
+2023-04-14 17:58:59 +0000  My iOS App.debug.app/.__CodeSignature
+2023-04-14 17:58:59 +0000           163 100%   39.79kB/s    0:00:00         163 100%   39.79kB/s    0:00:00 (xfer#8, to-check=33/42)
+2023-04-14 17:58:59 +0000  My iOS App.debug.app/._archived-expanded-entitlements.xcent
+2023-04-14 17:58:59 +0000           163 100%   26.53kB/s    0:00:00         163 100%   26.53kB/s    0:00:00 (xfer#9, to-check=32/42)
+2023-04-14 17:58:59 +0000  My iOS App.debug.app/._embedded.mobileprovision
+2023-04-14 17:58:59 +0000           163 100%   26.53kB/s    0:00:00         163 100%   26.53kB/s    0:00:00 (xfer#10, to-check=31/42)
+2023-04-14 17:58:59 +0000  My iOS App.debug.app/Base.lproj/LaunchScreen.storyboardc/
+2023-04-14 17:58:59 +0000  My iOS App.debug.app/Base.lproj/._LaunchScreen.storyboardc
+2023-04-14 17:58:59 +0000           163 100%   22.74kB/s    0:00:00         163 100%   22.74kB/s    0:00:00 (xfer#11, to-check=23/42)
+2023-04-14 17:58:59 +0000  My iOS App.debug.app/Base.lproj/LaunchScreen.storyboardc/._01J-lp-oVM-view-amx-1d-liz.nib
+2023-04-14 17:58:59 +0000           163 100%   22.74kB/s    0:00:00         163 100%   22.74kB/s    0:00:00 (xfer#12, to-check=21/42)
+2023-04-14 17:58:59 +0000  My iOS App.debug.app/Base.lproj/LaunchScreen.storyboardc/._Info.plist
+2023-04-14 17:58:59 +0000           163 100%   22.74kB/s    0:00:00         163 100%   22.74kB/s    0:00:00 (xfer#13, to-check=20/42)
+2023-04-14 17:58:59 +0000  My iOS App.debug.app/Base.lproj/LaunchScreen.storyboardc/._UIViewController-01J-lp-oVM.nib
+2023-04-14 17:58:59 +0000           163 100%   19.90kB/s    0:00:00         163 100%   19.90kB/s    0:00:00 (xfer#14, to-check=19/42)
+2023-04-14 17:58:59 +0000  My iOS App.debug.app/Plugins/ExtNameExtension.appex/
+2023-04-14 17:58:59 +0000  My iOS App.debug.app/Plugins/._ExtNameExtension.appex
+2023-04-14 17:58:59 +0000           163 100%   19.90kB/s    0:00:00         163 100%   19.90kB/s    0:00:00 (xfer#15, to-check=14/42)
+2023-04-14 17:58:59 +0000  My iOS App.debug.app/Plugins/ExtNameExtension.appex/._ExtName.intentdefinition
+2023-04-14 17:58:59 +0000           163 100%   19.90kB/s    0:00:00         163 100%   19.90kB/s    0:00:00 (xfer#16, to-check=12/42)
+2023-04-14 17:58:59 +0000  My iOS App.debug.app/Plugins/ExtNameExtension.appex/._ExtNameExtension
+2023-04-14 17:58:59 +0000           163 100%   17.69kB/s    0:00:00         163 100%   17.69kB/s    0:00:00 (xfer#17, to-check=11/42)
+2023-04-14 17:58:59 +0000  My iOS App.debug.app/Plugins/ExtNameExtension.appex/._Info.plist
+2023-04-14 17:58:59 +0000           163 100%   17.69kB/s    0:00:00         163 100%   17.69kB/s    0:00:00 (xfer#18, to-check=10/42)
+2023-04-14 17:58:59 +0000  My iOS App.debug.app/Plugins/ExtNameExtension.appex/_CodeSignature/
+2023-04-14 17:58:59 +0000  My iOS App.debug.app/Plugins/ExtNameExtension.appex/.__CodeSignature
+2023-04-14 17:58:59 +0000           163 100%   17.69kB/s    0:00:00         163 100%   17.69kB/s    0:00:00 (xfer#19, to-check=9/42)
+2023-04-14 17:58:59 +0000  My iOS App.debug.app/Plugins/ExtNameExtension.appex/_CodeSignature/._CodeResources
+2023-04-14 17:58:59 +0000           163 100%   15.92kB/s    0:00:00         163 100%   15.92kB/s    0:00:00 (xfer#20, to-check=4/42)
+2023-04-14 17:58:59 +0000  My iOS App.debug.app/_CodeSignature/._CodeResources
+2023-04-14 17:58:59 +0000           163 100%   15.92kB/s    0:00:00         163 100%   15.92kB/s    0:00:00 (xfer#21, to-check=1/42)
+2023-04-14 17:58:59 +0000  
+sent 5.83K bytes  received 524 bytes  12.68K bytes/sec
+total size is 6.04M  speedup is 975.37
+2023-04-14 17:58:59 +0000 [MT] /usr/bin/rsync exited with 0
+2023-04-14 17:58:59 +0000 [MT] Running /usr/bin/rsync '-8aPhhE' '/var/folders/jp/0pd8mzj17g1_rrzw0pxtsn_00000gn/T/My iOS App.debug.xcarchive/dSYMs/' '--link-dest' '/var/folders/jp/0pd8mzj17g1_rrzw0pxtsn_00000gn/T/My iOS App.debug.xcarchive/dSYMs/' '/var/folders/jp/0pd8mzj17g1_rrzw0pxtsn_00000gn/T/XcodeDistPipeline.~~~QC3VAL'
+2023-04-14 17:58:59 +0000  building file list ... 
+2023-04-14 17:58:59 +0000   0 files...2023-04-14 17:58:59 +0000  14 files to consider
+2023-04-14 17:58:59 +0000  ./
+2023-04-14 17:58:59 +0000  ._.
+2023-04-14 17:58:59 +0000           163 100%    0.00kB/s    0:00:00         163 100%    0.00kB/s    0:00:00 (xfer#1, to-check=12/14)
+2023-04-14 17:58:59 +0000  ._My iOS App.debug.app.dSYM
+2023-04-14 17:58:59 +0000           163 100%  159.18kB/s    0:00:00         163 100%  159.18kB/s    0:00:00 (xfer#2, to-check=11/14)
+2023-04-14 17:58:59 +0000  My iOS App.debug.app.dSYM/._Contents
+2023-04-14 17:58:59 +0000           163 100%  159.18kB/s    0:00:00         163 100%  159.18kB/s    0:00:00 (xfer#3, to-check=9/14)
+2023-04-14 17:58:59 +0000  My iOS App.debug.app.dSYM/Contents/._Info.plist
+2023-04-14 17:58:59 +0000           163 100%  159.18kB/s    0:00:00         163 100%  159.18kB/s    0:00:00 (xfer#4, to-check=7/14)
+2023-04-14 17:58:59 +0000  My iOS App.debug.app.dSYM/Contents/._Resources
+2023-04-14 17:58:59 +0000           163 100%  159.18kB/s    0:00:00         163 100%  159.18kB/s    0:00:00 (xfer#5, to-check=6/14)
+2023-04-14 17:58:59 +0000  My iOS App.debug.app.dSYM/Contents/Resources/._DWARF
+2023-04-14 17:58:59 +0000           163 100%  159.18kB/s    0:00:00         163 100%  159.18kB/s    0:00:00 (xfer#6, to-check=3/14)
+2023-04-14 17:58:59 +0000  My iOS App.debug.app.dSYM/Contents/Resources/DWARF/._My iOS App.debug
+2023-04-14 17:58:59 +0000           163 100%   79.59kB/s    0:00:00         163 100%   79.59kB/s    0:00:00 (xfer#7, to-check=1/14)
+2023-04-14 17:58:59 +0000  
+sent 1.86K bytes  received 180 bytes  4.08K bytes/sec
+total size is 5.11M  speedup is 2563.40
+2023-04-14 17:58:59 +0000 [MT] /usr/bin/rsync exited with 0
+2023-04-14 17:58:59 +0000 [MT] Writing /var/folders/jp/0pd8mzj17g1_rrzw0pxtsn_00000gn/T/XcodeDistPipeline.~~~QC3VAL/Symbols/99F3220A-0393-3200-9E19-4C6F53829EE8.symbols
+2023-04-14 17:58:59 +0000 [MT] Processing step: IDEDistributionCopyAppleProvidedContentStep
+2023-04-14 17:58:59 +0000 [MT] Processing step: IDEDistributionAppThinningStep
+2023-04-14 17:58:59 +0000 [MT] Skipping step: IDEDistributionAppThinningStep because it said so
+2023-04-14 17:58:59 +0000 [MT] Processing step: IDEDistributionArchThinningStep
+2023-04-14 17:58:59 +0000 [MT] Running /Applications/Xcode 14.3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/jp/0pd8mzj17g1_rrzw0pxtsn_00000gn/T/XcodeDistPipeline.~~~QC3VAL/Root/Payload/My iOS App.debug.app/Plugins/ExtNameExtension.appex/ExtNameExtension' '-verify_arch' 'arm64e'
+2023-04-14 17:58:59 +0000 [MT] /Applications/Xcode 14.3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 1
+2023-04-14 17:58:59 +0000 [MT] Skipping architecture thinning for item "ExtNameExtension" because arch "arm64e" wasn't found
+2023-04-14 17:58:59 +0000 [MT] Running /Applications/Xcode 14.3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/jp/0pd8mzj17g1_rrzw0pxtsn_00000gn/T/XcodeDistPipeline.~~~QC3VAL/Root/Payload/My iOS App.debug.app/My iOS App.debug' '-verify_arch' 'arm64e'
+2023-04-14 17:58:59 +0000 [MT] /Applications/Xcode 14.3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 1
+2023-04-14 17:58:59 +0000 [MT] Skipping architecture thinning for item "My iOS App.debug" because arch "arm64e" wasn't found
+2023-04-14 17:58:59 +0000 [MT] Processing step: IDEDistributionODRStep
+2023-04-14 17:58:59 +0000 [MT] Processing step: IDEDistributionStripXattrsStep
+2023-04-14 17:58:59 +0000 [MT] Skipping stripping extended attributes of item: <IDEDistributionItem: 0x6000022af3c0; bundleID='com.stretchedout.test.ExtName', path='<DVTFilePath:0x600002d98af0:'/var/folders/jp/0pd8mzj17g1_rrzw0pxtsn_00000gn/T/My iOS App.debug.xcarchive/Products/Applications/My iOS App.debug.app/Plugins/ExtNameExtension.appex'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x6000025dbde0; isSigned='1', isAdHocSigned='1', signingCertificate='(null)', entitlements='{
+    "com.apple.security.get-task-allow" = 1;
+}', teamID='(null)', identifier='com.stretchedout.test.ExtName', executablePath='<DVTFilePath:0x600002d99420:'/var/folders/jp/0pd8mzj17g1_rrzw0pxtsn_00000gn/T/My iOS App.debug.xcarchive/Products/Applications/My iOS App.debug.app/Plugins/ExtNameExtension.appex/ExtNameExtension'>', hardenedRuntime='0'>'>
+2023-04-14 17:58:59 +0000 [MT] Running /usr/bin/xattr '-crs' '/var/folders/jp/0pd8mzj17g1_rrzw0pxtsn_00000gn/T/XcodeDistPipeline.~~~QC3VAL/Root/Payload/My iOS App.debug.app'
+2023-04-14 17:58:59 +0000 [MT] /usr/bin/xattr exited with 0
+2023-04-14 17:58:59 +0000 [MT] Processing step: IDEDistributionCodesignStep
+2023-04-14 17:58:59 +0000 [MT] Entitlements for <IDEDistributionItem: 0x6000022af3c0; bundleID='com.stretchedout.test.ExtName', path='<DVTFilePath:0x600002d98af0:'/var/folders/jp/0pd8mzj17g1_rrzw0pxtsn_00000gn/T/My iOS App.debug.xcarchive/Products/Applications/My iOS App.debug.app/Plugins/ExtNameExtension.appex'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x6000025dbde0; isSigned='1', isAdHocSigned='1', signingCertificate='(null)', entitlements='{
+    "com.apple.security.get-task-allow" = 1;
+}', teamID='(null)', identifier='com.stretchedout.test.ExtName', executablePath='<DVTFilePath:0x600002d99420:'/var/folders/jp/0pd8mzj17g1_rrzw0pxtsn_00000gn/T/My iOS App.debug.xcarchive/Products/Applications/My iOS App.debug.app/Plugins/ExtNameExtension.appex/ExtNameExtension'>', hardenedRuntime='0'>'>: {
+}
+2023-04-14 17:58:59 +0000 [MT] Entitlements for <IDEDistributionItem: 0x6000022af3c0; bundleID='com.stretchedout.test.ExtName', path='<DVTFilePath:0x600002d98af0:'/var/folders/jp/0pd8mzj17g1_rrzw0pxtsn_00000gn/T/My iOS App.debug.xcarchive/Products/Applications/My iOS App.debug.app/Plugins/ExtNameExtension.appex'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x6000025dbde0; isSigned='1', isAdHocSigned='1', signingCertificate='(null)', entitlements='{
+    "com.apple.security.get-task-allow" = 1;
+}', teamID='(null)', identifier='com.stretchedout.test.ExtName', executablePath='<DVTFilePath:0x600002d99420:'/var/folders/jp/0pd8mzj17g1_rrzw0pxtsn_00000gn/T/My iOS App.debug.xcarchive/Products/Applications/My iOS App.debug.app/Plugins/ExtNameExtension.appex/ExtNameExtension'>', hardenedRuntime='0'>'> are: {
+}
+2023-04-14 17:58:59 +0000 [MT] Writing entitlements for <IDEDistributionItem: 0x6000022af3c0; bundleID='com.stretchedout.test.ExtName', path='<DVTFilePath:0x600002d98af0:'/var/folders/jp/0pd8mzj17g1_rrzw0pxtsn_00000gn/T/My iOS App.debug.xcarchive/Products/Applications/My iOS App.debug.app/Plugins/ExtNameExtension.appex'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x6000025dbde0; isSigned='1', isAdHocSigned='1', signingCertificate='(null)', entitlements='{
+    "com.apple.security.get-task-allow" = 1;
+}', teamID='(null)', identifier='com.stretchedout.test.ExtName', executablePath='<DVTFilePath:0x600002d99420:'/var/folders/jp/0pd8mzj17g1_rrzw0pxtsn_00000gn/T/My iOS App.debug.xcarchive/Products/Applications/My iOS App.debug.app/Plugins/ExtNameExtension.appex/ExtNameExtension'>', hardenedRuntime='0'>'> to: /var/folders/jp/0pd8mzj17g1_rrzw0pxtsn_00000gn/T/XcodeDistPipeline.~~~QC3VAL/entitlements~~~yMaJGD
+2023-04-14 17:58:59 +0000 [MT] Running /usr/bin/codesign '-vvv' '--force' '--sign' 'BD7D141DDE4244E5F54D871C54DC52061A7C89CC' '--entitlements' '/var/folders/jp/0pd8mzj17g1_rrzw0pxtsn_00000gn/T/XcodeDistPipeline.~~~QC3VAL/entitlements~~~yMaJGD' '--generate-entitlement-der' '--preserve-metadata=identifier,flags,runtime' '/var/folders/jp/0pd8mzj17g1_rrzw0pxtsn_00000gn/T/XcodeDistPipeline.~~~QC3VAL/Root/Payload/My iOS App.debug.app/Plugins/ExtNameExtension.appex'
+2023-04-14 17:58:59 +0000  /var/folders/jp/0pd8mzj17g1_rrzw0pxtsn_00000gn/T/XcodeDistPipeline.~~~QC3VAL/Root/Payload/My iOS App.debug.app/Plugins/ExtNameExtension.appex: replacing existing signature
+2023-04-14 17:58:59 +0000  /var/folders/jp/0pd8mzj17g1_rrzw0pxtsn_00000gn/T/XcodeDistPipeline.~~~QC3VAL/Root/Payload/My iOS App.debug.app/Plugins/ExtNameExtension.appex: signed bundle with Mach-O thin (arm64) [com.stretchedout.test.ExtName]
+2023-04-14 17:58:59 +0000 [MT] /usr/bin/codesign exited with 0
+2023-04-14 17:58:59 +0000 [MT] Entitlements for <IDEDistributionItem: 0x6000022a2a60; bundleID='com.stretchedout.myapp', path='<DVTFilePath:0x600002d84850:'/var/folders/jp/0pd8mzj17g1_rrzw0pxtsn_00000gn/T/My iOS App.debug.xcarchive/Products/Applications/My iOS App.debug.app'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x6000025dbf20; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x6000031618c0; name='Apple Development: Greg Olone (94QTLHD323)', hash='CE0190285B8C550ED5F9AAE019EA91E7D8F8A790', serialNumber='181CAD947F431615E454799BF7809923', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2023-04-14 12:06:58 +0000''>', entitlements='{
+    "application-identifier" = "H6JJNL5AF3.com.stretchedout.myapp";
+    "com.apple.developer.team-identifier" = H6JJNL5AF3;
+    "get-task-allow" = 1;
+    "keychain-access-groups" =     (
+        "H6JJNL5AF3.com.stretchedout.myapp"
+    );
+}', teamID='H6JJNL5AF3', identifier='com.stretchedout.myapp', executablePath='<DVTFilePath:0x600002d99810:'/var/folders/jp/0pd8mzj17g1_rrzw0pxtsn_00000gn/T/My iOS App.debug.xcarchive/Products/Applications/My iOS App.debug.app/My iOS App.debug'>', hardenedRuntime='0'>'>: {
+    "application-identifier" = "H6JJNL5AF3.com.stretchedout.myapp";
+    "beta-reports-active" = 1;
+    "com.apple.developer.team-identifier" = H6JJNL5AF3;
+    "get-task-allow" = 0;
+    "keychain-access-groups" =     (
+        "H6JJNL5AF3.com.stretchedout.myapp"
+    );
+}
+2023-04-14 17:58:59 +0000 [MT] Entitlements for <IDEDistributionItem: 0x6000022a2a60; bundleID='com.stretchedout.myapp', path='<DVTFilePath:0x600002d84850:'/var/folders/jp/0pd8mzj17g1_rrzw0pxtsn_00000gn/T/My iOS App.debug.xcarchive/Products/Applications/My iOS App.debug.app'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x6000025dbf20; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x600003161ef0; name='Apple Development: Greg Olone (94QTLHD323)', hash='CE0190285B8C550ED5F9AAE019EA91E7D8F8A790', serialNumber='181CAD947F431615E454799BF7809923', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2023-04-14 12:06:58 +0000''>', entitlements='{
+    "application-identifier" = "H6JJNL5AF3.com.stretchedout.myapp";
+    "com.apple.developer.team-identifier" = H6JJNL5AF3;
+    "get-task-allow" = 1;
+    "keychain-access-groups" =     (
+        "H6JJNL5AF3.com.stretchedout.myapp"
+    );
+}', teamID='H6JJNL5AF3', identifier='com.stretchedout.myapp', executablePath='<DVTFilePath:0x600002d99810:'/var/folders/jp/0pd8mzj17g1_rrzw0pxtsn_00000gn/T/My iOS App.debug.xcarchive/Products/Applications/My iOS App.debug.app/My iOS App.debug'>', hardenedRuntime='0'>'> are: {
+    "application-identifier" = "H6JJNL5AF3.com.stretchedout.myapp";
+    "beta-reports-active" = 1;
+    "com.apple.developer.team-identifier" = H6JJNL5AF3;
+    "get-task-allow" = 0;
+    "keychain-access-groups" =     (
+        "H6JJNL5AF3.com.stretchedout.myapp"
+    );
+}
+2023-04-14 17:58:59 +0000 [MT] Writing entitlements for <IDEDistributionItem: 0x6000022a2a60; bundleID='com.stretchedout.myapp', path='<DVTFilePath:0x600002d84850:'/var/folders/jp/0pd8mzj17g1_rrzw0pxtsn_00000gn/T/My iOS App.debug.xcarchive/Products/Applications/My iOS App.debug.app'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x6000025dbf20; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x6000031621b0; name='Apple Development: Greg Olone (94QTLHD323)', hash='CE0190285B8C550ED5F9AAE019EA91E7D8F8A790', serialNumber='181CAD947F431615E454799BF7809923', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2023-04-14 12:06:58 +0000''>', entitlements='{
+    "application-identifier" = "H6JJNL5AF3.com.stretchedout.myapp";
+    "com.apple.developer.team-identifier" = H6JJNL5AF3;
+    "get-task-allow" = 1;
+    "keychain-access-groups" =     (
+        "H6JJNL5AF3.com.stretchedout.myapp"
+    );
+}', teamID='H6JJNL5AF3', identifier='com.stretchedout.myapp', executablePath='<DVTFilePath:0x600002d99810:'/var/folders/jp/0pd8mzj17g1_rrzw0pxtsn_00000gn/T/My iOS App.debug.xcarchive/Products/Applications/My iOS App.debug.app/My iOS App.debug'>', hardenedRuntime='0'>'> to: /var/folders/jp/0pd8mzj17g1_rrzw0pxtsn_00000gn/T/XcodeDistPipeline.~~~QC3VAL/entitlements~~~mHTPxC
+2023-04-14 17:58:59 +0000 [MT] Running /usr/bin/codesign '-vvv' '--force' '--sign' 'BD7D141DDE4244E5F54D871C54DC52061A7C89CC' '--entitlements' '/var/folders/jp/0pd8mzj17g1_rrzw0pxtsn_00000gn/T/XcodeDistPipeline.~~~QC3VAL/entitlements~~~mHTPxC' '--generate-entitlement-der' '--preserve-metadata=identifier,flags,runtime' '/var/folders/jp/0pd8mzj17g1_rrzw0pxtsn_00000gn/T/XcodeDistPipeline.~~~QC3VAL/Root/Payload/My iOS App.debug.app'
+2023-04-14 17:58:59 +0000  /var/folders/jp/0pd8mzj17g1_rrzw0pxtsn_00000gn/T/XcodeDistPipeline.~~~QC3VAL/Root/Payload/My iOS App.debug.app: replacing existing signature
+2023-04-14 17:58:59 +0000  /var/folders/jp/0pd8mzj17g1_rrzw0pxtsn_00000gn/T/XcodeDistPipeline.~~~QC3VAL/Root/Payload/My iOS App.debug.app: signed app bundle with Mach-O thin (arm64) [com.stretchedout.myapp]
+2023-04-14 17:58:59 +0000 [MT] /usr/bin/codesign exited with 0
+2023-04-14 17:58:59 +0000 [MT] Processing step: IDEDistributionZipODRItemStep
+2023-04-14 17:58:59 +0000 [MT] Skipping step: IDEDistributionZipODRItemStep because it said so
+2023-04-14 17:58:59 +0000 [MT] Skipping step: IDEDistributionZipODRItemStep because it said so
+2023-04-14 17:58:59 +0000 [MT] Processing step: IDEDistributionCreateIPAStep
+2023-04-14 17:58:59 +0000 [MT] Running /usr/bin/rsync '-8aPhhE' '/var/folders/jp/0pd8mzj17g1_rrzw0pxtsn_00000gn/T/XcodeDistPipeline.~~~QC3VAL/Symbols' '--link-dest' '/var/folders/jp/0pd8mzj17g1_rrzw0pxtsn_00000gn/T/XcodeDistPipeline.~~~QC3VAL' '/var/folders/jp/0pd8mzj17g1_rrzw0pxtsn_00000gn/T/XcodeDistPipeline.~~~QC3VAL/Root'
+2023-04-14 17:58:59 +0000  building file list ... 
+2023-04-14 17:58:59 +0000   0 files...2023-04-14 17:58:59 +0000  6 files to consider
+2023-04-14 17:58:59 +0000  Symbols/
+2023-04-14 17:58:59 +0000  ._Symbols
+2023-04-14 17:58:59 +0000           163 100%    0.00kB/s    0:00:00         163 100%    0.00kB/s    0:00:00 (xfer#1, to-check=5/6)
+2023-04-14 17:58:59 +0000  Symbols/._99F3220A-0393-3200-9E19-4C6F53829EE8.symbols
+2023-04-14 17:58:59 +0000           163 100%  159.18kB/s    0:00:00         163 100%  159.18kB/s    0:00:00 (xfer#2, to-check=3/6)
+2023-04-14 17:58:59 +0000  Symbols/._F279EBA1-04EC-3C3F-AD64-2902BAE8CF75.symbols
+2023-04-14 17:58:59 +0000           163 100%  159.18kB/s    0:00:00         163 100%  159.18kB/s    0:00:00 (xfer#3, to-check=2/6)
+2023-04-14 17:58:59 +0000  
+sent 970 bytes  received 92 bytes  2.07K bytes/sec
+total size is 7.93M  speedup is 7828.86
+2023-04-14 17:58:59 +0000 [MT] /usr/bin/rsync exited with 0
+2023-04-14 17:58:59 +0000 [MT] Running /usr/bin/ditto '-V' '-c' '-k' '--norsrc' '/var/folders/jp/0pd8mzj17g1_rrzw0pxtsn_00000gn/T/XcodeDistPipeline.~~~QC3VAL/Root' '/var/folders/jp/0pd8mzj17g1_rrzw0pxtsn_00000gn/T/XcodeDistPipeline.~~~QC3VAL/Packages/My iOS App.debug.ipa'
+2023-04-14 17:58:59 +0000  >>> Copying /var/folders/jp/0pd8mzj17g1_rrzw0pxtsn_00000gn/T/XcodeDistPipeline.~~~QC3VAL/Root 
+2023-04-14 17:58:59 +0000  copying file ./Payload/My iOS App.debug.app/_CodeSignature/CodeResources ... 
+2023-04-14 17:58:59 +0000  5387 bytes for ./Payload/My iOS App.debug.app/_CodeSignature/CodeResources
+2023-04-14 17:58:59 +0000  copying file ./Payload/My iOS App.debug.app/Plugins/ExtNameExtension.appex/_CodeSignature/CodeResources ... 
+2023-04-14 17:58:59 +0000  2040 bytes for ./Payload/My iOS App.debug.app/Plugins/ExtNameExtension.appex/_CodeSignature/CodeResources
+2023-04-14 17:58:59 +0000  copying file ./Payload/My iOS App.debug.app/Plugins/ExtNameExtension.appex/ExtName.intentdefinition ... 
+2023-04-14 17:58:59 +0000  1607 bytes for ./Payload/My iOS App.debug.app/Plugins/ExtNameExtension.appex/ExtName.intentdefinition
+2023-04-14 17:58:59 +0000  copying file ./Payload/My iOS App.debug.app/Plugins/ExtNameExtension.appex/ExtNameExtension ... 
+2023-04-14 17:58:59 +0000  301168 bytes for ./Payload/My iOS App.debug.app/Plugins/ExtNameExtension.appex/ExtNameExtension
+2023-04-14 17:58:59 +0000  copying file ./Payload/My iOS App.debug.app/Plugins/ExtNameExtension.appex/Info.plist ... 
+2023-04-14 17:58:59 +0000  867 bytes for ./Payload/My iOS App.debug.app/Plugins/ExtNameExtension.appex/Info.plist
+2023-04-14 17:58:59 +0000  copying file ./Payload/My iOS App.debug.app/Base.lproj/LaunchScreen.storyboardc/01J-lp-oVM-view-amx-1d-liz.nib ... 
+2023-04-14 17:58:59 +0000  1835 bytes for ./Payload/My iOS App.debug.app/Base.lproj/LaunchScreen.storyboardc/01J-lp-oVM-view-amx-1d-liz.nib
+2023-04-14 17:58:59 +0000  copying file ./Payload/My iOS App.debug.app/Base.lproj/LaunchScreen.storyboardc/UIViewController-01J-lp-oVM.nib ... 
+2023-04-14 17:58:59 +0000  896 bytes for ./Payload/My iOS App.debug.app/Base.lproj/LaunchScreen.storyboardc/UIViewController-01J-lp-oVM.nib
+2023-04-14 17:58:59 +0000  copying file ./Payload/My iOS App.debug.app/Base.lproj/LaunchScreen.storyboardc/Info.plist ... 
+2023-04-14 17:58:59 +0000  258 bytes for ./Payload/My iOS App.debug.app/Base.lproj/LaunchScreen.storyboardc/Info.plist
+2023-04-14 17:58:59 +0000  copying file ./Payload/My iOS App.debug.app/archived-expanded-entitlements.xcent ... 
+2023-04-14 17:58:59 +0000  382 bytes for ./Payload/My iOS App.debug.app/archived-expanded-entitlements.xcent
+2023-04-14 17:58:59 +0000  copying file ./Payload/My iOS App.debug.app/ExtName.intentdefinition ... 
+2023-04-14 17:58:59 +0000  1607 bytes for ./Payload/My iOS App.debug.app/ExtName.intentdefinition
+2023-04-14 17:58:59 +0000  copying file ./Payload/My iOS App.debug.app/embedded.mobileprovision ... 
+2023-04-14 17:58:59 +0000  14176 bytes for ./Payload/My iOS App.debug.app/embedded.mobileprovision
+2023-04-14 17:58:59 +0000  copying file ./Payload/My iOS App.debug.app/My iOS App.debug ... 
+2023-04-14 17:58:59 +0000  5997600 bytes for ./Payload/My iOS App.debug.app/My iOS App.debug
+copying file ./Payload/My iOS App.debug.app/Info.plist ... 
+2023-04-14 17:58:59 +0000  2452 bytes for ./Payload/My iOS App.debug.app/Info.plist
+copying file ./Payload/My iOS App.debug.app/PkgInfo ... 
+8 bytes for ./Payload/My iOS App.debug.app/PkgInfo
+copying file ./Symbols/99F3220A-0393-3200-9E19-4C6F53829EE8.symbols ... 
+2023-04-14 17:59:00 +0000  8212492 bytes for ./Symbols/99F3220A-0393-3200-9E19-4C6F53829EE8.symbols
+2023-04-14 17:59:00 +0000  copying file ./Symbols/F279EBA1-04EC-3C3F-AD64-2902BAE8CF75.symbols ... 
+2023-04-14 17:59:00 +0000  101756 bytes for ./Symbols/F279EBA1-04EC-3C3F-AD64-2902BAE8CF75.symbols
+2023-04-14 17:59:00 +0000 [MT] /usr/bin/ditto exited with 0
+2023-04-14 17:59:00 +0000 [MT] Processing step: IDEDistributionAppStoreInformationStep
+2023-04-14 17:59:00 +0000 [MT] Skipping step: IDEDistributionAppStoreInformationStep because it said so
+2023-04-14 17:59:00 +0000 [MT] Processing step: IDEDistributionGenerateProcessedDistributionItems
+2023-04-14 17:59:00 +0000 [MT] IDEDistributionItem init <DVTFilePath:0x600002dedc70:'/var/folders/jp/0pd8mzj17g1_rrzw0pxtsn_00000gn/T/XcodeDistPipeline.~~~QC3VAL/Root/Payload/My iOS App.debug.app/Plugins/ExtNameExtension.appex'>
+2023-04-14 17:59:00 +0000 [MT] IDEDistributionItem init <DVTFilePath:0x600002dedf80:'/var/folders/jp/0pd8mzj17g1_rrzw0pxtsn_00000gn/T/XcodeDistPipeline.~~~QC3VAL/Root/Payload/My iOS App.debug.app'>
+2023-04-14 17:59:00 +0000 [MT] Processing step: IDEDistributionCreateManifestStep
+2023-04-14 17:59:00 +0000 [MT] Skipping step: IDEDistributionCreateManifestStep because it said so

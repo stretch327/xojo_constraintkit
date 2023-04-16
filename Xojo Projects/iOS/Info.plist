@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist SYSTEM "file://localhost/System/Library/DTDs/PropertyList.dtd">
+<plist version="0.9">
+<dict>
+   <key>DTSDKName</key>
+<string>iphonesimulator16.2</string>
+   <key>MinimumOSVersion</key>
+   <string>16.0</string>
+</dict>
+</plist>

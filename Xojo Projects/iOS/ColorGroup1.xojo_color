@@ -1,0 +1,8 @@
+#tag ColorGroup
+	CodeName=ColorGroup1
+	#tag Color
+		Type=2
+		Platform=2
+		Name=quaternaryLabelColor
+	#tag EndColor
+#tag EndColorGroup
