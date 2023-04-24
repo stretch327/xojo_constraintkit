@@ -1,0 +1,58 @@
+{
+  "buildCommand" : {
+    "command" : "prepareForIndexing",
+    "enableIndexBuildArena" : true,
+    "targets" : null
+  },
+  "configuredTargets" : [
+    {
+      "guid" : "3ea529f360550f9ccc8cc21e8d1efe57a5665a3d3ae301b8ff793e80442a4aa6"
+    }
+  ],
+  "containerPath" : "/Users/gregolon/Work/Git/autolayout/SOS Autolayout.xcodeproj",
+  "continueBuildingAfterErrors" : true,
+  "enableIndexBuildArena" : false,
+  "hideShellScriptEnvironment" : false,
+  "parameters" : {
+    "action" : "indexbuild",
+    "activeArchitecture" : "arm64",
+    "activeRunDestination" : {
+      "disableOnlyActiveArch" : false,
+      "platform" : "iphonesimulator",
+      "sdk" : "iphonesimulator16.4",
+      "sdkVariant" : "iphonesimulator",
+      "supportedArchitectures" : [
+        "arm64",
+        "x86_64"
+      ],
+      "targetArchitecture" : "arm64"
+    },
+    "arenaInfo" : {
+      "buildIntermediatesPath" : "/Users/gregolon/Work/Git/autolayout/DerivedData/SOS Autolayout/Index.noindex/Build/Intermediates.noindex",
+      "buildProductsPath" : "/Users/gregolon/Work/Git/autolayout/DerivedData/SOS Autolayout/Index.noindex/Build/Products",
+      "derivedDataPath" : "/Users/gregolon/Work/Git/autolayout/DerivedData",
+      "indexDataStoreFolderPath" : "/Users/gregolon/Work/Git/autolayout/DerivedData/SOS Autolayout/Index.noindex/DataStore",
+      "indexEnableDataStore" : true,
+      "indexPCHPath" : "/Users/gregolon/Work/Git/autolayout/DerivedData/SOS Autolayout/Index.noindex/PrecompiledHeaders",
+      "indexRegularBuildIntermediatesPath" : "/Users/gregolon/Work/Git/autolayout/DerivedData/Build/Intermediates.noindex",
+      "indexRegularBuildProductsPath" : "/Users/gregolon/Work/Git/autolayout/DerivedData/Build/Products",
+      "pchPath" : "/Users/gregolon/Work/Git/autolayout/DerivedData/SOS Autolayout/Index.noindex/Build/Intermediates.noindex/PrecompiledHeaders"
+    },
+    "configurationName" : "Debug",
+    "overrides" : {
+      "synthesized" : {
+        "table" : {
+          "ENABLE_PREVIEWS" : "NO",
+          "ONLY_ACTIVE_ARCH" : "YES"
+        }
+      }
+    }
+  },
+  "qos" : "utility",
+  "schemeCommand" : "launch",
+  "showNonLoggedProgress" : true,
+  "useDryRun" : false,
+  "useImplicitDependencies" : true,
+  "useLegacyBuildLocations" : false,
+  "useParallelTargets" : true
+}

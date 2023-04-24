@@ -1,0 +1,6 @@
+framework module SOS_Autolayout {
+  umbrella header "SOS_Autolayout.h"
+
+  export *
+  module * { export * }
+}
