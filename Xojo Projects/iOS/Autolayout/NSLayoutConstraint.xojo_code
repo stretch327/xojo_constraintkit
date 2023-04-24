@@ -1,9 +1,33 @@
 #tag Class
 Class NSLayoutConstraint
+	#tag Method, Flags = &h0
+		Sub Activate()
+		  
+		  SetPriority(mActivePriority, False)
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h21
 		Private Sub Constructor(p as ptr)
 		  
 		  mObj = p
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub Constructor(item1 as ptr, attr1 as LayoutAttributes, relation as relations, value as Double)
+		  
+		  
+		  #If TargetIOS
+		    // + (instancetype)constraintWithItem:(id)view1 attribute:(NSLayoutAttribute)attr1 relatedBy:(NSLayoutRelation)relation toItem:(id)view2 attribute:(NSLayoutAttribute)attr2 multiplier:(CGFloat)multiplier constant:(CGFloat)c;
+		    Declare Function constraintWithItem_attribute_relatedBy_toItem_attribute_multiplier_constant Lib "Foundation" Selector "constraintWithItem:attribute:relatedBy:toItem:attribute:multiplier:constant:" ( cls As ptr , view1 As Ptr , attr1 As Integer , relation As Integer , view2 As Ptr , attr2 As Integer , multiplier As Double , c As Double ) As Ptr
+		    
+		    Declare Function NSClassFromString Lib "Foundation" (name As cfstringref) As ptr
+		    
+		    Dim cls As ptr = NSClassFromString(kBaseClass)
+		    mObj = constraintWithItem_attribute_relatedBy_toItem_attribute_multiplier_constant(cls, item1, CType(attr1, Integer), CType(relation, Integer), nil, 0, 1.0, value)
+		    
+		  #EndIf
 		End Sub
 	#tag EndMethod
 
@@ -52,9 +76,42 @@ Class NSLayoutConstraint
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub Priority(assigns value as Priorities)
+		Sub Deactivate()
 		  
+		  SetPriority(mInactivePriority, False)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub Priority(assigns value as Priorities)
 		  Priority = CType(value, double)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub SetPriority(value as single, updateActivePriority as Boolean)
+		  #If TargetIOS
+		    // throttle to valid values
+		    value = Min(1000.0, Max(1.0, value))
+		    
+		    If updateActivePriority Then
+		      mActivePriority = value
+		    End If
+		    
+		    Declare Sub setPriority Lib "Foundation" Selector "setPriority:" (obj As ptr, value As Single)
+		    
+		    setPriority(mObj, value)
+		  #EndIf
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub TogglePriority()
+		  If Self.Priority = mInactivePriority Then
+		    SetPriority(mActivePriority, False)
+		  Else
+		    SetPriority(mInactivePriority, false)
+		  End If
 		End Sub
 	#tag EndMethod
 
@@ -159,6 +216,14 @@ Class NSLayoutConstraint
 	#tag EndComputedProperty
 
 	#tag Property, Flags = &h21
+		Private mActivePriority As Single = 1000.0
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
+		Private mInactivePriority As SIngle = 1.0
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
 		Private mObj As Ptr
 	#tag EndProperty
 
@@ -211,14 +276,7 @@ Class NSLayoutConstraint
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetIOS
-			    // throttle to valid values
-			    value = Min(1000.0, Max(1.0, value))
-			    
-			    Declare Sub setPriority Lib "Foundation" Selector "setPriority:" (obj As ptr, value As Single)
-			    
-			    setPriority(mObj, value)
-			  #EndIf
+			  SetPriority(value, True)
 			End Set
 		#tag EndSetter
 		Priority As Single

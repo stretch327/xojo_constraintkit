@@ -1,19 +1,5 @@
 #tag Module
 Protected Module Autolayout
-	#tag Structure, Name = CGRect, Flags = &h1
-		X as CGFloat
-		  Y as CGFloat
-		  Width as CGFloat
-		Height as CGFloat
-	#tag EndStructure
-
-
-	#tag Enum, Name = Axis, Type = Integer, Flags = &h0
-		Horizontal
-		Vertical
-	#tag EndEnum
-
-
 	#tag ViewBehavior
 		#tag ViewProperty
 			Name="Name"

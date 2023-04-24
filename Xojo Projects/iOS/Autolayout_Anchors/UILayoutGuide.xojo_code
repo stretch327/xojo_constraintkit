@@ -130,7 +130,7 @@ Class UILayoutGuide
 			  #endif
 			End Get
 		#tag EndGetter
-		LayoutFrame As Autolayout.CGRect
+		LayoutFrame As CGRect
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0
@@ -292,6 +292,14 @@ Class UILayoutGuide
 			InitialValue="0"
 			Type="Integer"
 			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Identifier"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="String"
+			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class

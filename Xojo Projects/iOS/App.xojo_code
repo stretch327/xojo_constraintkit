@@ -4,8 +4,8 @@ Inherits MobileApplication
 	#tag CompatibilityFlags = TargetIOS
 	#tag Event
 		Sub Opening()
-		  #If DebugBuild and TargetMobileSimulator
-		    LoadFramework("@executable_path/Frameworks/RevealServer.framework/RevealServer")
+		  #If DebugBuild And TargetMobileSimulator
+		    LoadRevealFramework
 		  #EndIf
 		  
 		End Sub

@@ -1,6 +1,6 @@
 #tag Class
 Class NSLayoutDimension
-Inherits Autolayout.NSLayoutAnchor
+Inherits NSLayoutAnchor
 	#tag Method, Flags = &h0
 		Function constraintEqualToAnchor(anchor as NSLayoutDimension, multiplier as Double = 1.0, offset as Double = 0.0) As NSLayoutConstraint
 		  // - (NSLayoutConstraint *)constraintEqualToAnchor:(NSLayoutDimension *)anchor multiplier:(CGFloat)m constant:(CGFloat)c;

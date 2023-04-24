@@ -1,7 +1,17 @@
 #tag Module
-Protected Module Module1
+Protected Module Animation
+	#tag DelegateDeclaration, Flags = &h0
+		Delegate Sub AnimateDelegate()
+	#tag EndDelegateDeclaration
+
 	#tag Method, Flags = &h0
-		Sub AnimateChanges(durationSeconds as double, animationBlock as AnimateDelegate)
+		Sub EndAnimation(extends view as MobileScreen)
+		  view.LayoutIfNeeded
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub StartAnimation(durationSeconds as double, animationBlock as AnimateDelegate)
 		  Declare Function NSClassFromString Lib "Foundation" (name As cfstringref) As ptr
 		  Declare Function NSStringFromClass Lib "Foundation" (cls As ptr) As CFStringRef
 		  
@@ -12,36 +22,6 @@ Protected Module Module1
 		  Dim bl As New ObjCBlock(animationBlock)
 		  
 		  animateWithDuration_animations(NSClassFromString("UIView"), durationSeconds, bl.Handle)
-		End Sub
-	#tag EndMethod
-
-	#tag DelegateDeclaration, Flags = &h0
-		Delegate Sub AnimateDelegate()
-	#tag EndDelegateDeclaration
-
-	#tag Method, Flags = &h0
-		Sub LoadFramework(Library As String)
-		  #If TargetIOS
-		    Dim libName As String = library.LastField("/").Replace(".framework","")
-		    If library.IndexOf("/") = -1 Then
-		      // probably a system library
-		      library = "/System/Library/Frameworks/" + libName + ".framework/" + libName
-		    End If
-		    
-		    If Library.Right(10) = ".framework" Then
-		      library = Library + "/" + libName
-		    End If
-		    
-		    Declare Function dlopen Lib "/usr/Lib/libSystem.dylib" ( filename As CString, flag As Int32 ) As Ptr
-		    Declare Function dlerror Lib "/usr/Lib/libSystem.dylib" () As CString
-		    Const RTLD_LAZY = 1
-		    Const RTLD_LOCAL = 4
-		    Dim p As ptr = dlopen(library, RTLD_LAZY Or RTLD_LOCAL)
-		    If p = Nil Then
-		      Dim reason As String = dlerror()
-		      Raise New InvalidArgumentException(reason)
-		    End If
-		  #EndIf
 		End Sub
 	#tag EndMethod
 

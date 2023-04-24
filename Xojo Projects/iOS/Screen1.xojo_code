@@ -13,19 +13,19 @@ Begin MobileScreen Screen1
    TintColor       =   &c00000000
    Title           =   "Untitled"
    Top             =   0
-   Begin MobileButton Button1
+   Begin MobileButton ToggleButton
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
-      AutoLayout      =   Button1, 11, Label1, 11, False, +1.00, 0, 1, 0, , True
-      AutoLayout      =   Button1, 8, , 0, False, +1.00, 1, 1, 30, , True
-      AutoLayout      =   Button1, 2, <Parent>, 2, False, +1.00, 3, 1, 20, , True
-      AutoLayout      =   Button1, 7, , 0, False, +1.00, 1, 1, 137, , True
+      AutoLayout      =   ToggleButton, 2, <Parent>, 2, False, +1.00, 3, 1, -*kStdGapCtlToViewH, , True
+      AutoLayout      =   ToggleButton, 7, , 0, False, +1.00, 1, 1, 137, , True
+      AutoLayout      =   ToggleButton, 11, Label1, 11, False, +1.00, 0, 1, 0, , True
+      AutoLayout      =   ToggleButton, 8, , 0, False, +1.00, 1, 1, 30, , True
       Caption         =   "Toggle Constraint"
       CaptionColor    =   &c007AFF00
       ControlCount    =   0
       Enabled         =   True
       Height          =   30
-      Left            =   297
+      Left            =   257
       LockedInPosition=   False
       Scope           =   0
       TextFont        =   ""
@@ -42,10 +42,10 @@ Begin MobileScreen Screen1
       AllowAutoCorrection=   False
       AllowSpellChecking=   False
       AutoCapitalizationType=   0
-      AutoLayout      =   TextField1, 1, Label1, 2, False, +1.00, 4, 1, *kStdControlGapH, , True
-      AutoLayout      =   TextField1, 7, , 0, False, +1.00, 4, 1, 100, , True
-      AutoLayout      =   TextField1, 3, <Parent>, 3, False, +1.00, 1, 1, 660, , True
       AutoLayout      =   TextField1, 8, , 0, True, +1.00, 4, 1, 31, , True
+      AutoLayout      =   TextField1, 1, Label1, 2, False, +1.00, 4, 1, *kStdControlGapH, , True
+      AutoLayout      =   TextField1, 2, ToggleButton, 1, False, +1.00, 3, 1, -*kStdControlGapH, , True
+      AutoLayout      =   TextField1, 3, <Parent>, 3, False, +1.00, 1, 1, 660, , True
       BorderStyle     =   3
       ControlCount    =   0
       Enabled         =   True
@@ -65,7 +65,7 @@ Begin MobileScreen Screen1
       TintColor       =   &c000000
       Top             =   660
       Visible         =   True
-      Width           =   100
+      Width           =   121
    End
    Begin MobileLabel Label1
       AccessibilityHint=   ""
@@ -91,19 +91,19 @@ Begin MobileScreen Screen1
       Visible         =   True
       Width           =   100
    End
-   Begin MobileButton Button2
+   Begin MobileButton AnimateButton
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
-      AutoLayout      =   Button2, 1, Button1, 1, False, +1.00, 4, 1, 0, , True
-      AutoLayout      =   Button2, 7, , 0, False, +1.00, 4, 1, 137, , True
-      AutoLayout      =   Button2, 3, Label1, 4, False, +1.00, 4, 1, *kStdControlGapV, , True
-      AutoLayout      =   Button2, 8, , 0, False, +1.00, 4, 1, 30, , True
+      AutoLayout      =   AnimateButton, 1, ToggleButton, 1, False, +1.00, 4, 1, 0, , True
+      AutoLayout      =   AnimateButton, 7, , 0, False, +1.00, 4, 1, 137, , True
+      AutoLayout      =   AnimateButton, 3, Label1, 4, False, +1.00, 4, 1, *kStdControlGapV, , True
+      AutoLayout      =   AnimateButton, 8, , 0, False, +1.00, 4, 1, 30, , True
       Caption         =   "Animate Constraint"
       CaptionColor    =   &c007AFF00
       ControlCount    =   0
       Enabled         =   True
       Height          =   30
-      Left            =   297
+      Left            =   257
       LockedInPosition=   False
       Scope           =   0
       TextFont        =   ""
@@ -119,28 +119,51 @@ End
 #tag WindowCode
 	#tag Event
 		Sub Opening()
-		  // Recreate the constraints for the controls we want to adjust
-		  Self.RecreateConstraintsForControl(TextField1, 500)
-		  Self.RecreateConstraintsForControl(button1, 300)
+		  // Recreate the constraints for the controls we want to adjust below
+		  // Priorities are set to < 999 so they don't move to the position of the
+		  // textfield
+		  Self.ConvertConstraintsForAllControls(750)
 		  
-		  // create baseline alignments for the textfield.baseline > label & button.baseline > label
+		  // NOTE: don't use 1000 (required) for priority if you don't need to.
+		  // iOS will prevent changing priorities to/from 1000 at runtime.
+		  Self.ConvertConstraintsForControl(label1, 999) 
+		  
+		  Dim c As NSLayoutConstraint
+		  
+		  // Set the label to match its intrinsic width
+		  c = label1.ConstraintMatchingIntrinsicWidth
+		  c.Priority = 999
+		  Self.AddConstraint(c)
+		  
+		  // create baseline alignments with a priority of 999 so they're obeyed first.
+		  // The textfield.baseline to the label 
 		  txtBaseline = New NSLayoutConstraint(textfield1.Handle, label1.handle, Autolayout.NSLayoutConstraint.LayoutAttributes.FirstBaseline)
 		  txtBaseline.Offset = TextField1.FirstBaselineOffset/2
 		  txtBaseline.Priority = 999
 		  Self.AddConstraint(txtBaseline)
 		  
-		  
-		  Dim c As New NSLayoutConstraint(button1.Handle, label1.Handle, Autolayout.NSLayoutConstraint.LayoutAttributes.FirstBaseline)
+		  // ... and button.baseline to the label
+		  c = New NSLayoutConstraint(ToggleButton.Handle, label1.Handle, Autolayout.NSLayoutConstraint.LayoutAttributes.FirstBaseline)
+		  c.Priority = 999
 		  Self.AddConstraint(c)
-		  Button1.UpdateConstraints
 		  
 		End Sub
 	#tag EndEvent
 
 
 	#tag Method, Flags = &h21
-		Private Sub ChangeTextfieldConstraint()
-		  txtBaseline.Priority = 999 - txtBaseline.Priority
+		Private Sub ChangeConstraints()
+		  txtBaseline.TogglePriority
+		  
+		  // ask the layout for the Left constraint for the AnimateButton
+		  Dim animateButtonLeft As NSLayoutConstraint = Self.ConstraintForControlAttribute(AnimateButton, NSLayoutConstraint.LayoutAttributes.Left)
+		  If animateButtonLeft<>Nil Then
+		    If txtBaseline.Priority < 500 Then
+		      animateButtonLeft.Offset = -200
+		    Else
+		      animateButtonLeft.Offset = 0
+		    End If
+		  End If
 		  
 		  Self.EndAnimation // this is needed for the animation function
 		End Sub
@@ -154,17 +177,17 @@ End
 
 #tag EndWindowCode
 
-#tag Events Button1
+#tag Events ToggleButton
 	#tag Event
 		Sub Pressed()
-		  ChangeTextfieldConstraint
+		  ChangeConstraints
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events Button2
+#tag Events AnimateButton
 	#tag Event
 		Sub Pressed()
-		  AnimateChanges(0.5, AddressOf ChangeTextfieldConstraint)
+		  StartAnimation(0.3, AddressOf ChangeConstraints)
 		End Sub
 	#tag EndEvent
 #tag EndEvents

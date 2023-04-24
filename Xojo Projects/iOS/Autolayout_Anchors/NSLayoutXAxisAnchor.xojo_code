@@ -1,6 +1,6 @@
 #tag Class
 Class NSLayoutXAxisAnchor
-Inherits Autolayout.NSLayoutAnchor
+Inherits NSLayoutAnchor
 	#tag Method, Flags = &h0
 		Function AnchorWithOffsetToAnchor(otherAnchor as NSLayoutXAxisAnchor) As NSLayoutDimension
 		  // - (NSLayoutDimension *)anchorWithOffsetToAnchor:(NSLayoutYAxisAnchor *)otherAnchor;
@@ -16,12 +16,12 @@ Inherits Autolayout.NSLayoutAnchor
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function ConstraintEqualToSystemSpacingAfterAnchor(anchor as NSLayoutYAxisAnchor, multiplier as Double = 1.0) As NSLayoutConstraint
+		Function ConstraintEqualToSystemSpacingAfterAnchor(anchor as NSLayoutXAxisAnchor, multiplier as Double = 1.0) As NSLayoutConstraint
 		  #If TargetMacOS Or TargetIOS
 		    // // - (NSLayoutConstraint *)constraintEqualToSystemSpacingBelowAnchor:(NSLayoutYAxisAnchor *)anchor multiplier:(CGFloat)multiplier; Declare Function constraintEqualToSystemSpacingBelowAnchor_multiplier Lib "Foundation" Selector "constraintEqualToSystemSpacingBelowAnchor:multiplier:" ( obj As ptr , anchor As Ptr , multiplier As Double ) As Ptr
-		    Declare Function constraintEqualToSystemSpacingBelowAnchor_multiplier Lib "Foundation" Selector "constraintEqualToSystemSpacingBelowAnchor:multiplier:" ( obj As ptr , anchor As Ptr , multiplier As Double ) As Ptr
+		    Declare Function constraintEqualToSystemSpacingAfterAnchor_multiplier Lib "Foundation" Selector "constraintEqualToSystemSpacingAfterAnchor:multiplier:" ( obj As ptr , anchor As Ptr , multiplier As Double ) As Ptr
 		    
-		    Dim p As ptr = constraintEqualToSystemSpacingBelowAnchor_multiplier(mObj, anchor.handle, multiplier)
+		    Dim p As ptr = constraintEqualToSystemSpacingAfterAnchor_multiplier(mObj, anchor.handle, multiplier)
 		    If p = Nil Then
 		      Return Nil
 		    End If
@@ -32,7 +32,7 @@ Inherits Autolayout.NSLayoutAnchor
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function constraintGreaterThanOrEqualToSystemSpacingAfterAnchor(anchor as NSLayoutYAxisAnchor, multiplier as Double = 1.0) As NSLayoutConstraint
+		Function constraintGreaterThanOrEqualToSystemSpacingAfterAnchor(anchor as NSLayoutXAxisAnchor, multiplier as Double = 1.0) As NSLayoutConstraint
 		  #If TargetMacOS Or TargetIOS
 		    // - (NSLayoutConstraint *)constraintGreaterThanOrEqualToSystemSpacingAfterAnchor:(NSLayoutXAxisAnchor *)anchor multiplier:(CGFloat)multiplier;
 		    Declare Function constraintGreaterThanOrEqualToSystemSpacingAfterAnchor_multiplier Lib "Foundation" Selector "constraintGreaterThanOrEqualToSystemSpacingAfterAnchor:multiplier:" ( obj As ptr , anchor As Ptr , multiplier As Double ) As Ptr
@@ -48,7 +48,7 @@ Inherits Autolayout.NSLayoutAnchor
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function constraintLessThanOrEqualToSystemSpacingAfterAnchor(anchor as NSLayoutYAxisAnchor, multiplier as Double = 1.0) As NSLayoutConstraint
+		Function constraintLessThanOrEqualToSystemSpacingAfterAnchor(anchor as NSLayoutXAxisAnchor, multiplier as Double = 1.0) As NSLayoutConstraint
 		  #If TargetMacOS Or TargetIOS
 		    // - (NSLayoutConstraint *)constraintLessThanOrEqualToSystemSpacingAfterAnchor:(NSLayoutXAxisAnchor *)anchor multiplier:(CGFloat)multiplier;
 		    Declare Function constraintLessThanOrEqualToSystemSpacingAfterAnchor_multiplier Lib "Foundation" Selector "constraintLessThanOrEqualToSystemSpacingAfterAnchor:multiplier:" ( obj As ptr , anchor As Ptr , multiplier As Double ) As Ptr

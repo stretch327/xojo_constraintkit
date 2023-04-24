@@ -1,6 +1,6 @@
 #tag Class
 Class NSLayoutYAxisAnchor
-Inherits Autolayout.NSLayoutAnchor
+Inherits NSLayoutAnchor
 	#tag Method, Flags = &h0
 		Function AnchorWithOffsetToAnchor(otherAnchor as NSLayoutYAxisAnchor) As NSLayoutDimension
 		  // - (NSLayoutDimension *)anchorWithOffsetToAnchor:(NSLayoutYAxisAnchor *)otherAnchor;
@@ -49,7 +49,7 @@ Inherits Autolayout.NSLayoutAnchor
 
 	#tag Method, Flags = &h0
 		Function constraintLessThanOrEqualToSystemSpacingBelowAnchor(anchor as NSLayoutYAxisAnchor, multiplier as Double = 1.0) As NSLayoutConstraint
-		  #If TargetMacOS or TargetIOS
+		  #If TargetMacOS Or TargetIOS
 		    // - (NSLayoutConstraint *)constraintLessThanOrEqualToSystemSpacingBelowAnchor:(NSLayoutYAxisAnchor *)anchor multiplier:(CGFloat)multiplier;
 		    Declare Function constraintLessThanOrEqualToSystemSpacingBelowAnchor_multiplier Lib "Foundation" Selector "constraintLessThanOrEqualToSystemSpacingBelowAnchor:multiplier:" ( obj As ptr , anchor As Ptr , multiplier As Double ) As Ptr
 		    Dim p As ptr = constraintLessThanOrEqualToSystemSpacingBelowAnchor_multiplier(mObj, anchor.handle, multiplier)

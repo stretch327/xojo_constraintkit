@@ -24,73 +24,51 @@ Protected Module AutolayoutExtensions
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function BottomAnchor(extends view as MobileScreen) As NSLayoutYAxisAnchor
-		  #If TargetiOS
-		    // @property(nonatomic, readonly, strong) NSLayoutYAxisAnchor *bottomAnchor
-		    Declare Function getBottomAnchor Lib "Foundation" Selector "bottomAnchor" (obj As ptr) As Ptr
-		    
-		    return NSLayoutYAxisAnchor.Create(getBottomAnchor(view.Handle))
-		  #EndIf
-		End Function
+		Sub AddConstraints(extends view as MobileScreen, constraints() as NSLayoutConstraint)
+		  
+		  For i As Integer = 0 To UBound(constraints)
+		    constraints(i).Priority = DefaultPriority
+		    view.AddConstraint(constraints(i))
+		  Next
+		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function BottomAnchor(extends view as MobileUIControl) As NSLayoutYAxisAnchor
-		  #If TargetiOS
-		    // @property(nonatomic, readonly, strong) NSLayoutYAxisAnchor *bottomAnchor
-		    Declare Function getBottomAnchor Lib "Foundation" Selector "bottomAnchor" (obj As ptr) As Ptr
-		    
-		    Return NSLayoutYAxisAnchor.Create(getBottomAnchor(view.Handle))
-		  #EndIf
-		End Function
+		Sub AddConstraints(extends view as MobileScreen, constraints() as NSLayoutConstraint, priority as Double)
+		  // throttle to valid values
+		  priority = Min(Max(priority, 1.0), 1000.0)
+		  
+		  For i As Integer = 0 To UBound(constraints)
+		    constraints(i).Priority = priority
+		    view.AddConstraint(constraints(i))
+		  Next
+		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function CenterXAnchor(extends view as MobileScreen) As NSLayoutXAxisAnchor
-		  #if TargetiOS
-		    // @property(nonatomic, readonly, strong) NSLayoutXAxisAnchor *centerXAnchor;
-		    Declare Function getCenterXAnchor Lib "Foundation" Selector "centerXAnchor" (obj As ptr) As Ptr
-		    
-		    return NSLayoutXAxisAnchor.create(getCenterXAnchor(view.Handle))
-		  #endif
-		End Function
+		Sub AddConstraints(extends view as MobileUIControl, constraints() as NSLayoutConstraint)
+		  
+		  For i As Integer = 0 To UBound(constraints)
+		    constraints(i).Priority = DefaultPriority
+		    view.AddConstraint(constraints(i))
+		  Next
+		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function CenterXAnchor(extends view as MobileUIControl) As NSLayoutXAxisAnchor
-		  #if TargetiOS
-		    // @property(nonatomic, readonly, strong) NSLayoutXAxisAnchor *centerXAnchor;
-		    Declare Function getCenterXAnchor Lib "Foundation" Selector "centerXAnchor" (obj As ptr) As Ptr
-		    
-		    return NSLayoutXAxisAnchor.create(getCenterXAnchor(view.Handle))
-		  #endif
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Function CenterYAnchor(extends view as MobileScreen) As NSLayoutYAxisAnchor
-		  #If TargetiOS
-		    // @property(nonatomic, readonly, strong) NSLayoutYAxisAnchor *centerYAnchor;
-		    Declare Function getCenterYAnchor Lib "Foundation" selector "centerYAnchor" (obj as ptr) as Ptr
-		    
-		    return NSLayoutYAxisAnchor.Create(getCenterYAnchor(view.Handle))
-		  #EndIf
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Function CenterYAnchor(extends view as MobileUIControl) As NSLayoutYAxisAnchor
-		  #If TargetiOS
-		    // @property(nonatomic, readonly, strong) NSLayoutYAxisAnchor *centerYAnchor;
-		    Declare Function getCenterYAnchor Lib "Foundation" selector "centerYAnchor" (obj as ptr) as Ptr
-		    
-		    return NSLayoutYAxisAnchor.Create(getCenterYAnchor(view.Handle))
-		  #EndIf
-		End Function
+		Sub AddConstraints(extends view as MobileUIControl, constraints() as NSLayoutConstraint, priority as Double)
+		  // throttle to valid values
+		  priority = Min(Max(priority, 1.0), 1000.0)
+		  
+		  For i As Integer = 0 To UBound(constraints)
+		    constraints(i).Priority = priority
+		    view.AddConstraint(constraints(i))
+		  Next
+		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target64Bit))
-		Function CompressionResistancePriorityForAxis(Extends item as MobileUIControl, axis as Autolayout.axis) As Double
+		Function CompressionResistancePriorityForAxis(Extends item as MobileUIControl, axis as AutolayoutExtensions.Axis) As Double
 		  #If TargetIOS
 		    Declare Function NSClassFromString Lib "Foundation" (name As cfstringref) As ptr
 		    
@@ -103,7 +81,7 @@ Protected Module AutolayoutExtensions
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target64Bit))
-		Sub CompressionResistancePriorityForAxis(Extends item as MobileUIControl, priority as single, axis as Autolayout.Axis)
+		Sub CompressionResistancePriorityForAxis(Extends item as MobileUIControl, priority as single, axis as AutolayoutExtensions.Axis)
 		  #If TargetIOS
 		    Declare Function NSClassFromString Lib "Foundation" (name As cfstringref) As ptr
 		    
@@ -113,6 +91,31 @@ Protected Module AutolayoutExtensions
 		    setContentCompressionResistancePriority_forAxis_forView(NSClassFromString("SOSLayoutConstraint"), priority, CType(axis, Integer), item.handle)
 		  #EndIf
 		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function ConstraintForControlAttribute(extends view as MobileScreen, ctl as mobileUIControl, attr as NSLayoutConstraint.LayoutAttributes) As NSLayoutConstraint
+		  Dim ca() As NSLayoutConstraint = view.Constraints
+		  
+		  For i As Integer = 0 To UBound(ca)
+		    If ca(i).FirstItem = ctl.Handle Then
+		      If ca(i).FirstAttribute = attr Then
+		        Return ca(i)
+		      End If
+		    End If
+		  Next
+		  
+		  return nil
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function ConstraintMatchingIntrinsicWidth(extends view as MobileUIControl) As NSLayoutConstraint
+		  Dim sz As size = view.IntrinsicContentSize
+		  
+		  Return New NSLayoutConstraint(view.Handle, NSLayoutConstraint.LayoutAttributes.Width, NSLayoutConstraint.relations.Equal, sz.Width)
+		  
+		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target64Bit))
@@ -164,6 +167,97 @@ Protected Module AutolayoutExtensions
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub ConvertConstraintsForAllControls(extends view as MobileScreen, newPriority as Double)
+		  For Each ctl As MobileControl In view.controls
+		    If ctl IsA MobileUIControl Then
+		      view.ConvertConstraintsForControl(MobileUIControl(ctl), newPriority)
+		    End If
+		  Next
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub ConvertConstraintsForControl(extends view as MobileScreen, item as MobileUIControl, newPriority as Double = 0)
+		  #If TargetiOS
+		    Dim ca() As Autolayout.NSLayoutConstraint = view.constraints
+		    
+		    Dim newConstraints() As NSLayoutConstraint
+		    
+		    // clip the value to be between 1 and 999 so it'll be editable later
+		    If newPriority > 0 Then
+		      newPriority = Min(DefaultPriority, Max(1, newPriority))
+		    End If
+		    
+		    For i As Integer = UBound(ca) DownTo 0
+		      If ca(i).FirstItem = item.Handle Then
+		        Dim c As New NSLayoutConstraint(ca(i).FirstItem, ca(i).FirstAttribute, ca(i).relation, ca(i).SecondItem, ca(i).SecondAttribute, ca(i).Multiplier, ca(i).Offset)
+		        c.Identifier = ca(i).identifier
+		        If newPriority > 0 Then
+		          c.Priority = newPriority
+		        End If
+		        c.Active = True
+		        newConstraints.add c
+		        
+		        ca(i).active = False
+		      End If
+		      
+		    Next
+		    
+		    For i As Integer = 0 To UBound(newConstraints)
+		      view.AddConstraint(newConstraints(i))
+		    Next
+		  #EndIf
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub ConvertConstraintsForControl(extends view as MobileScreen, item as MobileUIControl, newPriority as Priorities)
+		  #If TargetiOS
+		    Dim ca() As NSLayoutConstraint = view.constraints
+		    
+		    Dim newConstraints() As NSLayoutConstraint
+		    
+		    // Convert the enum to a double
+		    Dim priority As Double = CType(newPriority, Double)
+		    
+		    // clip the value to be between 1 and 999 so it'll be editable later
+		    priority = Min(DefaultPriority, Max(1, priority))
+		    
+		    For i As Integer = UBound(ca) DownTo 0
+		      If ca(i).FirstItem = item.Handle Then
+		        Dim c As New NSLayoutConstraint(ca(i).FirstItem, ca(i).FirstAttribute, ca(i).relation, ca(i).SecondItem, ca(i).SecondAttribute, ca(i).Multiplier, ca(i).Offset)
+		        c.Identifier = ca(i).identifier
+		        If priority > 0 Then
+		          c.Priority = priority
+		        End If
+		        c.Active = True
+		        newConstraints.add c
+		        
+		        ca(i).active = False
+		      End If
+		      
+		      If ca(i).SecondItem = item.Handle Then
+		        // these are actually backwards, but we'll recreate them forwards
+		        Dim c As New NSLayoutConstraint(ca(i).secondItem, ca(i).secondattribute, ca(i).relation, ca(i).firstitem, ca(i).firstattribute, ca(i).multiplier, ca(i).offset)
+		        c.Identifier = ca(i).identifier
+		        If priority > 0 Then
+		          c.Priority = priority
+		        End If
+		        c.Active = True
+		        newConstraints.Add c
+		        
+		        ca(i).active = False
+		      End If
+		    Next
+		    
+		    For i As Integer = 0 To UBound(newConstraints)
+		      view.AddConstraint(newConstraints(i))
+		    Next
+		  #EndIf
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Function DirectionalLayoutMargins(Extends view as MobileScreen) As NSDirectionalEdgeInsets
 		  #If TargetIOS
 		    // @property(nonatomic) NSDirectionalEdgeInsets directionalLayoutMargins;
@@ -208,23 +302,6 @@ Protected Module AutolayoutExtensions
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub EndAnimation(extends view as MobileScreen)
-		  view.LayoutIfNeeded
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Function FirstBaselineAnchor(extends view as MobileUIControl) As NSLayoutYAxisAnchor
-		  #If TargetiOS
-		    // @property(nonatomic, readonly, strong) NSLayoutYAxisAnchor *firstBaselineAnchor;
-		    Declare Function getFirstBaselineAnchor Lib "Foundation" Selector "firstBaselineAnchor" (obj As ptr) As Ptr
-		    
-		    return NSLayoutYAxisAnchor.Create(getFirstBaselineAnchor(view.Handle))
-		  #EndIf
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
 		Function FirstBaselineOffset(extends view as MobileTextField) As Double
 		  // @property(nullable, nonatomic, strong) UIFont *font;
 		  Declare Function getFont Lib "Foundation" Selector "font" (obj As ptr) As Ptr
@@ -237,31 +314,7 @@ Protected Module AutolayoutExtensions
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function HeightAnchor(extends view as MobileScreen) As NSLayoutDimension
-		  #If TargetiOS
-		    // @property(nonatomic, readonly, strong) NSLayoutDimension *heightAnchor;
-		    Declare Function getHeightAnchor Lib "Foundation" Selector "heightAnchor" (obj As ptr) As Ptr
-		    
-		    Return  NSLayoutDimension.create(getHeightAnchor(view.Handle))
-		    
-		  #EndIf
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Function HeightAnchor(extends view as MobileUIControl) As NSLayoutDimension
-		  #If TargetiOS
-		    // @property(nonatomic, readonly, strong) NSLayoutDimension *heightAnchor;
-		    Declare Function getHeightAnchor Lib "Foundation" Selector "heightAnchor" (obj As ptr) As Ptr
-		    
-		    Return  NSLayoutDimension.create(getHeightAnchor(view.Handle))
-		    
-		  #EndIf
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Function HuggingPriorityForAxis(Extends item as MobileUIControl, axis as Autolayout.Axis) As Integer
+		Function HuggingPriorityForAxis(Extends item as MobileUIControl, axis as AutolayoutExtensions.Axis) As Integer
 		  #If TargetIOS
 		    Declare Function NSClassFromString Lib "Foundation" (name As cfstringref) As ptr
 		    
@@ -275,7 +328,7 @@ Protected Module AutolayoutExtensions
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub HuggingPriorityForAxis(Extends item as MobileUIControl, priority as Single, Axis as Autolayout.Axis)
+		Sub HuggingPriorityForAxis(Extends item as MobileUIControl, priority as Single, Axis as AutolayoutExtensions.Axis)
 		  #If TargetIOS
 		    Declare Function NSClassFromString Lib "Foundation" (name As cfstringref) As ptr
 		    
@@ -313,13 +366,14 @@ Protected Module AutolayoutExtensions
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function LastBaselineAnchor(extends view as MobileUIControl) As NSLayoutYAxisAnchor
-		  #If TargetiOS
-		    // @property(nonatomic, readonly, strong) NSLayoutYAxisAnchor *lastBaselineAnchor;
-		    Declare Function getLastBaselineAnchor Lib "Foundation" Selector "lastBaselineAnchor" (obj As ptr) As Ptr
-		    
-		    return NSLayoutYAxisAnchor.Create(getLastBaselineAnchor(view.Handle))
-		  #EndIf
+		Function IntrinsicContentSize(extends view as MobileUIControl) As Size
+		  // @property(nonatomic, readonly) CGSize intrinsicContentSize;
+		  Declare Function getIntrinsicContentSize Lib "Foundation" Selector "intrinsicContentSize" (obj As ptr) As CGSize
+		  
+		  Dim sz As cgsize = getIntrinsicContentSize(view.handle)
+		  
+		  return new size(sz.width, sz.height)
+		  
 		End Function
 	#tag EndMethod
 
@@ -371,34 +425,6 @@ Protected Module AutolayoutExtensions
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function LeftAnchor(extends view as MobileScreen) As NSLayoutXAxisAnchor
-		  Return LeftAnchor(view.Handle)
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Function LeftAnchor(extends view as MobileUIControl) As NSLayoutXAxisAnchor
-		  Return LeftAnchor(view.handle)
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h21
-		Private Function LeftAnchor(view as ptr) As NSLayoutXAxisAnchor
-		  #If TargetiOS
-		    // @property(nonatomic, readonly, strong) NSLayoutXAxisAnchor *leftAnchor;
-		    Declare Function getLeftAnchor Lib "Foundation" Selector "leftAnchor" (obj As ptr) As Ptr
-		    
-		    Dim p As ptr = getLeftAnchor(view)
-		    If p = Nil Then
-		      Return Nil
-		    End If
-		    
-		    Return NSLayoutXAxisAnchor.create(p)
-		  #EndIf
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
 		Function PreservesSuperviewLayoutMargins(extends view as MobileUIControl) As Boolean
 		  #If TargetiOS
 		    // @property(nonatomic) BOOL preservesSuperviewLayoutMargins;
@@ -429,95 +455,51 @@ Protected Module AutolayoutExtensions
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub RecreateConstraintsForControl(extends view as MobileScreen, item as MobileUIControl, newPriority as Double = 0)
-		  #If TargetiOS
-		    Dim ca() As NSLayoutConstraint = view.constraints
+		Sub RecreateConstraintsForAllControls(extends view as mobilescreen)
+		  Dim ca() As Autolayout.NSLayoutConstraint = view.constraints
+		  
+		  Dim newConstraints() As NSLayoutConstraint
+		  
+		  For i As Integer = UBound(ca) DownTo 0
+		    Dim c As New NSLayoutConstraint(ca(i).FirstItem, ca(i).FirstAttribute, ca(i).relation, ca(i).SecondItem, ca(i).SecondAttribute, ca(i).Multiplier, ca(i).Offset)
+		    c.Identifier = ca(i).identifier
+		    c.Priority = ca(i).priority
+		    c.Active = True
+		    newConstraints.add c
 		    
-		    Dim newConstraints() As NSLayoutConstraint
-		    
-		    // clip the value to be between 1 and 999 so it'll be editable later
-		    If newPriority > 0 Then
-		      newPriority = Min(999, Max(1, newPriority))
-		    End If
-		    
-		    For i As Integer = UBound(ca) DownTo 0
-		      If ca(i).FirstItem = item.Handle Then
-		        Dim c As New NSLayoutConstraint(ca(i).FirstItem, ca(i).FirstAttribute, ca(i).relation, ca(i).SecondItem, ca(i).SecondAttribute, ca(i).Multiplier, ca(i).Offset)
-		        c.Identifier = ca(i).identifier
-		        If newPriority > 0 Then
-		          c.Priority = newPriority
-		        End If
-		        c.Active = True
-		        newConstraints.add c
-		        
-		        view.RemoveConstraint(ca(i))
-		      End If
-		      
-		      If ca(i).SecondItem = item.Handle Then
-		        // these are actually backwards, but we'll recreate them forwards
-		        Dim c As New NSLayoutConstraint(ca(i).secondItem, ca(i).secondattribute, ca(i).relation, ca(i).firstitem, ca(i).firstattribute, ca(i).multiplier, ca(i).offset)
-		        c.Identifier = ca(i).identifier
-		        If newPriority > 0 Then
-		          c.Priority = newPriority
-		        End If
-		        c.Active = True
-		        newConstraints.Add c
-		        
-		        view.RemoveConstraint(ca(i))
-		      End If
-		    Next
-		    
-		    For i As Integer = 0 To UBound(newConstraints)
-		      view.AddConstraint(newConstraints(i))
-		    Next
-		  #EndIf
+		    ca(i).active = False
+		  Next
+		  
+		  For i As Integer = 0 To UBound(newConstraints)
+		    view.AddConstraint(newConstraints(i))
+		  Next
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub RecreateConstraintsForControl(extends view as MobileScreen, item as MobileUIControl, newPriority as Priorities)
-		  #If TargetiOS
-		    Dim ca() As NSLayoutConstraint = view.constraints
+		Sub RecreateConstraintsForAllControls(extends view as mobilescreen, newPriority as single)
+		  Dim ca() As Autolayout.NSLayoutConstraint = view.constraints
+		  
+		  Dim newConstraints() As NSLayoutConstraint
+		  
+		  // clip the value to be between 1 and 999 so it'll be editable later
+		  If newPriority > 0 Then
+		    newPriority = Min(DefaultPriority, Max(1, newPriority))
+		  End If
+		  
+		  For i As Integer = UBound(ca) DownTo 0
+		    Dim c As New NSLayoutConstraint(ca(i).FirstItem, ca(i).FirstAttribute, ca(i).relation, ca(i).SecondItem, ca(i).SecondAttribute, ca(i).Multiplier, ca(i).Offset)
+		    c.Identifier = ca(i).identifier
+		    c.Priority = newPriority
+		    c.Active = True
+		    newConstraints.add c
 		    
-		    Dim newConstraints() As NSLayoutConstraint
-		    
-		    // Convert the enum to a double
-		    Dim priority As Double = CType(newPriority, Double)
-		    
-		    // clip the value to be between 1 and 999 so it'll be editable later
-		    priority = Min(999, Max(1, priority))
-		    
-		    For i As Integer = UBound(ca) DownTo 0
-		      If ca(i).FirstItem = item.Handle Then
-		        Dim c As New NSLayoutConstraint(ca(i).FirstItem, ca(i).FirstAttribute, ca(i).relation, ca(i).SecondItem, ca(i).SecondAttribute, ca(i).Multiplier, ca(i).Offset)
-		        c.Identifier = ca(i).identifier
-		        If priority > 0 Then
-		          c.Priority = priority
-		        End If
-		        c.Active = True
-		        newConstraints.add c
-		        
-		        view.RemoveConstraint(ca(i))
-		      End If
-		      
-		      If ca(i).SecondItem = item.Handle Then
-		        // these are actually backwards, but we'll recreate them forwards
-		        Dim c As New NSLayoutConstraint(ca(i).secondItem, ca(i).secondattribute, ca(i).relation, ca(i).firstitem, ca(i).firstattribute, ca(i).multiplier, ca(i).offset)
-		        c.Identifier = ca(i).identifier
-		        If priority > 0 Then
-		          c.Priority = priority
-		        End If
-		        c.Active = True
-		        newConstraints.Add c
-		        
-		        view.RemoveConstraint(ca(i))
-		      End If
-		    Next
-		    
-		    For i As Integer = 0 To UBound(newConstraints)
-		      view.AddConstraint(newConstraints(i))
-		    Next
-		  #EndIf
+		    ca(i).active = False
+		  Next
+		  
+		  For i As Integer = 0 To UBound(newConstraints)
+		    view.AddConstraint(newConstraints(i))
+		  Next
 		End Sub
 	#tag EndMethod
 
@@ -544,34 +526,6 @@ Protected Module AutolayoutExtensions
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function RightAnchor(extends view as MobileScreen) As NSLayoutXAxisAnchor
-		  Return RightAnchor(view.Handle)
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Function RightAnchor(extends view as MobileUIControl) As NSLayoutXAxisAnchor
-		  Return RightAnchor(view.handle)
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h21
-		Private Function RightAnchor(view as ptr) As NSLayoutXAxisAnchor
-		  #If TargetiOS
-		    // @property(nonatomic, readonly, strong) NSLayoutXAxisAnchor *rightAnchor;
-		    Declare Function getrightAnchor Lib "Foundation" Selector "rightAnchor" (obj As ptr) As Ptr
-		    
-		    Dim p As ptr = getrightAnchor(view)
-		    If p = Nil Then
-		      Return Nil
-		    End If
-		    
-		    Return NSLayoutXAxisAnchor.create(p)
-		  #EndIf
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
 		Function SafeAreaInsets(view as MobileScreen) As UIEdgeInsets
 		  // @property(nonatomic, readonly) UIEdgeInsets safeAreaInsets;
 		  Declare Function getSafeAreaInsets Lib "Foundation" Selector "safeAreaInsets" (obj As ptr) As UIEdgeInsets
@@ -579,74 +533,6 @@ Protected Module AutolayoutExtensions
 		  return getSafeAreaInsets(view.Handle)
 		  
 		  
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Function SafeAreaLayoutGuide(extends view as MobileScreen) As UILayoutGuide
-		  Return SafeAreaLayoutGuide(view.Handle)
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Function SafeAreaLayoutGuide(extends view as MobileUIControl) As UILayoutGuide
-		  Return SafeAreaLayoutGuide(view.Handle)
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h21
-		Private Function SafeAreaLayoutGuide(view as ptr) As UILayoutGuide
-		  #If TargetiOS
-		    // @property(nonatomic, readonly, strong) UILayoutGuide *safeAreaLayoutGuide;
-		    Declare Function getSafeAreaLayoutGuide Lib "Foundation" Selector "safeAreaLayoutGuide" (obj As ptr) As Ptr
-		    
-		    Return Autolayout.UILayoutGuide.Create(getSafeAreaLayoutGuide(view))
-		  #EndIf
-		  
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Function TopAnchor(extends view as MobileScreen) As NSLayoutYAxisAnchor
-		  #If TargetiOS
-		    // @property(nonatomic, readonly, strong) NSLayoutYAxisAnchor *topAnchor;
-		    Declare Function getTopAnchor Lib "Foundation" Selector "topAnchor" (obj As ptr) As Ptr
-		    
-		    return NSLayoutYAxisAnchor.Create(getTopAnchor(view.Handle))
-		  #EndIf
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Function TopAnchor(extends view as MobileUIControl) As NSLayoutYAxisAnchor
-		  #If TargetiOS
-		    // @property(nonatomic, readonly, strong) NSLayoutYAxisAnchor *topAnchor;
-		    Declare Function getTopAnchor Lib "Foundation" Selector "topAnchor" (obj As ptr) As Ptr
-		    
-		    return NSLayoutYAxisAnchor.Create(getTopAnchor(view.Handle))
-		  #EndIf
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Function TrailingAnchor(extends view as MobileScreen) As NSLayoutXAxisAnchor
-		  #If TargetiOS
-		    // @property(nonatomic, readonly, strong) NSLayoutXAxisAnchor *trailingAnchor;
-		    Declare Function getTrailingAnchor Lib "Foundation" Selector "trailingAnchor" (obj As ptr) As Ptr
-		    
-		    return NSLayoutXAxisAnchor.Create(getTrailingAnchor(view.Handle))
-		  #EndIf
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Function TrailingAnchor(extends view as MobileUIControl) As NSLayoutXAxisAnchor
-		  #If TargetiOS
-		    // @property(nonatomic, readonly, strong) NSLayoutXAxisAnchor *trailingAnchor;
-		    Declare Function getTrailingAnchor Lib "Foundation" Selector "trailingAnchor" (obj As ptr) As Ptr
-		    
-		    return NSLayoutXAxisAnchor.Create(getTrailingAnchor(view.Handle))
-		  #EndIf
 		End Function
 	#tag EndMethod
 
@@ -672,29 +558,16 @@ Protected Module AutolayoutExtensions
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
-		Function WidthAnchor(extends view as MobileScreen) As NSLayoutDimension
-		  #If TargetiOS
-		    // @property(nonatomic, readonly, strong) NSLayoutDimension *widthAnchor;
-		    Declare Function getWidthAnchor Lib "Foundation" Selector "widthAnchor" (obj As ptr) As Ptr
-		    
-		    Return NSLayoutDimension.Create(getWidthAnchor(view.Handle))
-		  #EndIf
-		  
-		End Function
-	#tag EndMethod
 
-	#tag Method, Flags = &h0
-		Function WidthAnchor(extends view as MobileUIControl) As NSLayoutDimension
-		  #If TargetiOS
-		    // @property(nonatomic, readonly, strong) NSLayoutDimension *widthAnchor;
-		    Declare Function getWidthAnchor Lib "Foundation" Selector "widthAnchor" (obj As ptr) As Ptr
-		    
-		    Return NSLayoutDimension.Create(getWidthAnchor(view.Handle))
-		  #EndIf
-		End Function
-	#tag EndMethod
+	#tag Property, Flags = &h1
+		Protected DefaultPriority As Single = 999.0
+	#tag EndProperty
 
+
+	#tag Structure, Name = CGSize, Flags = &h21
+		width as cgfloat
+		height as cgfloat
+	#tag EndStructure
 
 	#tag Structure, Name = NSDirectionalEdgeInsets, Flags = &h0
 		Bottom as CGFloat
@@ -710,6 +583,11 @@ Protected Module AutolayoutExtensions
 		top as CGFloat
 	#tag EndStructure
 
+
+	#tag Enum, Name = Axis, Flags = &h0
+		Horizontal
+		Vertical
+	#tag EndEnum
 
 	#tag Enum, Name = Priorities, Type = Integer, Flags = &h0
 		Highest = 1000
