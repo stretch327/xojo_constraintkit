@@ -21,9 +21,9 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		2A8484C529F834F300D171B2 /* SOSStackView.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A8484C329F834F300D171B2 /* SOSStackView.h */; };
+		2A8484C629F834F300D171B2 /* SOSStackView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8484C429F834F300D171B2 /* SOSStackView.m */; };
 		2AB3CCD029E4C93B00AED141 /* SOS_Autolayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 2AB3CCCF29E4C93B00AED141 /* SOS_Autolayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2AB3CCD829E4C98500AED141 /* autolayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 2AB3CCD629E4C98500AED141 /* autolayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2AB3CCD929E4C98500AED141 /* autolayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AB3CCD729E4C98500AED141 /* autolayout.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,10 +37,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2A8484C329F834F300D171B2 /* SOSStackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSStackView.h; sourceTree = "<group>"; };
+		2A8484C429F834F300D171B2 /* SOSStackView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSStackView.m; sourceTree = "<group>"; };
 		2AB3CCCC29E4C93B00AED141 /* SOS_Autolayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SOS_Autolayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AB3CCCF29E4C93B00AED141 /* SOS_Autolayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SOS_Autolayout.h; sourceTree = "<group>"; };
-		2AB3CCD629E4C98500AED141 /* autolayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = autolayout.h; sourceTree = "<group>"; };
-		2AB3CCD729E4C98500AED141 /* autolayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = autolayout.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,8 +74,8 @@
 			isa = PBXGroup;
 			children = (
 				2AB3CCCF29E4C93B00AED141 /* SOS_Autolayout.h */,
-				2AB3CCD629E4C98500AED141 /* autolayout.h */,
-				2AB3CCD729E4C98500AED141 /* autolayout.m */,
+				2A8484C329F834F300D171B2 /* SOSStackView.h */,
+				2A8484C429F834F300D171B2 /* SOSStackView.m */,
 			);
 			path = SOS_Autolayout;
 			sourceTree = "<group>";
@@ -88,7 +88,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2AB3CCD029E4C93B00AED141 /* SOS_Autolayout.h in Headers */,
-				2AB3CCD829E4C98500AED141 /* autolayout.h in Headers */,
+				2A8484C529F834F300D171B2 /* SOSStackView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,7 +166,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2AB3CCD929E4C98500AED141 /* autolayout.m in Sources */,
+				2A8484C629F834F300D171B2 /* SOSStackView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
