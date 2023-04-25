@@ -6,7 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <SOS_Autolayout/autolayout.h>
+#import <SOS_Autolayout/SOSStackView.h>
 
 //! Project version number for SOS_Autolayout.
 FOUNDATION_EXPORT double SOS_AutolayoutVersionNumber;
