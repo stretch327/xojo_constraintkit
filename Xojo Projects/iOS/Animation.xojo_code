@@ -6,22 +6,25 @@ Protected Module Animation
 
 	#tag Method, Flags = &h0
 		Sub EndAnimation(extends view as MobileScreen)
-		  view.LayoutIfNeeded
+		  #If TargetiOS
+		    Declare Sub layoutIfNeeded Lib "Foundation" Selector "layoutIfNeeded" (obj As ptr)
+		    layoutIfNeeded(view.Handle)
+		  #EndIf
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub StartAnimation(durationSeconds as double, animationBlock as AnimateDelegate)
-		  Declare Function NSClassFromString Lib "Foundation" (name As cfstringref) As ptr
-		  Declare Function NSStringFromClass Lib "Foundation" (cls As ptr) As CFStringRef
-		  
-		  
-		  // + (void)animateWithDuration:(NSTimeInterval)duration animations:(void (^)(void))animations;
-		  Declare Sub animateWithDuration_animations Lib "Foundation" Selector "animateWithDuration:animations:" ( cls As ptr , duration As Double , animations As Ptr )
-		  
-		  Dim bl As New ObjCBlock(animationBlock)
-		  
-		  animateWithDuration_animations(NSClassFromString("UIView"), durationSeconds, bl.Handle)
+		  #If TargetiOS
+		    Declare Function NSClassFromString Lib "Foundation" (name As cfstringref) As ptr
+		    
+		    // + (void)animateWithDuration:(NSTimeInterval)duration animations:(void (^)(void))animations;
+		    Declare Sub animateWithDuration_animations Lib "Foundation" Selector "animateWithDuration:animations:" ( cls As ptr , duration As Double , animations As Ptr )
+		    
+		    Dim bl As New ObjCBlock(animationBlock)
+		    
+		    animateWithDuration_animations(NSClassFromString("UIView"), durationSeconds, bl.Handle)
+		  #EndIf
 		End Sub
 	#tag EndMethod
 

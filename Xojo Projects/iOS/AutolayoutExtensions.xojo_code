@@ -1,7 +1,7 @@
 #tag Module
 Protected Module AutolayoutExtensions
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target64Bit))
-		Sub AddConstraint(extends screen as MobileScreen, constraint as NSLayoutConstraint)
+		Sub AddConstraint(extends screen as MobileScreen, constraint as SOSLayoutConstraint)
 		  #If TargetIOS
 		    
 		    // - (void)addConstraint:(NSLayoutConstraint *)constraint;
@@ -13,7 +13,7 @@ Protected Module AutolayoutExtensions
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target64Bit))
-		Sub AddConstraint(extends control as MobileUIControl, constraint as NSLayoutConstraint)
+		Sub AddConstraint(extends control as MobileUIControl, constraint as SOSLayoutConstraint)
 		  #If TargetIOS
 		    // - (void)addConstraint:(NSLayoutConstraint *)constraint;
 		    Declare Sub addConstraint Lib "Foundation" Selector "addConstraint:" ( obj As ptr , constraint As Ptr )
@@ -24,7 +24,7 @@ Protected Module AutolayoutExtensions
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub AddConstraints(extends view as MobileScreen, constraints() as NSLayoutConstraint)
+		Sub AddConstraints(extends view as MobileScreen, constraints() as SOSLayoutConstraint)
 		  
 		  For i As Integer = 0 To UBound(constraints)
 		    constraints(i).Priority = DefaultPriority
@@ -34,7 +34,29 @@ Protected Module AutolayoutExtensions
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub AddConstraints(extends view as MobileScreen, constraints() as NSLayoutConstraint, priority as Double)
+		Sub AddConstraints(extends view as MobileScreen, constraints() as SOSLayoutConstraint, priority as Double)
+		  // throttle to valid values
+		  priority = Min(Max(priority, 1.0), DefaultPriority)
+		  
+		  For i As Integer = 0 To UBound(constraints)
+		    constraints(i).Priority = priority
+		    view.AddConstraint(constraints(i))
+		  Next
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub AddConstraints(extends view as MobileUIControl, constraints() as SOSLayoutConstraint)
+		  
+		  For i As Integer = 0 To UBound(constraints)
+		    constraints(i).Priority = DefaultPriority
+		    view.AddConstraint(constraints(i))
+		  Next
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub AddConstraints(extends view as MobileUIControl, constraints() as SOSLayoutConstraint, priority as Double)
 		  // throttle to valid values
 		  priority = Min(Max(priority, 1.0), 1000.0)
 		  
@@ -45,81 +67,115 @@ Protected Module AutolayoutExtensions
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
-		Sub AddConstraints(extends view as MobileUIControl, constraints() as NSLayoutConstraint)
-		  
-		  For i As Integer = 0 To UBound(constraints)
-		    constraints(i).Priority = DefaultPriority
-		    view.AddConstraint(constraints(i))
-		  Next
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub AddConstraints(extends view as MobileUIControl, constraints() as NSLayoutConstraint, priority as Double)
-		  // throttle to valid values
-		  priority = Min(Max(priority, 1.0), 1000.0)
-		  
-		  For i As Integer = 0 To UBound(constraints)
-		    constraints(i).Priority = priority
-		    view.AddConstraint(constraints(i))
-		  Next
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target64Bit))
-		Function CompressionResistancePriorityForAxis(Extends item as MobileUIControl, axis as AutolayoutExtensions.Axis) As Double
-		  #If TargetIOS
-		    Declare Function NSClassFromString Lib "Foundation" (name As cfstringref) As ptr
+	#tag Method, Flags = &h21
+		Private Function AttributeName(attr as SOSLayoutConstraint.LayoutAttributes) As String
+		  #If TargetiOS
+		    Select Case attr
+		    Case SOSLayoutConstraint.LayoutAttributes.Absolute
+		      Return "Absolute"
+		    Case SOSLayoutConstraint.LayoutAttributes.Bottom
+		      Return "Bottom"
+		    Case SOSLayoutConstraint.LayoutAttributes.BottomMargin
+		      Return "BottomMargin"
+		    Case SOSLayoutConstraint.LayoutAttributes.CenterX
+		      Return "CenterX"
+		    Case SOSLayoutConstraint.LayoutAttributes.CenterXWithinMargins
+		      Return "CenterXWithinMargins"
+		    Case SOSLayoutConstraint.LayoutAttributes.CenterY
+		      Return "CenterY"
+		    Case SOSLayoutConstraint.LayoutAttributes.CenterYWithinMargins
+		      Return "CenterYWithinMargins"
+		    Case SOSLayoutConstraint.LayoutAttributes.FirstBaseline
+		      Return "FirstBaseline"
+		    Case SOSLayoutConstraint.LayoutAttributes.Height
+		      Return "Height"
+		    Case SOSLayoutConstraint.LayoutAttributes.LastBaseline
+		      Return "LastBaseline"
+		    Case SOSLayoutConstraint.LayoutAttributes.Leading
+		      Return "Leading"
+		    Case SOSLayoutConstraint.LayoutAttributes.LeadingMargin
+		      Return "LeadingMargin"
+		    Case SOSLayoutConstraint.LayoutAttributes.Left
+		      Return "Left"
+		    Case SOSLayoutConstraint.LayoutAttributes.LeftMargin
+		      Return "LeftMargin"
+		    Case SOSLayoutConstraint.LayoutAttributes.Right
+		      Return "Right"
+		    Case SOSLayoutConstraint.LayoutAttributes.RIghtMargin
+		      Return "RightMargin"
+		    Case SOSLayoutConstraint.LayoutAttributes.Top
+		      Return "Top"
+		    Case SOSLayoutConstraint.LayoutAttributes.TopMargin
+		      Return "TopMargin"
+		    Case SOSLayoutConstraint.LayoutAttributes.Trailing
+		      Return "Trailing"
+		    Case SOSLayoutConstraint.LayoutAttributes.TrailingMargin
+		      Return "TrailingMargin"
+		    Case SOSLayoutConstraint.LayoutAttributes.Width
+		      Return "Width"
+		    Case Else
+		      Break
+		      //oops
+		    End Select
+		    Return ""
 		    
-		    // - (double)contentCompressionResistancePriorityForAxis:(UILayoutConstraintAxis)axis forView:(UIView *)view;
-		    Declare Function contentCompressionResistancePriorityForAxis_forView Lib "Foundation" Selector "contentCompressionResistancePriorityForAxis:forView:" ( obj As ptr , axis As Integer , view As Ptr ) As Double
-		    
-		    Return contentCompressionResistancePriorityForAxis_forView(NSClassFromString("SOSLayoutConstraint"), CType(axis, Integer), item.handle)
 		  #EndIf
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target64Bit))
-		Sub CompressionResistancePriorityForAxis(Extends item as MobileUIControl, priority as single, axis as AutolayoutExtensions.Axis)
+		Function CompressionResistancePriorityForAxis(Extends item as MobileUIControl, axis as Autolayout.Axis) As Double
 		  #If TargetIOS
-		    Declare Function NSClassFromString Lib "Foundation" (name As cfstringref) As ptr
+		    // - (UILayoutPriority)contentCompressionResistancePriorityForAxis:(UILayoutConstraintAxis)axis;
+		    Declare Function contentCompressionResistancePriorityForAxis Lib "Foundation" Selector "contentCompressionResistancePriorityForAxis:" ( obj As ptr , axis As integer ) As single
 		    
-		    // - (void)setContentCompressionResistancePriority:(double)priority forAxis:(UILayoutConstraintAxis)axis forView:(UIView *)view;
-		    Declare Sub setContentCompressionResistancePriority_forAxis_forView Lib "Foundation" Selector "setContentCompressionResistancePriority:forAxis:forView:" ( obj As ptr , priority As Single , axis As Integer , view As Ptr )
+		    Return contentCompressionResistancePriorityForAxis(item.handle, CType(axis, Integer))
+		  #EndIf
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target64Bit))
+		Sub CompressionResistancePriorityForAxis(Extends item as MobileUIControl, axis as Autolayout.Axis, assigns priority as double)
+		  #If TargetIOS
+		    // - (void)setContentCompressionResistancePriority:(UILayoutPriority)priority forAxis:(UILayoutConstraintAxis)axis;
+		    Declare Sub setContentCompressionResistancePriority_forAxis Lib "Foundation" Selector "setContentCompressionResistancePriority:forAxis:" ( obj As ptr , priority As single , axis As integer )
 		    
-		    setContentCompressionResistancePriority_forAxis_forView(NSClassFromString("SOSLayoutConstraint"), priority, CType(axis, Integer), item.handle)
+		    setContentCompressionResistancePriority_forAxis(item.handle, priority, CType(axis, Integer))
 		  #EndIf
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function ConstraintForControlAttribute(extends view as MobileScreen, ctl as mobileUIControl, attr as NSLayoutConstraint.LayoutAttributes) As NSLayoutConstraint
-		  Dim ca() As NSLayoutConstraint = view.Constraints
-		  
-		  For i As Integer = 0 To UBound(ca)
-		    If ca(i).FirstItem = ctl.Handle Then
-		      If ca(i).FirstAttribute = attr Then
-		        Return ca(i)
+		Function ConstraintForControlAttribute(extends view as MobileScreen, ctl as mobileUIControl, attr as SOSLayoutConstraint.LayoutAttributes) As SOSLayoutConstraint
+		  #If TargetiOS
+		    Dim ca() As SOSLayoutConstraint = view.Constraints
+		    
+		    For i As Integer = 0 To UBound(ca)
+		      If ca(i).FirstItem = ctl.Handle Then
+		        If ca(i).FirstAttribute = attr Then
+		          Return ca(i)
+		        End If
 		      End If
-		    End If
-		  Next
-		  
-		  return nil
+		    Next
+		    
+		    Return Nil
+		  #EndIf
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function ConstraintMatchingIntrinsicWidth(extends view as MobileUIControl) As NSLayoutConstraint
-		  Dim sz As size = view.IntrinsicContentSize
-		  
-		  Return New NSLayoutConstraint(view.Handle, NSLayoutConstraint.LayoutAttributes.Width, NSLayoutConstraint.relations.Equal, sz.Width)
-		  
+		Function ConstraintMatchingIntrinsicWidth(extends view as MobileUIControl) As SOSLayoutConstraint
+		  #If TargetiOS
+		    Dim sz As size = view.IntrinsicContentSize
+		    
+		    Return New SOSLayoutConstraint(view.Handle, SOSLayoutConstraint.LayoutAttributes.Width, SOSLayoutConstraint.relations.Equal, sz.Width)
+		    
+		  #EndIf
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target64Bit))
-		Function Constraints(extends screen as MobileScreen) As NSLayoutConstraint()
+		Function Constraints(extends screen as MobileScreen) As SOSLayoutConstraint()
 		  #If TargetIOS
 		    // @property(nonatomic, readonly) NSArray<__kindof NSLayoutConstraint *> *constraints;
 		    Declare Function getConstraints Lib "Foundation" Selector "constraints" (obj As ptr) As Ptr
@@ -132,9 +188,9 @@ Protected Module AutolayoutExtensions
 		    
 		    Dim c As Integer = count(consts)
 		    
-		    Dim ca() As NSLayoutConstraint
+		    Dim ca() As SOSLayoutConstraint
 		    For i As Integer = 0 To c-1
-		      ca.Add NSLayoutConstraint.Create(objectAtIndex(consts, i))
+		      ca.Add SOSLayoutConstraint.Create(objectAtIndex(consts, i))
 		    Next
 		    
 		    Return ca
@@ -143,7 +199,7 @@ Protected Module AutolayoutExtensions
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target64Bit))
-		Function Constraints(extends control as MobileUIControl) As NSLayoutConstraint()
+		Function Constraints(extends control as MobileUIControl) As SOSLayoutConstraint()
 		  #If TargetIOS
 		    // @property(nonatomic, readonly) NSArray<__kindof NSLayoutConstraint *> *constraints;
 		    Declare Function getConstraints Lib "Foundation" Selector "constraints" (obj As ptr) As Ptr
@@ -156,9 +212,9 @@ Protected Module AutolayoutExtensions
 		    
 		    Dim c As Integer = count(consts)
 		    
-		    Dim ca() As NSLayoutConstraint
+		    Dim ca() As SOSLayoutConstraint
 		    For i As Integer = 0 To c-1
-		      ca.Add NSLayoutConstraint.Create(objectAtIndex(consts, i))
+		      ca.Add SOSLayoutConstraint.Create(objectAtIndex(consts, i))
 		    Next
 		    
 		    return ca
@@ -168,32 +224,39 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0
 		Sub ConvertConstraintsForAllControls(extends view as MobileScreen, newPriority as Double)
-		  For Each ctl As MobileControl In view.controls
-		    If ctl IsA MobileUIControl Then
-		      view.ConvertConstraintsForControl(MobileUIControl(ctl), newPriority)
-		    End If
-		  Next
+		  #If TargetiOS
+		    For Each ctl As MobileControl In view.controls
+		      If ctl IsA MobileUIControl Then
+		        view.ConvertConstraintsForControl(MobileUIControl(ctl), newPriority)
+		      End If
+		    Next
+		  #EndIf
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub ConvertConstraintsForControl(extends view as MobileScreen, item as MobileUIControl, newPriority as Double = 0)
+		Sub ConvertConstraintsForControl(extends view as MobileScreen, item as MobileUIControl, newPriority as Autolayout.Priorities)
 		  #If TargetiOS
-		    Dim ca() As Autolayout.NSLayoutConstraint = view.constraints
+		    Dim ca() As SOSLayoutConstraint = view.constraints
 		    
-		    Dim newConstraints() As NSLayoutConstraint
+		    Dim newConstraints() As SOSLayoutConstraint
+		    
+		    // Convert the enum to a double
+		    Dim priority As Double = CType(newPriority, Double)
 		    
 		    // clip the value to be between 1 and 999 so it'll be editable later
-		    If newPriority > 0 Then
-		      newPriority = Min(DefaultPriority, Max(1, newPriority))
-		    End If
+		    priority = Min(DefaultPriority, Max(1, priority))
 		    
 		    For i As Integer = UBound(ca) DownTo 0
 		      If ca(i).FirstItem = item.Handle Then
-		        Dim c As New NSLayoutConstraint(ca(i).FirstItem, ca(i).FirstAttribute, ca(i).relation, ca(i).SecondItem, ca(i).SecondAttribute, ca(i).Multiplier, ca(i).Offset)
+		        Dim c As New SOSLayoutConstraint(ca(i).FirstItem, ca(i).FirstAttribute, ca(i).relation, ca(i).SecondItem, ca(i).SecondAttribute, ca(i).Multiplier, ca(i).Offset)
 		        c.Identifier = ca(i).identifier
-		        If newPriority > 0 Then
-		          c.Priority = newPriority
+		        If c.Identifier = "" Then
+		          c.Identifier = item.Name + "_" + AttributeName(ca(i).firstAttribute)
+		        End If
+		        
+		        If priority > 0 Then
+		          c.Priority = priority
 		        End If
 		        c.Active = True
 		        newConstraints.add c
@@ -211,43 +274,35 @@ Protected Module AutolayoutExtensions
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub ConvertConstraintsForControl(extends view as MobileScreen, item as MobileUIControl, newPriority as Priorities)
+		Sub ConvertConstraintsForControl(extends view as MobileScreen, item as MobileUIControl, newPriority as Double = 0)
 		  #If TargetiOS
-		    Dim ca() As NSLayoutConstraint = view.constraints
+		    Dim ca() As Autolayout.SOSLayoutConstraint = view.constraints
 		    
-		    Dim newConstraints() As NSLayoutConstraint
-		    
-		    // Convert the enum to a double
-		    Dim priority As Double = CType(newPriority, Double)
+		    Dim newConstraints() As SOSLayoutConstraint
 		    
 		    // clip the value to be between 1 and 999 so it'll be editable later
-		    priority = Min(DefaultPriority, Max(1, priority))
+		    If newPriority > 0 Then
+		      newPriority = Min(DefaultPriority, Max(1, newPriority))
+		    End If
 		    
 		    For i As Integer = UBound(ca) DownTo 0
 		      If ca(i).FirstItem = item.Handle Then
-		        Dim c As New NSLayoutConstraint(ca(i).FirstItem, ca(i).FirstAttribute, ca(i).relation, ca(i).SecondItem, ca(i).SecondAttribute, ca(i).Multiplier, ca(i).Offset)
+		        Dim c As New SOSLayoutConstraint(ca(i).FirstItem, ca(i).FirstAttribute, ca(i).relation, ca(i).SecondItem, ca(i).SecondAttribute, ca(i).Multiplier, ca(i).Offset)
 		        c.Identifier = ca(i).identifier
-		        If priority > 0 Then
-		          c.Priority = priority
+		        If c.Identifier = "" Then
+		          c.Identifier = item.Name + "_" + AttributeName(ca(i).firstAttribute)
+		        End If
+		        
+		        If newPriority > 0 Then
+		          c.Priority = newPriority
 		        End If
 		        c.Active = True
+		        
 		        newConstraints.add c
 		        
 		        ca(i).active = False
 		      End If
 		      
-		      If ca(i).SecondItem = item.Handle Then
-		        // these are actually backwards, but we'll recreate them forwards
-		        Dim c As New NSLayoutConstraint(ca(i).secondItem, ca(i).secondattribute, ca(i).relation, ca(i).firstitem, ca(i).firstattribute, ca(i).multiplier, ca(i).offset)
-		        c.Identifier = ca(i).identifier
-		        If priority > 0 Then
-		          c.Priority = priority
-		        End If
-		        c.Active = True
-		        newConstraints.Add c
-		        
-		        ca(i).active = False
-		      End If
 		    Next
 		    
 		    For i As Integer = 0 To UBound(newConstraints)
@@ -303,39 +358,37 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0
 		Function FirstBaselineOffset(extends view as MobileTextField) As Double
-		  // @property(nullable, nonatomic, strong) UIFont *font;
-		  Declare Function getFont Lib "Foundation" Selector "font" (obj As ptr) As Ptr
-		  
-		  // @property(nonatomic, readonly) CGFloat ascender;
-		  Declare Function getAscender Lib "Foundation" Selector "ascender" (obj As ptr) As Double
-		  
-		  return getAscender(getFont(view.Handle))
+		  #If TargetiOS
+		    // @property(nullable, nonatomic, strong) UIFont *font;
+		    Declare Function getFont Lib "Foundation" Selector "font" (obj As ptr) As Ptr
+		    
+		    // @property(nonatomic, readonly) CGFloat ascender;
+		    Declare Function getAscender Lib "Foundation" Selector "ascender" (obj As ptr) As Double
+		    
+		    Return getAscender(getFont(view.Handle))
+		  #EndIf
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function HuggingPriorityForAxis(Extends item as MobileUIControl, axis as AutolayoutExtensions.Axis) As Integer
+		Function HuggingPriorityForAxis(Extends item as MobileUIControl, axis as Autolayout.Axis) As Double
 		  #If TargetIOS
-		    Declare Function NSClassFromString Lib "Foundation" (name As cfstringref) As ptr
+		    // - (UILayoutPriority)contentHuggingPriorityForAxis:(UILayoutConstraintAxis)axis;
+		    Declare Function contentHuggingPriorityForAxis Lib "Foundation" Selector "contentHuggingPriorityForAxis:" ( obj As ptr , axis As Integer ) As Single
 		    
-		    // - (double)contentHuggingPriorityForAxis:(UILayoutConstraintAxis)axis forView:(UIView *)view;
-		    Declare Function contentHuggingPriorityForAxis_forView Lib "Foundation" Selector "contentHuggingPriorityForAxis:forView:" ( obj As ptr , axis As Integer , view As Ptr ) As Double
-		    
-		    Return contentHuggingPriorityForAxis_forView(NSClassFromString("SOSLayoutConstraint"), CType(axis, Integer), item.Handle)
+		    Return contentHuggingPriorityForAxis( item.Handle, CType(axis, Integer))
 		    
 		  #EndIf
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub HuggingPriorityForAxis(Extends item as MobileUIControl, priority as Single, Axis as AutolayoutExtensions.Axis)
+		Sub HuggingPriorityForAxis(Extends item as MobileUIControl, Axis as Autolayout.Axis, assigns priority as Double)
 		  #If TargetIOS
-		    Declare Function NSClassFromString Lib "Foundation" (name As cfstringref) As ptr
+		    // - (void)setContentHuggingPriority:(UILayoutPriority)priority forAxis:(UILayoutConstraintAxis)axis;
+		    Declare Sub setContentHuggingPriority_forAxis Lib "Foundation" Selector "setContentHuggingPriority:forAxis:" ( obj As ptr , priority As single , axis As integer )
 		    
-		    // - (void)setContentHuggingPriority:(double)priority forAxis:(UILayoutConstraintAxis)axis forView:(UIView *)view;
-		    Declare Sub setContentHuggingPriority_forAxis_forView Lib "Foundation" Selector "setContentHuggingPriority:forAxis:forView:" ( obj As ptr , priority As Single , axis As Integer , view As Ptr )
-		    
-		    setContentHuggingPriority_forAxis_forView(NSClassFromString("SOSLayoutConstraint"), priority, CType(axis, Integer), item.handle)
+		    setContentHuggingPriority_forAxis( item.handle, priority, CType(axis, Integer))
 		  #EndIf
 		End Sub
 	#tag EndMethod
@@ -367,14 +420,27 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0
 		Function IntrinsicContentSize(extends view as MobileUIControl) As Size
-		  // @property(nonatomic, readonly) CGSize intrinsicContentSize;
-		  Declare Function getIntrinsicContentSize Lib "Foundation" Selector "intrinsicContentSize" (obj As ptr) As CGSize
-		  
-		  Dim sz As cgsize = getIntrinsicContentSize(view.handle)
-		  
-		  return new size(sz.width, sz.height)
-		  
+		  #If TargetiOS
+		    // @property(nonatomic, readonly) CGSize intrinsicContentSize;
+		    Declare Function getIntrinsicContentSize Lib "Foundation" Selector "intrinsicContentSize" (obj As ptr) As CGSize
+		    
+		    Dim sz As cgsize = getIntrinsicContentSize(view.handle)
+		    
+		    Return New size(sz.width, sz.height)
+		    
+		  #EndIf
 		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub InvalidateIntrinsicContentSize(extends view as MobileUIControl)
+		  #If TargetiOS
+		    // - (void)invalidateIntrinsicContentSize;
+		    Declare Sub invalidateIntrinsicContentSize Lib "Foundation" Selector "invalidateIntrinsicContentSize" (obj As ptr)
+		    
+		    invalidateIntrinsicContentSize(view.Handle)
+		  #EndIf
+		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
@@ -456,12 +522,12 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0
 		Sub RecreateConstraintsForAllControls(extends view as mobilescreen)
-		  Dim ca() As Autolayout.NSLayoutConstraint = view.constraints
+		  Dim ca() As Autolayout.SOSLayoutConstraint = view.constraints
 		  
-		  Dim newConstraints() As NSLayoutConstraint
+		  Dim newConstraints() As SOSLayoutConstraint
 		  
 		  For i As Integer = UBound(ca) DownTo 0
-		    Dim c As New NSLayoutConstraint(ca(i).FirstItem, ca(i).FirstAttribute, ca(i).relation, ca(i).SecondItem, ca(i).SecondAttribute, ca(i).Multiplier, ca(i).Offset)
+		    Dim c As New SOSLayoutConstraint(ca(i).FirstItem, ca(i).FirstAttribute, ca(i).relation, ca(i).SecondItem, ca(i).SecondAttribute, ca(i).Multiplier, ca(i).Offset)
 		    c.Identifier = ca(i).identifier
 		    c.Priority = ca(i).priority
 		    c.Active = True
@@ -477,10 +543,10 @@ Protected Module AutolayoutExtensions
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub RecreateConstraintsForAllControls(extends view as mobilescreen, newPriority as single)
-		  Dim ca() As Autolayout.NSLayoutConstraint = view.constraints
+		Sub RecreateConstraintsForAllControls(extends view As mobilescreen, newPriority As Double)
+		  Dim ca() As Autolayout.SOSLayoutConstraint = view.constraints
 		  
-		  Dim newConstraints() As NSLayoutConstraint
+		  Dim newConstraints() As SOSLayoutConstraint
 		  
 		  // clip the value to be between 1 and 999 so it'll be editable later
 		  If newPriority > 0 Then
@@ -488,7 +554,7 @@ Protected Module AutolayoutExtensions
 		  End If
 		  
 		  For i As Integer = UBound(ca) DownTo 0
-		    Dim c As New NSLayoutConstraint(ca(i).FirstItem, ca(i).FirstAttribute, ca(i).relation, ca(i).SecondItem, ca(i).SecondAttribute, ca(i).Multiplier, ca(i).Offset)
+		    Dim c As New SOSLayoutConstraint(ca(i).FirstItem, ca(i).FirstAttribute, ca(i).relation, ca(i).SecondItem, ca(i).SecondAttribute, ca(i).Multiplier, ca(i).Offset)
 		    c.Identifier = ca(i).identifier
 		    c.Priority = newPriority
 		    c.Active = True
@@ -504,7 +570,12 @@ Protected Module AutolayoutExtensions
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target64Bit))
-		Sub RemoveConstraint(extends screen as MobileScreen, constraint as NSLayoutConstraint)
+		Sub RemoveConstraint(extends screen as MobileScreen, constraint as SOSLayoutConstraint)
+		  // Bail if the constraint is nil because the app will crash
+		  If constraint = Nil Then
+		    Return
+		  End If
+		  
 		  #If TargetIOS
 		    // - (void)removeConstraint:(NSLayoutConstraint *)constraint;
 		    Declare Sub removeConstraint Lib "Foundation" Selector "removeConstraint:" ( obj As ptr , constraint As Ptr )
@@ -515,7 +586,12 @@ Protected Module AutolayoutExtensions
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target64Bit))
-		Sub RemoveConstraint(extends control as MobileUIControl, constraint as NSLayoutConstraint)
+		Sub RemoveConstraint(extends control as MobileUIControl, constraint as SOSLayoutConstraint)
+		  // Bail if the constraint is nil because the app will crash
+		  If constraint = Nil Then
+		    Return
+		  End If
+		  
 		  #If TargetIOS
 		    // - (void)removeConstraint:(NSLayoutConstraint *)constraint;
 		    Declare Sub removeConstraint Lib "Foundation" Selector "removeConstraint:" ( obj As ptr , constraint As Ptr )
@@ -526,13 +602,39 @@ Protected Module AutolayoutExtensions
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub RemoveConstraintsForControl(extends view as MobileScreen, ctl as MobileUIControl)
+		  Dim ca() As SOSLayoutConstraint = view.constraints
+		  
+		  For i As Integer = 0 To UBound(ca)
+		    If ca(i).FirstItem = ctl.Handle Then
+		      view.RemoveConstraint(ca(i))
+		    End If
+		  Next
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub RemoveConstraintsForControl(extends view as MobileUIControl, ctl as MobileUIControl)
+		  Dim ca() As SOSLayoutConstraint = view.constraints
+		  
+		  For i As Integer = 0 To UBound(ca)
+		    If ca(i).FirstItem = ctl.Handle Then
+		      view.RemoveConstraint(ca(i))
+		    End If
+		  Next
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Function SafeAreaInsets(view as MobileScreen) As UIEdgeInsets
-		  // @property(nonatomic, readonly) UIEdgeInsets safeAreaInsets;
-		  Declare Function getSafeAreaInsets Lib "Foundation" Selector "safeAreaInsets" (obj As ptr) As UIEdgeInsets
-		  
-		  return getSafeAreaInsets(view.Handle)
-		  
-		  
+		  #If TargetiOS
+		    // @property(nonatomic, readonly) UIEdgeInsets safeAreaInsets;
+		    Declare Function getSafeAreaInsets Lib "Foundation" Selector "safeAreaInsets" (obj As ptr) As UIEdgeInsets
+		    
+		    Return getSafeAreaInsets(view.Handle)
+		    
+		    
+		  #EndIf
 		End Function
 	#tag EndMethod
 
@@ -560,7 +662,7 @@ Protected Module AutolayoutExtensions
 
 
 	#tag Property, Flags = &h1
-		Protected DefaultPriority As Single = 999.0
+		Protected DefaultPriority As Double = 999.0
 	#tag EndProperty
 
 
@@ -582,22 +684,6 @@ Protected Module AutolayoutExtensions
 		  right as CGFloat
 		top as CGFloat
 	#tag EndStructure
-
-
-	#tag Enum, Name = Axis, Flags = &h0
-		Horizontal
-		Vertical
-	#tag EndEnum
-
-	#tag Enum, Name = Priorities, Type = Integer, Flags = &h0
-		Highest = 1000
-		  High = 800
-		  High_Apple = 751
-		  MediumHigh = 600
-		  Medium = 400
-		  Low_Apple = 251
-		Low = 200
-	#tag EndEnum
 
 
 	#tag ViewBehavior

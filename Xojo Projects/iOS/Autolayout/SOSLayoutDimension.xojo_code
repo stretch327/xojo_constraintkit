@@ -1,8 +1,8 @@
 #tag Class
-Class NSLayoutDimension
-Inherits NSLayoutAnchor
+Class SOSLayoutDimension
+Inherits SOSLayoutAnchor
 	#tag Method, Flags = &h0
-		Function constraintEqualToAnchor(anchor as NSLayoutDimension, multiplier as Double = 1.0, offset as Double = 0.0) As NSLayoutConstraint
+		Function constraintEqualToAnchor(anchor as SOSLayoutDimension, multiplier as Double = 1.0, offset as Double = 0.0) As SOSLayoutConstraint
 		  // - (NSLayoutConstraint *)constraintEqualToAnchor:(NSLayoutDimension *)anchor multiplier:(CGFloat)m constant:(CGFloat)c;
 		  Declare Function constraintEqualToAnchor_multiplier_constant Lib "Foundation" Selector "constraintEqualToAnchor:multiplier:constant:" ( obj As ptr , anchor As Ptr , m As Double , c As Double ) As Ptr
 		  
@@ -11,12 +11,12 @@ Inherits NSLayoutAnchor
 		    Return Nil
 		  End If
 		  
-		  return NSLayoutConstraint.Create(p)
+		  return SOSLayoutConstraint.Create(p)
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function constraintGreaterThanOrEqualToAnchor(anchor as NSLayoutDimension, multiplier as Double = 1.0, offset as Double = 0.0) As NSLayoutConstraint
+		Function constraintGreaterThanOrEqualToAnchor(anchor as SOSLayoutDimension, multiplier as Double = 1.0, offset as Double = 0.0) As SOSLayoutConstraint
 		  // - (NSLayoutConstraint *)constraintGreaterThanOrEqualToAnchor:(NSLayoutDimension *)anchor multiplier:(CGFloat)m constant:(CGFloat)c;
 		  Declare Function constraintGreaterThanOrEqualToAnchor_multiplier_constant Lib "Foundation" Selector "constraintGreaterThanOrEqualToAnchor:multiplier:constant:" ( obj As ptr , anchor As Ptr , m As Double , c As Double ) As Ptr
 		  
@@ -25,12 +25,12 @@ Inherits NSLayoutAnchor
 		    Return Nil
 		  End If
 		  
-		  Return NSLayoutConstraint.Create(p)
+		  Return SOSLayoutConstraint.Create(p)
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function constraintLessThanOrEqualToAnchor(anchor as NSLayoutDimension, multiplier as Double = 1.0, offset as Double = 0.0) As NSLayoutConstraint
+		Function constraintLessThanOrEqualToAnchor(anchor as SOSLayoutDimension, multiplier as Double = 1.0, offset as Double = 0.0) As SOSLayoutConstraint
 		  // - (NSLayoutConstraint *)constraintLessThanOrEqualToAnchor:(NSLayoutDimension *)anchor multiplier:(CGFloat)m constant:(CGFloat)c;
 		  Declare Function constraintLessThanOrEqualToAnchor_multiplier_constant Lib "Foundation" Selector "constraintLessThanOrEqualToAnchor:multiplier:constant:" ( obj As ptr , anchor As Ptr , m As Double , c As Double ) As Ptr
 		  
@@ -39,17 +39,17 @@ Inherits NSLayoutAnchor
 		    Return Nil
 		  End If
 		  
-		  Return NSLayoutConstraint.Create(p)
+		  Return SOSLayoutConstraint.Create(p)
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Shared Function Create(p as ptr) As NSLayoutDimension
+		Shared Function Create(p as ptr) As SOSLayoutDimension
 		  If p = Nil Then
 		    Return Nil
 		  End If
 		  
-		  return new NSLayoutDimension(p)
+		  return new SOSLayoutDimension(p)
 		End Function
 	#tag EndMethod
 

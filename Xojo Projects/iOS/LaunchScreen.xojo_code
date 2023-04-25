@@ -1,21 +1,15 @@
 #tag IOSLaunchScreen
 Begin iosView LaunchScreen
-   BackButtonCaption=   ""
    BackButtonTitle =   ""
    BackgroundColor =   &cFFFFFF00
    Compatibility   =   ""
-   ControlCount    =   0
    Device = 1
-   HasNavigationBar=   True
-   LargeTitleDisplayMode=   2
    LargeTitleMode  =   2
    Left            =   0
    NavigationBarVisible=   False
    Orientation = 0
-   TabBarVisible   =   True
    TabIcon         =   ""
    TabTitle        =   ""
-   TintColor       =   &c000000
    Title           =   "Untitled"
    Top             =   0
 End

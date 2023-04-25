@@ -1,5 +1,5 @@
 #tag Class
-Class UILayoutGuide
+Class SOSLayoutGuide
 	#tag Method, Flags = &h21
 		Private Sub Constructor(p as ptr)
 		  mObj = p
@@ -7,12 +7,12 @@ Class UILayoutGuide
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Attributes( Hidden )  Shared Function Create(p as ptr) As UILayoutGuide
+		Attributes( Hidden )  Shared Function Create(p as ptr) As SOSLayoutGuide
 		  If p = Nil Then 
 		    Return Nil
 		  End If
 		  
-		  return new UILayoutGuide(p)
+		  return new SOSLayoutGuide(p)
 		End Function
 	#tag EndMethod
 
@@ -29,11 +29,11 @@ Class UILayoutGuide
 			      Return Nil
 			    End If
 			    
-			    return NSLayoutYAxisAnchor.create(p)
+			    return SOSLayoutYAxisAnchor.create(p)
 			  #endif
 			End Get
 		#tag EndGetter
-		BottomAnchor As NSLayoutYAxisAnchor
+		BottomAnchor As SOSLayoutYAxisAnchor
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0
@@ -48,11 +48,11 @@ Class UILayoutGuide
 			      Return Nil
 			    End If
 			    
-			    Return NSLayoutXAxisAnchor.create(p)
+			    Return SOSLayoutXAxisAnchor.create(p)
 			  #endif
 			End Get
 		#tag EndGetter
-		CenterXAnchor As NSLayoutXAxisAnchor
+		CenterXAnchor As SOSLayoutXAxisAnchor
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0
@@ -67,11 +67,11 @@ Class UILayoutGuide
 			      Return Nil
 			    End If
 			    
-			    Return NSLayoutYAxisAnchor.create(p)
+			    Return SOSLayoutYAxisAnchor.create(p)
 			  #endif
 			End Get
 		#tag EndGetter
-		CenterYAnchor As NSLayoutYAxisAnchor
+		CenterYAnchor As SOSLayoutYAxisAnchor
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0
@@ -86,11 +86,11 @@ Class UILayoutGuide
 			      Return Nil
 			    End If
 			    
-			    Return NSLayoutDimension.create(p)
+			    Return SOSLayoutDimension.create(p)
 			  #endif
 			End Get
 		#tag EndGetter
-		HeightAnchor As NSLayoutDimension
+		HeightAnchor As SOSLayoutDimension
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0
@@ -145,11 +145,11 @@ Class UILayoutGuide
 			      Return Nil
 			    End If
 			    
-			    Return NSLayoutXAxisAnchor.create(p)
+			    Return SOSLayoutXAxisAnchor.create(p)
 			  #EndIf
 			End Get
 		#tag EndGetter
-		LeadingAnchor As NSLayoutXAxisAnchor
+		LeadingAnchor As SOSLayoutXAxisAnchor
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0
@@ -164,11 +164,11 @@ Class UILayoutGuide
 			      Return Nil
 			    End If
 			    
-			    Return NSLayoutXAxisAnchor.create(p)
+			    Return SOSLayoutXAxisAnchor.create(p)
 			  #EndIf
 			End Get
 		#tag EndGetter
-		LeftAnchor As NSLayoutXAxisAnchor
+		LeftAnchor As SOSLayoutXAxisAnchor
 	#tag EndComputedProperty
 
 	#tag Property, Flags = &h21
@@ -187,11 +187,11 @@ Class UILayoutGuide
 			      Return Nil
 			    End If
 			    
-			    Return NSLayoutXAxisAnchor.create(p)
+			    Return SOSLayoutXAxisAnchor.create(p)
 			  #EndIf
 			End Get
 		#tag EndGetter
-		RightAnchor As NSLayoutXAxisAnchor
+		RightAnchor As SOSLayoutXAxisAnchor
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0
@@ -206,11 +206,11 @@ Class UILayoutGuide
 			      Return Nil
 			    End If
 			    
-			    return NSLayoutYAxisAnchor.create(p)
+			    return SOSLayoutYAxisAnchor.create(p)
 			  #EndIf
 			End Get
 		#tag EndGetter
-		TopAnchor As NSLayoutYAxisAnchor
+		TopAnchor As SOSLayoutYAxisAnchor
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0
@@ -225,11 +225,11 @@ Class UILayoutGuide
 			      Return Nil
 			    End If
 			    
-			    Return NSLayoutXAxisAnchor.create(p)
+			    Return SOSLayoutXAxisAnchor.create(p)
 			  #EndIf
 			End Get
 		#tag EndGetter
-		TrailingAnchor As NSLayoutXAxisAnchor
+		TrailingAnchor As SOSLayoutXAxisAnchor
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0
@@ -244,11 +244,11 @@ Class UILayoutGuide
 			      Return Nil
 			    End If
 			    
-			    Return NSLayoutDimension.create(p)
+			    Return SOSLayoutDimension.create(p)
 			  #EndIf
 			End Get
 		#tag EndGetter
-		WidthAnchor As NSLayoutDimension
+		WidthAnchor As SOSLayoutDimension
 	#tag EndComputedProperty
 
 

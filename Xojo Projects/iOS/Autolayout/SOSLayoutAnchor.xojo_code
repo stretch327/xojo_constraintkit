@@ -1,7 +1,7 @@
 #tag Class
-Class NSLayoutAnchor
+Class SOSLayoutAnchor
 	#tag Method, Flags = &h0
-		Function constraintEqualToAnchor(anchor as NSLayoutAnchor, offset as Double = 0.0) As NSLayoutConstraint
+		Function constraintEqualToAnchor(anchor as SOSLayoutAnchor, offset as Double = 0.0) As SOSLayoutConstraint
 		  If Introspection.GetType(Self).name <> Introspection.GetType(anchor).name Then
 		    Raise New InvalidArgumentException("The anchor axis must match the type you are calculating against")
 		  End If
@@ -14,12 +14,12 @@ Class NSLayoutAnchor
 		    Return Nil
 		  End If
 		  
-		  Return NSLayoutConstraint.Create(p)
+		  Return SOSLayoutConstraint.Create(p)
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function constraintGreaterThanOrEqualToAnchor(anchor as NSLayoutAnchor, offset as Double = 0.0) As NSLayoutConstraint
+		Function constraintGreaterThanOrEqualToAnchor(anchor as SOSLayoutAnchor, offset as Double = 0.0) As SOSLayoutConstraint
 		  If Introspection.GetType(Self).name <> Introspection.GetType(anchor).name Then
 		    Raise New InvalidArgumentException("The anchor axis must match the type you are calculating against")
 		  End If
@@ -32,12 +32,12 @@ Class NSLayoutAnchor
 		    Return Nil
 		  End If
 		  
-		  return NSLayoutConstraint.Create(p)
+		  return SOSLayoutConstraint.Create(p)
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function constraintLessThanOrEqualToAnchor(anchor as NSLayoutAnchor, offset as Double) As NSLayoutConstraint
+		Function constraintLessThanOrEqualToAnchor(anchor as SOSLayoutAnchor, offset as Double) As SOSLayoutConstraint
 		  If Introspection.GetType(Self).name <> Introspection.GetType(anchor).name Then
 		    Raise New InvalidArgumentException("The anchor axis must match the type you are calculating against")
 		  End If
@@ -50,7 +50,7 @@ Class NSLayoutAnchor
 		    Return Nil
 		  End If
 		  
-		  Return NSLayoutConstraint.Create(p)
+		  Return SOSLayoutConstraint.Create(p)
 		End Function
 	#tag EndMethod
 

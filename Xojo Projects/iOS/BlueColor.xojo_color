@@ -1,8 +1,0 @@
-#tag ColorGroup
-	CodeName=BlueColor
-	#tag Color
-		Type=2
-		Platform=2
-		Name=systemBlueColor
-	#tag EndColor
-#tag EndColorGroup

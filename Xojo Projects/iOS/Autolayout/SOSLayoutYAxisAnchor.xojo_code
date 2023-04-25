@@ -1,8 +1,8 @@
 #tag Class
-Class NSLayoutYAxisAnchor
-Inherits NSLayoutAnchor
+Class SOSLayoutYAxisAnchor
+Inherits SOSLayoutAnchor
 	#tag Method, Flags = &h0
-		Function AnchorWithOffsetToAnchor(otherAnchor as NSLayoutYAxisAnchor) As NSLayoutDimension
+		Function AnchorWithOffsetToAnchor(otherAnchor as SOSLayoutYAxisAnchor) As SOSLayoutDimension
 		  // - (NSLayoutDimension *)anchorWithOffsetToAnchor:(NSLayoutYAxisAnchor *)otherAnchor;
 		  Declare Function anchorWithOffsetToAnchor Lib "Foundation" Selector "anchorWithOffsetToAnchor:" ( obj As ptr , otherAnchor As Ptr ) As Ptr
 		  
@@ -11,12 +11,12 @@ Inherits NSLayoutAnchor
 		    Return nil
 		  End If
 		  
-		  return NSLayoutDimension.Create(p)
+		  return SOSLayoutDimension.Create(p)
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function ConstraintEqualToSystemSpacingBelowAnchor(anchor as NSLayoutYAxisAnchor, multiplier as Double = 1.0) As NSLayoutConstraint
+		Function ConstraintEqualToSystemSpacingBelowAnchor(anchor as SOSLayoutYAxisAnchor, multiplier as Double = 1.0) As SOSLayoutConstraint
 		  #If TargetMacOS or TargetIOS
 		    // - (NSLayoutConstraint *)constraintEqualToSystemSpacingBelowAnchor:(NSLayoutYAxisAnchor *)anchor multiplier:(CGFloat)multiplier;
 		    Declare Function constraintEqualToSystemSpacingBelowAnchor_multiplier Lib "Foundation" Selector "constraintEqualToSystemSpacingBelowAnchor:multiplier:" ( obj As ptr , anchor As Ptr , multiplier As Double ) As Ptr
@@ -26,13 +26,13 @@ Inherits NSLayoutAnchor
 		      Return Nil
 		    End If
 		    
-		    return NSLayoutConstraint.Create(p)
+		    return SOSLayoutConstraint.Create(p)
 		  #EndIf
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function constraintGreaterThanOrEqualToSystemSpacingBelowAnchor(anchor as NSLayoutYAxisAnchor, multiplier as Double = 1.0) As NSLayoutConstraint
+		Function constraintGreaterThanOrEqualToSystemSpacingBelowAnchor(anchor as SOSLayoutYAxisAnchor, multiplier as Double = 1.0) As SOSLayoutConstraint
 		  #If TargetMacOS or TargetIOS
 		    // - (NSLayoutConstraint *)constraintGreaterThanOrEqualToSystemSpacingBelowAnchor:(NSLayoutYAxisAnchor *)anchor multiplier:(CGFloat)multiplier;
 		    Declare Function constraintGreaterThanOrEqualToSystemSpacingBelowAnchor_multiplier Lib "Foundation" Selector "constraintGreaterThanOrEqualToSystemSpacingBelowAnchor:multiplier:" ( obj As ptr , anchor As Ptr , multiplier As Double ) As Ptr
@@ -42,13 +42,13 @@ Inherits NSLayoutAnchor
 		      Return Nil
 		    End If
 		    
-		    return NSLayoutConstraint.Create(p)
+		    return SOSLayoutConstraint.Create(p)
 		  #EndIf
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function constraintLessThanOrEqualToSystemSpacingBelowAnchor(anchor as NSLayoutYAxisAnchor, multiplier as Double = 1.0) As NSLayoutConstraint
+		Function constraintLessThanOrEqualToSystemSpacingBelowAnchor(anchor as SOSLayoutYAxisAnchor, multiplier as Double = 1.0) As SOSLayoutConstraint
 		  #If TargetMacOS Or TargetIOS
 		    // - (NSLayoutConstraint *)constraintLessThanOrEqualToSystemSpacingBelowAnchor:(NSLayoutYAxisAnchor *)anchor multiplier:(CGFloat)multiplier;
 		    Declare Function constraintLessThanOrEqualToSystemSpacingBelowAnchor_multiplier Lib "Foundation" Selector "constraintLessThanOrEqualToSystemSpacingBelowAnchor:multiplier:" ( obj As ptr , anchor As Ptr , multiplier As Double ) As Ptr
@@ -57,14 +57,14 @@ Inherits NSLayoutAnchor
 		      Return Nil
 		    End If
 		    
-		    Return NSLayoutConstraint.Create(p)
+		    Return SOSLayoutConstraint.Create(p)
 		  #EndIf
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Attributes( Hidden )  Shared Function Create(p as ptr) As NSLayoutYAxisAnchor
-		  return new NSLayoutYAxisAnchor(p)
+		Attributes( Hidden )  Shared Function Create(p as ptr) As SOSLayoutYAxisAnchor
+		  return new SOSLayoutYAxisAnchor(p)
 		End Function
 	#tag EndMethod
 

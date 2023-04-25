@@ -1,17 +1,17 @@
 #tag MobileScreen
-Begin MobileScreen Screen1
+Begin MobileScreen AnimationScreen
    BackButtonCaption=   ""
    Compatibility   =   ""
    ControlCount    =   0
    Device = 12
    HasNavigationBar=   True
-   LargeTitleDisplayMode=   2
+   LargeTitleDisplayMode=   0
    Left            =   0
    Orientation = 0
    TabBarVisible   =   True
    TabIcon         =   0
    TintColor       =   &c00000000
-   Title           =   "Untitled"
+   Title           =   "Runtime Changes"
    Top             =   0
    Begin MobileButton ToggleButton
       AccessibilityHint=   ""
@@ -128,7 +128,7 @@ End
 		  // iOS will prevent changing priorities to/from 1000 at runtime.
 		  Self.ConvertConstraintsForControl(label1, 999) 
 		  
-		  Dim c As NSLayoutConstraint
+		  Dim c As SOSLayoutConstraint
 		  
 		  // Set the label to match its intrinsic width
 		  c = label1.ConstraintMatchingIntrinsicWidth
@@ -137,13 +137,13 @@ End
 		  
 		  // create baseline alignments with a priority of 999 so they're obeyed first.
 		  // The textfield.baseline to the label 
-		  txtBaseline = New NSLayoutConstraint(textfield1.Handle, label1.handle, Autolayout.NSLayoutConstraint.LayoutAttributes.FirstBaseline)
+		  txtBaseline = New SOSLayoutConstraint(textfield1.Handle, label1.handle, Autolayout.SOSLayoutConstraint.LayoutAttributes.FirstBaseline)
 		  txtBaseline.Offset = TextField1.FirstBaselineOffset/2
 		  txtBaseline.Priority = 999
 		  Self.AddConstraint(txtBaseline)
 		  
 		  // ... and button.baseline to the label
-		  c = New NSLayoutConstraint(ToggleButton.Handle, label1.Handle, Autolayout.NSLayoutConstraint.LayoutAttributes.FirstBaseline)
+		  c = New SOSLayoutConstraint(ToggleButton.Handle, label1.Handle, Autolayout.SOSLayoutConstraint.LayoutAttributes.FirstBaseline)
 		  c.Priority = 999
 		  Self.AddConstraint(c)
 		  
@@ -156,7 +156,7 @@ End
 		  txtBaseline.TogglePriority
 		  
 		  // ask the layout for the Left constraint for the AnimateButton
-		  Dim animateButtonLeft As NSLayoutConstraint = Self.ConstraintForControlAttribute(AnimateButton, NSLayoutConstraint.LayoutAttributes.Left)
+		  Dim animateButtonLeft As SOSLayoutConstraint = Self.ConstraintForControlAttribute(AnimateButton, SOSLayoutConstraint.LayoutAttributes.Left)
 		  If animateButtonLeft<>Nil Then
 		    If txtBaseline.Priority < 500 Then
 		      animateButtonLeft.Offset = -200
@@ -171,7 +171,7 @@ End
 
 
 	#tag Property, Flags = &h0
-		txtBaseline As NSLayoutConstraint
+		txtBaseline As SOSLayoutConstraint
 	#tag EndProperty
 
 

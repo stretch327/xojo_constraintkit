@@ -4,7 +4,7 @@ Inherits MobileApplication
 	#tag CompatibilityFlags = TargetIOS
 	#tag Event
 		Sub Opening()
-		  #If DebugBuild And TargetMobileSimulator
+		  #If DebugBuild And TargetMobileSimulator and TargetIOS
 		    LoadRevealFramework
 		  #EndIf
 		  

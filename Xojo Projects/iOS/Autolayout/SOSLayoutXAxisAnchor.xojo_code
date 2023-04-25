@@ -1,8 +1,8 @@
 #tag Class
-Class NSLayoutXAxisAnchor
-Inherits NSLayoutAnchor
+Class SOSLayoutXAxisAnchor
+Inherits SOSLayoutAnchor
 	#tag Method, Flags = &h0
-		Function AnchorWithOffsetToAnchor(otherAnchor as NSLayoutXAxisAnchor) As NSLayoutDimension
+		Function AnchorWithOffsetToAnchor(otherAnchor as SOSLayoutXAxisAnchor) As SOSLayoutDimension
 		  // - (NSLayoutDimension *)anchorWithOffsetToAnchor:(NSLayoutYAxisAnchor *)otherAnchor;
 		  Declare Function anchorWithOffsetToAnchor Lib "Foundation" Selector "anchorWithOffsetToAnchor:" ( obj As ptr , otherAnchor As Ptr ) As Ptr
 		  
@@ -11,12 +11,12 @@ Inherits NSLayoutAnchor
 		    Return nil
 		  End If
 		  
-		  return NSLayoutDimension.Create(p)
+		  return SOSLayoutDimension.Create(p)
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function ConstraintEqualToSystemSpacingAfterAnchor(anchor as NSLayoutXAxisAnchor, multiplier as Double = 1.0) As NSLayoutConstraint
+		Function ConstraintEqualToSystemSpacingAfterAnchor(anchor as SOSLayoutXAxisAnchor, multiplier as Double = 1.0) As SOSLayoutConstraint
 		  #If TargetMacOS Or TargetIOS
 		    // // - (NSLayoutConstraint *)constraintEqualToSystemSpacingBelowAnchor:(NSLayoutYAxisAnchor *)anchor multiplier:(CGFloat)multiplier; Declare Function constraintEqualToSystemSpacingBelowAnchor_multiplier Lib "Foundation" Selector "constraintEqualToSystemSpacingBelowAnchor:multiplier:" ( obj As ptr , anchor As Ptr , multiplier As Double ) As Ptr
 		    Declare Function constraintEqualToSystemSpacingAfterAnchor_multiplier Lib "Foundation" Selector "constraintEqualToSystemSpacingAfterAnchor:multiplier:" ( obj As ptr , anchor As Ptr , multiplier As Double ) As Ptr
@@ -26,13 +26,13 @@ Inherits NSLayoutAnchor
 		      Return Nil
 		    End If
 		    
-		    return NSLayoutConstraint.Create(p)
+		    return SOSLayoutConstraint.Create(p)
 		  #EndIf
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function constraintGreaterThanOrEqualToSystemSpacingAfterAnchor(anchor as NSLayoutXAxisAnchor, multiplier as Double = 1.0) As NSLayoutConstraint
+		Function constraintGreaterThanOrEqualToSystemSpacingAfterAnchor(anchor as SOSLayoutXAxisAnchor, multiplier as Double = 1.0) As SOSLayoutConstraint
 		  #If TargetMacOS Or TargetIOS
 		    // - (NSLayoutConstraint *)constraintGreaterThanOrEqualToSystemSpacingAfterAnchor:(NSLayoutXAxisAnchor *)anchor multiplier:(CGFloat)multiplier;
 		    Declare Function constraintGreaterThanOrEqualToSystemSpacingAfterAnchor_multiplier Lib "Foundation" Selector "constraintGreaterThanOrEqualToSystemSpacingAfterAnchor:multiplier:" ( obj As ptr , anchor As Ptr , multiplier As Double ) As Ptr
@@ -42,13 +42,13 @@ Inherits NSLayoutAnchor
 		      Return Nil
 		    End If
 		    
-		    return NSLayoutConstraint.Create(p)
+		    return SOSLayoutConstraint.Create(p)
 		  #EndIf
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function constraintLessThanOrEqualToSystemSpacingAfterAnchor(anchor as NSLayoutXAxisAnchor, multiplier as Double = 1.0) As NSLayoutConstraint
+		Function constraintLessThanOrEqualToSystemSpacingAfterAnchor(anchor as SOSLayoutXAxisAnchor, multiplier as Double = 1.0) As SOSLayoutConstraint
 		  #If TargetMacOS Or TargetIOS
 		    // - (NSLayoutConstraint *)constraintLessThanOrEqualToSystemSpacingAfterAnchor:(NSLayoutXAxisAnchor *)anchor multiplier:(CGFloat)multiplier;
 		    Declare Function constraintLessThanOrEqualToSystemSpacingAfterAnchor_multiplier Lib "Foundation" Selector "constraintLessThanOrEqualToSystemSpacingAfterAnchor:multiplier:" ( obj As ptr , anchor As Ptr , multiplier As Double ) As Ptr
@@ -58,14 +58,14 @@ Inherits NSLayoutAnchor
 		      Return Nil
 		    End If
 		    
-		    Return NSLayoutConstraint.Create(p)
+		    Return SOSLayoutConstraint.Create(p)
 		  #EndIf
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Attributes( Hidden )  Shared Function Create(p as ptr) As NSLayoutXAxisAnchor
-		  return new NSLayoutXAxisAnchor(p)
+		Attributes( Hidden )  Shared Function Create(p as ptr) As SOSLayoutXAxisAnchor
+		  return new SOSLayoutXAxisAnchor(p)
 		End Function
 	#tag EndMethod
 

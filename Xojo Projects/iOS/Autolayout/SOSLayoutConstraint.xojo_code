@@ -1,5 +1,5 @@
 #tag Class
-Class NSLayoutConstraint
+Class SOSLayoutConstraint
 	#tag Method, Flags = &h0
 		Sub Activate()
 		  
@@ -17,14 +17,13 @@ Class NSLayoutConstraint
 	#tag Method, Flags = &h0
 		Sub Constructor(item1 as ptr, attr1 as LayoutAttributes, relation as relations, value as Double)
 		  
-		  
 		  #If TargetIOS
 		    // + (instancetype)constraintWithItem:(id)view1 attribute:(NSLayoutAttribute)attr1 relatedBy:(NSLayoutRelation)relation toItem:(id)view2 attribute:(NSLayoutAttribute)attr2 multiplier:(CGFloat)multiplier constant:(CGFloat)c;
 		    Declare Function constraintWithItem_attribute_relatedBy_toItem_attribute_multiplier_constant Lib "Foundation" Selector "constraintWithItem:attribute:relatedBy:toItem:attribute:multiplier:constant:" ( cls As ptr , view1 As Ptr , attr1 As Integer , relation As Integer , view2 As Ptr , attr2 As Integer , multiplier As Double , c As Double ) As Ptr
 		    
 		    Declare Function NSClassFromString Lib "Foundation" (name As cfstringref) As ptr
 		    
-		    Dim cls As ptr = NSClassFromString(kBaseClass)
+		    Dim cls As ptr = NSClassFromString("NSLayoutConstraint")
 		    mObj = constraintWithItem_attribute_relatedBy_toItem_attribute_multiplier_constant(cls, item1, CType(attr1, Integer), CType(relation, Integer), nil, 0, 1.0, value)
 		    
 		  #EndIf
@@ -34,14 +33,13 @@ Class NSLayoutConstraint
 	#tag Method, Flags = &h0
 		Sub Constructor(item1 as ptr, attr1 as LayoutAttributes, relation as relations, item2 as ptr, attr2 as LayoutAttributes, multiplier as Double = 1.0, offset as Double = 0.0)
 		  
-		  
 		  #If TargetIOS
 		    // + (instancetype)constraintWithItem:(id)view1 attribute:(NSLayoutAttribute)attr1 relatedBy:(NSLayoutRelation)relation toItem:(id)view2 attribute:(NSLayoutAttribute)attr2 multiplier:(CGFloat)multiplier constant:(CGFloat)c;
 		    Declare Function constraintWithItem_attribute_relatedBy_toItem_attribute_multiplier_constant Lib "Foundation" Selector "constraintWithItem:attribute:relatedBy:toItem:attribute:multiplier:constant:" ( cls As ptr , view1 As Ptr , attr1 As integer , relation As integer , view2 As Ptr , attr2 As integer , multiplier As Double , c As Double ) As Ptr
 		    
 		    Declare Function NSClassFromString Lib "Foundation" (name As cfstringref) As ptr
 		    
-		    Dim cls As ptr = NSClassFromString(kBaseClass)
+		    Dim cls As ptr = NSClassFromString("NSLayoutConstraint")
 		    mObj = constraintWithItem_attribute_relatedBy_toItem_attribute_multiplier_constant(cls, item1, CType(attr1, Integer), CType(relation, Integer), item2, CType(attr2, Integer), multiplier, offset)
 		    
 		  #EndIf
@@ -51,14 +49,13 @@ Class NSLayoutConstraint
 	#tag Method, Flags = &h0
 		Sub Constructor(item1 as ptr, item2 as ptr, attr as LayoutAttributes)
 		  
-		  
 		  #If TargetIOS
 		    // + (instancetype)constraintWithItem:(id)view1 attribute:(NSLayoutAttribute)attr1 relatedBy:(NSLayoutRelation)relation toItem:(id)view2 attribute:(NSLayoutAttribute)attr2 multiplier:(CGFloat)multiplier constant:(CGFloat)c;
 		    Declare Function constraintWithItem_attribute_relatedBy_toItem_attribute_multiplier_constant Lib "Foundation" Selector "constraintWithItem:attribute:relatedBy:toItem:attribute:multiplier:constant:" ( cls As ptr , view1 As Ptr , attr1 As integer , relation As integer , view2 As Ptr , attr2 As integer , multiplier As Double , c As Double ) As Ptr
 		    
 		    Declare Function NSClassFromString Lib "Foundation" (name As cfstringref) As ptr
 		    
-		    Dim cls As ptr = NSClassFromString(kBaseClass)
+		    Dim cls As ptr = NSClassFromString("NSLayoutConstraint")
 		    mObj = constraintWithItem_attribute_relatedBy_toItem_attribute_multiplier_constant(cls, item1, CType(attr, Integer), 0, item2, CType(attr, Integer), 1.0, 0)
 		    
 		  #EndIf
@@ -66,12 +63,12 @@ Class NSLayoutConstraint
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Shared Function Create(p as ptr) As NSLayoutConstraint
+		Shared Function Create(p as ptr) As SOSLayoutConstraint
 		  If p = Nil Then
 		    Return Nil
 		  End If
 		  
-		  return new NSLayoutConstraint(p)
+		  return new SOSLayoutConstraint(p)
 		End Function
 	#tag EndMethod
 
@@ -89,7 +86,7 @@ Class NSLayoutConstraint
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub SetPriority(value as single, updateActivePriority as Boolean)
+		Private Sub SetPriority(value as Double, updateActivePriority as Boolean)
 		  #If TargetIOS
 		    // throttle to valid values
 		    value = Min(1000.0, Max(1.0, value))
@@ -216,11 +213,11 @@ Class NSLayoutConstraint
 	#tag EndComputedProperty
 
 	#tag Property, Flags = &h21
-		Private mActivePriority As Single = 1000.0
+		Private mActivePriority As Double = 1000.0
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private mInactivePriority As SIngle = 1.0
+		Private mInactivePriority As Double = 1.0
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
@@ -279,7 +276,7 @@ Class NSLayoutConstraint
 			  SetPriority(value, True)
 			End Set
 		#tag EndSetter
-		Priority As Single
+		Priority As Double
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0
@@ -340,12 +337,9 @@ Class NSLayoutConstraint
 	#tag EndComputedProperty
 
 
-	#tag Constant, Name = kBaseClass, Type = String, Dynamic = False, Default = \"NSLayoutConstraint", Scope = Private
-	#tag EndConstant
-
-
 	#tag Enum, Name = LayoutAttributes, Type = Integer, Flags = &h0
 		Absolute = 0
+		  NotAnAttribute = 0
 		  Left = 1
 		  Right
 		  Top
@@ -366,13 +360,6 @@ Class NSLayoutConstraint
 		  TrailingMargin
 		  CenterXWithinMargins
 		CenterYWithinMargins
-	#tag EndEnum
-
-	#tag Enum, Name = Priorities, Type = Integer, Flags = &h0
-		FittingSizeLevel = 50
-		  Low = 250
-		  High = 750
-		Required = 1000
 	#tag EndEnum
 
 	#tag Enum, Name = Relations, Type = Integer, Flags = &h0
@@ -527,7 +514,7 @@ Class NSLayoutConstraint
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
-			Type="Single"
+			Type="Double"
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty

@@ -2,7 +2,7 @@
 Protected Module FrameworkLoaders
 	#tag Method, Flags = &h21
 		Private Sub LoadFramework(Library As String)
-		  #If TargetIOS
+		  #If TargetIOS or TargetMacOS
 		    Dim libName As String = library.LastField("/").Replace(".framework","")
 		    If library.IndexOf("/") = -1 Then
 		      // probably a system library
@@ -29,7 +29,9 @@ Protected Module FrameworkLoaders
 
 	#tag Method, Flags = &h0
 		Sub LoadRevealFramework()
-		  LoadFramework("@executable_path/Frameworks/RevealServer.framework/RevealServer")
+		  #If TargetiOS
+		    LoadFramework("@executable_path/Frameworks/RevealServer.framework/RevealServer")
+		  #EndIf
 		End Sub
 	#tag EndMethod
 
