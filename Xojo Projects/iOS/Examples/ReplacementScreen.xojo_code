@@ -124,17 +124,17 @@ End
 		  Dim safeArea As SOSLayoutGuide = Self.SafeAreaLayoutGuide
 		  
 		  // Add the constraints we need to set up the grid
-		  Self.AddConstraint(button1.LeftAnchor.constraintEqualToAnchor(Self.LeftAnchor, 12))
-		  Self.AddConstraint(button1.TopAnchor.constraintEqualToAnchor(safeArea.TopAnchor, 12))
+		  button1.LeftAnchor.constraintEqualToAnchor(Self.LeftAnchor, 12).Active = True
+		  button1.TopAnchor.constraintEqualToAnchor(safeArea.TopAnchor, 12).Active = True
 		  
-		  Self.AddConstraint(button2.LeftAnchor.constraintEqualToAnchor(button1.RightAnchor, 12))
-		  Self.AddConstraint(button2.TopAnchor.constraintEqualToAnchor(button1.TopAnchor))
+		  button2.LeftAnchor.constraintEqualToAnchor(button1.RightAnchor, 12).Active = True
+		  button2.TopAnchor.constraintEqualToAnchor(button1.TopAnchor).Active = True
 		  
-		  Self.AddConstraint(button3.RightAnchor.constraintEqualToAnchor(button2.RightAnchor))
-		  Self.AddConstraint(button3.TopAnchor.constraintEqualToAnchor(button2.BottomAnchor, 12))
+		  button3.RightAnchor.constraintEqualToAnchor(button2.RightAnchor).Active = True
+		  button3.TopAnchor.constraintEqualToAnchor(button2.BottomAnchor, 12).Active = True
 		  
-		  Self.AddConstraint(button4.RightAnchor.constraintEqualToAnchor(button3.LeftAnchor, -12))
-		  Self.AddConstraint(button4.TopAnchor.constraintEqualToAnchor(button3.TopAnchor))
+		  button4.RightAnchor.constraintEqualToAnchor(button3.LeftAnchor, -12).Active = True
+		  button4.TopAnchor.constraintEqualToAnchor(button3.TopAnchor).Active = True
 		  
 		  // make the first button 100px wide
 		  Self.AddConstraint(New SOSLayoutConstraint(button1.Handle, SOSLayoutConstraint.LayoutAttributes.Width, SOSLayoutConstraint.relations.Equal, 100))

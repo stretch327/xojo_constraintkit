@@ -133,32 +133,30 @@ End
 		  // Set the label to match its intrinsic width
 		  c = label1.ConstraintMatchingIntrinsicWidth
 		  c.Priority = 999
-		  Self.AddConstraint(c)
-		  
+		  c.active = True
 		  // create baseline alignments with a priority of 999 so they're obeyed first.
 		  // The textfield.baseline to the label 
 		  txtBaseline = New SOSLayoutConstraint(textfield1.Handle, label1.handle, Autolayout.SOSLayoutConstraint.LayoutAttributes.FirstBaseline)
 		  txtBaseline.Offset = TextField1.FirstBaselineOffset/2
 		  txtBaseline.Priority = 999
-		  Self.AddConstraint(txtBaseline)
+		  txtBaseline.active = True
 		  
 		  // ... and button.baseline to the label
 		  c = New SOSLayoutConstraint(ToggleButton.Handle, label1.Handle, Autolayout.SOSLayoutConstraint.LayoutAttributes.FirstBaseline)
 		  c.Priority = 999
-		  Self.AddConstraint(c)
-		  
+		  c.active = True
 		End Sub
 	#tag EndEvent
 
 
 	#tag Method, Flags = &h21
 		Private Sub ChangeConstraints()
-		  txtBaseline.TogglePriority
+		  txtBaseline.Active = Not txtBaseline.active
 		  
 		  // ask the layout for the Left constraint for the AnimateButton
 		  Dim animateButtonLeft As SOSLayoutConstraint = Self.ConstraintForControlAttribute(AnimateButton, SOSLayoutConstraint.LayoutAttributes.Left)
 		  If animateButtonLeft<>Nil Then
-		    If txtBaseline.Priority < 500 Then
+		    If txtBaseline.Active Then
 		      animateButtonLeft.Offset = -200
 		    Else
 		      animateButtonLeft.Offset = 0
