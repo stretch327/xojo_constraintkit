@@ -19,6 +19,8 @@ Class SOSLayoutConstraint
 		    Dim cls As ptr = NSClassFromString("NSLayoutConstraint")
 		    mObj = constraintWithItem_attribute_relatedBy_toItem_attribute_multiplier_constant(cls, item1, CType(attr1, Integer), CType(relation, Integer), nil, 0, 1.0, value)
 		    
+		    Declare Function Retain Lib "Foundation" Selector "retain" (obj As Ptr) As Ptr
+		    mObj = retain(mObj)
 		  #EndIf
 		End Sub
 	#tag EndMethod
@@ -35,6 +37,8 @@ Class SOSLayoutConstraint
 		    Dim cls As ptr = NSClassFromString("NSLayoutConstraint")
 		    mObj = constraintWithItem_attribute_relatedBy_toItem_attribute_multiplier_constant(cls, item1, CType(attr1, Integer), CType(relation, Integer), item2, CType(attr2, Integer), multiplier, offset)
 		    
+		    Declare Function Retain Lib "Foundation" Selector "retain" (obj As Ptr) As Ptr
+		    mObj = retain(mObj)
 		  #EndIf
 		End Sub
 	#tag EndMethod
@@ -51,6 +55,8 @@ Class SOSLayoutConstraint
 		    Dim cls As ptr = NSClassFromString("NSLayoutConstraint")
 		    mObj = constraintWithItem_attribute_relatedBy_toItem_attribute_multiplier_constant(cls, item1, CType(attr, Integer), 0, item2, CType(attr, Integer), 1.0, 0)
 		    
+		    Declare Function Retain Lib "Foundation" Selector "retain" (obj As Ptr) As Ptr
+		    mObj = retain(mObj)
 		  #EndIf
 		End Sub
 	#tag EndMethod
@@ -69,6 +75,16 @@ Class SOSLayoutConstraint
 		Sub Deprioritize()
 		  
 		  SetPriority(mInactivePriority, False)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub Destructor()
+		  #If TargetiOS
+		    Declare Sub Release Lib "Foundation" Selector "release" (obj As Ptr)
+		    
+		    Release(mObj)
+		  #EndIf
 		End Sub
 	#tag EndMethod
 
