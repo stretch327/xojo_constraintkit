@@ -32,7 +32,7 @@ Inherits SOSLayoutAnchor
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function constraintGreaterThanOrEqualToSystemSpacingAfterAnchor(anchor as SOSLayoutXAxisAnchor, multiplier as Double = 1.0) As SOSLayoutConstraint
+		Function ConstraintGreaterThanOrEqualToSystemSpacingAfterAnchor(anchor as SOSLayoutXAxisAnchor, multiplier as Double = 1.0) As SOSLayoutConstraint
 		  #If TargetMacOS Or TargetIOS
 		    // - (NSLayoutConstraint *)constraintGreaterThanOrEqualToSystemSpacingAfterAnchor:(NSLayoutXAxisAnchor *)anchor multiplier:(CGFloat)multiplier;
 		    Declare Function constraintGreaterThanOrEqualToSystemSpacingAfterAnchor_multiplier Lib "Foundation" Selector "constraintGreaterThanOrEqualToSystemSpacingAfterAnchor:multiplier:" ( obj As ptr , anchor As Ptr , multiplier As Double ) As Ptr
@@ -48,7 +48,7 @@ Inherits SOSLayoutAnchor
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function constraintLessThanOrEqualToSystemSpacingAfterAnchor(anchor as SOSLayoutXAxisAnchor, multiplier as Double = 1.0) As SOSLayoutConstraint
+		Function ConstraintLessThanOrEqualToSystemSpacingAfterAnchor(anchor as SOSLayoutXAxisAnchor, multiplier as Double = 1.0) As SOSLayoutConstraint
 		  #If TargetMacOS Or TargetIOS
 		    // - (NSLayoutConstraint *)constraintLessThanOrEqualToSystemSpacingAfterAnchor:(NSLayoutXAxisAnchor *)anchor multiplier:(CGFloat)multiplier;
 		    Declare Function constraintLessThanOrEqualToSystemSpacingAfterAnchor_multiplier Lib "Foundation" Selector "constraintLessThanOrEqualToSystemSpacingAfterAnchor:multiplier:" ( obj As ptr , anchor As Ptr , multiplier As Double ) As Ptr
