@@ -432,6 +432,7 @@ Class SOSLayoutConstraint
 			EditorType="Enum"
 			#tag EnumValues
 				"0 - Absolute"
+				"0 - NotAnAttribute"
 				"1 - Left"
 				"2 - Right"
 				"3 - Top"
@@ -463,6 +464,7 @@ Class SOSLayoutConstraint
 			EditorType="Enum"
 			#tag EnumValues
 				"0 - Absolute"
+				"0 - NotAnAttribute"
 				"1 - Left"
 				"2 - Right"
 				"3 - Top"
