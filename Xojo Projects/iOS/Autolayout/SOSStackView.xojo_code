@@ -280,12 +280,6 @@ Inherits iOSMobileUserControl
 	#tag EndProperty
 
 
-	#tag Structure, Name = CGSize, Flags = &h21
-		Height as CGFloat
-		Width as CGFloat
-	#tag EndStructure
-
-
 	#tag Enum, Name = Alignments, Type = Integer, Flags = &h0
 		Fill
 		  Center
