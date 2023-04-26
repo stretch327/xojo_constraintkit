@@ -1,5 +1,6 @@
 #tag Module
 Protected Module Animation
+	#tag CompatibilityFlags = (TargetIOS and (Target64Bit))
 	#tag DelegateDeclaration, Flags = &h0
 		Delegate Sub AnimateDelegate()
 	#tag EndDelegateDeclaration

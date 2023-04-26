@@ -1,5 +1,6 @@
 #tag Module
 Protected Module ControlExtensions
+	#tag CompatibilityFlags = (TargetIOS and (Target64Bit))
 	#tag Method, Flags = &h0
 		Sub LineBreakEnabled(extends label as MobileLabel, assigns value as Boolean)
 		  #If TargetiOS
