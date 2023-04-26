@@ -276,11 +276,14 @@ Protected Module Autolayout
 
 	#tag Enum, Name = Priorities, Flags = &h0
 		Required = 1000
-		  Highest = 1000
-		  High = 800
-		  MediumHigh = 600
-		  Medium = 400
-		Low = 200
+		  XojoHighest = 1000
+		  XojoHigh = 800
+		  XojoMediumHigh = 600
+		  XojoMedium = 400
+		  XojoLow = 200
+		  AppleHigh = 750
+		  AppleMedium = 500
+		AppleLow = 250
 	#tag EndEnum
 
 
