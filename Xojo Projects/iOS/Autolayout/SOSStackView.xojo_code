@@ -249,7 +249,7 @@ Inherits iOSMobileUserControl
 	#tag EndComputedProperty
 
 	#tag Property, Flags = &h21
-		Private mObj As Ptr
+		Attributes( Hidden ) Private mObj As Ptr
 	#tag EndProperty
 
 	#tag ComputedProperty, Flags = &h0
@@ -276,7 +276,7 @@ Inherits iOSMobileUserControl
 	#tag EndComputedProperty
 
 	#tag Property, Flags = &h21
-		Private Views() As MobileUIControl
+		Attributes( Hidden ) Private Views() As MobileUIControl
 	#tag EndProperty
 
 

@@ -126,7 +126,7 @@ Protected Module Autolayout
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Function LeftAnchor(view as ptr) As SOSLayoutXAxisAnchor
+		Attributes( Hidden ) Private Function LeftAnchor(view as ptr) As SOSLayoutXAxisAnchor
 		  #If TargetiOS
 		    // @property(nonatomic, readonly, strong) NSLayoutXAxisAnchor *leftAnchor;
 		    Declare Function getLeftAnchor Lib "Foundation" Selector "leftAnchor" (obj As ptr) As Ptr
@@ -154,7 +154,7 @@ Protected Module Autolayout
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Function RightAnchor(view as ptr) As SOSLayoutXAxisAnchor
+		Attributes( Hidden ) Private Function RightAnchor(view as ptr) As SOSLayoutXAxisAnchor
 		  #If TargetiOS
 		    // @property(nonatomic, readonly, strong) NSLayoutXAxisAnchor *rightAnchor;
 		    Declare Function getrightAnchor Lib "Foundation" Selector "rightAnchor" (obj As ptr) As Ptr
@@ -182,7 +182,7 @@ Protected Module Autolayout
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Function SafeAreaLayoutGuide(view as ptr) As SOSLayoutGuide
+		Attributes( Hidden ) Private Function SafeAreaLayoutGuide(view as ptr) As SOSLayoutGuide
 		  #If TargetiOS
 		    // @property(nonatomic, readonly, strong) UILayoutGuide *safeAreaLayoutGuide;
 		    Declare Function getSafeAreaLayoutGuide Lib "Foundation" Selector "safeAreaLayoutGuide" (obj As ptr) As Ptr
@@ -261,7 +261,7 @@ Protected Module Autolayout
 	#tag EndMethod
 
 
-	#tag Structure, Name = CGRect, Flags = &h1
+	#tag Structure, Name = CGRect, Flags = &h21, Attributes = \"Hidden"
 		X as CGFloat
 		  Y as CGFloat
 		  Width as CGFloat

@@ -1,7 +1,7 @@
 #tag Class
 Class SOSLayoutGuide
 	#tag Method, Flags = &h21
-		Private Sub Constructor(p as ptr)
+		Attributes( Hidden ) Private Sub Constructor(p as ptr)
 		  mObj = p
 		End Sub
 	#tag EndMethod
@@ -172,7 +172,7 @@ Class SOSLayoutGuide
 	#tag EndComputedProperty
 
 	#tag Property, Flags = &h21
-		Private mObj As Ptr
+		Attributes( Hidden ) Private mObj As Ptr
 	#tag EndProperty
 
 	#tag ComputedProperty, Flags = &h0

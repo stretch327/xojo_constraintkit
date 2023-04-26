@@ -63,7 +63,7 @@ Class SOSLayoutConstraint
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Shared Function Create(p as ptr) As SOSLayoutConstraint
+		Attributes( Hidden )  Shared Function Create(p as ptr) As SOSLayoutConstraint
 		  If p = Nil Then
 		    Return Nil
 		  End If
@@ -86,7 +86,7 @@ Class SOSLayoutConstraint
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub SetPriority(value as Double, updateActivePriority as Boolean)
+		Attributes( Hidden ) Private Sub SetPriority(value as Double, updateActivePriority as Boolean)
 		  #If TargetIOS
 		    // throttle to valid values
 		    value = Min(1000.0, Max(1.0, value))
@@ -213,15 +213,15 @@ Class SOSLayoutConstraint
 	#tag EndComputedProperty
 
 	#tag Property, Flags = &h21
-		Private mActivePriority As Double = 1000.0
+		Attributes( Hidden ) Private mActivePriority As Double = 1000.0
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private mInactivePriority As Double = 1.0
+		Attributes( Hidden ) Private mInactivePriority As Double = 1.0
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private mObj As Ptr
+		Attributes( Hidden ) Private mObj As Ptr
 	#tag EndProperty
 
 	#tag ComputedProperty, Flags = &h0

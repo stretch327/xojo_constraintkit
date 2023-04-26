@@ -44,7 +44,7 @@ Inherits SOSLayoutAnchor
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Shared Function Create(p as ptr) As SOSLayoutDimension
+		Attributes( Hidden )  Shared Function Create(p as ptr) As SOSLayoutDimension
 		  If p = Nil Then
 		    Return Nil
 		  End If

@@ -55,7 +55,7 @@ Class SOSLayoutAnchor
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
-		Protected Sub Constructor(p as ptr)
+		Attributes( Hidden ) Protected Sub Constructor(p as ptr)
 		  mObj = p
 		End Sub
 	#tag EndMethod
@@ -71,7 +71,7 @@ Class SOSLayoutAnchor
 	#tag EndComputedProperty
 
 	#tag Property, Flags = &h1
-		Protected mObj As Ptr
+		Attributes( Hidden ) Protected mObj As Ptr
 	#tag EndProperty
 
 
