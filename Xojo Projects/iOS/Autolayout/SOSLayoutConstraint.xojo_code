@@ -85,6 +85,15 @@ Class SOSLayoutConstraint
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Function SetActive(value as boolean) As SOSLayoutConstraint
+		  // This method exists so we can use the new Anchor methods and setactive 
+		  // AND get the object back at the same time
+		  Self.Active = value
+		  Return Self
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h21
 		Attributes( Hidden ) Private Sub SetPriority(value as Double, updateActivePriority as Boolean)
 		  #If TargetIOS
