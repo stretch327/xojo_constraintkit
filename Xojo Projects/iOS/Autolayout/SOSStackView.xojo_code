@@ -32,6 +32,7 @@ Inherits iOSMobileUserControl
 
 	#tag Method, Flags = &h0
 		Sub AddArrangedSubview(view as MobileUIControl)
+		  // Adds a view to the stack
 		  // - (void)addArrangedSubview:(UIView *)view;
 		  Declare Sub addArrangedSubview Lib "Foundation" Selector "addArrangedSubview:" ( obj As ptr , view As Ptr )
 		  
@@ -42,13 +43,23 @@ Inherits iOSMobileUserControl
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub CustomSpacingAfterView(view as MobileUIControl)
+		Sub CustomSpacingAfterView(view as MobileUIControl, assigns value as double)
+		  // Sets the spacing after the specified view to the specified distance
+		  
+		  #If TargetiOS
+		    // - (void)setCustomSpacing:(CGFloat)spacing afterView:(UIView *)arrangedSubview;
+		    Declare Sub setCustomSpacing_afterView Lib "Foundation" Selector "setCustomSpacing:afterView:" ( obj As ptr , spacing As Double , arrangedSubview As Ptr )
+		    setCustomSpacing_afterView(mObj, value, view)
+		  #EndIf
+		  
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub CustomSpacingAfterViewAt(index as integer, assigns value as Double)
+		  // Sets the spacing after the view at the specified inex to the specified distance
+		  
 		  #If TargetiOS
 		    Dim view As ptr = ΩViewatindex(index)
 		    If view = Nil Then
@@ -73,6 +84,8 @@ Inherits iOSMobileUserControl
 
 	#tag Method, Flags = &h0
 		Sub InsertArrangedSubviewAt(view as MobileUIControl, index as integer)
+		  // Inserts a view into the stack at the specified index
+		  
 		  #If TargetiOS
 		    // - (void)insertArrangedSubview:(UIView *)view atIndex:(NSUInteger)stackIndex;
 		    Declare Sub insertArrangedSubview_atIndex Lib "Foundation" Selector "insertArrangedSubview:atIndex:" ( obj As ptr , view As Ptr , stackIndex As Integer )
@@ -86,6 +99,8 @@ Inherits iOSMobileUserControl
 
 	#tag Method, Flags = &h0
 		Sub RemoveArrangedSubview(view as MobileUIControl)
+		  // Removes the specified view from the stack
+		  
 		  #If TargetiOS
 		    // - (void)removeArrangedSubview:(UIView *)view;
 		    Declare Sub removeArrangedSubview Lib "Foundation" Selector "removeArrangedSubview:" ( obj As ptr , view As Ptr )
@@ -100,6 +115,7 @@ Inherits iOSMobileUserControl
 
 	#tag Method, Flags = &h0
 		Sub RemoveArrangedSubviewAt(index as integer)
+		  // Removes the view at the specified index from the stack
 		  #If TargetiOS
 		    Dim view As ptr = ΩViewatindex(index)
 		    If view = Nil Then
@@ -255,6 +271,7 @@ Inherits iOSMobileUserControl
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
+			  // Returns the spacing between the contained views
 			  // @property(nonatomic) CGFloat spacing;
 			  Declare Function getSpacing Lib "Foundation" Selector "spacing" (obj As ptr) As Double
 			  
@@ -265,11 +282,14 @@ Inherits iOSMobileUserControl
 		#tag EndGetter
 		#tag Setter
 			Set
-			  // @property(nonatomic) CGFloat spacing;
-			  Declare Sub setSpacing Lib "Foundation" Selector "setSpacing:" (obj As ptr, value As Double)
-			  
-			  setSpacing(mObj, value)
-			  
+			  // Sets the spacing between the contained views
+			  #If TargetiOS
+			    // @property(nonatomic) CGFloat spacing;
+			    Declare Sub setSpacing Lib "Foundation" Selector "setSpacing:" (obj As ptr, value As Double)
+			    
+			    setSpacing(mObj, value)
+			    
+			  #EndIf
 			End Set
 		#tag EndSetter
 		Spacing As Double
