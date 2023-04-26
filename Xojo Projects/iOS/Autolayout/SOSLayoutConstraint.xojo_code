@@ -1,12 +1,5 @@
 #tag Class
 Class SOSLayoutConstraint
-	#tag Method, Flags = &h0
-		Sub Activate()
-		  
-		  SetPriority(mActivePriority, False)
-		End Sub
-	#tag EndMethod
-
 	#tag Method, Flags = &h21
 		Private Sub Constructor(p as ptr)
 		  
@@ -73,9 +66,16 @@ Class SOSLayoutConstraint
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub Deactivate()
+		Sub Deprioritize()
 		  
 		  SetPriority(mInactivePriority, False)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub Prioritize()
+		  
+		  SetPriority(mActivePriority, False)
 		End Sub
 	#tag EndMethod
 
