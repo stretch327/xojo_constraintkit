@@ -165,6 +165,18 @@ Protected Module AutolayoutExtensions
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Function ConstraintMatchingIntrinsicHeight(extends view as MobileUIControl) As SOSLayoutConstraint
+		  // Creates an intrinsic height constraint for the specified control
+		  #If TargetiOS
+		    Dim sz As size = view.IntrinsicContentSize
+		    
+		    Return New SOSLayoutConstraint(view.Handle, SOSLayoutConstraint.LayoutAttributes.Height, SOSLayoutConstraint.relations.Equal, sz.Width)
+		    
+		  #EndIf
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Function ConstraintMatchingIntrinsicWidth(extends view as MobileUIControl) As SOSLayoutConstraint
 		  #If TargetiOS
 		    Dim sz As size = view.IntrinsicContentSize
