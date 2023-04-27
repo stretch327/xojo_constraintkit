@@ -304,10 +304,9 @@ Protected Module AutolayoutExtensions
 	#tag Method, Flags = &h0
 		Sub ConvertConstraintsForControl(extends view as MobileScreen, item as MobileUIControl, newPriority as Double = 0)
 		  // Converts all constraints for a specific MobileUIControl on a particular MobileScreen to SOSLayoutConstraints, changing them all to a particular Priority
+		  
 		  #If TargetiOS
 		    Dim ca() As Autolayout.SOSLayoutConstraint = view.constraints
-		    
-		    Dim newConstraints() As SOSLayoutConstraint
 		    
 		    // clip the value to be between 1 and 999 so it'll be editable later
 		    If newPriority > 0 Then
@@ -325,17 +324,14 @@ Protected Module AutolayoutExtensions
 		        If newPriority > 0 Then
 		          c.Priority = newPriority
 		        End If
+		        
+		        // activate the new constraint
 		        c.Active = True
 		        
-		        newConstraints.add c
-		        
+		        // deactivate the old constraint
 		        ca(i).active = False
 		      End If
 		      
-		    Next
-		    
-		    For i As Integer = 0 To UBound(newConstraints)
-		      view.AddConstraint(newConstraints(i))
 		    Next
 		  #EndIf
 		End Sub
