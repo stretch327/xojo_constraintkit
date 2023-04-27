@@ -33,7 +33,7 @@ Class SOSLayoutConstraintSet
 	#tag Method, Flags = &h0
 		Sub RemoveConstraint(c as SOSLayoutConstraint)
 		  // Removes the specified constraint from the set
-		  RemoveConstraint(mConstraints.IndexOf(c))
+		  RemoveConstraintAt(mConstraints.IndexOf(c))
 		End Sub
 	#tag EndMethod
 
@@ -120,11 +120,11 @@ Class SOSLayoutConstraintSet
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="mConstraints()"
+			Name="Active"
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
-			Type="Integer"
+			Type="Boolean"
 			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
