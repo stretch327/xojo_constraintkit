@@ -3,6 +3,7 @@ Protected Module AutolayoutExtensions
 	#tag CompatibilityFlags = (TargetIOS and (Target64Bit))
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target64Bit))
 		Sub AddConstraint(extends screen as MobileScreen, constraint as SOSLayoutConstraint)
+		  // adds an SOSLayoutConstraint to the MobileScreen
 		  #If TargetIOS
 		    
 		    // - (void)addConstraint:(NSLayoutConstraint *)constraint;
@@ -15,6 +16,7 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target64Bit))
 		Sub AddConstraint(extends control as MobileUIControl, constraint as SOSLayoutConstraint)
+		  // adds an SOSLayoutConstraint to the MobileUIControl
 		  #If TargetIOS
 		    // - (void)addConstraint:(NSLayoutConstraint *)constraint;
 		    Declare Sub addConstraint Lib "Foundation" Selector "addConstraint:" ( obj As ptr , constraint As Ptr )
@@ -26,7 +28,7 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0
 		Sub AddConstraints(extends view as MobileScreen, constraints() as SOSLayoutConstraint)
-		  
+		  // adds an array of SOSLayoutConstraints to the MobileScreen
 		  For i As Integer = 0 To UBound(constraints)
 		    constraints(i).Priority = DefaultPriority
 		    view.AddConstraint(constraints(i))
@@ -36,6 +38,8 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0
 		Sub AddConstraints(extends view as MobileScreen, constraints() as SOSLayoutConstraint, priority as Double)
+		  // adds an array of SOSLayoutConstraints to the MobileScreen with a particular priority
+		  
 		  // throttle to valid values
 		  priority = Min(Max(priority, 1.0), DefaultPriority)
 		  
@@ -48,6 +52,7 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0
 		Sub AddConstraints(extends view as MobileUIControl, constraints() as SOSLayoutConstraint)
+		  // adds an array of SOSLayoutConstraints to the MobileUIControl
 		  
 		  For i As Integer = 0 To UBound(constraints)
 		    constraints(i).Priority = DefaultPriority
@@ -58,6 +63,7 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0
 		Sub AddConstraints(extends view as MobileUIControl, constraints() as SOSLayoutConstraint, priority as Double)
+		  // adds an array of SOSLayoutConstraints to the MobileUIControl with a specific priority
 		  // throttle to valid values
 		  priority = Min(Max(priority, 1.0), 1000.0)
 		  
@@ -126,6 +132,7 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target64Bit))
 		Function CompressionResistancePriorityForAxis(Extends item as MobileUIControl, axis as Autolayout.Axis) As Double
+		  // Gets the Compression Resistance priority for the specified Axis
 		  #If TargetIOS
 		    // - (UILayoutPriority)contentCompressionResistancePriorityForAxis:(UILayoutConstraintAxis)axis;
 		    Declare Function contentCompressionResistancePriorityForAxis Lib "Foundation" Selector "contentCompressionResistancePriorityForAxis:" ( obj As ptr , axis As integer ) As single
@@ -137,6 +144,7 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target64Bit))
 		Sub CompressionResistancePriorityForAxis(Extends item as MobileUIControl, axis as Autolayout.Axis, assigns priority as double)
+		  // Sets the Compression Resistance priority for the specified Axis
 		  #If TargetIOS
 		    // - (void)setContentCompressionResistancePriority:(UILayoutPriority)priority forAxis:(UILayoutConstraintAxis)axis;
 		    Declare Sub setContentCompressionResistancePriority_forAxis Lib "Foundation" Selector "setContentCompressionResistancePriority:forAxis:" ( obj As ptr , priority As single , axis As integer )
@@ -148,6 +156,7 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0
 		Function ConstraintForControlAttribute(extends view as MobileScreen, ctl as mobileUIControl, attr as SOSLayoutConstraint.LayoutAttributes) As SOSLayoutConstraint
+		  // Gets a constraint for a particular attribute 
 		  #If TargetiOS
 		    Dim ca() As SOSLayoutConstraint = view.Constraints
 		    
@@ -178,6 +187,7 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0
 		Function ConstraintMatchingIntrinsicWidth(extends view as MobileUIControl) As SOSLayoutConstraint
+		  // Creates an intrinsic width constraint for the specified control
 		  #If TargetiOS
 		    Dim sz As size = view.IntrinsicContentSize
 		    
@@ -189,6 +199,7 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target64Bit))
 		Function Constraints(extends screen as MobileScreen) As SOSLayoutConstraint()
+		  // Returns all of the constraints attached to the specified MobileScreen
 		  #If TargetIOS
 		    // @property(nonatomic, readonly) NSArray<__kindof NSLayoutConstraint *> *constraints;
 		    Declare Function getConstraints Lib "Foundation" Selector "constraints" (obj As ptr) As Ptr
@@ -213,6 +224,7 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target64Bit))
 		Function Constraints(extends control as MobileUIControl) As SOSLayoutConstraint()
+		  // Returns all of the constraints attached to the specified MobileUIControl
 		  #If TargetIOS
 		    // @property(nonatomic, readonly) NSArray<__kindof NSLayoutConstraint *> *constraints;
 		    Declare Function getConstraints Lib "Foundation" Selector "constraints" (obj As ptr) As Ptr
@@ -237,6 +249,7 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0
 		Sub ConvertConstraintsForAllControls(extends view as MobileScreen, newPriority as Double)
+		  // Converts all constraints on a particular MobileScreen to SOSLayoutConstraints, changing them all to a particular priority
 		  #If TargetiOS
 		    For Each ctl As MobileControl In view.controls
 		      If ctl IsA MobileUIControl Then
@@ -249,6 +262,8 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0
 		Sub ConvertConstraintsForControl(extends view as MobileScreen, item as MobileUIControl, newPriority as Autolayout.Priorities)
+		  // Converts all constraints for a specific MobileUIControl on a particular MobileScreen to SOSLayoutConstraints, changing them all to a particular Priority
+		  
 		  #If TargetiOS
 		    Dim ca() As SOSLayoutConstraint = view.constraints
 		    
@@ -288,6 +303,7 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0
 		Sub ConvertConstraintsForControl(extends view as MobileScreen, item as MobileUIControl, newPriority as Double = 0)
+		  // Converts all constraints for a specific MobileUIControl on a particular MobileScreen to SOSLayoutConstraints, changing them all to a particular Priority
 		  #If TargetiOS
 		    Dim ca() As Autolayout.SOSLayoutConstraint = view.constraints
 		    
