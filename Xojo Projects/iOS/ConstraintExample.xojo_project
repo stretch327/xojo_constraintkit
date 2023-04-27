@@ -28,7 +28,6 @@ Class=SOSLayoutGuide;Autolayout/SOSLayoutGuide.xojo_code;&h000000001F3D9FFF;&h00
 Class=SOSStackView;Autolayout/SOSStackView.xojo_code;&h0000000046D2BFFF;&h00000000436A3FFF;false
 MobileScreen=StackViewScreen;Examples/StackViewScreen.xojo_code;&h0000000020DD1FFF;&h0000000065C14FFF;false
 Class=SOSLayoutConstraintSet;Autolayout/SOSLayoutConstraintSet.xojo_code;&h0000000078CD4FFF;&h00000000436A3FFF;false
-Class=Class1;Class1.xojo_code;&h0000000004958FFF;&h0000000000000000;false
 DefaultLayout=iPhoneLayout
 DefaultTabletLayout=iPadLayout
 MajorVersion=1
