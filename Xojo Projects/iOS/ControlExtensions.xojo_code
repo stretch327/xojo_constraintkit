@@ -1,8 +1,9 @@
 #tag Module
 Protected Module ControlExtensions
-	#tag CompatibilityFlags = (TargetIOS and (Target64Bit))
+	#tag CompatibilityFlags = ( TargetIOS and ( Target64Bit ) )
 	#tag Method, Flags = &h0
 		Sub LineBreakEnabled(extends label as MobileLabel, assigns value as Boolean)
+		  // Enables/Disables line breaks in the specified label control
 		  #If TargetiOS
 		    // @property(nonatomic) NSLineBreakStrategy lineBreakStrategy;
 		    Declare Sub setLineBreakStrategy Lib "Foundation" Selector "setLineBreakStrategy:" (obj As ptr, value As Integer)
@@ -13,19 +14,8 @@ Protected Module ControlExtensions
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub NumberOfLines(extends label as MobileLabel, assigns value as integer)
-		  
-		  #If TargetiOS
-		    // @property(nonatomic) NSInteger numberOfLines;
-		    Declare Sub setNumberOfLines Lib "Foundation" Selector "setNumberOfLines:" (obj As ptr, value As Integer)
-		    
-		    setNumberOfLines(label.Handle, value) // infinite = 0
-		  #EndIf
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Function NumberOfLines1(extends label as MobileLabel) As Integer
+		Function NumberOfLines(extends label as MobileLabel) As Integer
+		  // Returns the number of lines in the label control
 		  #If TargetiOS
 		    // @property(nonatomic) NSInteger numberOfLines;
 		    Declare Function getNumberOfLines Lib "Foundation" Selector "numberOfLines" (obj As ptr) As Integer
@@ -33,6 +23,18 @@ Protected Module ControlExtensions
 		    Return getNumberOfLines(label.Handle)
 		  #EndIf
 		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub NumberOfLines(extends label as MobileLabel, assigns value as integer)
+		  // Sets the number of lines in the label control
+		  #If TargetiOS
+		    // @property(nonatomic) NSInteger numberOfLines;
+		    Declare Sub setNumberOfLines Lib "Foundation" Selector "setNumberOfLines:" (obj As ptr, value As Integer)
+		    
+		    setNumberOfLines(label.Handle, value) // infinite = 0
+		  #EndIf
+		End Sub
 	#tag EndMethod
 
 
