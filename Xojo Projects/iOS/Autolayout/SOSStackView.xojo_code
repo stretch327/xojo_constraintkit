@@ -49,7 +49,7 @@ Inherits iOSMobileUserControl
 		  #If TargetiOS
 		    // - (void)setCustomSpacing:(CGFloat)spacing afterView:(UIView *)arrangedSubview;
 		    Declare Sub setCustomSpacing_afterView Lib "Foundation" Selector "setCustomSpacing:afterView:" ( obj As ptr , spacing As Double , arrangedSubview As Ptr )
-		    setCustomSpacing_afterView(mObj, value, view)
+		    setCustomSpacing_afterView(mObj, value, view.Handle)
 		  #EndIf
 		  
 		  
