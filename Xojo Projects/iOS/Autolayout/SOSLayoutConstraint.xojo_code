@@ -182,11 +182,23 @@ Class SOSLayoutConstraint
 			    // @property(readonly, copy) NSLayoutAnchor *firstAnchor;
 			    Declare Function getFirstAnchor Lib "Foundation" Selector "firstAnchor" (obj As ptr) As Ptr
 			    
-			    Return getFirstAnchor(mObj)
+			    Dim p As ptr = getFirstAnchor(mObj)
+			    
+			    // + (BOOL)isSubclassOfClass:(Class)aClass;
+			    Declare Function isSubclassOfClass Lib "Foundation" Selector "isSubclassOfClass:" ( cls As ptr , aClass As Ptr ) As Boolean
+			    Declare Function NSClassFromString Lib "Foundation" (name As cfstringref) As ptr
+			    
+			    If isSubclassOfClass(NSClassFromString("NSLayoutXAxisAnchor"), p) Then
+			      Return SOSLayoutXAxisAnchor.Create(p)
+			    ElseIf isSubclassOfClass(NSClassFromString("NSLayoutYAxisAnchor"), p) Then
+			      Return SOSLayoutYAxisAnchor.Create(p)
+			    Else
+			      Break
+			    End If
 			  #EndIf
 			End Get
 		#tag EndGetter
-		FirstAnchor As Ptr
+		FirstAnchor As SOSLayoutAnchor
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0
