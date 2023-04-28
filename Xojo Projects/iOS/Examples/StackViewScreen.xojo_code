@@ -31,6 +31,8 @@ Begin MobileScreen StackViewScreen
       Left            =   20
       LockedInPosition=   False
       Scope           =   0
+      ScrollAreaHeight=   0.0
+      ScrollAreaWidth =   0.0
       ScrollEnabled   =   True
       Spacing         =   24.0
       TintColor       =   &c000000
@@ -48,26 +50,27 @@ End
 	#tag Event
 		Sub Opening()
 		  
-		  
+		  Me.Spacing = 0
 		  Dim w As Double = Me.ScrollAreaWidth
 		  For i As Integer = 1 To 25
-		    Dim ctl As MobileUIControl
-		    Select Case i Mod 3
-		    Case 0
-		      ctl = New MobileButton
-		      MobileButton(ctl).Caption = "Push Me"
-		      
-		    Case 1
-		      ctl = New MobileLabel
-		      MobileLabel(ctl).Text = "Item " + i.ToString("0")
-		      MobileLabel(ctl).Alignment = MobileTextControl.Alignments.Center
-		      Me.AddArrangedSubview(ctl)
-		      
-		    Case 2
-		      ctl = New MobileOval
-		      
-		    End Select
+		    Dim ctl As SOSStackView
+		    
+		    ctl = New SOSStackView
+		    
+		    Dim leftStory As New NewsContainer
+		    leftStory.MakeRandomStory
+		    
+		    Dim rightStory As New NewsContainer
+		    rightStory.MakeRandomStory
+		    
+		    SOSStackView(ctl).AddArrangedSubview(leftStory)
+		    SOSStackView(ctl).AddArrangedSubview(rightStory)
+		    SOSStackView(ctl).Distribution = SOSStackView.Distributions.FillEqually
+		    ctl.HeightAnchor.ConstraintEqualToConstant(120).Active = True
+		    ctl.Alignment = SOSStackView.Alignments.Center
+		    
 		    Me.AddArrangedSubview(ctl)
+		    ctl.WidthAnchor.ConstraintEqualToConstant(w).Active = True
 		    
 		    // Make the item the same width as the view
 		    If ctl IsA MobileLabel Then
