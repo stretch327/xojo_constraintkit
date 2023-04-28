@@ -16,15 +16,14 @@ Begin MobileScreen StackViewScreen
    Begin Autolayout.SOSStackView SOSStackView1
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
-      Alignment       =   2
-      AutoLayout      =   SOSStackView1, 4, BottomLayoutGuide, 3, False, +1.00, 4, 1, -*kStdControlGapV, , True
+      Alignment       =   4
+      AutoLayout      =   SOSStackView1, 4, BottomLayoutGuide, 3, False, +1.00, 4, 2, -*kStdControlGapV, , True
       AutoLayout      =   SOSStackView1, 1, <Parent>, 1, False, +1.00, 4, 1, *kStdGapCtlToViewH, , True
-      AutoLayout      =   SOSStackView1, 2, <Parent>, 2, False, +1.00, 4, 1, -*kStdGapCtlToViewH, , True
+      AutoLayout      =   SOSStackView1, 2, <Parent>, 2, False, +1.00, 4, 2, -*kStdGapCtlToViewH, , True
       AutoLayout      =   SOSStackView1, 3, TopLayoutGuide, 4, False, +1.00, 4, 1, *kStdControlGapV, , True
-      Axis            =   1
       BaselineRelativeArrangement=   False
       ControlCount    =   0
-      Direction       =   1
+      Direction       =   0
       Distribution    =   3
       Enabled         =   True
       Height          =   487
