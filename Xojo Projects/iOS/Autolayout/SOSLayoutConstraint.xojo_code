@@ -45,7 +45,7 @@ Class SOSLayoutConstraint
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub Constructor(item1 as ptr, item2 as ptr, attr as LayoutAttributes)
+		Sub Constructor(item1 as ptr, item2 as ptr, attr as LayoutAttributes, relation as Relations = Relations.Equal)
 		  // Creates a new constraint given the two items and an attribute.
 		  #If TargetIOS
 		    // + (instancetype)constraintWithItem:(id)view1 attribute:(NSLayoutAttribute)attr1 relatedBy:(NSLayoutRelation)relation toItem:(id)view2 attribute:(NSLayoutAttribute)attr2 multiplier:(CGFloat)multiplier constant:(CGFloat)c;
