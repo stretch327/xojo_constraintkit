@@ -134,6 +134,7 @@ End
 		  c = label1.ConstraintMatchingIntrinsicWidth
 		  c.Priority = 999
 		  c.active = True
+		  
 		  // create baseline alignments with a priority of 999 so they're obeyed first.
 		  // The textfield.baseline to the label 
 		  txtBaseline = New SOSLayoutConstraint(textfield1.Handle, label1.handle, Autolayout.SOSLayoutConstraint.LayoutAttributes.FirstBaseline)
