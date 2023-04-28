@@ -312,6 +312,11 @@ Protected Module Autolayout
 		Height as CGFloat
 	#tag EndStructure
 
+	#tag Structure, Name = CGSize, Flags = &h21, Attributes = \"Hidden"
+		width as cgfloat
+		height as cgfloat
+	#tag EndStructure
+
 
 	#tag Enum, Name = Axis, Type = Integer, Flags = &h0, Description = 54686520646972656374696F6E616C2061786973
 		Horizontal
