@@ -2,6 +2,8 @@
 Class SOSLayoutAnchor
 	#tag Method, Flags = &h0
 		Function constraintEqualToAnchor(anchor as SOSLayoutAnchor, offset as Double = 0.0) As SOSLayoutConstraint
+		  // Creates a constraint equal to another anchor plus an offset
+		  
 		  If Introspection.GetType(Self).name <> Introspection.GetType(anchor).name Then
 		    Raise New InvalidArgumentException("The anchor axis must match the type you are calculating against")
 		  End If
@@ -20,6 +22,8 @@ Class SOSLayoutAnchor
 
 	#tag Method, Flags = &h0
 		Function constraintGreaterThanOrEqualToAnchor(anchor as SOSLayoutAnchor, offset as Double = 0.0) As SOSLayoutConstraint
+		  // Creates a constraint greater than or equal to another anchor plus an offset
+		  
 		  If Introspection.GetType(Self).name <> Introspection.GetType(anchor).name Then
 		    Raise New InvalidArgumentException("The anchor axis must match the type you are calculating against")
 		  End If
@@ -38,6 +42,8 @@ Class SOSLayoutAnchor
 
 	#tag Method, Flags = &h0
 		Function constraintLessThanOrEqualToAnchor(anchor as SOSLayoutAnchor, offset as Double) As SOSLayoutConstraint
+		  // Creates a constraint less than or equal to another anchor plus an offset
+		  
 		  If Introspection.GetType(Self).name <> Introspection.GetType(anchor).name Then
 		    Raise New InvalidArgumentException("The anchor axis must match the type you are calculating against")
 		  End If
@@ -64,7 +70,9 @@ Class SOSLayoutAnchor
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return mObj
+			  // Pointer to the underlying NSLayoutAnchor
+			  
+			  Return mObj
 			End Get
 		#tag EndGetter
 		Handle As Ptr

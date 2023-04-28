@@ -20,7 +20,9 @@ Class SOSLayoutGuide
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #if TargetiOS
+			  // The Bottom anchor
+			  
+			  #If TargetiOS
 			    // @property(nonatomic, readonly, strong) NSLayoutYAxisAnchor *bottomAnchor;
 			    Declare Function getBottomAnchor Lib "Foundation" Selector "bottomAnchor" (obj As ptr) As Ptr
 			    
@@ -39,7 +41,9 @@ Class SOSLayoutGuide
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #if TargetiOS
+			  // The Center X anchor
+			  
+			  #If TargetiOS
 			    // @property(nonatomic, readonly, strong) NSLayoutXAxisAnchor *centerXAnchor;
 			    Declare Function getCenterXAnchor Lib "Foundation" Selector "centerXAnchor" (obj As ptr) As Ptr
 			    
@@ -58,7 +62,9 @@ Class SOSLayoutGuide
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #if TargetiOS
+			  // The Center Y anchor
+			  
+			  #If TargetiOS
 			    // @property(nonatomic, readonly, strong) NSLayoutYAxisAnchor *centerYAnchor;
 			    Declare Function getCenterYAnchor Lib "Foundation" Selector "centerYAnchor" (obj As ptr) As Ptr
 			    
@@ -77,6 +83,8 @@ Class SOSLayoutGuide
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
+			  // The Height anchor
+			  
 			  #If TargetiOS
 			    // @property(nonatomic, readonly, strong) NSLayoutDimension *heightAnchor;
 			    Declare Function getHeightAnchor Lib "Foundation" Selector "heightAnchor" (obj As ptr) As Ptr
@@ -96,7 +104,9 @@ Class SOSLayoutGuide
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #if TargetiOS
+			  // The Identifier for this anchor
+			  
+			  #If TargetiOS
 			    // @property(nonatomic, copy) NSString *identifier;
 			    Declare Function getIdentifier Lib "Foundation" Selector "identifier" (obj As ptr) As CFStringRef
 			    
@@ -122,7 +132,9 @@ Class SOSLayoutGuide
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #if TargetiOS
+			  // The Layout Frame for this anchor
+			  
+			  #If TargetiOS
 			    // @property(nonatomic, readonly) CGRect layoutFrame;
 			    Declare Function getLayoutFrame Lib "Foundation" Selector "layoutFrame" (obj As ptr) As CGRect
 			    
@@ -136,6 +148,8 @@ Class SOSLayoutGuide
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
+			  // The Leading anchor
+			  
 			  #If TargetiOS
 			    // @property(nonatomic, readonly, strong) NSLayoutXAxisAnchor *leadingAnchor;
 			    Declare Function getLeadingAnchor Lib "Foundation" Selector "leadingAnchor" (obj As ptr) As Ptr
@@ -155,6 +169,8 @@ Class SOSLayoutGuide
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
+			  // The left anchor
+			  
 			  #If TargetiOS
 			    // @property(nonatomic, readonly, strong) NSLayoutXAxisAnchor *leftAnchor;
 			    Declare Function getLeftAnchor Lib "Foundation" Selector "leftAnchor" (obj As ptr) As Ptr
@@ -178,6 +194,8 @@ Class SOSLayoutGuide
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
+			  // The Right anchor
+			  
 			  #If TargetiOS
 			    // @property(nonatomic, readonly, strong) NSLayoutXAxisAnchor *rightAnchor;
 			    Declare Function getRightAnchor Lib "Foundation" Selector "rightAnchor" (obj As ptr) As Ptr
@@ -197,6 +215,8 @@ Class SOSLayoutGuide
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
+			  // The Top anchor
+			  
 			  #If TargetiOS
 			    // @property(nonatomic, readonly, strong) NSLayoutYAxisAnchor *bottomAnchor;
 			    Declare Function getTopAnchor Lib "Foundation" Selector "topAnchor" (obj As ptr) As Ptr
@@ -216,6 +236,8 @@ Class SOSLayoutGuide
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
+			  // The Trailing anchor
+			  
 			  #If TargetiOS
 			    // @property(nonatomic, readonly, strong) NSLayoutXAxisAnchor *trailingAnchor;
 			    Declare Function getTrailingAnchor Lib "Foundation" Selector "trailingAnchor" (obj As ptr) As Ptr
@@ -235,6 +257,8 @@ Class SOSLayoutGuide
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
+			  // The Width anchor
+			  
 			  #If TargetiOS
 			    // @property(nonatomic, readonly, strong) NSLayoutDimension *widthAnchor;
 			    Declare Function getWidthAnchor Lib "Foundation" Selector "widthAnchor" (obj As ptr) As Ptr

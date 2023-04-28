@@ -3,6 +3,8 @@ Class SOSLayoutDimension
 Inherits SOSLayoutAnchor
 	#tag Method, Flags = &h0
 		Function constraintEqualToAnchor(anchor as SOSLayoutDimension, multiplier as Double = 1.0, offset as Double = 0.0) As SOSLayoutConstraint
+		  // Creates a new constraint equal to the current layout dimension and another, using a multiplier and an offset.
+		  
 		  // - (NSLayoutConstraint *)constraintEqualToAnchor:(NSLayoutDimension *)anchor multiplier:(CGFloat)m constant:(CGFloat)c;
 		  Declare Function constraintEqualToAnchor_multiplier_constant Lib "Foundation" Selector "constraintEqualToAnchor:multiplier:constant:" ( obj As ptr , anchor As Ptr , m As Double , c As Double ) As Ptr
 		  
@@ -17,6 +19,8 @@ Inherits SOSLayoutAnchor
 
 	#tag Method, Flags = &h0
 		Function constraintGreaterThanOrEqualToAnchor(anchor as SOSLayoutDimension, multiplier as Double = 1.0, offset as Double = 0.0) As SOSLayoutConstraint
+		  // Creates a new constraint greater or equal to the current layout dimension and another, using a multiplier and an offset.
+		  
 		  // - (NSLayoutConstraint *)constraintGreaterThanOrEqualToAnchor:(NSLayoutDimension *)anchor multiplier:(CGFloat)m constant:(CGFloat)c;
 		  Declare Function constraintGreaterThanOrEqualToAnchor_multiplier_constant Lib "Foundation" Selector "constraintGreaterThanOrEqualToAnchor:multiplier:constant:" ( obj As ptr , anchor As Ptr , m As Double , c As Double ) As Ptr
 		  
@@ -31,6 +35,8 @@ Inherits SOSLayoutAnchor
 
 	#tag Method, Flags = &h0
 		Function constraintLessThanOrEqualToAnchor(anchor as SOSLayoutDimension, multiplier as Double = 1.0, offset as Double = 0.0) As SOSLayoutConstraint
+		  // Creates a new constraint less or equal to the current layout dimension and another, using a multiplier and an offset.
+		  
 		  // - (NSLayoutConstraint *)constraintLessThanOrEqualToAnchor:(NSLayoutDimension *)anchor multiplier:(CGFloat)m constant:(CGFloat)c;
 		  Declare Function constraintLessThanOrEqualToAnchor_multiplier_constant Lib "Foundation" Selector "constraintLessThanOrEqualToAnchor:multiplier:constant:" ( obj As ptr , anchor As Ptr , m As Double , c As Double ) As Ptr
 		  

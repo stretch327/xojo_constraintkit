@@ -3,6 +3,7 @@ Class SOSLayoutYAxisAnchor
 Inherits SOSLayoutAnchor
 	#tag Method, Flags = &h0
 		Function AnchorWithOffsetToAnchor(otherAnchor as SOSLayoutYAxisAnchor) As SOSLayoutDimension
+		  // Creates a layout dimension object from two anchors.
 		  // - (NSLayoutDimension *)anchorWithOffsetToAnchor:(NSLayoutYAxisAnchor *)otherAnchor;
 		  Declare Function anchorWithOffsetToAnchor Lib "Foundation" Selector "anchorWithOffsetToAnchor:" ( obj As ptr , otherAnchor As Ptr ) As Ptr
 		  
@@ -17,6 +18,7 @@ Inherits SOSLayoutAnchor
 
 	#tag Method, Flags = &h0
 		Function ConstraintEqualToSystemSpacingBelowAnchor(anchor as SOSLayoutYAxisAnchor, multiplier as Double = 1.0) As SOSLayoutConstraint
+		  // Returns a constraint that defines by how much the current anchor trails the specified anchor.
 		  #If TargetMacOS or TargetIOS
 		    // - (NSLayoutConstraint *)constraintEqualToSystemSpacingBelowAnchor:(NSLayoutYAxisAnchor *)anchor multiplier:(CGFloat)multiplier;
 		    Declare Function constraintEqualToSystemSpacingBelowAnchor_multiplier Lib "Foundation" Selector "constraintEqualToSystemSpacingBelowAnchor:multiplier:" ( obj As ptr , anchor As Ptr , multiplier As Double ) As Ptr
@@ -33,6 +35,7 @@ Inherits SOSLayoutAnchor
 
 	#tag Method, Flags = &h0
 		Function ConstraintGreaterThanOrEqualToSystemSpacingBelowAnchor(anchor as SOSLayoutYAxisAnchor, multiplier as Double = 1.0) As SOSLayoutConstraint
+		  // Returns a constraint that defines the minimum amount by which the current anchor trails the specified anchor.
 		  #If TargetMacOS or TargetIOS
 		    // - (NSLayoutConstraint *)constraintGreaterThanOrEqualToSystemSpacingBelowAnchor:(NSLayoutYAxisAnchor *)anchor multiplier:(CGFloat)multiplier;
 		    Declare Function constraintGreaterThanOrEqualToSystemSpacingBelowAnchor_multiplier Lib "Foundation" Selector "constraintGreaterThanOrEqualToSystemSpacingBelowAnchor:multiplier:" ( obj As ptr , anchor As Ptr , multiplier As Double ) As Ptr
@@ -49,6 +52,7 @@ Inherits SOSLayoutAnchor
 
 	#tag Method, Flags = &h0
 		Function ConstraintLessThanOrEqualToSystemSpacingBelowAnchor(anchor as SOSLayoutYAxisAnchor, multiplier as Double = 1.0) As SOSLayoutConstraint
+		  // Returns a constraint that defines the maximum amount by which the current anchor trails the specified anchor.
 		  #If TargetMacOS Or TargetIOS
 		    // - (NSLayoutConstraint *)constraintLessThanOrEqualToSystemSpacingBelowAnchor:(NSLayoutYAxisAnchor *)anchor multiplier:(CGFloat)multiplier;
 		    Declare Function constraintLessThanOrEqualToSystemSpacingBelowAnchor_multiplier Lib "Foundation" Selector "constraintLessThanOrEqualToSystemSpacingBelowAnchor:multiplier:" ( obj As ptr , anchor As Ptr , multiplier As Double ) As Ptr

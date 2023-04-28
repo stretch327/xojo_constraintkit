@@ -11,7 +11,7 @@ Class SOSLayoutConstraintSet
 
 	#tag Method, Flags = &h0
 		Function ConstraintAtIndex(index as integer) As SOSLayoutConstraint
-		  // returns the constraint at the specified index
+		  // Returns the constraint at the specified index
 		  Return mConstraints(index)
 		End Function
 	#tag EndMethod
@@ -51,7 +51,7 @@ Class SOSLayoutConstraintSet
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  // Returns true if the SOSLayoutConstraintSet is active
+			  // The Active state of all contained constraints. This property also affects any constraints that are added to the set.
 			  Return mActive
 			End Get
 		#tag EndGetter

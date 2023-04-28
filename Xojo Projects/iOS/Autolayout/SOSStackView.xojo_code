@@ -154,6 +154,7 @@ Inherits iOSMobileUserControl
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
+			  // Alignment of views within the StackView
 			  // @property(nonatomic) UIStackViewAlignment alignment;
 			  Declare Function getAlignment Lib "Foundation" Selector "alignment" (obj As ptr) As Integer
 			  
@@ -177,6 +178,7 @@ Inherits iOSMobileUserControl
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
+			  // Whether or not Baseline Relative Arrangement is being used.
 			  // @property(nonatomic, getter=isBaselineRelativeArrangement) BOOL baselineRelativeArrangement;
 			  Declare Function isBaselineRelativeArrangement Lib "Foundation" Selector "isBaselineRelativeArrangement" (obj As ptr) As Boolean
 			  
@@ -200,6 +202,7 @@ Inherits iOSMobileUserControl
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
+			  // The direction of the Stack View
 			  // @property(nonatomic) UILayoutConstraintAxis axis;
 			  Declare Function getAxis Lib "Foundation" Selector "axis" (obj As ptr) As Integer
 			  
@@ -220,6 +223,7 @@ Inherits iOSMobileUserControl
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
+			  // The distribution of the StackView
 			  // @property(nonatomic) UIStackViewDistribution distribution;
 			  Declare Function getDistribution Lib "Foundation" Selector "distribution" (obj As ptr) As Integer
 			  
@@ -244,6 +248,7 @@ Inherits iOSMobileUserControl
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
+			  // Whether or not the Stack View is using Layout Margins Relative Alignment
 			  // @property(nonatomic, getter=isLayoutMarginsRelativeArrangement) BOOL layoutMarginsRelativeArrangement;
 			  Declare Function isLayoutMarginsRelativeArrangement Lib "Foundation" Selector "isLayoutMarginsRelativeArrangement" (obj As ptr) As Boolean
 			  
@@ -271,7 +276,7 @@ Inherits iOSMobileUserControl
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  // Returns the spacing between the contained views
+			  // The spacing between the contained views
 			  // @property(nonatomic) CGFloat spacing;
 			  Declare Function getSpacing Lib "Foundation" Selector "spacing" (obj As ptr) As Double
 			  
@@ -300,7 +305,7 @@ Inherits iOSMobileUserControl
 	#tag EndProperty
 
 
-	#tag Enum, Name = Alignments, Type = Integer, Flags = &h0
+	#tag Enum, Name = Alignments, Type = Integer, Flags = &h0, Description = 446566696E65732074686520616C69676E6D656E747320666F72206974656D7320696E2074686520537461636B56696577
 		Fill
 		  Center
 		  Leading
@@ -311,7 +316,7 @@ Inherits iOSMobileUserControl
 		LastBaseline
 	#tag EndEnum
 
-	#tag Enum, Name = Distributions, Type = Integer, Flags = &h0
+	#tag Enum, Name = Distributions, Type = Integer, Flags = &h0, Description = 446566696E65732074686520646973747269627574696F6E207479706520666F7220746865206974656D7320696E2074686520537461636B56696577
 		Fill
 		  FillEqually
 		  FillProportionally
