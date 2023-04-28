@@ -24,21 +24,53 @@ Inherits iOSMobileUserControl
 		  
 		  mObj = Retain(initWithFrame(alloc(NSClassFromString("UIStackView")), frame))
 		  
-		  Return mObj
+		  setTranslatesAutoresizingMaskIntoConstraints(mObj, False)
+		  
+		  // Return mObj
+		  
+		  // scrollview wrapper
+		  mScrollObj = retain(init(alloc(NSClassFromString("UIScrollView"))))
+		  setTranslatesAutoresizingMaskIntoConstraints(mScrollObj, False)
+		  
+		  addSubview(mScrollObj, mObj)
+		  
+		  ΩUpdateScrollViewContentConstraints
+		  
+		  Return mScrollObj
+		  
+		  
+		  
+		  
+		  
+		  
+		  
 		  
 		End Function
+	#tag EndEvent
+
+	#tag Event
+		Sub Opening()
+		  RaiseEvent Opening
+		  
+		  ΩUpdateScrollViewSize
+		End Sub
 	#tag EndEvent
 
 
 	#tag Method, Flags = &h0
 		Sub AddArrangedSubview(view as MobileUIControl)
 		  // Adds a view to the stack
-		  // - (void)addArrangedSubview:(UIView *)view;
-		  Declare Sub addArrangedSubview Lib "Foundation" Selector "addArrangedSubview:" ( obj As ptr , view As Ptr )
 		  
-		  addArrangedSubview(mObj, view.Handle)
-		  
-		  views.Add(view)
+		  #If TargetiOS
+		    // - (void)addArrangedSubview:(UIView *)view;
+		    Declare Sub addArrangedSubview Lib "Foundation" Selector "addArrangedSubview:" ( obj As ptr , view As Ptr )
+		    
+		    addArrangedSubview(mObj, view.Handle)
+		    
+		    views.Add(view)
+		    
+		    ΩUpdateScrollViewSize
+		  #EndIf
 		End Sub
 	#tag EndMethod
 
@@ -50,6 +82,8 @@ Inherits iOSMobileUserControl
 		    // - (void)setCustomSpacing:(CGFloat)spacing afterView:(UIView *)arrangedSubview;
 		    Declare Sub setCustomSpacing_afterView Lib "Foundation" Selector "setCustomSpacing:afterView:" ( obj As ptr , spacing As Double , arrangedSubview As Ptr )
 		    setCustomSpacing_afterView(mObj, value, view.Handle)
+		    
+		    ΩUpdateScrollViewSize
 		  #EndIf
 		  
 		  
@@ -69,6 +103,8 @@ Inherits iOSMobileUserControl
 		    // - (void)setCustomSpacing:(CGFloat)spacing afterView:(UIView *)arrangedSubview;
 		    Declare Sub setCustomSpacing_afterView Lib "Foundation" Selector "setCustomSpacing:afterView:" ( obj As ptr , spacing As Double , arrangedSubview As Ptr )
 		    setCustomSpacing_afterView(mObj, value, view)
+		    
+		    ΩUpdateScrollViewSize
 		  #EndIf
 		End Sub
 	#tag EndMethod
@@ -83,6 +119,13 @@ Inherits iOSMobileUserControl
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Function Handle() As Ptr
+		  Return mObj
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub InsertArrangedSubviewAt(view as MobileUIControl, index as integer)
 		  // Inserts a view into the stack at the specified index
 		  
@@ -93,6 +136,8 @@ Inherits iOSMobileUserControl
 		    insertArrangedSubview_atIndex(mObj, view.Handle, index)
 		    
 		    views.AddAt(index, view)
+		    
+		    ΩUpdateScrollViewSize
 		  #EndIf
 		End Sub
 	#tag EndMethod
@@ -109,6 +154,8 @@ Inherits iOSMobileUserControl
 		    
 		    Dim p As Integer = views.IndexOf(view)
 		    views.RemoveAt(p)
+		    
+		    ΩUpdateScrollViewSize
 		  #EndIf
 		End Sub
 	#tag EndMethod
@@ -126,7 +173,70 @@ Inherits iOSMobileUserControl
 		    RemoveArrangedSubview(mObj, view)
 		    
 		    views.RemoveAt(index)
+		    
+		    ΩUpdateScrollViewSize
 		  #EndIf
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function ScrollViewHandle() As Ptr
+		  return mScrollObj
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub ΩUpdateScrollViewContentConstraints()
+		  // add some constraints
+		  
+		  For i As Integer = 0 To UBound(mScrollViewContentConstraints)
+		    mScrollViewContentConstraints(i).Active = False
+		  Next
+		  
+		  Redim mScrollViewContentConstraints(-1)
+		  
+		  Dim c As SOSLayoutConstraint
+		  If Direction = axis.Horizontal Then
+		    mScrollViewContentConstraints.Add New SOSLayoutConstraint(mObj, mScrollObj, SOSLayoutConstraint.LayoutAttributes.CenterY)
+		    mScrollViewContentConstraints.Add New SOSLayoutConstraint(mObj, mScrollObj, SOSLayoutConstraint.LayoutAttributes.Left)
+		    mScrollViewContentConstraints.Add New SOSLayoutConstraint(mObj, mScrollObj, SOSLayoutConstraint.LayoutAttributes.Right, SOSLayoutConstraint.relations.GreaterThanOrEqual)
+		  ElseIf Direction = axis.Vertical Then
+		    mScrollViewContentConstraints.Add New SOSLayoutConstraint(mObj, mScrollObj, SOSLayoutConstraint.LayoutAttributes.CenterX)
+		    mScrollViewContentConstraints.Add New SOSLayoutConstraint(mObj, mScrollObj, SOSLayoutConstraint.LayoutAttributes.Top)
+		    mScrollViewContentConstraints.Add New SOSLayoutConstraint(mObj, mScrollObj, SOSLayoutConstraint.LayoutAttributes.Bottom, SOSLayoutConstraint.relations.GreaterThanOrEqual)
+		  Else
+		    Break
+		  End If
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub ΩUpdateScrollViewSize()
+		  // contentView.layoutIfNeeded() //set a frame based on constraints
+		  // scrollView.contentSize = CGSize(width: contentView.frame.width, height: contentView.frame.height)
+		  
+		  // - (void)layoutIfNeeded;
+		  Declare Sub layoutIfNeeded Lib "Foundation" Selector "layoutIfNeeded" (obj As ptr)
+		  // @property(nonatomic) CGRect frame;
+		  Declare Function getFrame Lib "Foundation" Selector "frame" (obj As ptr) As CGRect
+		  // @property(nonatomic) CGSize contentSize;
+		  Declare Sub setContentSize Lib "Foundation" Selector "setContentSize:" (obj As ptr, value As cgsize)
+		  
+		  // Force the content to redraw
+		  layoutIfNeeded(mObj)
+		  
+		  // Get the rect for the content
+		  Dim frame As cgrect = getFrame(mObj)
+		  
+		  Dim sz As cgsize
+		  sz.width = frame.Width
+		  sz.height = frame.Height
+		  
+		  Dim h As Double = frame.Height
+		  
+		  // set the content size on the scrollview
+		  setContentSize(mScrollObj, sz)
 		End Sub
 	#tag EndMethod
 
@@ -151,24 +261,35 @@ Inherits iOSMobileUserControl
 	#tag EndMethod
 
 
+	#tag Hook, Flags = &h0
+		Event Opening()
+	#tag EndHook
+
+
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
 			  // Alignment of views within the StackView
-			  // @property(nonatomic) UIStackViewAlignment alignment;
-			  Declare Function getAlignment Lib "Foundation" Selector "alignment" (obj As ptr) As Integer
-			  
-			  Return CType(getAlignment(mObj), Alignments)
-			  
+			  #If TargetiOS
+			    // @property(nonatomic) UIStackViewAlignment alignment;
+			    Declare Function getAlignment Lib "Foundation" Selector "alignment" (obj As ptr) As Integer
+			    
+			    Return CType(getAlignment(mObj), Alignments)
+			    
+			  #EndIf
 			  
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  // @property(nonatomic) UIStackViewAlignment alignment;
-			  Declare Sub setAlignment Lib "Foundation" Selector "setAlignment:" (obj As ptr, value As Integer)
-			  
-			  setAlignment(mObj, CType(value, Integer))
+			  #If TargetiOS
+			    // @property(nonatomic) UIStackViewAlignment alignment;
+			    Declare Sub setAlignment Lib "Foundation" Selector "setAlignment:" (obj As ptr, value As Integer)
+			    
+			    setAlignment(mObj, CType(value, Integer))
+			    
+			    ΩUpdateScrollViewSize
+			  #EndIf
 			  
 			End Set
 		#tag EndSetter
@@ -179,21 +300,26 @@ Inherits iOSMobileUserControl
 		#tag Getter
 			Get
 			  // Whether or not Baseline Relative Arrangement is being used.
-			  // @property(nonatomic, getter=isBaselineRelativeArrangement) BOOL baselineRelativeArrangement;
-			  Declare Function isBaselineRelativeArrangement Lib "Foundation" Selector "isBaselineRelativeArrangement" (obj As ptr) As Boolean
-			  
-			  Return isBaselineRelativeArrangement(mObj)
-			  
+			  #If TargetiOS
+			    // @property(nonatomic, getter=isBaselineRelativeArrangement) BOOL baselineRelativeArrangement;
+			    Declare Function isBaselineRelativeArrangement Lib "Foundation" Selector "isBaselineRelativeArrangement" (obj As ptr) As Boolean
+			    
+			    Return isBaselineRelativeArrangement(mObj)
+			    
+			  #EndIf
 			  
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  // @property(nonatomic, getter=isBaselineRelativeArrangement) BOOL baselineRelativeArrangement;
-			  Declare Sub setBaselineRelativeArrangement Lib "Foundation" Selector "setBaselineRelativeArrangement:" (obj As ptr, value As Boolean)
-			  
-			  setBaselineRelativeArrangement(mObj, value)
-			  
+			  #If TargetiOS
+			    // @property(nonatomic, getter=isBaselineRelativeArrangement) BOOL baselineRelativeArrangement;
+			    Declare Sub setBaselineRelativeArrangement Lib "Foundation" Selector "setBaselineRelativeArrangement:" (obj As ptr, value As Boolean)
+			    
+			    setBaselineRelativeArrangement(mObj, value)
+			    
+			    ΩUpdateScrollViewSize
+			  #EndIf
 			End Set
 		#tag EndSetter
 		BaselineRelativeArrangement As Boolean
@@ -203,18 +329,25 @@ Inherits iOSMobileUserControl
 		#tag Getter
 			Get
 			  // The direction of the Stack View
-			  // @property(nonatomic) UILayoutConstraintAxis axis;
-			  Declare Function getAxis Lib "Foundation" Selector "axis" (obj As ptr) As Integer
-			  
-			  return CType(getAxis(mObj), axis)
+			  #If TargetiOS
+			    // @property(nonatomic) UILayoutConstraintAxis axis;
+			    Declare Function getAxis Lib "Foundation" Selector "axis" (obj As ptr) As Integer
+			    
+			    Return CType(getAxis(mObj), axis)
+			  #EndIf
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  Declare Sub setAxis Lib "Foundation" Selector "setAxis:" (obj As ptr, value As Integer)
-			  
-			  setAxis(mObj, CType(value, Integer))
-			  
+			  #If TargetiOS
+			    Declare Sub setAxis Lib "Foundation" Selector "setAxis:" (obj As ptr, value As Integer)
+			    
+			    setAxis(mObj, CType(value, Integer))
+			    
+			    ΩUpdateScrollViewContentConstraints
+			    
+			    ΩUpdateScrollViewSize
+			  #EndIf
 			End Set
 		#tag EndSetter
 		Direction As Axis
@@ -224,22 +357,27 @@ Inherits iOSMobileUserControl
 		#tag Getter
 			Get
 			  // The distribution of the StackView
-			  // @property(nonatomic) UIStackViewDistribution distribution;
-			  Declare Function getDistribution Lib "Foundation" Selector "distribution" (obj As ptr) As Integer
-			  
-			  Return CType(getDistribution(mObj), Distributions)
-			  
-			  
+			  #If TargetiOS
+			    // @property(nonatomic) UIStackViewDistribution distribution;
+			    Declare Function getDistribution Lib "Foundation" Selector "distribution" (obj As ptr) As Integer
+			    
+			    Return CType(getDistribution(mObj), Distributions)
+			    
+			    
+			  #EndIf
 			  
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  // @property(nonatomic) UIStackViewDistribution distribution;
-			  Declare Sub setDistribution Lib "Foundation" Selector "setDistribution:" (obj As ptr, value As Integer)
-			  
-			  setDistribution(mObj, CType(value, Integer))
-			  
+			  #If TargetiOS
+			    // @property(nonatomic) UIStackViewDistribution distribution;
+			    Declare Sub setDistribution Lib "Foundation" Selector "setDistribution:" (obj As ptr, value As Integer)
+			    
+			    setDistribution(mObj, CType(value, Integer))
+			    
+			    ΩUpdateScrollViewSize
+			  #EndIf
 			End Set
 		#tag EndSetter
 		Distribution As Distributions
@@ -249,21 +387,26 @@ Inherits iOSMobileUserControl
 		#tag Getter
 			Get
 			  // Whether or not the Stack View is using Layout Margins Relative Alignment
-			  // @property(nonatomic, getter=isLayoutMarginsRelativeArrangement) BOOL layoutMarginsRelativeArrangement;
-			  Declare Function isLayoutMarginsRelativeArrangement Lib "Foundation" Selector "isLayoutMarginsRelativeArrangement" (obj As ptr) As Boolean
-			  
-			  Return isLayoutMarginsRelativeArrangement(mObj)
-			  
+			  #If TargetiOS
+			    // @property(nonatomic, getter=isLayoutMarginsRelativeArrangement) BOOL layoutMarginsRelativeArrangement;
+			    Declare Function isLayoutMarginsRelativeArrangement Lib "Foundation" Selector "isLayoutMarginsRelativeArrangement" (obj As ptr) As Boolean
+			    
+			    Return isLayoutMarginsRelativeArrangement(mObj)
+			    
+			  #EndIf
 			  
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  // @property(nonatomic, getter=isLayoutMarginsRelativeArrangement) BOOL layoutMarginsRelativeArrangement;
-			  Declare Sub setLayoutMarginsRelativeArrangement Lib "Foundation" Selector "setLayoutMarginsRelativeArrangement:" (obj As ptr, value As Boolean)
-			  
-			  setLayoutMarginsRelativeArrangement(mObj, value)
-			  
+			  #If TargetiOS
+			    // @property(nonatomic, getter=isLayoutMarginsRelativeArrangement) BOOL layoutMarginsRelativeArrangement;
+			    Declare Sub setLayoutMarginsRelativeArrangement Lib "Foundation" Selector "setLayoutMarginsRelativeArrangement:" (obj As ptr, value As Boolean)
+			    
+			    setLayoutMarginsRelativeArrangement(mObj, value)
+			    
+			    ΩUpdateScrollViewSize
+			  #EndIf
 			End Set
 		#tag EndSetter
 		LayoutMarginsRelativeArrangement As Boolean
@@ -273,15 +416,89 @@ Inherits iOSMobileUserControl
 		Attributes( Hidden ) Private mObj As Ptr
 	#tag EndProperty
 
+	#tag Property, Flags = &h21
+		Private mScrollObj As Ptr
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
+		Private mScrollViewContentConstraints() As SOSLayoutConstraint
+	#tag EndProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  // The Height of the scroll area
+			  #If TargetiOS
+			    // - (void)layoutIfNeeded;
+			    Declare Sub layoutIfNeeded Lib "Foundation" Selector "layoutIfNeeded" (obj As ptr)
+			    // @property(nonatomic) CGRect frame;
+			    Declare Function getFrame Lib "Foundation" Selector "frame" (obj As ptr) As CGRect
+			    
+			    layoutIfNeeded(mScrollObj)
+			    Dim frame As cgrect = getFrame(mScrollObj)
+			    Return frame.Height
+			  #EndIf
+			End Get
+		#tag EndGetter
+		ScrollAreaHeight As Double
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  // The Height of the scroll area
+			  #If TargetiOS
+			    // - (void)layoutIfNeeded;
+			    Declare Sub layoutIfNeeded Lib "Foundation" Selector "layoutIfNeeded" (obj As ptr)
+			    // @property(nonatomic) CGRect frame;
+			    Declare Function getFrame Lib "Foundation" Selector "frame" (obj As ptr) As CGRect
+			    
+			    layoutIfNeeded(mScrollObj)
+			    Dim frame As cgrect = getFrame(mScrollObj)
+			    Return frame.Width
+			  #EndIf
+			End Get
+		#tag EndGetter
+		ScrollAreaWidth As Double
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  // Whether or not the view is scrollable
+			  #If TargetiOS
+			    
+			    // @property(nonatomic, getter=isScrollEnabled) BOOL scrollEnabled;
+			    Declare Function isScrollEnabled Lib "Foundation" Selector "isScrollEnabled" (obj As ptr) As Boolean
+			    
+			    Return isScrollEnabled(mScrollObj)
+			  #EndIf
+			  
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  #If TargetiOS
+			    Declare Sub setScrollEnabled Lib "Foundation" Selector "setScrollEnabled:" (obj As ptr, value As Boolean)
+			    
+			    setScrollEnabled(mScrollObj, value)
+			  #EndIf
+			End Set
+		#tag EndSetter
+		ScrollEnabled As Boolean
+	#tag EndComputedProperty
+
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
 			  // The spacing between the contained views
-			  // @property(nonatomic) CGFloat spacing;
-			  Declare Function getSpacing Lib "Foundation" Selector "spacing" (obj As ptr) As Double
-			  
-			  Return getSpacing(mObj)
-			  
+			  #If TargetiOS
+			    // @property(nonatomic) CGFloat spacing;
+			    Declare Function getSpacing Lib "Foundation" Selector "spacing" (obj As ptr) As Double
+			    
+			    Return getSpacing(mObj)
+			    
+			  #EndIf
 			  
 			End Get
 		#tag EndGetter
@@ -294,6 +511,7 @@ Inherits iOSMobileUserControl
 			    
 			    setSpacing(mObj, value)
 			    
+			    ΩUpdateScrollViewSize
 			  #EndIf
 			End Set
 		#tag EndSetter
@@ -439,7 +657,7 @@ Inherits iOSMobileUserControl
 			Name="BaselineRelativeArrangement"
 			Visible=true
 			Group="SOSStackView"
-			InitialValue=""
+			InitialValue="False"
 			Type="Boolean"
 			EditorType=""
 		#tag EndViewProperty
@@ -447,7 +665,15 @@ Inherits iOSMobileUserControl
 			Name="LayoutMarginsRelativeArrangement"
 			Visible=true
 			Group="SOSStackView"
-			InitialValue=""
+			InitialValue="False"
+			Type="Boolean"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ScrollEnabled"
+			Visible=true
+			Group="SOSStackView"
+			InitialValue="True"
 			Type="Boolean"
 			EditorType=""
 		#tag EndViewProperty
@@ -497,6 +723,22 @@ Inherits iOSMobileUserControl
 			Group="Behavior"
 			InitialValue=""
 			Type="ColorGroup"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ScrollAreaWidth"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ScrollAreaHeight"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
 			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
