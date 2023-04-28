@@ -16,24 +16,25 @@ Begin MobileScreen StackViewScreen
    Begin Autolayout.SOSStackView SOSStackView1
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
-      Alignment       =   4
-      AutoLayout      =   SOSStackView1, 4, BottomLayoutGuide, 3, False, +1.00, 4, 2, -*kStdControlGapV, , True
+      Alignment       =   0
+      AutoLayout      =   SOSStackView1, 4, BottomLayoutGuide, 3, False, +1.00, 4, 1, 0, , True
       AutoLayout      =   SOSStackView1, 1, <Parent>, 1, False, +1.00, 4, 1, *kStdGapCtlToViewH, , True
-      AutoLayout      =   SOSStackView1, 2, <Parent>, 2, False, +1.00, 4, 2, -*kStdGapCtlToViewH, , True
-      AutoLayout      =   SOSStackView1, 3, TopLayoutGuide, 4, False, +1.00, 4, 1, *kStdControlGapV, , True
+      AutoLayout      =   SOSStackView1, 2, <Parent>, 2, False, +1.00, 4, 1, -*kStdGapCtlToViewH, , True
+      AutoLayout      =   SOSStackView1, 3, TopLayoutGuide, 4, False, +1.00, 4, 1, 0, , True
       BaselineRelativeArrangement=   False
       ControlCount    =   0
-      Direction       =   0
-      Distribution    =   3
+      Direction       =   1
+      Distribution    =   1
       Enabled         =   True
-      Height          =   487
-      LayoutMarginsRelativeArrangement=   False
+      Height          =   503
+      LayoutMarginsRelativeArrangement=   True
       Left            =   20
       LockedInPosition=   False
       Scope           =   0
-      Spacing         =   12.0
+      ScrollEnabled   =   True
+      Spacing         =   24.0
       TintColor       =   &c000000
-      Top             =   73
+      Top             =   65
       Visible         =   True
       Width           =   280
    End
@@ -46,18 +47,35 @@ End
 #tag Events SOSStackView1
 	#tag Event
 		Sub Opening()
-		  Dim b As New MobileButton
-		  b.Caption = "Push Me"
-		  Me.AddArrangedSubview(b)
 		  
-		  For i As Integer = 1 To 20
-		    Dim lbl As New MobileLabel
-		    lbl.Text = "Item " + i.ToString("0")
-		    Me.AddArrangedSubview(lbl)
+		  
+		  Dim w As Double = Me.ScrollAreaWidth
+		  For i As Integer = 1 To 25
+		    Dim ctl As MobileUIControl
+		    Select Case i Mod 3
+		    Case 0
+		      ctl = New MobileButton
+		      MobileButton(ctl).Caption = "Push Me"
+		      
+		    Case 1
+		      ctl = New MobileLabel
+		      MobileLabel(ctl).Text = "Item " + i.ToString("0")
+		      MobileLabel(ctl).Alignment = MobileTextControl.Alignments.Center
+		      Me.AddArrangedSubview(ctl)
+		      
+		    Case 2
+		      ctl = New MobileOval
+		      
+		    End Select
+		    Me.AddArrangedSubview(ctl)
+		    
+		    // Make the item the same width as the view
+		    If ctl IsA MobileLabel Then
+		      Dim c As New SOSLayoutConstraint(ctl.handle, SOSLayoutConstraint.LayoutAttributes.Width, SOSLayoutConstraint.relations.Equal, Nil, SOSLayoutConstraint.LayoutAttributes.NotAnAttribute, 1, w)
+		      c.Active = True
+		    End If
+		    
 		  Next
-		  
-		  Me.Spacing = 6
-		  
 		  
 		End Sub
 	#tag EndEvent
