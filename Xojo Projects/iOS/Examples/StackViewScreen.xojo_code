@@ -31,7 +31,6 @@ Begin MobileScreen StackViewScreen
       Left            =   20
       LockedInPosition=   False
       Scope           =   0
-      Scrolling       =   True
       Spacing         =   12.0
       TintColor       =   &c000000
       Top             =   73
@@ -58,6 +57,7 @@ End
 		  Next
 		  
 		  Me.Spacing = 6
+		  
 		  
 		End Sub
 	#tag EndEvent
