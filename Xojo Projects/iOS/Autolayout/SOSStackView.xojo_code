@@ -2,6 +2,14 @@
 Class SOSStackView
 Inherits iOSMobileUserControl
 	#tag Event
+		Sub AppearanceChanged(dark as Boolean)
+		  RaiseEvent AppearanceChanged(dark)
+		  
+		  ΩUpdateScrollViewSize
+		End Sub
+	#tag EndEvent
+
+	#tag Event
 		Function CreateView() As Ptr
 		  Declare Function NSClassFromString Lib "Foundation" (name As cfstringref) As ptr
 		  Declare Function alloc Lib "Foundation" Selector "alloc" (cls As ptr) As ptr
