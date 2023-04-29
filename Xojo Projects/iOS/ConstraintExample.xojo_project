@@ -31,6 +31,7 @@ Class=SOSLayoutConstraintSet;SOSConstraintKit/SOSLayoutConstraintSet.xojo_code;&
 Folder=Parts;Examples/Parts;&h00000000718B8FFF;&h0000000065C14FFF;false
 ColorAsset=NewsStoryBackground;Examples/Parts/NewsStoryBackground.xojo_color;&h00000000105AF7FF;&h00000000718B8FFF;false
 MobileContainer=NewsContainer;Examples/Parts/NewsContainer.xojo_code;&h0000000063B88FFF;&h00000000718B8FFF;false
+Class=SOSDirectionalEdgeInsets;SOSConstraintKit/SOSDirectionalEdgeInsets.xojo_code;&h00000000347757FF;&h00000000436A3FFF;false
 DefaultLayout=iPhoneLayout
 DefaultTabletLayout=iPadLayout
 MajorVersion=1
