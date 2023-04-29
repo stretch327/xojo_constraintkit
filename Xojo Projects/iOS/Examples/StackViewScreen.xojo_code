@@ -13,7 +13,7 @@ Begin MobileScreen StackViewScreen
    TintColor       =   &c00000000
    Title           =   "StackViews"
    Top             =   0
-   Begin Autolayout.SOSStackView SOSStackView1
+   Begin SOSConstraintKit.SOSStackView SOSStackView1
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
       Alignment       =   0

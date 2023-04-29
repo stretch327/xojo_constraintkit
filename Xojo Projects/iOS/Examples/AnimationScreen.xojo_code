@@ -137,13 +137,13 @@ End
 		  
 		  // create baseline alignments with a priority of 999 so they're obeyed first.
 		  // The textfield.baseline to the label 
-		  txtBaseline = New SOSLayoutConstraint(textfield1.Handle, label1.handle, Autolayout.SOSLayoutConstraint.LayoutAttributes.FirstBaseline)
+		  txtBaseline = New SOSLayoutConstraint(textfield1.Handle, label1.handle, SOSConstraintKit.SOSLayoutConstraint.LayoutAttributes.FirstBaseline)
 		  txtBaseline.Offset = TextField1.FirstBaselineOffset/2
 		  txtBaseline.Priority = 999
 		  txtBaseline.active = True
 		  
 		  // ... and button.baseline to the label
-		  c = New SOSLayoutConstraint(ToggleButton.Handle, label1.Handle, Autolayout.SOSLayoutConstraint.LayoutAttributes.FirstBaseline)
+		  c = New SOSLayoutConstraint(ToggleButton.Handle, label1.Handle, SOSConstraintKit.SOSLayoutConstraint.LayoutAttributes.FirstBaseline)
 		  c.Priority = 999
 		  c.active = True
 		End Sub

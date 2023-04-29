@@ -1,5 +1,5 @@
 #tag Module
-Protected Module Autolayout
+Protected Module SOSConstraintKit
 	#tag CompatibilityFlags = ( TargetIOS and ( Target64Bit ) )
 	#tag Method, Flags = &h0
 		Function BottomAnchor(extends view as MobileScreen) As SOSLayoutYAxisAnchor

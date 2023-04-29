@@ -11,7 +11,6 @@ Class SOSLayoutConstraint
 		Sub Constructor(item1 as ptr, attr1 as LayoutAttributes, relation as relations, offset as Double)
 		  // Creates a new constraint given the two items, the linked attribute, a relation and an offset constant.
 		  #If TargetIOS
-		    offset = offset + mR
 		    // + (instancetype)constraintWithItem:(id)view1 attribute:(NSLayoutAttribute)attr1 relatedBy:(NSLayoutRelation)relation toItem:(id)view2 attribute:(NSLayoutAttribute)attr2 multiplier:(CGFloat)multiplier constant:(CGFloat)c;
 		    Declare Function constraintWithItem_attribute_relatedBy_toItem_attribute_multiplier_constant Lib "Foundation" Selector "constraintWithItem:attribute:relatedBy:toItem:attribute:multiplier:constant:" ( cls As ptr , view1 As Ptr , attr1 As Integer , relation As Integer , view2 As Ptr , attr2 As Integer , multiplier As Double , c As Double ) As Ptr
 		    
