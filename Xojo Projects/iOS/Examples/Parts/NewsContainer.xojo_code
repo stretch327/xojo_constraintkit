@@ -34,36 +34,37 @@ Begin MobileContainer NewsContainer
       Begin MobileRectangle Rectangle1
          AccessibilityHint=   ""
          AccessibilityLabel=   ""
-         AutoLayout      =   Rectangle1, 4, <Parent>, 4, False, +1.00, 4, 1, -*kStdGapCtlToViewV, , True
+         AutoLayout      =   Rectangle1, 4, <Parent>, 4, False, +1.00, 4, 0, -*kStdGapCtlToViewV, , True
+         AutoLayout      =   Rectangle1, 8, Rectangle1, 7, False, +1.00, 4, 1, 0, , True
          AutoLayout      =   Rectangle1, 2, <Parent>, 2, False, +1.00, 4, 1, -*kStdGapCtlToViewH, , True
          AutoLayout      =   Rectangle1, 3, <Parent>, 3, False, +1.00, 4, 1, *kStdGapCtlToViewV, , True
-         AutoLayout      =   Rectangle1, 7, Rectangle1, 8, False, +1.00, 4, 1, 0, , True
+         AutoLayout      =   Rectangle1, 7, , 0, False, +1.00, 4, 1, 50, , True
          BorderColor     =   &c000000
          BorderThickness =   0.0
          ControlCount    =   0
          CornerSize      =   12.0
          Enabled         =   True
          FillColor       =   &c000000
-         Height          =   134
-         Left            =   166
+         Height          =   50
+         Left            =   250
          LockedInPosition=   False
-         PanelIndex      =   -1
+         PanelIndex      =   0
          Parent          =   "background"
          Scope           =   0
          TintColor       =   &c000000
          Top             =   20
          Visible         =   True
-         Width           =   134
+         Width           =   50
       End
    End
    Begin MobileLabel HeadlineLbl
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
       Alignment       =   0
-      AutoLayout      =   HeadlineLbl, 1, <Parent>, 1, False, +1.00, 4, 1, *kStdGapCtlToViewH, , True
-      AutoLayout      =   HeadlineLbl, 2, Rectangle1, 1, False, +1.00, 4, 1, -*kStdControlGapH, , True
-      AutoLayout      =   HeadlineLbl, 3, <Parent>, 3, False, +1.00, 4, 1, 20, , True
       AutoLayout      =   HeadlineLbl, 8, , 0, False, +1.00, 4, 1, 30, , True
+      AutoLayout      =   HeadlineLbl, 1, <Parent>, 1, False, +1.00, 4, 1, *kStdGapCtlToViewH, , True
+      AutoLayout      =   HeadlineLbl, 2, <Parent>, 2, False, +1.00, 4, 1, -*kStdGapCtlToViewH, , True
+      AutoLayout      =   HeadlineLbl, 3, <Parent>, 3, False, +1.00, 4, 1, 20, , True
       ControlCount    =   0
       Enabled         =   True
       Height          =   30
@@ -74,23 +75,23 @@ Begin MobileContainer NewsContainer
       Text            =   "News Story"
       TextColor       =   &c000000
       TextFont        =   "System Bold		"
-      TextSize        =   0
+      TextSize        =   24
       TintColor       =   &c000000
       Top             =   20
       Visible         =   True
-      Width           =   138
+      Width           =   280
    End
    Begin MobileLabel NewsCopyLbl
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
       Alignment       =   0
-      AutoLayout      =   NewsCopyLbl, 4, <Parent>, 4, False, +1.00, 4, 0, -20, , True
       AutoLayout      =   NewsCopyLbl, 1, <Parent>, 1, False, +1.00, 4, 1, *kStdGapCtlToViewH, , True
-      AutoLayout      =   NewsCopyLbl, 3, HeadlineLbl, 4, False, +1.00, 4, 1, *kStdControlGapV, , True
-      AutoLayout      =   NewsCopyLbl, 7, , 0, False, +1.00, 4, 1, 138, , True
+      AutoLayout      =   NewsCopyLbl, 2, Rectangle1, 2, False, +1.00, 4, 1, 0, , True
+      AutoLayout      =   NewsCopyLbl, 3, HeadlineLbl, 4, False, +1.00, 4, 1, 28, , True
+      AutoLayout      =   NewsCopyLbl, 4, <Parent>, 4, False, +1.00, 4, 0, -20, , True
       ControlCount    =   0
       Enabled         =   True
-      Height          =   96
+      Height          =   76
       Left            =   20
       LineBreakMode   =   0
       LockedInPosition=   False
@@ -100,9 +101,9 @@ Begin MobileContainer NewsContainer
       TextFont        =   "System		"
       TextSize        =   12
       TintColor       =   &c000000
-      Top             =   58
+      Top             =   78
       Visible         =   True
-      Width           =   138
+      Width           =   280
    End
 End
 #tag EndMobileContainer

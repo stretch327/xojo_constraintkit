@@ -53,9 +53,7 @@ End
 		  Me.Spacing = 0
 		  Dim w As Double = Me.ScrollAreaWidth
 		  For i As Integer = 1 To 25
-		    Dim ctl As SOSStackView
-		    
-		    ctl = New SOSStackView
+		    Dim ctl As New SOSStackView
 		    
 		    Dim leftStory As New NewsContainer
 		    leftStory.MakeRandomStory
@@ -66,17 +64,11 @@ End
 		    SOSStackView(ctl).AddArrangedSubview(leftStory)
 		    SOSStackView(ctl).AddArrangedSubview(rightStory)
 		    SOSStackView(ctl).Distribution = SOSStackView.Distributions.FillEqually
-		    ctl.HeightAnchor.ConstraintEqualToConstant(120).Active = True
+		    ctl.HeightAnchor.ConstraintGreaterThanOrEqualToConstant(50).Active = True
 		    ctl.Alignment = SOSStackView.Alignments.Center
 		    
 		    Me.AddArrangedSubview(ctl)
 		    ctl.WidthAnchor.ConstraintEqualToConstant(w).Active = True
-		    
-		    // Make the item the same width as the view
-		    If ctl IsA MobileLabel Then
-		      Dim c As New SOSLayoutConstraint(ctl.handle, SOSLayoutConstraint.LayoutAttributes.Width, SOSLayoutConstraint.relations.Equal, Nil, SOSLayoutConstraint.LayoutAttributes.NotAnAttribute, 1, w)
-		      c.Active = True
-		    End If
 		    
 		  Next
 		  
