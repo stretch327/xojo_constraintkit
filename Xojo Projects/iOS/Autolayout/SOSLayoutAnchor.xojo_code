@@ -1,7 +1,7 @@
 #tag Class
 Class SOSLayoutAnchor
 	#tag Method, Flags = &h0
-		Function constraintEqualToAnchor(anchor as SOSLayoutAnchor, offset as Double = 0.0) As SOSLayoutConstraint
+		Function ConstraintEqualToAnchor(anchor as SOSLayoutAnchor, offset as Double = 0.0) As SOSLayoutConstraint
 		  // Creates a constraint equal to another anchor plus an offset
 		  
 		  If Introspection.GetType(Self).name <> Introspection.GetType(anchor).name Then
@@ -21,7 +21,7 @@ Class SOSLayoutAnchor
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function constraintGreaterThanOrEqualToAnchor(anchor as SOSLayoutAnchor, offset as Double = 0.0) As SOSLayoutConstraint
+		Function ConstraintGreaterThanOrEqualToAnchor(anchor as SOSLayoutAnchor, offset as Double = 0.0) As SOSLayoutConstraint
 		  // Creates a constraint greater than or equal to another anchor plus an offset
 		  
 		  If Introspection.GetType(Self).name <> Introspection.GetType(anchor).name Then
@@ -41,7 +41,7 @@ Class SOSLayoutAnchor
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function constraintLessThanOrEqualToAnchor(anchor as SOSLayoutAnchor, offset as Double) As SOSLayoutConstraint
+		Function ConstraintLessThanOrEqualToAnchor(anchor as SOSLayoutAnchor, offset as Double) As SOSLayoutConstraint
 		  // Creates a constraint less than or equal to another anchor plus an offset
 		  
 		  If Introspection.GetType(Self).name <> Introspection.GetType(anchor).name Then
