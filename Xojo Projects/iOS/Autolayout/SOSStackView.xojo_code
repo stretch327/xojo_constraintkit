@@ -270,6 +270,10 @@ Inherits iOSMobileUserControl
 
 
 	#tag Hook, Flags = &h0
+		Event AppearanceChanged(dark as Boolean)
+	#tag EndHook
+
+	#tag Hook, Flags = &h0
 		Event Opening()
 	#tag EndHook
 
