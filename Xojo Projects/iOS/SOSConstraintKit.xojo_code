@@ -1,6 +1,32 @@
 #tag Module
 Protected Module SOSConstraintKit
 	#tag CompatibilityFlags = ( TargetIOS and ( Target64Bit ) )
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
+		Function BottomAnchor(extends view as DesktopUIControl) As SOSLayoutYAxisAnchor
+		  // The bottom anchor of the DesktopUIControl
+		  
+		  #If targetMacOS or targetIOS
+		    // @property(nonatomic, readonly, strong) NSLayoutYAxisAnchor *bottomAnchor
+		    Declare Function getBottomAnchor Lib "Foundation" Selector "bottomAnchor" (obj As ptr) As Ptr
+		    
+		    Return SOSLayoutYAxisAnchor.Create(getBottomAnchor(view.Handle))
+		  #EndIf
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
+		Function BottomAnchor(extends view as DesktopWindow) As SOSLayoutYAxisAnchor
+		  // The bottom anchor of the DesktopWindow
+		  
+		  #If targetMacOS or targetIOS
+		    // @property(nonatomic, readonly, strong) NSLayoutYAxisAnchor *bottomAnchor
+		    Declare Function getBottomAnchor Lib "Foundation" Selector "bottomAnchor" (obj As ptr) As Ptr
+		    
+		    return SOSLayoutYAxisAnchor.Create(getBottomAnchor(WindowToView(view)))
+		  #EndIf
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h0
 		Function BottomAnchor(extends view as MobileScreen) As SOSLayoutYAxisAnchor
 		  // The bottom anchor of the MobileScreen
@@ -24,6 +50,32 @@ Protected Module SOSConstraintKit
 		    
 		    Return SOSLayoutYAxisAnchor.Create(getBottomAnchor(view.Handle))
 		  #EndIf
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
+		Function CenterXAnchor(extends view as DesktopUIControl) As SOSLayoutXAxisAnchor
+		  // The Center X anchor of the DesktopUIControl
+		  
+		  #If targetMacOS or targetIOS
+		    // @property(nonatomic, readonly, strong) NSLayoutXAxisAnchor *centerXAnchor;
+		    Declare Function getCenterXAnchor Lib "Foundation" Selector "centerXAnchor" (obj As ptr) As Ptr
+		    
+		    return SOSLayoutXAxisAnchor.create(getCenterXAnchor(view.Handle))
+		  #endif
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
+		Function CenterXAnchor(extends view as DesktopWindow) As SOSLayoutXAxisAnchor
+		  // The Center X anchor of the DesktopWindow
+		  
+		  #If targetMacOS or targetIOS
+		    // @property(nonatomic, readonly, strong) NSLayoutXAxisAnchor *centerXAnchor;
+		    Declare Function getCenterXAnchor Lib "Foundation" Selector "centerXAnchor" (obj As ptr) As Ptr
+		    
+		    return SOSLayoutXAxisAnchor.create(getCenterXAnchor(WindowToView(view)))
+		  #endif
 		End Function
 	#tag EndMethod
 
@@ -53,6 +105,32 @@ Protected Module SOSConstraintKit
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
+		Function CenterYAnchor(extends view as DesktopUIControl) As SOSLayoutYAxisAnchor
+		  // The Center Y anchor of the DesktopUIControl
+		  
+		  #If targetMacOS or targetIOS
+		    // @property(nonatomic, readonly, strong) NSLayoutYAxisAnchor *centerYAnchor;
+		    Declare Function getCenterYAnchor Lib "Foundation" selector "centerYAnchor" (obj as ptr) as Ptr
+		    
+		    return SOSLayoutYAxisAnchor.Create(getCenterYAnchor(view.Handle))
+		  #EndIf
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
+		Function CenterYAnchor(extends view as DesktopWindow) As SOSLayoutYAxisAnchor
+		  // The Center Y anchor of the DesktopWindow
+		  
+		  #If targetMacOS or targetIOS
+		    // @property(nonatomic, readonly, strong) NSLayoutYAxisAnchor *centerYAnchor;
+		    Declare Function getCenterYAnchor Lib "Foundation" selector "centerYAnchor" (obj as ptr) as Ptr
+		    
+		    return SOSLayoutYAxisAnchor.Create(getCenterYAnchor(WindowToView(view)))
+		  #EndIf
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h0
 		Function CenterYAnchor(extends view as MobileScreen) As SOSLayoutYAxisAnchor
 		  // The Center Y anchor of the MobileScreen
@@ -79,6 +157,19 @@ Protected Module SOSConstraintKit
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
+		Function FirstBaselineAnchor(extends view as DesktopUIControl) As SOSLayoutYAxisAnchor
+		  // The First Baseline anchor of the DesktopUIControl
+		  
+		  #If targetMacOS or targetIOS
+		    // @property(nonatomic, readonly, strong) NSLayoutYAxisAnchor *firstBaselineAnchor;
+		    Declare Function getFirstBaselineAnchor Lib "Foundation" Selector "firstBaselineAnchor" (obj As ptr) As Ptr
+		    
+		    return SOSLayoutYAxisAnchor.Create(getFirstBaselineAnchor(view.Handle))
+		  #EndIf
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h0
 		Function FirstBaselineAnchor(extends view as MobileUIControl) As SOSLayoutYAxisAnchor
 		  // The First Baseline anchor of the MobileUIControl
@@ -88,6 +179,34 @@ Protected Module SOSConstraintKit
 		    Declare Function getFirstBaselineAnchor Lib "Foundation" Selector "firstBaselineAnchor" (obj As ptr) As Ptr
 		    
 		    return SOSLayoutYAxisAnchor.Create(getFirstBaselineAnchor(view.Handle))
+		  #EndIf
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
+		Function HeightAnchor(extends view as DesktopUIControl) As SOSLayoutDimension
+		  // The Height anchor of the DesktopUIControl
+		  
+		  #If targetMacOS or targetIOS
+		    // @property(nonatomic, readonly, strong) NSLayoutDimension *heightAnchor;
+		    Declare Function getHeightAnchor Lib "Foundation" Selector "heightAnchor" (obj As ptr) As Ptr
+		    
+		    Return  SOSLayoutDimension.create(getHeightAnchor(view.Handle))
+		    
+		  #EndIf
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
+		Function HeightAnchor(extends view as DesktopWindow) As SOSLayoutDimension
+		  // The Height anchor of the DesktopWindow
+		  
+		  #If targetMacOS or targetIOS
+		    // @property(nonatomic, readonly, strong) NSLayoutDimension *heightAnchor;
+		    Declare Function getHeightAnchor Lib "Foundation" Selector "heightAnchor" (obj As ptr) As Ptr
+		    
+		    Return  SOSLayoutDimension.create(getHeightAnchor(WindowToView(view)))
+		    
 		  #EndIf
 		End Function
 	#tag EndMethod
@@ -120,6 +239,19 @@ Protected Module SOSConstraintKit
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
+		Function LastBaselineAnchor(extends view as DesktopUIControl) As SOSLayoutYAxisAnchor
+		  // The Last Baseline anchor of the DesktopUIControl
+		  
+		  #If targetMacOS or targetIOS
+		    // @property(nonatomic, readonly, strong) NSLayoutYAxisAnchor *lastBaselineAnchor;
+		    Declare Function getLastBaselineAnchor Lib "Foundation" Selector "lastBaselineAnchor" (obj As ptr) As Ptr
+		    
+		    return SOSLayoutYAxisAnchor.Create(getLastBaselineAnchor(view.Handle))
+		  #EndIf
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h0
 		Function LastBaselineAnchor(extends view as MobileUIControl) As SOSLayoutYAxisAnchor
 		  // The Last Baseline anchor of the MobileUIControl
@@ -130,6 +262,22 @@ Protected Module SOSConstraintKit
 		    
 		    return SOSLayoutYAxisAnchor.Create(getLastBaselineAnchor(view.Handle))
 		  #EndIf
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
+		Function LeftAnchor(extends view as DesktopUIControl) As SOSLayoutXAxisAnchor
+		  // The Left anchor of the DesktopUIControl
+		  
+		  Return LeftAnchor(view.handle)
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
+		Function LeftAnchor(extends view as DesktopWindow) As SOSLayoutXAxisAnchor
+		  // The Left anchor of the DesktopWindow
+		  
+		  Return LeftAnchor(WindowToView(view))
 		End Function
 	#tag EndMethod
 
@@ -165,6 +313,22 @@ Protected Module SOSConstraintKit
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
+		Function RightAnchor(extends view as DesktopUIControl) As SOSLayoutXAxisAnchor
+		  // The Right anchor of the DesktopUIControl
+		  
+		  Return RightAnchor(view.handle)
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
+		Function RightAnchor(extends view as DesktopWindow) As SOSLayoutXAxisAnchor
+		  // The Right anchor of the DesktopWindow
+		  
+		  Return RightAnchor(WindowToView(view))
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h0
 		Function RightAnchor(extends view as MobileScreen) As SOSLayoutXAxisAnchor
 		  // The Right anchor of the MobileScreen
@@ -197,6 +361,22 @@ Protected Module SOSConstraintKit
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
+		Function SafeAreaLayoutGuide(extends view as DesktopUIControl) As SOSLayoutGuide
+		  // The Safe Area Layout Guide anchor of the DesktopUIControl
+		  
+		  Return SafeAreaLayoutGuide(view.Handle)
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
+		Function SafeAreaLayoutGuide(extends view as DesktopWindow) As SOSLayoutGuide
+		  // The Safe Area Layout Guide anchor of the DesktopWindow
+		  
+		  Return SafeAreaLayoutGuide(WindowToView(view))
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h0
 		Function SafeAreaLayoutGuide(extends view as MobileScreen) As SOSLayoutGuide
 		  // The Safe Area Layout Guide anchor of the MobileScreen
@@ -222,6 +402,32 @@ Protected Module SOSConstraintKit
 		    Return SOSLayoutGuide.Create(getSafeAreaLayoutGuide(view))
 		  #EndIf
 		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
+		Function TopAnchor(extends view as DesktopUIControl) As SOSLayoutYAxisAnchor
+		  // The Top anchor of the DesktopUIControl
+		  
+		  #If targetMacOS or targetIOS
+		    // @property(nonatomic, readonly, strong) NSLayoutYAxisAnchor *topAnchor;
+		    Declare Function getTopAnchor Lib "Foundation" Selector "topAnchor" (obj As ptr) As Ptr
+		    
+		    return SOSLayoutYAxisAnchor.Create(getTopAnchor(view.Handle))
+		  #EndIf
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
+		Function TopAnchor(extends view as DesktopWindow) As SOSLayoutYAxisAnchor
+		  // The Top anchor of the DesktopWindow
+		  
+		  #If targetMacOS Or targetIOS
+		    // @property(nonatomic, readonly, strong) NSLayoutYAxisAnchor *topAnchor;
+		    Declare Function getTopAnchor Lib "Foundation" Selector "topAnchor" (obj As ptr) As Ptr
+		    
+		    return SOSLayoutYAxisAnchor.Create(getTopAnchor(WindowToView(view)))
+		  #EndIf
 		End Function
 	#tag EndMethod
 
@@ -251,6 +457,32 @@ Protected Module SOSConstraintKit
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
+		Function TrailingAnchor(extends view as DesktopUIControl) As SOSLayoutXAxisAnchor
+		  // The Trailing anchor of the DesktopUIControl
+		  
+		  #If targetMacOS or targetIOS
+		    // @property(nonatomic, readonly, strong) NSLayoutXAxisAnchor *trailingAnchor;
+		    Declare Function getTrailingAnchor Lib "Foundation" Selector "trailingAnchor" (obj As ptr) As Ptr
+		    
+		    return SOSLayoutXAxisAnchor.Create(getTrailingAnchor(view.Handle))
+		  #EndIf
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
+		Function TrailingAnchor(extends view as DesktopWindow) As SOSLayoutXAxisAnchor
+		  // The Trailing anchor of the DesktopWindow
+		  
+		  #If targetMacOS or targetIOS
+		    // @property(nonatomic, readonly, strong) NSLayoutXAxisAnchor *trailingAnchor;
+		    Declare Function getTrailingAnchor Lib "Foundation" Selector "trailingAnchor" (obj As ptr) As Ptr
+		    
+		    return SOSLayoutXAxisAnchor.Create(getTrailingAnchor(WindowToView(view)))
+		  #EndIf
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h0
 		Function TrailingAnchor(extends view as MobileScreen) As SOSLayoutXAxisAnchor
 		  // The Trailing anchor of the MobileScreen
@@ -274,6 +506,33 @@ Protected Module SOSConstraintKit
 		    
 		    return SOSLayoutXAxisAnchor.Create(getTrailingAnchor(view.Handle))
 		  #EndIf
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
+		Function WidthAnchor(extends view as DesktopUIControl) As SOSLayoutDimension
+		  // The Width anchor of the DesktopUIControl
+		  
+		  #If targetMacOS or targetIOS
+		    // @property(nonatomic, readonly, strong) NSLayoutDimension *widthAnchor;
+		    Declare Function getWidthAnchor Lib "Foundation" Selector "widthAnchor" (obj As ptr) As Ptr
+		    
+		    Return SOSLayoutDimension.Create(getWidthAnchor(view.Handle))
+		  #EndIf
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
+		Function WidthAnchor(extends view as DesktopWindow) As SOSLayoutDimension
+		  // The Width anchor of the DesktopWindow
+		  
+		  #If targetMacOS or targetIOS
+		    // @property(nonatomic, readonly, strong) NSLayoutDimension *widthAnchor;
+		    Declare Function getWidthAnchor Lib "Foundation" Selector "widthAnchor" (obj As ptr) As Ptr
+		    
+		    Return SOSLayoutDimension.Create(getWidthAnchor(WindowToView(view)))
+		  #EndIf
+		  
 		End Function
 	#tag EndMethod
 
