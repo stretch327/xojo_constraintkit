@@ -3,7 +3,7 @@ Protected Module AutolayoutExtensions
 	#tag CompatibilityFlags = ( TargetIOS and ( Target64Bit ) )
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
 		Sub AddConstraint(extends control as DesktopUIControl, constraint as SOSLayoutConstraint)
-		  // adds an SOSLayoutConstraint to the DesktopUIControl
+		  // Adds an SOSLayoutConstraint to the DesktopUIControl
 		  #if TargetMacOS or TargetIOS
 		    // - (void)addConstraint:(NSLayoutConstraint *)constraint;
 		    Declare Sub addConstraint Lib "Foundation" Selector "addConstraint:" ( obj As ptr , constraint As Ptr )
@@ -15,7 +15,7 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
 		Sub AddConstraint(extends screen as DesktopWindow, constraint as SOSLayoutConstraint)
-		  // adds an SOSLayoutConstraint to the DesktopWindow
+		  // Adds an SOSLayoutConstraint to the DesktopWindow
 		  #if TargetMacOS or TargetIOS
 		    
 		    // - (void)addConstraint:(NSLayoutConstraint *)constraint;
@@ -28,7 +28,7 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target64Bit))
 		Sub AddConstraint(extends screen as MobileScreen, constraint as SOSLayoutConstraint)
-		  // adds an SOSLayoutConstraint to the MobileScreen
+		  // Adds an SOSLayoutConstraint to the MobileScreen
 		  #If TargetIOS
 		    
 		    // - (void)addConstraint:(NSLayoutConstraint *)constraint;
@@ -41,7 +41,7 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target64Bit))
 		Sub AddConstraint(extends control as MobileUIControl, constraint as SOSLayoutConstraint)
-		  // adds an SOSLayoutConstraint to the MobileUIControl
+		  // Adds an SOSLayoutConstraint to the MobileUIControl
 		  #If TargetIOS
 		    // - (void)addConstraint:(NSLayoutConstraint *)constraint;
 		    Declare Sub addConstraint Lib "Foundation" Selector "addConstraint:" ( obj As ptr , constraint As Ptr )
@@ -53,7 +53,7 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
 		Sub AddConstraints(extends view as DesktopUIControl, constraints() as SOSLayoutConstraint)
-		  // adds an array of SOSLayoutConstraints to the DesktopUIControl
+		  // Adds an array of SOSLayoutConstraints to the DesktopUIControl
 		  
 		  For i As Integer = 0 To UBound(constraints)
 		    constraints(i).Priority = DefaultPriority
@@ -64,7 +64,7 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
 		Sub AddConstraints(extends view as DesktopUIControl, constraints() as SOSLayoutConstraint, priority as Double)
-		  // adds an array of SOSLayoutConstraints to the DesktopUIControl with a specific priority
+		  // Adds an array of SOSLayoutConstraints to the DesktopUIControl with a specific priority
 		  // throttle to valid values
 		  priority = Min(Max(priority, 1.0), 1000.0)
 		  
@@ -77,7 +77,7 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
 		Sub AddConstraints(extends view as DesktopWindow, constraints() as SOSLayoutConstraint)
-		  // adds an array of SOSLayoutConstraints to the DesktopWindow
+		  // Adds an array of SOSLayoutConstraints to the DesktopWindow
 		  For i As Integer = 0 To UBound(constraints)
 		    constraints(i).Priority = DefaultPriority
 		    view.AddConstraint(constraints(i))
@@ -87,7 +87,7 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
 		Sub AddConstraints(extends view as DesktopWindow, constraints() as SOSLayoutConstraint, priority as Double)
-		  // adds an array of SOSLayoutConstraints to the DesktopWindow with a particular priority
+		  // Adds an array of SOSLayoutConstraints to the DesktopWindow with a particular priority
 		  
 		  // throttle to valid values
 		  priority = Min(Max(priority, 1.0), DefaultPriority)
@@ -101,7 +101,7 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0
 		Sub AddConstraints(extends view as MobileScreen, constraints() as SOSLayoutConstraint)
-		  // adds an array of SOSLayoutConstraints to the MobileScreen
+		  // Adds an array of SOSLayoutConstraints to the MobileScreen
 		  For i As Integer = 0 To UBound(constraints)
 		    constraints(i).Priority = DefaultPriority
 		    view.AddConstraint(constraints(i))
@@ -111,7 +111,7 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0
 		Sub AddConstraints(extends view as MobileScreen, constraints() as SOSLayoutConstraint, priority as Double)
-		  // adds an array of SOSLayoutConstraints to the MobileScreen with a particular priority
+		  // Adds an array of SOSLayoutConstraints to the MobileScreen with a particular priority
 		  
 		  // throttle to valid values
 		  priority = Min(Max(priority, 1.0), DefaultPriority)
@@ -125,7 +125,7 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0
 		Sub AddConstraints(extends view as MobileUIControl, constraints() as SOSLayoutConstraint)
-		  // adds an array of SOSLayoutConstraints to the MobileUIControl
+		  // Adds an array of SOSLayoutConstraints to the MobileUIControl
 		  
 		  For i As Integer = 0 To UBound(constraints)
 		    constraints(i).Priority = DefaultPriority
@@ -136,7 +136,7 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0
 		Sub AddConstraints(extends view as MobileUIControl, constraints() as SOSLayoutConstraint, priority as Double)
-		  // adds an array of SOSLayoutConstraints to the MobileUIControl with a specific priority
+		  // Adds an array of SOSLayoutConstraints to the MobileUIControl with a specific priority
 		  // throttle to valid values
 		  priority = Min(Max(priority, 1.0), 1000.0)
 		  
@@ -201,6 +201,30 @@ Protected Module AutolayoutExtensions
 		    
 		  #EndIf
 		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
+		Function CompressionResistancePriorityForAxis(Extends item as DesktopContainer, axis as SOSConstraintKit.Axis) As Double
+		  // Gets the Compression Resistance priority for the specified Axis
+		  #if TargetMacOS or TargetIOS
+		    // - (UILayoutPriority)contentCompressionResistancePriorityForAxis:(UILayoutConstraintAxis)axis;
+		    Declare Function contentCompressionResistancePriorityForAxis Lib "Foundation" Selector "contentCompressionResistancePriorityForAxis:" ( obj As ptr , axis As integer ) As single
+		    
+		    Return contentCompressionResistancePriorityForAxis(item.handle, CType(axis, Integer))
+		  #EndIf
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
+		Sub CompressionResistancePriorityForAxis(Extends item as DesktopContainer, axis as SOSConstraintKit.Axis, assigns priority as double)
+		  // Sets the Compression Resistance priority for the specified Axis
+		  #if TargetMacOS or TargetIOS
+		    // - (void)setContentCompressionResistancePriority:(UILayoutPriority)priority forAxis:(UILayoutConstraintAxis)axis;
+		    Declare Sub setContentCompressionResistancePriority_forAxis Lib "Foundation" Selector "setContentCompressionResistancePriority:forAxis:" ( obj As ptr , priority As single , axis As integer )
+		    
+		    setContentCompressionResistancePriority_forAxis(item.handle, priority, CType(axis, Integer))
+		  #EndIf
+		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
@@ -290,6 +314,18 @@ Protected Module AutolayoutExtensions
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
+		Function ConstraintMatchingIntrinsicHeight(extends view as DesktopContainer) As SOSLayoutConstraint
+		  // Creates an intrinsic height constraint for the specified control
+		  #if TargetMacOS or TargetIOS
+		    Dim sz As size = view.IntrinsicContentSize
+		    
+		    Return New SOSLayoutConstraint(view.Handle, SOSLayoutConstraint.LayoutAttributes.Height, SOSLayoutConstraint.relations.Equal, sz.Width)
+		    
+		  #EndIf
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
 		Function ConstraintMatchingIntrinsicHeight(extends view as DesktopUIControl) As SOSLayoutConstraint
 		  // Creates an intrinsic height constraint for the specified control
 		  #if TargetMacOS or TargetIOS
@@ -308,6 +344,18 @@ Protected Module AutolayoutExtensions
 		    Dim sz As size = view.IntrinsicContentSize
 		    
 		    Return New SOSLayoutConstraint(view.Handle, SOSLayoutConstraint.LayoutAttributes.Height, SOSLayoutConstraint.relations.Equal, sz.Width)
+		    
+		  #EndIf
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
+		Function ConstraintMatchingIntrinsicWidth(extends view as DesktopContainer) As SOSLayoutConstraint
+		  // Creates an intrinsic width constraint for the specified control
+		  #if TargetMacOS or TargetIOS
+		    Dim sz As size = view.IntrinsicContentSize
+		    
+		    Return New SOSLayoutConstraint(view.Handle, SOSLayoutConstraint.LayoutAttributes.Width, SOSLayoutConstraint.relations.Equal, sz.Width)
 		    
 		  #EndIf
 		End Function
@@ -370,7 +418,12 @@ Protected Module AutolayoutExtensions
 		    // @property(nonatomic, readonly) NSArray<__kindof NSLayoutConstraint *> *constraints;
 		    Declare Function getConstraints Lib "Foundation" Selector "constraints" (obj As ptr) As Ptr
 		    
-		    Dim consts As ptr = getConstraints(WindowToView(Screen))
+		    Dim consts As ptr
+		    If Screen IsA desktopContainer Then
+		      consts = getConstraints(screen.handle)
+		    Else
+		      consts = getConstraints(WindowToView(Screen))
+		    End If
 		    
 		    Declare Function count Lib "Foundation" Selector "count" (obj As ptr) As Integer
 		    // - (ObjectType)objectAtIndex:(NSUInteger)index;
@@ -846,7 +899,7 @@ Protected Module AutolayoutExtensions
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function FirstBaselineOffset(extends view as MobileTextField) As Double
+		Function FirstBaselineOffset(extends view as MobileTextControl) As Double
 		  #If TargetiOS
 		    // @property(nullable, nonatomic, strong) UIFont *font;
 		    Declare Function getFont Lib "Foundation" Selector "font" (obj As ptr) As Ptr
@@ -860,7 +913,36 @@ Protected Module AutolayoutExtensions
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
+		Function HuggingPriorityForAxis(Extends item as DesktopContainer, axis as SOSConstraintKit.Axis) As Double
+		  // Gets the Hugging Priority for the specified axis
+		  
+		  #If TargetMacOS Or TargetIOS
+		    // - (UILayoutPriority)contentHuggingPriorityForAxis:(UILayoutConstraintAxis)axis;
+		    Declare Function contentHuggingPriorityForAxis Lib "Foundation" Selector "contentHuggingPriorityForAxis:" ( obj As ptr , axis As Integer ) As Single
+		    
+		    Return contentHuggingPriorityForAxis( item.Handle, CType(axis, Integer))
+		    
+		  #EndIf
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
+		Sub HuggingPriorityForAxis(Extends item as DesktopContainer, Axis as SOSConstraintKit.Axis, assigns priority as Double)
+		  // Gets the Hugging Priority for the specified axis
+		  
+		  #If TargetMacOS Or TargetIOS
+		    // - (void)setContentHuggingPriority:(UILayoutPriority)priority forAxis:(UILayoutConstraintAxis)axis;
+		    Declare Sub setContentHuggingPriority_forAxis Lib "Foundation" Selector "setContentHuggingPriority:forAxis:" ( obj As ptr , priority As single , axis As integer )
+		    
+		    setContentHuggingPriority_forAxis( item.handle, priority, CType(axis, Integer))
+		  #EndIf
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
 		Function HuggingPriorityForAxis(Extends item as DesktopUIControl, axis as SOSConstraintKit.Axis) As Double
+		  // Gets the Hugging Priority for the specified axis
+		  
 		  #if TargetMacOS or TargetIOS
 		    // - (UILayoutPriority)contentHuggingPriorityForAxis:(UILayoutConstraintAxis)axis;
 		    Declare Function contentHuggingPriorityForAxis Lib "Foundation" Selector "contentHuggingPriorityForAxis:" ( obj As ptr , axis As Integer ) As Single
@@ -873,6 +955,8 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
 		Sub HuggingPriorityForAxis(Extends item as DesktopUIControl, Axis as SOSConstraintKit.Axis, assigns priority as Double)
+		  // Gets the Hugging Priority for the specified axis
+		  
 		  #if TargetMacOS or TargetIOS
 		    // - (void)setContentHuggingPriority:(UILayoutPriority)priority forAxis:(UILayoutConstraintAxis)axis;
 		    Declare Sub setContentHuggingPriority_forAxis Lib "Foundation" Selector "setContentHuggingPriority:forAxis:" ( obj As ptr , priority As single , axis As integer )
@@ -884,6 +968,8 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0
 		Function HuggingPriorityForAxis(Extends item as MobileUIControl, axis as SOSConstraintKit.Axis) As Double
+		  // Gets the Hugging Priority for the specified axis
+		  
 		  #If TargetIOS
 		    // - (UILayoutPriority)contentHuggingPriorityForAxis:(UILayoutConstraintAxis)axis;
 		    Declare Function contentHuggingPriorityForAxis Lib "Foundation" Selector "contentHuggingPriorityForAxis:" ( obj As ptr , axis As Integer ) As Single
@@ -896,6 +982,8 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0
 		Sub HuggingPriorityForAxis(Extends item as MobileUIControl, Axis as SOSConstraintKit.Axis, assigns priority as Double)
+		  // Gets the Hugging Priority for the specified axis
+		  
 		  #If TargetIOS
 		    // - (void)setContentHuggingPriority:(UILayoutPriority)priority forAxis:(UILayoutConstraintAxis)axis;
 		    Declare Sub setContentHuggingPriority_forAxis Lib "Foundation" Selector "setContentHuggingPriority:forAxis:" ( obj As ptr , priority As single , axis As integer )

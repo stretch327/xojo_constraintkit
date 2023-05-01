@@ -1,6 +1,6 @@
 #tag Module
 Protected Module FrameworkLoaders
-	#tag CompatibilityFlags = (TargetIOS and (Target64Bit))
+	#tag CompatibilityFlags = ( TargetIOS and ( Target64Bit ) )
 	#tag Method, Flags = &h21
 		Private Sub LoadFramework(Library As String)
 		  #If TargetIOS or TargetMacOS

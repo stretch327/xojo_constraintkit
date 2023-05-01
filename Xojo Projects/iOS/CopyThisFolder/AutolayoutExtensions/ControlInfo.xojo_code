@@ -1,6 +1,6 @@
 #tag Class
 Private Class ControlInfo
-	#tag CompatibilityFlags = (TargetDesktop and (Target64Bit))
+	#tag CompatibilityFlags = ( TargetDesktop and ( Target64Bit ) )
 	#tag Method, Flags = &h0
 		Sub Constructor(ctl as DesktopUIControl)
 		  mTop = ctl.top
