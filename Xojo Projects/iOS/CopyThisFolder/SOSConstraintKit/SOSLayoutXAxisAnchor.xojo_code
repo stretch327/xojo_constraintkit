@@ -1,6 +1,7 @@
 #tag Class
 Class SOSLayoutXAxisAnchor
 Inherits SOSLayoutAnchor
+	#tag CompatibilityFlags = (TargetDesktop and (Target64Bit)) or  (TargetIOS and (Target64Bit))
 	#tag Method, Flags = &h0
 		Function AnchorWithOffsetToAnchor(otherAnchor as SOSLayoutXAxisAnchor) As SOSLayoutDimension
 		  // Creates a layout dimension object from two anchors.

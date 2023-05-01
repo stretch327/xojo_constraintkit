@@ -1,6 +1,7 @@
 #tag Class
 Class SOSLayoutDimension
 Inherits SOSLayoutAnchor
+	#tag CompatibilityFlags = (TargetDesktop and (Target64Bit)) or  (TargetIOS and (Target64Bit))
 	#tag Method, Flags = &h0
 		Function ConstraintEqualToAnchor(anchor as SOSLayoutDimension, multiplier as Double = 1.0, offset as Double = 0.0) As SOSLayoutConstraint
 		  // Creates a new constraint equal to the current layout dimension and another, using a multiplier and an offset.

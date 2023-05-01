@@ -1,5 +1,6 @@
 #tag Class
 Class SOSLayoutGuide
+	#tag CompatibilityFlags = (TargetDesktop and (Target64Bit)) or  (TargetIOS and (Target64Bit))
 	#tag Method, Flags = &h21
 		Attributes( Hidden ) Private Sub Constructor(p as ptr)
 		  mObj = p

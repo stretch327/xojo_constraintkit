@@ -1,6 +1,6 @@
 #tag Module
 Protected Module SOSConstraintKit
-	#tag CompatibilityFlags = ( TargetIOS and ( Target64Bit ) )
+	#tag CompatibilityFlags = (TargetDesktop and (Target64Bit)) or  (TargetIOS and (Target64Bit))
 	#tag Method, Flags = &h0
 		Function BottomAnchor(extends view as MobileScreen) As SOSLayoutYAxisAnchor
 		  // The bottom anchor of the MobileScreen

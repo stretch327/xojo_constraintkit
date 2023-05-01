@@ -1,5 +1,6 @@
 #tag Class
 Class SOSLayoutConstraintSet
+	#tag CompatibilityFlags = (TargetDesktop and (Target64Bit)) or  (TargetIOS and (Target64Bit))
 	#tag Method, Flags = &h0
 		Sub AddConstraint(c as SOSLayoutConstraint)
 		  // Adds the specified constraint to the set and sets its Active status to that of the set

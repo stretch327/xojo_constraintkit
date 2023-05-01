@@ -1,5 +1,6 @@
 #tag Class
 Class SOSLayoutAnchor
+	#tag CompatibilityFlags = (TargetDesktop and (Target64Bit)) or  (TargetIOS and (Target64Bit))
 	#tag Method, Flags = &h0
 		Function ConstraintEqualToAnchor(anchor as SOSLayoutAnchor, offset as Double = 0.0) As SOSLayoutConstraint
 		  // Creates a constraint equal to another anchor plus an offset
