@@ -214,12 +214,12 @@ Begin MobileScreen HuggingCompressionScreen
       Height          =   23
       Left            =   20
       LockedInPosition=   False
-      MaximumValue    =   20.0
+      MaximumValue    =   200.0
       MinimumValue    =   0.0
       Scope           =   2
       TintColor       =   &c000000
       Top             =   307
-      Value           =   20.0
+      Value           =   100.0
       Visible         =   True
       Width           =   225
    End
@@ -308,7 +308,7 @@ End
 
 	#tag Method, Flags = &h21
 		Private Sub SliderAdjusted()
-		  Dim n As Double = Floor(Slider1.Value)*50
+		  Dim n As Double = Floor(Slider1.Value)*5
 		  If n < 1000 Then n = n + 1 // don't use the exact numbers because that just causes issues
 		  PriorityLabel.Text = n.ToString("0")
 		  UpdateConstraints
