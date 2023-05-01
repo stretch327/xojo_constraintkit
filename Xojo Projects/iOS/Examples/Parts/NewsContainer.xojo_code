@@ -117,20 +117,25 @@ End
 		    HeadlineLbl.Text = "Huffington Post"
 		    NewsCopyLbl.Text = "Rep. Lauren Boebert lists what patriots should be willing to do and... it's something"
 		    Rectangle1.FillColor = &cFFEEEE
+		    Rectangle1.BorderColor = &c77000077
 		  Case 2
 		    HeadlineLbl.Text = "NPR"
 		    NewsCopyLbl.Text = "Federal prisons want inmates to pay victims before making phone calls or buying shoes"
 		    Rectangle1.FillColor = &cFFFFEE
+		    Rectangle1.BorderColor = &c77770077
 		  Case 3
 		    HeadlineLbl.Text = "MSNBC"
 		    NewsCopyLbl.Text = "David Rohde: Pencie is ""the most important Jan 6th witness"" in terms of Trump's mindset"
 		    Rectangle1.FillColor = &cEEFFEE
+		    Rectangle1.BorderColor = &c00770077
 		  Case 4
 		    HeadlineLbl.Text = "NBC News"
 		    NewsCopyLbl.Text = "New marijuana legislation would allow cannabis businesses access to banking services"
 		    Rectangle1.FillColor = &cEEEEFF
+		    Rectangle1.BorderColor = &c00007777
 		  End Select
 		  
+		  Rectangle1.BorderThickness = 1
 		  NewsCopyLbl.NumberOfLines = 0
 		End Sub
 	#tag EndMethod

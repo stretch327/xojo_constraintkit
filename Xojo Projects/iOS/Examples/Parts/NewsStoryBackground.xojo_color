@@ -1,8 +1,9 @@
 #tag ColorGroup
 	CodeName=NewsStoryBackground
 	#tag Color
-		Type=2
+		Type=1
 		Platform=2
-		Name=quaternaryLabelColor
+		Light=3C3C43E6
+		Dark=EBEBF5E6
 	#tag EndColor
 #tag EndColorGroup
