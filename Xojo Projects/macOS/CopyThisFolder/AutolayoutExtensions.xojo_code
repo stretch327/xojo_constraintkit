@@ -592,8 +592,9 @@ Protected Module AutolayoutExtensions
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
-		Function InsetsLayoutMarginsFromSafeArea(extends view as DesktopUIControl) As Boolean
-		  #if TargetMacOS
+		Function InsetsLayoutMarginsFromSafeArea(extends view as DesktopContainer) As Boolean
+		  // Returns true if the control is insetting layout margins from the safe area
+		  #If TargetMacOS
 		    // @property(nonatomic) BOOL insetsLayoutMarginsFromSafeArea;
 		    Declare Function getInsetsLayoutMarginsFromSafeArea Lib "Foundation" Selector "insetsLayoutMarginsFromSafeArea" (obj As ptr) As Boolean
 		    
@@ -604,8 +605,9 @@ Protected Module AutolayoutExtensions
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
-		Sub InsetsLayoutMarginsFromSafeArea(extends view as DesktopUIControl, assigns value as Boolean)
-		  #if TargetMacOS
+		Sub InsetsLayoutMarginsFromSafeArea(extends view as DesktopContainer, assigns value as Boolean)
+		  // Sets if the control is insetting layout margins from the safe area
+		  #If TargetMacOS
 		    
 		    // @property(nonatomic) BOOL insetsLayoutMarginsFromSafeArea;
 		    Declare Sub setInsetsLayoutMarginsFromSafeArea Lib "Foundation" Selector "setInsetsLayoutMarginsFromSafeArea:" (obj As ptr, value As Boolean)
@@ -617,8 +619,36 @@ Protected Module AutolayoutExtensions
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
-		Function IntrinsicContentSize(extends view as DesktopUIControl) As Size
-		  #if TargetMacOS
+		Function InsetsLayoutMarginsFromSafeArea(extends view as DesktopUIControl) As Boolean
+		  // Returns true if the control is insetting layout margins from the safe area
+		  #If TargetMacOS
+		    // @property(nonatomic) BOOL insetsLayoutMarginsFromSafeArea;
+		    Declare Function getInsetsLayoutMarginsFromSafeArea Lib "Foundation" Selector "insetsLayoutMarginsFromSafeArea" (obj As ptr) As Boolean
+		    
+		    Return getInsetsLayoutMarginsFromSafeArea(view.handle)
+		    
+		  #EndIf
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
+		Sub InsetsLayoutMarginsFromSafeArea(extends view as DesktopUIControl, assigns value as Boolean)
+		  // Sets if the control is insetting layout margins from the safe area
+		  #If TargetMacOS
+		    
+		    // @property(nonatomic) BOOL insetsLayoutMarginsFromSafeArea;
+		    Declare Sub setInsetsLayoutMarginsFromSafeArea Lib "Foundation" Selector "setInsetsLayoutMarginsFromSafeArea:" (obj As ptr, value As Boolean)
+		    
+		    setInsetsLayoutMarginsFromSafeArea(view.handle, value)
+		    
+		  #EndIf
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
+		Function IntrinsicContentSize(extends view as DesktopContainer) As Size
+		  // Returns the instrinsic content size for the control
+		  #If TargetMacOS
 		    // @property(nonatomic, readonly) CGSize intrinsicContentSize;
 		    Declare Function getIntrinsicContentSize Lib "Foundation" Selector "intrinsicContentSize" (obj As ptr) As CGSize
 		    
@@ -628,6 +658,32 @@ Protected Module AutolayoutExtensions
 		    
 		  #EndIf
 		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
+		Function IntrinsicContentSize(extends view as DesktopUIControl) As Size
+		  // Returns the instrinsic content size for the control
+		  #If TargetMacOS
+		    // @property(nonatomic, readonly) CGSize intrinsicContentSize;
+		    Declare Function getIntrinsicContentSize Lib "Foundation" Selector "intrinsicContentSize" (obj As ptr) As CGSize
+		    
+		    Dim sz As cgsize = getIntrinsicContentSize(view.handle)
+		    
+		    Return New size(sz.width, sz.height)
+		    
+		  #EndIf
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
+		Sub InvalidateIntrinsicContentSize(extends view as DesktopContainer)
+		  #if TargetMacOS
+		    // - (void)invalidateIntrinsicContentSize;
+		    Declare Sub invalidateIntrinsicContentSize Lib "Foundation" Selector "invalidateIntrinsicContentSize" (obj As ptr)
+		    
+		    invalidateIntrinsicContentSize(view.Handle)
+		  #EndIf
+		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
@@ -685,6 +741,36 @@ Protected Module AutolayoutExtensions
 		  Declare Sub setLayoutMargins Lib "Foundation" Selector "setLayoutMargins:" (obj As ptr, value As UIEdgeInsets)
 		  
 		  setLayoutMargins(view.Handle, value)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
+		Function PreservesSuperviewLayoutMargins(extends view as DesktopContainer) As Boolean
+		  #if TargetMacOS
+		    // @property(nonatomic) BOOL preservesSuperviewLayoutMargins;
+		    Declare Function getPreservesSuperviewLayoutMargins Lib "Foundation" Selector "preservesSuperviewLayoutMargins" (obj As ptr) As Boolean
+		    
+		    Return getPreservesSuperviewLayoutMargins(view.handle)
+		    
+		    // // @property(nonatomic) BOOL preservesSuperviewLayoutMargins;
+		    // Declare Sub setPreservesSuperviewLayoutMargins Lib "Foundation" Selector "setPreservesSuperviewLayoutMargins:" (obj As ptr, value As Boolean)
+		    // 
+		    // setPreservesSuperviewLayoutMargins(mObj, value)
+		    
+		  #EndIf
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
+		Sub PreservesSuperviewLayoutMargins(extends view as DesktopContainer, assigns value as boolean)
+		  #if TargetMacOS
+		    
+		    // @property(nonatomic) BOOL preservesSuperviewLayoutMargins;
+		    Declare Sub setPreservesSuperviewLayoutMargins Lib "Foundation" Selector "setPreservesSuperviewLayoutMargins:" (obj As ptr, value As Boolean)
+		    
+		    setPreservesSuperviewLayoutMargins(view.handle, value)
+		    
+		  #EndIf
 		End Sub
 	#tag EndMethod
 
