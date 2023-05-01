@@ -133,7 +133,7 @@ End
 	#tag Event
 		Sub Opening()
 		  
-		  Self.ConvertToAutolayout(True)
+		  Self.ConvertToAutolayout(True, True)
 		  
 		  Self.ConvertConstraintsForControl(CityLabel, 780)
 		  Self.ConvertConstraintsForControl(CityField, 751)
@@ -141,26 +141,12 @@ End
 		  CityField.FirstBaselineAnchor.ConstraintEqualToAnchor(CityLabel.FirstBaselineAnchor, 1).Active = True
 		  CityField.LeadingAnchor.ConstraintEqualToSystemSpacingAfterAnchor(CityLabel.TrailingAnchor).Active = True
 		  
-		  
+		  container11.HeightAnchor.ConstraintLessThanOrEqualToConstant(600).Active = True
 		End Sub
 	#tag EndEvent
 
 
-	#tag Method, Flags = &h21
-		Private Function WindowToView(w as DesktopWindow) As Ptr
-		  Dim p As ptr = w.Handle
-		  #If TargetMacOS
-		    // @property(strong) __kindof NSView *contentView;
-		    Declare Function getContentView Lib "Foundation" Selector "contentView" (obj As ptr) As Ptr
-		    p = getContentView(w.Handle)
-		  #EndIf
-		  
-		  Return p
-		End Function
-	#tag EndMethod
-
-
-	#tag Constant, Name = Untitled, Type = String, Dynamic = True, Default = \"Hello", Scope = Public
+	#tag Constant, Name = kHello, Type = String, Dynamic = True, Default = \"Hello", Scope = Public
 		#Tag Instance, Platform = Any, Language = en, Definition  = \"Hello"
 		#Tag Instance, Platform = Any, Language = he, Definition  = \"\xD7\xA9\xD7\x9C\xD7\x95\xD7\x9D!"
 	#tag EndConstant
