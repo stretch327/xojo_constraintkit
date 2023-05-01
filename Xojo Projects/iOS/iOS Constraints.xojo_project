@@ -28,7 +28,6 @@ Folder=Parts;Examples/Parts;&h00000000718B8FFF;&h0000000065C14FFF;false
 ColorAsset=NewsStoryBackground;Examples/Parts/NewsStoryBackground.xojo_color;&h00000000105AF7FF;&h00000000718B8FFF;false
 MobileContainer=NewsContainer;Examples/Parts/NewsContainer.xojo_code;&h0000000063B88FFF;&h00000000718B8FFF;false
 Class=SOSDirectionalEdgeInsets;CopyThisFolder/SOSConstraintKit/SOSDirectionalEdgeInsets.xojo_code;&h00000000347757FF;&h00000000436A3FFF;false
-Class=ControlInfo;CopyThisFolder/AutolayoutExtensions/ControlInfo.xojo_code;&h000000007A9AC7FF;&h00000000501557FF;false
 Folder=CopyThisFolder;CopyThisFolder;&h000000001CA88FFF;&h0000000000000000;false
 Module=SOSConstraintKit;CopyThisFolder/SOSConstraintKit.xojo_code;&h00000000436A3FFF;&h000000001CA88FFF;false
 Module=AutolayoutExtensions;CopyThisFolder/AutolayoutExtensions.xojo_code;&h00000000501557FF;&h000000001CA88FFF;false
