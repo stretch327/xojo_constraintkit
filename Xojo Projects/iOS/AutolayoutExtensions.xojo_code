@@ -621,7 +621,7 @@ Protected Module AutolayoutExtensions
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
-		Sub ConvertToAutolayout(Extends w as DesktopWindow, useLeadingTrailing as Boolean = False)
+		Sub ConvertToAutolayout(Extends w as DesktopWindow, useLeadingTrailing as Boolean = False, unconstrainWindow as boolean = False)
 		  // Converts the DesktopWindow layout to one that's using constraints
 		  
 		  // These are just different enough that we can't combine them
@@ -655,6 +655,13 @@ Protected Module AutolayoutExtensions
 		      // @property(getter=isFlipped, readonly) BOOL flipped;
 		      Declare Sub setFlipped Lib "Foundation" Selector "setFlipped:" (obj As ptr, value As Boolean)
 		      setFlipped(cv, True)
+		      
+		      If unconstrainWindow Then
+		        w.MinimumWidth = 0
+		        w.MinimumHeight = 0
+		        w.MaximumWidth = 32000
+		        w.MaximumHeight = 32000
+		      End If
 		    End If
 		    
 		    For Each item As ControlInfo In ctlArray
