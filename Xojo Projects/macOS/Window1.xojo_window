@@ -20,7 +20,7 @@ Begin DesktopWindow Window1
    MinimumHeight   =   64
    MinimumWidth    =   64
    Resizeable      =   True
-   Title           =   "Untitled"
+   Title           =   "#kLanguage"
    Type            =   0
    Visible         =   True
    Width           =   600
@@ -77,7 +77,7 @@ Begin DesktopWindow Window1
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
-      LockRight       =   True
+      LockRight       =   False
       LockTop         =   True
       MaximumCharactersAllowed=   0
       Password        =   False
@@ -95,7 +95,7 @@ Begin DesktopWindow Window1
       Underline       =   False
       ValidationMask  =   ""
       Visible         =   True
-      Width           =   162
+      Width           =   226
    End
    Begin Container1 Container11
       AllowAutoDeactivate=   True
@@ -114,7 +114,7 @@ Begin DesktopWindow Window1
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   True
-      LockRight       =   True
+      LockRight       =   False
       LockTop         =   True
       Scope           =   2
       TabIndex        =   2
@@ -126,22 +126,625 @@ Begin DesktopWindow Window1
       Visible         =   True
       Width           =   300
    End
+   Begin DesktopRadioGroup RadioGroup1
+      AllowAutoDeactivate=   True
+      Bold            =   False
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   45
+      Horizontal      =   True
+      Index           =   -2147483648
+      InitialValue    =   "Option 1\rOption 2"
+      Italic          =   False
+      Left            =   410
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   2
+      SelectedIndex   =   0
+      TabIndex        =   3
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Tooltip         =   ""
+      Top             =   20
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   170
+   End
+   Begin DesktopLabel Label1
+      AllowAutoDeactivate=   True
+      Bold            =   False
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   20
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   332
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   4
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "Label"
+      TextAlignment   =   3
+      TextColor       =   &c000000
+      Tooltip         =   ""
+      Top             =   77
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   66
+   End
+   Begin DesktopLabel Label2
+      AllowAutoDeactivate=   True
+      Bold            =   False
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   20
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   410
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   5
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "Control"
+      TextAlignment   =   1
+      TextColor       =   &c000000
+      Tooltip         =   ""
+      Top             =   77
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   100
+   End
+   Begin DesktopLabel Label3
+      AllowAutoDeactivate=   True
+      Bold            =   False
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   20
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   332
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   6
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "Label"
+      TextAlignment   =   3
+      TextColor       =   &c000000
+      Tooltip         =   ""
+      Top             =   109
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   66
+   End
+   Begin DesktopButton Button1
+      AllowAutoDeactivate=   True
+      Bold            =   False
+      Cancel          =   False
+      Caption         =   "This is a test"
+      Default         =   False
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   20
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   410
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      MacButtonStyle  =   0
+      Scope           =   0
+      TabIndex        =   7
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Tooltip         =   ""
+      Top             =   109
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   80
+   End
+   Begin DesktopLabel Label4
+      AllowAutoDeactivate=   True
+      Bold            =   False
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   20
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   332
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   8
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "Label"
+      TextAlignment   =   3
+      TextColor       =   &c000000
+      Tooltip         =   ""
+      Top             =   141
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   66
+   End
+   Begin DesktopCheckBox CheckBox1
+      AllowAutoDeactivate=   True
+      Bold            =   False
+      Caption         =   "Is RTL"
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   20
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   410
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   9
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Tooltip         =   ""
+      Top             =   141
+      Transparent     =   False
+      Underline       =   False
+      Value           =   False
+      Visible         =   True
+      VisualState     =   0
+      Width           =   100
+   End
+   Begin DesktopLabel Label5
+      AllowAutoDeactivate=   True
+      Bold            =   False
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   20
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   332
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   10
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "Label"
+      TextAlignment   =   3
+      TextColor       =   &c000000
+      Tooltip         =   ""
+      Top             =   173
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   66
+   End
+   Begin DesktopComboBox ComboBox1
+      AllowAutoComplete=   False
+      AllowAutoDeactivate=   True
+      AllowFocusRing  =   True
+      Bold            =   False
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   20
+      Hint            =   ""
+      Index           =   -2147483648
+      InitialValue    =   "This is a test"
+      Italic          =   False
+      Left            =   410
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   0
+      SelectedRowIndex=   0
+      TabIndex        =   11
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Tooltip         =   ""
+      Top             =   173
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   170
+   End
+   Begin DesktopLabel Label6
+      AllowAutoDeactivate=   True
+      Bold            =   False
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   20
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   332
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   12
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "Label"
+      TextAlignment   =   3
+      TextColor       =   &c000000
+      Tooltip         =   ""
+      Top             =   205
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   66
+   End
+   Begin DesktopDateTimePicker DateTimePicker1
+      Active          =   False
+      AllowAutoDeactivate=   True
+      AllowFocusRing  =   True
+      AllowTabStop    =   True
+      DisplayMode     =   0
+      DisplaySeconds  =   False
+      Enabled         =   True
+      GraphicalDisplay=   False
+      Height          =   22
+      HourMode        =   0
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   410
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      PanelIndex      =   0
+      Scope           =   0
+      TabIndex        =   13
+      TabPanelIndex   =   0
+      TodayButtonCaption=   ""
+      Tooltip         =   ""
+      Top             =   203
+      Transparent     =   False
+      Visible         =   True
+      Width           =   170
+      _mIndex         =   0
+      _mInitialParent =   ""
+      _mName          =   ""
+      _mPanelIndex    =   0
+   End
+   Begin DesktopLabel Label7
+      AllowAutoDeactivate=   True
+      Bold            =   False
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   20
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   332
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   14
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "Label"
+      TextAlignment   =   3
+      TextColor       =   &c000000
+      Tooltip         =   ""
+      Top             =   237
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   66
+   End
+   Begin DesktopPopupMenu PopupMenu1
+      AllowAutoDeactivate=   True
+      Bold            =   False
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   20
+      Index           =   -2147483648
+      InitialValue    =   "This is a test"
+      Italic          =   False
+      Left            =   410
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   0
+      SelectedRowIndex=   0
+      TabIndex        =   15
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Tooltip         =   ""
+      Top             =   237
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   170
+   End
+   Begin DesktopLabel Label8
+      AllowAutoDeactivate=   True
+      Bold            =   False
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   20
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   332
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   16
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "Label"
+      TextAlignment   =   3
+      TextColor       =   &c000000
+      Tooltip         =   ""
+      Top             =   269
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   66
+   End
+   Begin DesktopRadioButton PopupMenu2
+      AllowAutoDeactivate=   True
+      Bold            =   False
+      Caption         =   "This is a test"
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   20
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   410
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   17
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Tooltip         =   ""
+      Top             =   269
+      Transparent     =   False
+      Underline       =   False
+      Value           =   False
+      Visible         =   True
+      Width           =   170
+   End
+   Begin DesktopLabel Label9
+      AllowAutoDeactivate=   True
+      Bold            =   False
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   20
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   332
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   18
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "Label"
+      TextAlignment   =   3
+      TextColor       =   &c000000
+      Tooltip         =   ""
+      Top             =   301
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   66
+   End
+   Begin DesktopTextArea TextArea1
+      AllowAutoDeactivate=   True
+      AllowFocusRing  =   True
+      AllowSpellChecking=   True
+      AllowStyledText =   True
+      AllowTabs       =   False
+      BackgroundColor =   &cFFFFFF
+      Bold            =   False
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Format          =   ""
+      HasBorder       =   True
+      HasHorizontalScrollbar=   False
+      HasVerticalScrollbar=   True
+      Height          =   51
+      HideSelection   =   True
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   410
+      LineHeight      =   0.0
+      LineSpacing     =   1.0
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   True
+      LockTop         =   True
+      MaximumCharactersAllowed=   0
+      Multiline       =   True
+      ReadOnly        =   False
+      Scope           =   0
+      TabIndex        =   19
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "This is a test"
+      TextAlignment   =   0
+      TextColor       =   &c000000
+      Tooltip         =   ""
+      Top             =   301
+      Transparent     =   False
+      Underline       =   False
+      UnicodeMode     =   1
+      ValidationMask  =   ""
+      Visible         =   True
+      Width           =   170
+   End
+   Begin DesktopLabel RadioGroupLabel
+      AllowAutoDeactivate=   True
+      Bold            =   False
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   20
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   332
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   20
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "Label"
+      TextAlignment   =   3
+      TextColor       =   &c000000
+      Tooltip         =   ""
+      Top             =   32
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   66
+   End
 End
 #tag EndDesktopWindow
 
 #tag WindowCode
 	#tag Event
 		Sub Opening()
+		  AutolayoutExtensions.DefaultPriority = 1000
+		  
+		  
 		  
 		  Self.ConvertToAutolayout(True, True)
 		  
-		  Self.ConvertConstraintsForControl(CityLabel, 780)
+		  Self.ConvertConstraintsForAllControls(1000)
 		  Self.ConvertConstraintsForControl(CityField, 751)
 		  
-		  CityField.FirstBaselineAnchor.ConstraintEqualToAnchor(CityLabel.FirstBaselineAnchor, 1).Active = True
-		  CityField.LeadingAnchor.ConstraintEqualToSystemSpacingAfterAnchor(CityLabel.TrailingAnchor).Active = True
-		  
 		  container11.HeightAnchor.ConstraintLessThanOrEqualToConstant(600).Active = True
+		  
+		  CityLabel.UseIntrinsicWidth
+		  
+		  CityField.AlignToLabel(CityLabel)
+		  label2.AlignToLabel(label1)
+		  Button1.AlignToLabel(label3)
+		  CheckBox1.AlignToLabel(label4)
+		  ComboBox1.AlignToLabel(label5)
+		  DateTimePicker1.AlignToLabel(label6)
+		  PopupMenu1.AlignToLabel(label7)
+		  PopupMenu2.AlignToLabel(label8)
+		  TextArea1.AlignToLabel(label9)
+		  RadioGroup1.AlignToLabel(RadioGroupLabel)
+		  
+		  button1.UseIntrinsicWidth
+		  
+		  Self.BottomAnchor.ConstraintGreaterThanOrEqualToSystemSpacingBelowAnchor(textarea1.BottomAnchor).Active = True
+		  
+		  // don't let the text area get any smaller
+		  textarea1.HeightAnchor.ConstraintGreaterThanOrEqualToConstant(textarea1.Height).Active = True
+		  textarea1.WidthAnchor.ConstraintGreaterThanOrEqualToConstant(textarea1.Width).Active = True
 		End Sub
 	#tag EndEvent
 
@@ -151,9 +754,21 @@ End
 		#Tag Instance, Platform = Any, Language = he, Definition  = \"\xD7\xA9\xD7\x9C\xD7\x95\xD7\x9D!"
 	#tag EndConstant
 
+	#tag Constant, Name = kLanguage, Type = String, Dynamic = True, Default = \"Default", Scope = Public
+		#Tag Instance, Platform = Any, Language = en, Definition  = \"English"
+		#Tag Instance, Platform = Any, Language = he, Definition  = \"\xD7\xA2\xD6\xB4\xD7\x91\xD7\xA8\xD6\xB4\xD7\x99\xD7\xAA"
+	#tag EndConstant
+
 
 #tag EndWindowCode
 
+#tag Events CheckBox1
+	#tag Event
+		Sub Opening()
+		  me.Value = SystemIsRTL
+		End Sub
+	#tag EndEvent
+#tag EndEvents
 #tag ViewBehavior
 	#tag ViewProperty
 		Name="Name"

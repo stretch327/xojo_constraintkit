@@ -37,7 +37,7 @@ Begin DesktopContainer Container1
       Index           =   -2147483648
       InitialValue    =   "Option 1\rOption 2"
       Italic          =   False
-      Left            =   20
+      Left            =   110
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -78,24 +78,74 @@ Begin DesktopContainer Container1
       Visible         =   True
       Width           =   260
    End
+   Begin DesktopLabel Label1
+      AllowAutoDeactivate=   True
+      Bold            =   False
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   20
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   20
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   2
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "Untitled"
+      TextAlignment   =   3
+      TextColor       =   &c000000
+      Tooltip         =   ""
+      Top             =   20
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   78
+   End
 End
 #tag EndDesktopWindow
 
 #tag WindowCode
 	#tag Event
 		Sub Opening()
-		  Self.ConvertConstraintsForControl(oval1, 751)
-		  Self.ConvertConstraintsForControl(RadioGroup1, 751)
+		  
+		  Self.ConvertConstraintsForAllControls(999)
+		  // Self.ConvertConstraintsForControl(oval1, 751)
+		  // Self.ConvertConstraintsForControl(RadioGroup1, 751)
 		  
 		  oval1.WidthAnchor.ConstraintGreaterThanOrEqualToConstant(200).Active = True
 		  oval1.WidthAnchor.ConstraintLessThanOrEqualToConstant(400).Active = True
 		  oval1.HeightAnchor.ConstraintGreaterThanOrEqualToConstant(50).Active = True
+		  
+		  
+		End Sub
+	#tag EndEvent
+
+	#tag Event
+		Sub Paint(g As Graphics, areas() As Rect)
+		  g.DrawingColor = &c000000
+		  g.DrawRectangle 0, 0, g.Width, g.Height
 		End Sub
 	#tag EndEvent
 
 
 #tag EndWindowCode
 
+#tag Events RadioGroup1
+	#tag Event
+		Sub Opening()
+		  RadioGroup1.AlignToLabel(label1)
+		End Sub
+	#tag EndEvent
+#tag EndEvents
 #tag ViewBehavior
 	#tag ViewProperty
 		Name="Name"
