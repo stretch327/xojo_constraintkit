@@ -1,6 +1,6 @@
 #tag Module
 Protected Module AutolayoutExtensions
-	#tag CompatibilityFlags = (TargetDesktop and (Target64Bit))
+	#tag CompatibilityFlags = ( TargetDesktop and ( Target64Bit ) )
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit)) or  (TargetIOS and (Target64Bit))
 		Sub AddConstraint(extends control as DesktopUIControl, constraint as SOSLayoutConstraint)
 		  // adds an SOSLayoutConstraint to the DesktopUIControl
@@ -71,6 +71,63 @@ Protected Module AutolayoutExtensions
 		    constraints(i).Priority = priority
 		    view.AddConstraint(constraints(i))
 		  Next
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub AlignToLabel(extends ctl as DesktopUIControl, label as DesktopLabel)
+		  // Creates leading constraint and either a baseline or top constraint between the controls and the label
+		  
+		  #If TargetMacOS
+		    
+		    Select Case ctl
+		    Case IsA DesktopRadioButton
+		      Return
+		      
+		    Case IsA DesktopTextField 
+		      ctl.FirstBaselineAnchor.ConstraintEqualToAnchor(label.FirstBaselineAnchor, 1).Active = True
+		      
+		    Case IsA DesktopButton, IsA DesktopComboBox, IsA DesktopDateTimePicker, IsA DesktopPopupMenu
+		      ctl.FirstBaselineAnchor.ConstraintEqualToAnchor(label.FirstBaselineAnchor, 2).Active = True
+		      
+		    Case IsA DesktopRadioButton, IsA DesktopCheckBox, IsA DesktopLabel
+		      ctl.FirstBaselineAnchor.ConstraintEqualToAnchor(label.FirstBaselineAnchor).Active = True
+		      
+		    Case IsA DesktopRadioGroup
+		      Declare Function subviews Lib "Foundation" Selector "subviews" (obj As ptr) As ptr
+		      Declare Function objectAtIndex Lib "Foundation" Selector "objectAtIndex:" (obj As ptr, index As Integer) As ptr
+		      
+		      Dim sv As ptr = subviews(ctl.handle)
+		      Dim firstview As ptr = objectAtIndex(sv, 0)
+		      
+		      Dim c As New SOSLayoutConstraint(firstview, SOSLayoutConstraint.LayoutAttributes.FirstBaseline, _
+		      SOSLayoutConstraint.Relations.Equal, label.handle, SOSLayoutConstraint.LayoutAttributes.FirstBaseline, _
+		      1.0, 2)
+		      c.active = True 
+		      
+		    Case IsA DesktopTextArea
+		      // this text component doesn't get special treatment because if it scrolled
+		      // the label would move up with the first line in the text. We can however
+		      // move the control down a pixel to get the alignment right.
+		      ctl.TopAnchor.ConstraintEqualToAnchor(label.TopAnchor, 1).Active = True
+		      
+		    Case Else
+		      ctl.TopAnchor.ConstraintEqualToAnchor(label.TopAnchor).Active = True
+		      
+		    End Select
+		    
+		    
+		    Declare Sub setAlignment Lib "Foundation" Selector "setAlignment:" (obj As ptr, value As Integer)
+		    If SystemIsRTL Then
+		      setAlignment(label.Handle, 1)
+		    Else
+		      setAlignment(label.Handle, 3) 
+		    End If
+		    
+		    label.UseIntrinsicWidth
+		    ctl.LeadingAnchor.ConstraintEqualToSystemSpacingAfterAnchor(label.TrailingAnchor).Active = True
+		    
+		  #EndIf
 		End Sub
 	#tag EndMethod
 
@@ -272,13 +329,61 @@ Protected Module AutolayoutExtensions
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h21, CompatibilityFlags = (TargetDesktop and (Target64Bit))
+		Private Function Constraints(view as ptr) As SOSLayoutConstraint()
+		  // Returns all of the constraints attached to the specified DesktopWindow
+		  #If TargetMacOS
+		    // @property(nonatomic, readonly) NSArray<__kindof NSLayoutConstraint *> *constraints;
+		    Declare Function getConstraints Lib "Foundation" Selector "constraints" (obj As ptr) As Ptr
+		    
+		    Dim consts As ptr = getConstraints(view)
+		    
+		    Declare Function count Lib "Foundation" Selector "count" (obj As ptr) As Integer
+		    // - (ObjectType)objectAtIndex:(NSUInteger)index;
+		    Declare Function objectAtIndex Lib "Foundation" Selector "objectAtIndex:" ( obj As ptr , index As Integer ) As Ptr
+		    
+		    Dim c As Integer = count(consts)
+		    
+		    Dim ca() As SOSLayoutConstraint
+		    For i As Integer = 0 To c-1
+		      ca.Add SOSLayoutConstraint.Create(objectAtIndex(consts, i))
+		    Next
+		    
+		    Return ca
+		  #EndIf
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
+		Function ConstraintsForControl(extends screen as DesktopWindow, ctl as DesktopUIControl) As SOSLayoutConstraint()
+		  // Returns the constraints attributed to a particular control.
+		  #If TargetMacOS
+		    Dim rv() As SOSLayoutConstraint
+		    Dim ca() As SOSLayoutConstraint = Screen.Constraints
+		    For i As Integer = 0 To UBound(ca)
+		      If ca(i).FirstItem = ctl.Handle Then
+		        rv.Add ca(i)
+		      End If
+		    Next
+		    
+		    Dim cca() As SOSLayoutConstraint = ctl.Constraints
+		    For i As Integer = 0 To UBound(cca)
+		      If cca(i).FirstItem = ctl.Handle Then
+		        rv.Add cca(i)
+		      End If
+		    Next
+		    
+		    Return rv
+		  #EndIf
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
 		Sub ConvertConstraintsForAllControls(extends view as DesktopWindow, newPriority as Double)
 		  // Converts all constraints on a particular DesktopWindow to SOSLayoutConstraints, changing them all to a particular priority
 		  
-		  
 		  #If TargetMacOS
-		    For Each ctl As DesktopControl In view.controls
+		    For Each ctl As Object In view.controls
 		      If ctl IsA DesktopUIControl Then
 		        view.ConvertConstraintsForControl(DesktopUIControl(ctl), newPriority)
 		      End If
@@ -364,13 +469,150 @@ Protected Module AutolayoutExtensions
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h21, CompatibilityFlags = (TargetDesktop and (Target64Bit))
+		Private Sub ConvertControlToAutolayout(ctl as desktopuicontrol, useLeadingTrailing as Boolean = False)
+		  // @property(copy) NSArray<__kindof NSView *> *subviews;
+		  Declare Function getSubviews Lib "Foundation" Selector "subviews" (obj As ptr) As Ptr
+		  Declare Sub setSubviews Lib "Foundation" Selector "setSubviews:" (obj As ptr, value As Ptr)
+		  Declare Function count Lib "Foundation" Selector "count" (arr As ptr) As Integer
+		  Declare Function objectAtIndex Lib "Foundation" Selector "objectAtIndex:" (arr As ptr, index As Integer) As ptr
+		  // @property NSRect frame;
+		  Declare Function getFrame Lib "Foundation" Selector "frame" (obj As ptr) As NSRect
+		  Declare Sub setTranslatesAutoresizingMaskIntoConstraints Lib "Foundation" Selector "setTranslatesAutoresizingMaskIntoConstraints:" (obj As ptr, value As Boolean)
+		  
+		  Dim view As ptr = ctl.Handle
+		  Dim viewRect As NSRect = getFrame(view)
+		  
+		  Select Case ctl
+		  Case IsA DesktopRadioGroup
+		    
+		    Dim subviewArray As ptr = getSubviews(view)
+		    Dim c As Integer = count(subviewArray)
+		    Dim previousView As Ptr
+		    Dim previousRect As NSRect
+		    
+		    // Vertical
+		    If DesktopRadioGroup(ctl).Horizontal = False Then
+		      setTranslatesAutoresizingMaskIntoConstraints(view, False)
+		      For i As Integer = 0 To c-1
+		        Dim subview As ptr = objectAtIndex(subviewArray, i)
+		        Dim r As NSRect = getFrame(subview)
+		        setTranslatesAutoresizingMaskIntoConstraints(subview, False)
+		        
+		        Dim cc As SOSLayoutConstraint
+		        
+		        If previousView = Nil Then
+		          cc = New SOSLayoutConstraint(subview, SOSLayoutConstraint.LayoutAttributes.top, _
+		          SOSLayoutConstraint.Relations.Equal, view, SOSLayoutConstraint.LayoutAttributes.top, _
+		          1.0, 0)
+		          cc.Active = True
+		          
+		        Else
+		          cc = New SOSLayoutConstraint(subview, SOSLayoutConstraint.LayoutAttributes.Top, _
+		          SOSLayoutConstraint.Relations.Equal, previousView, SOSLayoutConstraint.LayoutAttributes.Bottom, _
+		          1.0, 8)
+		          cc.Active = True
+		        End If
+		        
+		        previousView = subview
+		        previousRect = getFrame(subview)
+		      Next
+		      
+		      Return
+		    End If
+		    
+		    // Horizontal
+		    // get the list of subviews. they should be the button views from left to right.
+		    // we'll have to get each of the positions and create leading/trailing constraints instead of minX
+		    For i As Integer = 0 To c-1
+		      Dim subview As ptr = objectAtIndex(subviewArray, i)
+		      Dim r As NSRect = getFrame(subview)
+		      setTranslatesAutoresizingMaskIntoConstraints(subview, False)
+		      // create the leading/trailing constraints for this particular button
+		      // based on where it is in the list
+		      Dim cc As SOSLayoutConstraint
+		      If previousView = Nil Then
+		        // constrain to the leading edge of the view
+		        cc = New SOSLayoutConstraint(subview, SOSLayoutConstraint.LayoutAttributes.Leading, _
+		        SOSLayoutConstraint.relations.Equal, view, SOSLayoutConstraint.LayoutAttributes.Leading, 1.0, 0)
+		        cc.Active = True
+		      ElseIf i = (c-1) Then
+		        // constrain the trailing edge of the control to the button
+		        Dim viewRight As Double = viewRect.X + viewRect.Width
+		        Dim thisRight As Double = r.x + r.Width
+		        Dim offset As Double = viewRight - thisRight
+		        cc = New SOSLayoutConstraint(view, SOSLayoutConstraint.LayoutAttributes.Trailing, _
+		        SOSLayoutConstraint.relations.Equal, view, SOSLayoutConstraint.LayoutAttributes.Trailing, 1.0, 0)
+		        cc.Active = True
+		      Else
+		        // constrain to the previousView
+		        cc = New SOSLayoutConstraint(subview, SOSLayoutConstraint.LayoutAttributes.Leading, _
+		        SOSLayoutConstraint.relations.Equal, previousView, SOSLayoutConstraint.LayoutAttributes.Trailing, 1.0, 0)
+		        cc.Active = True
+		      End If
+		      
+		      // Constraint for the top position
+		      cc = New SOSLayoutConstraint(subview, SOSLayoutConstraint.LayoutAttributes.CenterY, _
+		      SOSLayoutConstraint.relations.Equal, view, SOSLayoutConstraint.LayoutAttributes.CenterY, 1.0, 0)
+		      cc.Active = True
+		      
+		      previousView = subview
+		      previousRect = getFrame(subview)
+		    Next
+		    
+		    // remove the minX constraints
+		    Dim ca() As SOSLayoutConstraint = constraints(view)
+		    For j As Integer = 0 To UBound(ca)
+		      If CType(ca(j).FirstAttribute, Integer) > 30 Then // MinX = 32, MinY = 33
+		        ca(j).Active = False
+		      End If
+		    Next
+		    
+		    setTranslatesAutoresizingMaskIntoConstraints(view, False)
+		    
+		  Case IsA DesktopLabel
+		    // @property NSTextAlignment alignment;
+		    Declare Sub setAlignment Lib "Foundation" Selector "setAlignment:" (obj As ptr, value As Integer)
+		    Declare Function alignment Lib "Foundation" Selector "alignment" (obj As ptr) As Integer
+		    Dim label As DesktopLabel = DesktopLabel(ctl)
+		    
+		    setTranslatesAutoresizingMaskIntoConstraints(view, False)
+		    
+		    Select Case label.TextAlignment
+		    Case TextAlignments.Left
+		      If SystemIsRTL Then
+		        setAlignment(view, 3)
+		      Else
+		        setAlignment(view, 1)
+		      End If
+		    Case TextAlignments.Center
+		      setAlignment(view, 2)
+		      
+		    Case TextAlignments.Right
+		      If SystemIsRTL Then
+		        setAlignment(view, 1)
+		      Else
+		        setAlignment(view, 3)
+		      End If
+		      
+		    Case TextAlignments.Default
+		      // unfortunately, default = left in Xojo so this code will never run
+		      setAlignment(view, 1)
+		      
+		    End Select
+		    
+		  Case Else
+		    // Nothing had to be done to this control
+		    Return
+		    
+		  End Select
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
 		Sub ConvertToAutolayout(Extends w as DesktopWindow, useLeadingTrailing as Boolean = False, unconstrainWindow as boolean = False)
 		  // Converts the DesktopWindow layout to one that's using constraints
 		  
-		  // These are just different enough that we can't combine them
-		  // becaues in this one, we need both the handle of the contentview
-		  // but also the window itself for getting access to its controls
 		  #If TargetMacOS
 		    // Make the constraints for each of the items based on their sizes, before we change anything
 		    Declare Sub setTranslatesAutoresizingMaskIntoConstraints Lib "Foundation" Selector "setTranslatesAutoresizingMaskIntoConstraints:" (obj As ptr, value As Boolean)
@@ -379,13 +621,14 @@ Protected Module AutolayoutExtensions
 		    // Turn off the autoresizing conversion as we go
 		    Dim ctlArray() As ControlInfo
 		    For Each tmp As Object In w.Controls
-		      If tmp IsA DesktopUIControl Then
+		      Select Case True
+		      Case tmp IsA DesktopUIControl
 		        ctlArray.Add New ControlInfo(DesktopUIControl(tmp))
 		        setTranslatesAutoresizingMaskIntoConstraints(DesktopUIControl(tmp).Handle, False)
-		      ElseIf tmp IsA DesktopContainer Then
+		      Case tmp IsA DesktopContainer
 		        ctlArray.Add New ControlInfo(DesktopContainer(tmp))
 		        setTranslatesAutoresizingMaskIntoConstraints(DesktopContainer(tmp).Handle, False)
-		      End If
+		      End Select
 		    Next
 		    
 		    // @property BOOL autoresizesSubviews;
