@@ -911,7 +911,7 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
 		Function IntrinsicContentSize(extends view as DesktopUIControl) As Size
-		  // Returns the instrinsic content size for the control
+		  // Returns the instrinsic content size for the container
 		  #If TargetMacOS
 		    // @property(nonatomic, readonly) CGSize intrinsicContentSize;
 		    Declare Function getIntrinsicContentSize Lib "Foundation" Selector "intrinsicContentSize" (obj As ptr) As CGSize
