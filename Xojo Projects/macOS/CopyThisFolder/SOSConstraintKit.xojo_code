@@ -53,7 +53,7 @@ Protected Module SOSConstraintKit
 		    // @property(nonatomic, readonly, strong) NSLayoutXAxisAnchor *centerXAnchor;
 		    Declare Function getCenterXAnchor Lib "Foundation" Selector "centerXAnchor" (obj As ptr) As Ptr
 		    
-		    If view IsA DesktopWindow
+		    If view IsA DesktopWindow Then
 		      Return SOSLayoutXAxisAnchor.create(getCenterXAnchor(WindowToView(view)))
 		    Else
 		      Return SOSLayoutXAxisAnchor.create(getCenterXAnchor(view.Handle))
