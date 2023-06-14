@@ -1,6 +1,6 @@
 #tag Class
 Class SOSDirectionalEdgeInsets
-	#tag CompatibilityFlags = (TargetDesktop and (Target64Bit)) or  (TargetIOS and (Target64Bit))
+	#tag CompatibilityFlags = ( TargetDesktop and ( Target64Bit ) ) or ( TargetIOS and ( Target64Bit ) )
 	#tag Method, Flags = &h21
 		Attributes( Hidden ) Private Sub Constructor(p as ptr)
 		  
@@ -9,6 +9,7 @@ Class SOSDirectionalEdgeInsets
 
 	#tag Method, Flags = &h0
 		Function Handle() As Ptr
+		  // Returns a Ptr to the current object
 		  Return mObj
 		  
 		End Function
@@ -16,16 +17,19 @@ Class SOSDirectionalEdgeInsets
 
 	#tag Method, Flags = &h0
 		Shared Function Make(top as Double, leading as Double, bottom as Double, trailing as Double) As SOSDirectionalEdgeInsets
-		  // NSDirectionalEdgeInsets NSDirectionalEdgeInsetsMake(CGFloat top, CGFloat leading, CGFloat bottom, CGFloat trailing);
-		  Declare Function NSDirectionalEdgeInsetsMake Lib "Foundation" ( top As CGFloat, leading As CGFloat, bottom As CGFloat, trailing As CGFloat ) As Ptr
-		  
-		  
-		  Dim p As ptr = NSDirectionalEdgeInsetsMake(top, leading, bottom, trailing)
-		  If p = Nil Then
-		    Return Nil
-		  End If
-		  
-		  return new SOSDirectionalEdgeInsets(p)
+		  // Makes a new SOSDirectionEdgeInsets object, given the top, leading, bottom and trailing values
+		  #If TargetMacOS Or TargetIOS
+		    // NSDirectionalEdgeInsets NSDirectionalEdgeInsetsMake(CGFloat top, CGFloat leading, CGFloat bottom, CGFloat trailing);
+		    Declare Function NSDirectionalEdgeInsetsMake Lib "Foundation" ( top As CGFloat, leading As CGFloat, bottom As CGFloat, trailing As CGFloat ) As Ptr
+		    
+		    
+		    Dim p As ptr = NSDirectionalEdgeInsetsMake(top, leading, bottom, trailing)
+		    If p = Nil Then
+		      Return Nil
+		    End If
+		    
+		    Return New SOSDirectionalEdgeInsets(p)
+		  #EndIf
 		End Function
 	#tag EndMethod
 

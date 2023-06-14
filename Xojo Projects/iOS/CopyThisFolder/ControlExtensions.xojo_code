@@ -15,7 +15,7 @@ Protected Module ControlExtensions
 
 	#tag Method, Flags = &h0
 		Function NumberOfLines(extends label as MobileLabel) As Integer
-		  // Returns the number of lines in the label control
+		  // Sets or Returns the number of lines in the label control
 		  #If TargetiOS
 		    // @property(nonatomic) NSInteger numberOfLines;
 		    Declare Function getNumberOfLines Lib "Foundation" Selector "numberOfLines" (obj As ptr) As Integer

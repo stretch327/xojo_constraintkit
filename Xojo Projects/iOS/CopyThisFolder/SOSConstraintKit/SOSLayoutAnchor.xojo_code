@@ -1,23 +1,25 @@
 #tag Class
 Class SOSLayoutAnchor
-	#tag CompatibilityFlags = (TargetDesktop and (Target64Bit)) or  (TargetIOS and (Target64Bit))
+	#tag CompatibilityFlags = ( TargetDesktop and ( Target64Bit ) ) or ( TargetIOS and ( Target64Bit ) )
 	#tag Method, Flags = &h0
 		Function ConstraintEqualToAnchor(anchor as SOSLayoutAnchor, offset as Double = 0.0) As SOSLayoutConstraint
 		  // Creates a constraint equal to another anchor plus an offset
 		  
-		  If Introspection.GetType(Self).name <> Introspection.GetType(anchor).name Then
-		    Raise New InvalidArgumentException("The anchor axis must match the type you are calculating against")
-		  End If
-		  
-		  // - (NSLayoutConstraint *)constraintEqualToAnchor:(NSLayoutAnchor<AnchorType> *)anchor constant:(CGFloat)c;
-		  Declare Function constraintEqualToAnchor_constant Lib "Foundation" Selector "constraintEqualToAnchor:constant:" ( obj As ptr , anchor As Ptr , c As Double ) As Ptr
-		  
-		  Dim p As ptr = constraintEqualToAnchor_constant(mObj, anchor.Handle, offset)
-		  If p = Nil Then
-		    Return Nil
-		  End If
-		  
-		  Return SOSLayoutConstraint.Create(p)
+		  #If TargetMacOS Or TargetIOS
+		    If Introspection.GetType(Self).name <> Introspection.GetType(anchor).name Then
+		      Raise New InvalidArgumentException("The anchor axis must match the type you are calculating against")
+		    End If
+		    
+		    // - (NSLayoutConstraint *)constraintEqualToAnchor:(NSLayoutAnchor<AnchorType> *)anchor constant:(CGFloat)c;
+		    Declare Function constraintEqualToAnchor_constant Lib "Foundation" Selector "constraintEqualToAnchor:constant:" ( obj As ptr , anchor As Ptr , c As Double ) As Ptr
+		    
+		    Dim p As ptr = constraintEqualToAnchor_constant(mObj, anchor.Handle, offset)
+		    If p = Nil Then
+		      Return Nil
+		    End If
+		    
+		    Return SOSLayoutConstraint.Create(p)
+		  #EndIf
 		End Function
 	#tag EndMethod
 
@@ -25,19 +27,21 @@ Class SOSLayoutAnchor
 		Function ConstraintGreaterThanOrEqualToAnchor(anchor as SOSLayoutAnchor, offset as Double = 0.0) As SOSLayoutConstraint
 		  // Creates a constraint greater than or equal to another anchor plus an offset
 		  
-		  If Introspection.GetType(Self).name <> Introspection.GetType(anchor).name Then
-		    Raise New InvalidArgumentException("The anchor axis must match the type you are calculating against")
-		  End If
-		  
-		  // - (NSLayoutConstraint *)constraintGreaterThanOrEqualToAnchor:(NSLayoutAnchor<AnchorType> *)anchor constant:(CGFloat)c;
-		  Declare Function constraintGreaterThanOrEqualToAnchor_constant Lib "Foundation" Selector "constraintGreaterThanOrEqualToAnchor:constant:" ( obj As ptr , anchor As Ptr , c As Double ) As Ptr
-		  
-		  Dim p As ptr = constraintGreaterThanOrEqualToAnchor_constant(mObj, anchor.Handle, offset)
-		  If p = Nil Then
-		    Return Nil
-		  End If
-		  
-		  return SOSLayoutConstraint.Create(p)
+		  #If TargetMacOS Or TargetIOS
+		    If Introspection.GetType(Self).name <> Introspection.GetType(anchor).name Then
+		      Raise New InvalidArgumentException("The anchor axis must match the type you are calculating against")
+		    End If
+		    
+		    // - (NSLayoutConstraint *)constraintGreaterThanOrEqualToAnchor:(NSLayoutAnchor<AnchorType> *)anchor constant:(CGFloat)c;
+		    Declare Function constraintGreaterThanOrEqualToAnchor_constant Lib "Foundation" Selector "constraintGreaterThanOrEqualToAnchor:constant:" ( obj As ptr , anchor As Ptr , c As Double ) As Ptr
+		    
+		    Dim p As ptr = constraintGreaterThanOrEqualToAnchor_constant(mObj, anchor.Handle, offset)
+		    If p = Nil Then
+		      Return Nil
+		    End If
+		    
+		    Return SOSLayoutConstraint.Create(p)
+		  #EndIf
 		End Function
 	#tag EndMethod
 
@@ -45,19 +49,21 @@ Class SOSLayoutAnchor
 		Function ConstraintLessThanOrEqualToAnchor(anchor as SOSLayoutAnchor, offset as Double) As SOSLayoutConstraint
 		  // Creates a constraint less than or equal to another anchor plus an offset
 		  
-		  If Introspection.GetType(Self).name <> Introspection.GetType(anchor).name Then
-		    Raise New InvalidArgumentException("The anchor axis must match the type you are calculating against")
-		  End If
-		  
-		  //  - (NSLayoutConstraint *)constraintGreaterThanOrEqualToAnchor:(NSLayoutAnchor<AnchorType> *)anchor constant:(CGFloat)c; Declare Function constraintGreaterThanOrEqualToAnchor_constant Lib "Foundation" Selector "constraintGreaterThanOrEqualToAnchor:constant:" ( obj As ptr , anchor As Ptr , c As Double ) As Ptr
-		  Declare Function constraintGreaterThanOrEqualToAnchor_constant Lib "Foundation" Selector "constraintGreaterThanOrEqualToAnchor:constant:" ( obj As ptr , anchor As Ptr , c As Double ) As Ptr
-		  
-		  Dim p As ptr = constraintGreaterThanOrEqualToAnchor_constant(mObj, anchor.Handle, offset)
-		  If p = Nil Then
-		    Return Nil
-		  End If
-		  
-		  Return SOSLayoutConstraint.Create(p)
+		  #If TargetMacOS Or TargetIOS
+		    If Introspection.GetType(Self).name <> Introspection.GetType(anchor).name Then
+		      Raise New InvalidArgumentException("The anchor axis must match the type you are calculating against")
+		    End If
+		    
+		    //  - (NSLayoutConstraint *)constraintGreaterThanOrEqualToAnchor:(NSLayoutAnchor<AnchorType> *)anchor constant:(CGFloat)c; Declare Function constraintGreaterThanOrEqualToAnchor_constant Lib "Foundation" Selector "constraintGreaterThanOrEqualToAnchor:constant:" ( obj As ptr , anchor As Ptr , c As Double ) As Ptr
+		    Declare Function constraintGreaterThanOrEqualToAnchor_constant Lib "Foundation" Selector "constraintGreaterThanOrEqualToAnchor:constant:" ( obj As ptr , anchor As Ptr , c As Double ) As Ptr
+		    
+		    Dim p As ptr = constraintGreaterThanOrEqualToAnchor_constant(mObj, anchor.Handle, offset)
+		    If p = Nil Then
+		      Return Nil
+		    End If
+		    
+		    Return SOSLayoutConstraint.Create(p)
+		  #EndIf
 		End Function
 	#tag EndMethod
 

@@ -3,7 +3,7 @@ Protected Module AutolayoutExtensions
 	#tag CompatibilityFlags = ( TargetIOS and ( Target64Bit ) )
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target64Bit))
 		Sub AddConstraint(extends screen as MobileScreen, constraint as SOSLayoutConstraint)
-		  // Adds an SOSLayoutConstraint to the MobileScreen
+		  // Adds an SOSLayoutConstraint to the MobileScreen or MobileUIControl
 		  #If TargetIOS
 		    
 		    // - (void)addConstraint:(NSLayoutConstraint *)constraint;
@@ -16,7 +16,7 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target64Bit))
 		Sub AddConstraint(extends control as MobileUIControl, constraint as SOSLayoutConstraint)
-		  // Adds an SOSLayoutConstraint to the MobileUIControl
+		  // Adds an SOSLayoutConstraint to the MobileScreen or MobileUIControl
 		  #If TargetIOS
 		    // - (void)addConstraint:(NSLayoutConstraint *)constraint;
 		    Declare Sub addConstraint Lib "Foundation" Selector "addConstraint:" ( obj As ptr , constraint As Ptr )
@@ -132,7 +132,7 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target64Bit))
 		Function CompressionResistancePriorityForAxis(Extends item as MobileUIControl, axis as SOSConstraintKit.Axis) As Double
-		  // Gets the Compression Resistance priority for the specified Axis
+		  // Gets or Sets the Compression Resistance priority for the specified Axis
 		  #If TargetIOS
 		    // - (UILayoutPriority)contentCompressionResistancePriorityForAxis:(UILayoutConstraintAxis)axis;
 		    Declare Function contentCompressionResistancePriorityForAxis Lib "Foundation" Selector "contentCompressionResistancePriorityForAxis:" ( obj As ptr , axis As integer ) As single
@@ -194,7 +194,7 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0
 		Function ConstraintMatchingIntrinsicHeight(extends view as MobileUIControl) As SOSLayoutConstraint
-		  // Creates an intrinsic height constraint for the specified control
+		  // Creates and returns an intrinsic height constraint for the specified control
 		  #If TargetiOS
 		    Dim sz As size = view.IntrinsicContentSize
 		    
@@ -206,7 +206,7 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0
 		Function ConstraintMatchingIntrinsicWidth(extends view as MobileUIControl) As SOSLayoutConstraint
-		  // Creates an intrinsic width constraint for the specified control
+		  // Creates and returns an intrinsic width constraint for the specified control
 		  #If TargetiOS
 		    Dim sz As size = view.IntrinsicContentSize
 		    
@@ -218,7 +218,7 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target64Bit))
 		Function Constraints(extends screen as MobileScreen) As SOSLayoutConstraint()
-		  // Returns all of the constraints attached to the specified MobileScreen
+		  // Returns all of the constraints within the specified MobileScreen
 		  #If TargetIOS
 		    // @property(nonatomic, readonly) NSArray<__kindof NSLayoutConstraint *> *constraints;
 		    Declare Function getConstraints Lib "Foundation" Selector "constraints" (obj As ptr) As Ptr
@@ -243,7 +243,7 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target64Bit))
 		Function Constraints(extends control as MobileUIControl) As SOSLayoutConstraint()
-		  // Returns all of the constraints attached to the specified MobileUIControl
+		  // Returns all of the constraints within the specified MobileUIControl
 		  #If TargetIOS
 		    // @property(nonatomic, readonly) NSArray<__kindof NSLayoutConstraint *> *constraints;
 		    Declare Function getConstraints Lib "Foundation" Selector "constraints" (obj As ptr) As Ptr
@@ -268,22 +268,25 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0
 		Function ConstraintsForControl(Extends view as MobileScreen, control as MobileUIControl) As SOSLayoutConstraint()
-		  Dim rv() As SOSLayoutConstraint
-		  Dim ca() As SOSLayoutConstraint = view.constraints
-		  For i As Integer = 0 To UBound(ca)
-		    If ca(i).FirstItem = control.Handle Then
-		      rv.Add ca(i)
-		    End If
-		  Next
-		  
-		  ca = control.Constraints
-		  For i As Integer = 0 To UBound(ca)
-		    If ca(i).FirstItem = control.Handle Then
-		      rv.Add ca(i)
-		    End If
-		  Next
-		  
-		  Return rv
+		  // Returns all constraints which pertain to the specified control on a view
+		  #If TargetiOS
+		    Dim rv() As SOSLayoutConstraint
+		    Dim ca() As SOSLayoutConstraint = view.constraints
+		    For i As Integer = 0 To UBound(ca)
+		      If ca(i).FirstItem = control.Handle Then
+		        rv.Add ca(i)
+		      End If
+		    Next
+		    
+		    ca = control.Constraints
+		    For i As Integer = 0 To UBound(ca)
+		      If ca(i).FirstItem = control.Handle Then
+		        rv.Add ca(i)
+		      End If
+		    Next
+		    
+		    Return rv
+		  #EndIf
 		End Function
 	#tag EndMethod
 
@@ -357,6 +360,7 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0
 		Function DirectionalLayoutMargins(Extends view as MobileScreen) As NSDirectionalEdgeInsets
+		  // Gets or Sets the directional edge insets for the specified view or control
 		  #If TargetIOS
 		    // @property(nonatomic) NSDirectionalEdgeInsets directionalLayoutMargins;
 		    Declare Function getDirectionalLayoutMargins Lib "Foundation" Selector "directionalLayoutMargins" (obj As ptr) As NSDirectionalEdgeInsets
@@ -401,6 +405,7 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0
 		Function FirstBaselineOffset(extends view as MobileTextControl) As Double
+		  // Gets the offset for the first baseline of a MobileTextControl based on its current font
 		  #If TargetiOS
 		    // @property(nullable, nonatomic, strong) UIFont *font;
 		    Declare Function getFont Lib "Foundation" Selector "font" (obj As ptr) As Ptr
@@ -415,7 +420,7 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0
 		Function HuggingPriorityForAxis(Extends item as MobileUIControl, axis as SOSConstraintKit.Axis) As Double
-		  // Gets the Hugging Priority for the specified axis
+		  // Gets or Sets the Hugging Priority for the specified axis
 		  
 		  #If TargetIOS
 		    // - (UILayoutPriority)contentHuggingPriorityForAxis:(UILayoutConstraintAxis)axis;
@@ -429,7 +434,7 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0
 		Sub HuggingPriorityForAxis(Extends item as MobileUIControl, Axis as SOSConstraintKit.Axis, assigns priority as Double)
-		  // Gets the Hugging Priority for the specified axis
+		  // Gets or Sets the Hugging Priority for the specified axis
 		  
 		  #If TargetIOS
 		    // - (void)setContentHuggingPriority:(UILayoutPriority)priority forAxis:(UILayoutConstraintAxis)axis;
@@ -442,6 +447,7 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0
 		Function InsetsLayoutMarginsFromSafeArea(extends view as MobileUIControl) As Boolean
+		  // Gets or Sets whether the layout margins are inset from the safe area
 		  #If TargetiOS
 		    // @property(nonatomic) BOOL insetsLayoutMarginsFromSafeArea;
 		    Declare Function getInsetsLayoutMarginsFromSafeArea Lib "Foundation" Selector "insetsLayoutMarginsFromSafeArea" (obj As ptr) As Boolean
@@ -467,6 +473,7 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0
 		Function IntrinsicContentSize(extends view as MobileUIControl) As Size
+		  // Gets the Intrinsic content size for a control
 		  #If TargetiOS
 		    // @property(nonatomic, readonly) CGSize intrinsicContentSize;
 		    Declare Function getIntrinsicContentSize Lib "Foundation" Selector "intrinsicContentSize" (obj As ptr) As CGSize
@@ -481,6 +488,7 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0
 		Sub InvalidateIntrinsicContentSize(extends view as MobileUIControl)
+		  // Invalidates the intrinsic content size for a control
 		  #If TargetiOS
 		    // - (void)invalidateIntrinsicContentSize;
 		    Declare Sub invalidateIntrinsicContentSize Lib "Foundation" Selector "invalidateIntrinsicContentSize" (obj As ptr)
@@ -492,6 +500,7 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0
 		Sub LayoutIfNeeded(extends view as MobileScreen)
+		  // Asks the view to update its layout
 		  #If TargetiOS
 		    // - (void)layoutIfNeeded;
 		    Declare Sub layoutIfNeeded Lib "Foundation" Selector "layoutIfNeeded" (obj As ptr)
@@ -503,53 +512,57 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0
 		Function LayoutMargins(extends view as MobileScreen) As UIEdgeInsets
-		  // @property(nonatomic) UIEdgeInsets layoutMargins;
-		  Declare Function getLayoutMargins Lib "Foundation" Selector "layoutMargins" (obj As ptr) As UIEdgeInsets
-		  
-		  return getLayoutMargins(view.Handle)
+		  // Sets or gets the layout margins for the specified view or control
+		  #If TargetiOS
+		    // @property(nonatomic) UIEdgeInsets layoutMargins;
+		    Declare Function getLayoutMargins Lib "Foundation" Selector "layoutMargins" (obj As ptr) As UIEdgeInsets
+		    
+		    Return getLayoutMargins(view.Handle)
+		  #EndIf
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub LayoutMargins(extends view as MobileScreen, assigns value as UIEdgeInsets)
-		  // @property(nonatomic) UIEdgeInsets layoutMargins;
-		  Declare Sub setLayoutMargins Lib "Foundation" Selector "setLayoutMargins:" (obj As ptr, value As UIEdgeInsets)
-		  
-		  setLayoutMargins(view.Handle, value)
+		  #If TargetiOS
+		    // @property(nonatomic) UIEdgeInsets layoutMargins;
+		    Declare Sub setLayoutMargins Lib "Foundation" Selector "setLayoutMargins:" (obj As ptr, value As UIEdgeInsets)
+		    
+		    setLayoutMargins(view.Handle, value)
+		  #EndIf
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Function LayoutMargins(extends view as MobileUIControl) As UIEdgeInsets
-		  // @property(nonatomic) UIEdgeInsets layoutMargins;
-		  Declare Function getLayoutMargins Lib "Foundation" Selector "layoutMargins" (obj As ptr) As UIEdgeInsets
-		  
-		  return getLayoutMargins(view.Handle)
+		  #If TargetiOS
+		    // @property(nonatomic) UIEdgeInsets layoutMargins;
+		    Declare Function getLayoutMargins Lib "Foundation" Selector "layoutMargins" (obj As ptr) As UIEdgeInsets
+		    
+		    Return getLayoutMargins(view.Handle)
+		  #EndIf
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub LayoutMargins(extends view as MobileUIControl, assigns value as UIEdgeInsets)
-		  // @property(nonatomic) UIEdgeInsets layoutMargins;
-		  Declare Sub setLayoutMargins Lib "Foundation" Selector "setLayoutMargins:" (obj As ptr, value As UIEdgeInsets)
-		  
-		  setLayoutMargins(view.Handle, value)
+		  #If TargetiOS
+		    // @property(nonatomic) UIEdgeInsets layoutMargins;
+		    Declare Sub setLayoutMargins Lib "Foundation" Selector "setLayoutMargins:" (obj As ptr, value As UIEdgeInsets)
+		    
+		    setLayoutMargins(view.Handle, value)
+		  #EndIf
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Function PreservesSuperviewLayoutMargins(extends view as MobileUIControl) As Boolean
+		  // Whether or not the control preserves its superview's layout margins
 		  #If TargetiOS
 		    // @property(nonatomic) BOOL preservesSuperviewLayoutMargins;
 		    Declare Function getPreservesSuperviewLayoutMargins Lib "Foundation" Selector "preservesSuperviewLayoutMargins" (obj As ptr) As Boolean
 		    
 		    Return getPreservesSuperviewLayoutMargins(view.handle)
-		    
-		    // // @property(nonatomic) BOOL preservesSuperviewLayoutMargins;
-		    // Declare Sub setPreservesSuperviewLayoutMargins Lib "Foundation" Selector "setPreservesSuperviewLayoutMargins:" (obj As ptr, value As Boolean)
-		    // 
-		    // setPreservesSuperviewLayoutMargins(mObj, value)
-		    
 		  #EndIf
 		End Function
 	#tag EndMethod
@@ -569,6 +582,7 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0
 		Sub RecreateConstraintsForAllControls(extends view as mobilescreen)
+		  // Recreates the constraints for a particular screen as SOSLayoutConstraints, optionally with a specified priority.
 		  Dim ca() As SOSConstraintKit.SOSLayoutConstraint = view.constraints
 		  
 		  Dim newConstraints() As SOSLayoutConstraint
@@ -618,8 +632,9 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target64Bit))
 		Sub RemoveConstraint(extends screen as MobileScreen, constraint as SOSLayoutConstraint)
-		  // Bail if the constraint is nil because the app will crash
+		  // Remove a constraint from the specified screen or control
 		  If constraint = Nil Then
+		    // Bail if the constraint is nil because the app will crash
 		    Return
 		  End If
 		  
@@ -634,8 +649,9 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target64Bit))
 		Sub RemoveConstraint(extends control as MobileUIControl, constraint as SOSLayoutConstraint)
-		  // Bail if the constraint is nil because the app will crash
+		  // Remove a constraint from the specified screen or control
 		  If constraint = Nil Then
+		    // Bail if the constraint is nil because the app will crash
 		    Return
 		  End If
 		  
@@ -650,6 +666,8 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0
 		Sub RemoveConstraintsForControl(extends view as MobileScreen, ctl as MobileUIControl)
+		  // Removes the position constraints for the specified control
+		  
 		  Dim ca() As SOSLayoutConstraint = view.constraints
 		  
 		  For i As Integer = 0 To UBound(ca)
@@ -662,6 +680,8 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0
 		Sub RemoveConstraintsForControl(extends view as MobileUIControl, ctl as MobileUIControl)
+		  // Removes the position constraints for the specified control
+		  
 		  Dim ca() As SOSLayoutConstraint = view.constraints
 		  
 		  For i As Integer = 0 To UBound(ca)
@@ -702,19 +722,19 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0
 		Function SafeAreaInsets(view as MobileScreen) As UIEdgeInsets
+		  // Returns the safe area insets of the specified view
 		  #If TargetiOS
 		    // @property(nonatomic, readonly) UIEdgeInsets safeAreaInsets;
 		    Declare Function getSafeAreaInsets Lib "Foundation" Selector "safeAreaInsets" (obj As ptr) As UIEdgeInsets
 		    
 		    Return getSafeAreaInsets(view.Handle)
-		    
-		    
 		  #EndIf
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub UpdateConstraints(extends screen as MobileScreen)
+		  // Asks the view or control to refresh its constraints
 		  #If TargetIOS
 		    // - (void)updateConstraintsIfNeeded;
 		    Declare Sub updateConstraintsIfNeeded Lib "Foundation" Selector "updateConstraintsIfNeeded" (obj As ptr)
@@ -726,6 +746,7 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0
 		Sub UpdateConstraints(extends control as MobileUIControl)
+		  // Asks the view or control to refresh its constraints
 		  #If TargetIOS
 		    // - (void)updateConstraintsIfNeeded;
 		    Declare Sub updateConstraintsIfNeeded Lib "Foundation" Selector "updateConstraintsIfNeeded" (obj As ptr)
@@ -736,7 +757,7 @@ Protected Module AutolayoutExtensions
 	#tag EndMethod
 
 
-	#tag Property, Flags = &h1
+	#tag Property, Flags = &h1, Description = 5468652064656661756C74207072696F726974792075736564206279206D6574686F647320776869636820637265617465206F7220726563726561746520636F6E73747261696E74732E
 		Protected DefaultPriority As Double = 999.0
 	#tag EndProperty
 
@@ -746,14 +767,14 @@ Protected Module AutolayoutExtensions
 		height as cgfloat
 	#tag EndStructure
 
-	#tag Structure, Name = NSDirectionalEdgeInsets, Flags = &h0
+	#tag Structure, Name = NSDirectionalEdgeInsets, Flags = &h0, Description = 4564676520696E7365747320776869636820737570706F7274204C656164696E6720616E6420547261696C696E67
 		Bottom as CGFloat
 		  Leading as CGFloat
 		  Top as CGFloat
 		Trailing as CGFloat
 	#tag EndStructure
 
-	#tag Structure, Name = UIEdgeInsets, Flags = &h0
+	#tag Structure, Name = UIEdgeInsets, Flags = &h0, Description = 4564676520696E7365747320776869636820737570706F7274204C65667420616E64205269676874
 		bottom as CGFloat
 		  left as CGFloat
 		  right as CGFloat

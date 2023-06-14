@@ -11,48 +11,50 @@ Inherits iOSMobileUserControl
 
 	#tag Event
 		Function CreateView() As Ptr
-		  Declare Function NSClassFromString Lib "Foundation" (name As cfstringref) As ptr
-		  Declare Function alloc Lib "Foundation" Selector "alloc" (cls As ptr) As ptr
-		  Declare Function init Lib "Foundation" Selector "init" (cls As ptr) As ptr
-		  // - (void)addSubview:(UIView *)view;
-		  Declare Sub addSubview Lib "Foundation" Selector "addSubview:" ( obj As ptr , view As Ptr )
-		  Declare Function Retain Lib "Foundation" Selector "retain" (obj As Ptr) As Ptr
-		  
-		  // set up the StackView
-		  // - (instancetype)initWithFrame:(CGRect)frame;
-		  Declare Function initWithFrame Lib "Foundation" Selector "initWithFrame:" ( obj As ptr , frame As CGRect ) As Ptr
-		  // @property(nonatomic) BOOL translatesAutoresizingMaskIntoConstraints;
-		  Declare Sub setTranslatesAutoresizingMaskIntoConstraints Lib "Foundation" Selector "setTranslatesAutoresizingMaskIntoConstraints:" (obj As ptr, value As Boolean)
-		  
-		  Dim frame As cgrect
-		  frame.X = 0
-		  frame.Y = 0
-		  frame.Width = 50
-		  frame.Height = 50
-		  
-		  mObj = Retain(initWithFrame(alloc(NSClassFromString("UIStackView")), frame))
-		  
-		  setTranslatesAutoresizingMaskIntoConstraints(mObj, False)
-		  
-		  // Return mObj
-		  
-		  // scrollview wrapper
-		  mScrollObj = retain(init(alloc(NSClassFromString("UIScrollView"))))
-		  setTranslatesAutoresizingMaskIntoConstraints(mScrollObj, False)
-		  
-		  addSubview(mScrollObj, mObj)
-		  
-		  ΩUpdateScrollViewContentConstraints
-		  
-		  Return mScrollObj
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
+		  #If TargetiOS
+		    Declare Function NSClassFromString Lib "Foundation" (name As cfstringref) As ptr
+		    Declare Function alloc Lib "Foundation" Selector "alloc" (cls As ptr) As ptr
+		    Declare Function init Lib "Foundation" Selector "init" (cls As ptr) As ptr
+		    // - (void)addSubview:(UIView *)view;
+		    Declare Sub addSubview Lib "Foundation" Selector "addSubview:" ( obj As ptr , view As Ptr )
+		    Declare Function Retain Lib "Foundation" Selector "retain" (obj As Ptr) As Ptr
+		    
+		    // set up the StackView
+		    // - (instancetype)initWithFrame:(CGRect)frame;
+		    Declare Function initWithFrame Lib "Foundation" Selector "initWithFrame:" ( obj As ptr , frame As CGRect ) As Ptr
+		    // @property(nonatomic) BOOL translatesAutoresizingMaskIntoConstraints;
+		    Declare Sub setTranslatesAutoresizingMaskIntoConstraints Lib "Foundation" Selector "setTranslatesAutoresizingMaskIntoConstraints:" (obj As ptr, value As Boolean)
+		    
+		    Dim frame As cgrect
+		    frame.X = 0
+		    frame.Y = 0
+		    frame.Width = 50
+		    frame.Height = 50
+		    
+		    mObj = Retain(initWithFrame(alloc(NSClassFromString("UIStackView")), frame))
+		    
+		    setTranslatesAutoresizingMaskIntoConstraints(mObj, False)
+		    
+		    // Return mObj
+		    
+		    // scrollview wrapper
+		    mScrollObj = retain(init(alloc(NSClassFromString("UIScrollView"))))
+		    setTranslatesAutoresizingMaskIntoConstraints(mScrollObj, False)
+		    
+		    addSubview(mScrollObj, mObj)
+		    
+		    ΩUpdateScrollViewContentConstraints
+		    
+		    Return mScrollObj
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		  #EndIf
 		End Function
 	#tag EndEvent
 
@@ -189,7 +191,10 @@ Inherits iOSMobileUserControl
 
 	#tag Method, Flags = &h0
 		Function ScrollViewHandle() As Ptr
-		  return mScrollObj
+		  // Returns a pointer to the underlying UIStackView
+		  #If TargetiOS
+		    Return mScrollObj
+		  #EndIf
 		End Function
 	#tag EndMethod
 
@@ -458,7 +463,7 @@ Inherits iOSMobileUserControl
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  // The Height of the scroll area
+			  // The Width of the scroll area
 			  #If TargetiOS
 			    // - (void)layoutIfNeeded;
 			    Declare Sub layoutIfNeeded Lib "Foundation" Selector "layoutIfNeeded" (obj As ptr)

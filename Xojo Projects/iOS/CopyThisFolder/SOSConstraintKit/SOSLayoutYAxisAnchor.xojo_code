@@ -1,19 +1,21 @@
 #tag Class
 Class SOSLayoutYAxisAnchor
 Inherits SOSLayoutAnchor
-	#tag CompatibilityFlags = (TargetDesktop and (Target64Bit)) or  (TargetIOS and (Target64Bit))
+	#tag CompatibilityFlags = ( TargetDesktop and ( Target64Bit ) ) or ( TargetIOS and ( Target64Bit ) )
 	#tag Method, Flags = &h0
 		Function AnchorWithOffsetToAnchor(otherAnchor as SOSLayoutYAxisAnchor) As SOSLayoutDimension
 		  // Creates a layout dimension object from two anchors.
-		  // - (NSLayoutDimension *)anchorWithOffsetToAnchor:(NSLayoutYAxisAnchor *)otherAnchor;
-		  Declare Function anchorWithOffsetToAnchor Lib "Foundation" Selector "anchorWithOffsetToAnchor:" ( obj As ptr , otherAnchor As Ptr ) As Ptr
-		  
-		  Dim p As ptr = anchorWithOffsetToAnchor(mObj, otherAnchor.handle)
-		  If p = Nil Then
-		    Return nil
-		  End If
-		  
-		  return SOSLayoutDimension.Create(p)
+		  #If TargetMacOS Or TargetIOS
+		    // - (NSLayoutDimension *)anchorWithOffsetToAnchor:(NSLayoutYAxisAnchor *)otherAnchor;
+		    Declare Function anchorWithOffsetToAnchor Lib "Foundation" Selector "anchorWithOffsetToAnchor:" ( obj As ptr , otherAnchor As Ptr ) As Ptr
+		    
+		    Dim p As ptr = anchorWithOffsetToAnchor(mObj, otherAnchor.handle)
+		    If p = Nil Then
+		      Return Nil
+		    End If
+		    
+		    Return SOSLayoutDimension.Create(p)
+		  #EndIf
 		End Function
 	#tag EndMethod
 
