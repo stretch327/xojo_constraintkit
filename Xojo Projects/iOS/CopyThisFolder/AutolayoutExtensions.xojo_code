@@ -314,7 +314,16 @@ Protected Module AutolayoutExtensions
 		    End If
 		    
 		    For i As Integer = UBound(ca) DownTo 0
-		      If ca(i).FirstItem = item.Handle Then
+		      Dim attr1value As Integer = CType(ca(i).FirstAttribute, Integer)
+		      Dim attr2value As Integer = CType(ca(i).SecondAttribute, Integer)
+		      
+		      // 32 and 33 are minx and miny, something left over from the springs and struts era
+		      If attr1value = 32 Or attr1value = 33 Or attr2value = 32 Or attr2value = 33 Then
+		        ca(i).Active = False
+		        Continue
+		      End If
+		      
+		      If ca(i).FirstItem = item.Handle Or ca(i).SecondItem = item.Handle Then
 		        Dim c As New SOSLayoutConstraint(ca(i).FirstItem, ca(i).FirstAttribute, ca(i).relation, ca(i).SecondItem, ca(i).SecondAttribute, ca(i).Multiplier, ca(i).Offset)
 		        c.Identifier = ca(i).identifier
 		        If c.Identifier = "" Then
