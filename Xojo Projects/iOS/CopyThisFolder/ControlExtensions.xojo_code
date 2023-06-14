@@ -27,7 +27,7 @@ Protected Module ControlExtensions
 
 	#tag Method, Flags = &h0
 		Sub NumberOfLines(extends label as MobileLabel, assigns value as integer)
-		  // Sets the number of lines in the label control
+		  // Sets the number of lines in the label control. Use zero for "infinite"
 		  #If TargetiOS
 		    // @property(nonatomic) NSInteger numberOfLines;
 		    Declare Sub setNumberOfLines Lib "Foundation" Selector "setNumberOfLines:" (obj As ptr, value As Integer)
