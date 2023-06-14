@@ -174,6 +174,25 @@ Protected Module AutolayoutExtensions
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Function ConstraintForControlAttribute(extends ctl as mobileUIControl, attr as SOSLayoutConstraint.LayoutAttributes) As SOSLayoutConstraint
+		  // Gets a constraint for a particular attribute 
+		  #If TargetiOS
+		    Dim ca() As SOSLayoutConstraint = ctl.Constraints
+		    
+		    For i As Integer = 0 To UBound(ca)
+		      If ca(i).FirstItem = ctl.Handle Then
+		        If ca(i).FirstAttribute = attr Then
+		          Return ca(i)
+		        End If
+		      End If
+		    Next
+		    
+		    Return Nil
+		  #EndIf
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Function ConstraintMatchingIntrinsicHeight(extends view as MobileUIControl) As SOSLayoutConstraint
 		  // Creates an intrinsic height constraint for the specified control
 		  #If TargetiOS
@@ -244,6 +263,27 @@ Protected Module AutolayoutExtensions
 		    
 		    return ca
 		  #EndIf
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function ConstraintsForControl(Extends view as MobileScreen, control as MobileUIControl) As SOSLayoutConstraint()
+		  Dim rv() As SOSLayoutConstraint
+		  Dim ca() As SOSLayoutConstraint = view.constraints
+		  For i As Integer = 0 To UBound(ca)
+		    If ca(i).FirstItem = control.Handle Then
+		      rv.Add ca(i)
+		    End If
+		  Next
+		  
+		  ca = control.Constraints
+		  For i As Integer = 0 To UBound(ca)
+		    If ca(i).FirstItem = control.Handle Then
+		      rv.Add ca(i)
+		    End If
+		  Next
+		  
+		  Return rv
 		End Function
 	#tag EndMethod
 
@@ -652,6 +692,34 @@ Protected Module AutolayoutExtensions
 		      view.RemoveConstraint(ca(i))
 		    End If
 		  Next
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub RemoveHeightConstraints(extends view as MobileUIControl)
+		  // Removes the Height constraint(s) from the control
+		  
+		  dim ca() as SOSLayoutConstraint = view.Constraints
+		  For i As Integer = 0 To UBound(ca)
+		    If (ca(i).FirstItem = view.Handle And ca(i).SecondItem = Nil) And ca(i).FirstAttribute = SOSLayoutConstraint.LayoutAttributes.Height Then
+		      ca(i).Active = False
+		      
+		    End If
+		  Next i
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub RemoveWidthConstraints(extends view as MobileUIControl)
+		  // Removes the Width constraint(s) from the control
+		  
+		  Dim ca() As SOSLayoutConstraint = view.Constraints
+		  For i As Integer = 0 To UBound(ca)
+		    If (ca(i).FirstItem = view.Handle And ca(i).SecondItem = Nil) And ca(i).FirstAttribute = SOSLayoutConstraint.LayoutAttributes.Width Then
+		      ca(i).Active = False
+		      
+		    End If
+		  Next i
 		End Sub
 	#tag EndMethod
 
