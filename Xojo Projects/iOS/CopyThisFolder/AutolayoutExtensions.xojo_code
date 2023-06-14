@@ -331,7 +331,6 @@ Protected Module AutolayoutExtensions
 		        // deactivate the old constraint
 		        ca(i).active = False
 		      End If
-		      
 		    Next
 		  #EndIf
 		End Sub
@@ -342,38 +341,7 @@ Protected Module AutolayoutExtensions
 		  // Converts all constraints for a specific MobileUIControl on a particular MobileScreen to SOSLayoutConstraints, changing them all to a particular Priority
 		  
 		  #If TargetiOS
-		    Dim ca() As SOSLayoutConstraint = view.constraints
-		    
-		    Dim newConstraints() As SOSLayoutConstraint
-		    
-		    // Convert the enum to a double
-		    Dim priority As Double = CType(newPriority, Double)
-		    
-		    // clip the value to be between 1 and 999 so it'll be editable later
-		    priority = Min(DefaultPriority, Max(1, priority))
-		    
-		    For i As Integer = UBound(ca) DownTo 0
-		      If ca(i).FirstItem = item.Handle Then
-		        Dim c As New SOSLayoutConstraint(ca(i).FirstItem, ca(i).FirstAttribute, ca(i).relation, ca(i).SecondItem, ca(i).SecondAttribute, ca(i).Multiplier, ca(i).Offset)
-		        c.Identifier = ca(i).identifier
-		        If c.Identifier = "" Then
-		          c.Identifier = item.Name + "_" + AttributeName(ca(i).firstAttribute)
-		        End If
-		        
-		        If priority > 0 Then
-		          c.Priority = priority
-		        End If
-		        c.Active = True
-		        newConstraints.add c
-		        
-		        ca(i).active = False
-		      End If
-		      
-		    Next
-		    
-		    For i As Integer = 0 To UBound(newConstraints)
-		      view.AddConstraint(newConstraints(i))
-		    Next
+		    view.ConvertConstraintsForControl(item, CType(newPriority, Double))
 		  #EndIf
 		End Sub
 	#tag EndMethod
