@@ -720,9 +720,15 @@ Protected Module AutolayoutExtensions
 		        End If
 		      End If
 		      
-		      If item.control IsA DesktopContainer Then
+		      // Do special things
+		      Select Case item.control
+		      Case IsA DesktopContainer
 		        DesktopContainer(item.control).ConvertToAutolayout(useLeadingTrailing)
-		      End If
+		      Case Else
+		        If item.control IsA DesktopUIControl Then
+		          ConvertControlToAutolayout(DesktopUIControl(item.control))
+		        End If
+		      End Select
 		    Next
 		    
 		  #EndIf
