@@ -23,6 +23,7 @@ Class=SOSLayoutYAxisAnchor;CopyThisFolder/SOSConstraintKit/SOSLayoutYAxisAnchor.
 Class=SOSLayoutGuide;CopyThisFolder/SOSConstraintKit/SOSLayoutGuide.xojo_code;&h000000001F3D9FFF;&h00000000436A3FFF;false
 Class=SOSStackView;CopyThisFolder/SOSConstraintKit/SOSStackView.xojo_code;&h0000000046D2BFFF;&h00000000436A3FFF;false
 MobileScreen=StackViewScreen;Examples/StackViewScreen.xojo_code;&h0000000020DD1FFF;&h0000000065C14FFF;false
+MobileScreen=ExerciserScreen;Examples/ExerciserScreen.xojo_code;&h000000000D276FFF;&h0000000065C14FFF;false
 Class=SOSLayoutConstraintSet;CopyThisFolder/SOSConstraintKit/SOSLayoutConstraintSet.xojo_code;&h0000000078CD4FFF;&h00000000436A3FFF;false
 Folder=Parts;Examples/Parts;&h00000000718B8FFF;&h0000000065C14FFF;false
 ColorAsset=NewsStoryBackground;Examples/Parts/NewsStoryBackground.xojo_color;&h00000000105AF7FF;&h00000000718B8FFF;false

@@ -27,5 +27,10 @@
 				Target = 551362559
 				Icon = 0
 			End ScreenContent
+			Begin ScreenContent
+				ItemName = Exerciser
+				Target = 220688383
+				Icon = 0
+			End ScreenContent
 	End ScreenContent
 #tag EndIOSLayout
