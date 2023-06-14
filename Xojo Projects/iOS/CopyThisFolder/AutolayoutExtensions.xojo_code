@@ -38,7 +38,7 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0
 		Sub AddConstraints(extends view as MobileScreen, constraints() as SOSLayoutConstraint, priority as Double)
-		  // Adds an array of SOSLayoutConstraints to the MobileScreen with a particular priority
+		  // Adds an array of SOSLayoutConstraints to the MobileScreen with a specific priority
 		  
 		  // throttle to valid values
 		  priority = Min(Max(priority, 1.0), DefaultPriority)
@@ -265,6 +265,7 @@ Protected Module AutolayoutExtensions
 		  // Converts all constraints for a specific MobileUIControl on a particular MobileScreen to SOSLayoutConstraints, changing them all to a particular Priority
 		  
 		  #If TargetiOS
+		    // First, the constraints related to this control that are on the view
 		    Dim ca() As SOSConstraintKit.SOSLayoutConstraint = view.constraints
 		    
 		    // clip the value to be between 1 and 999 so it'll be editable later
