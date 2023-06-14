@@ -926,7 +926,8 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
 		Sub InvalidateIntrinsicContentSize(extends view as DesktopContainer)
-		  #if TargetMacOS
+		  // Asks the OS to recalculate the container's intrinsic content size
+		  #If TargetMacOS
 		    // - (void)invalidateIntrinsicContentSize;
 		    Declare Sub invalidateIntrinsicContentSize Lib "Foundation" Selector "invalidateIntrinsicContentSize" (obj As ptr)
 		    
@@ -937,7 +938,8 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
 		Sub InvalidateIntrinsicContentSize(extends view as DesktopUIControl)
-		  #if TargetMacOS
+		  // Asks the OS to recalculate the control's intrinsic content size
+		  #If TargetMacOS
 		    // - (void)invalidateIntrinsicContentSize;
 		    Declare Sub invalidateIntrinsicContentSize Lib "Foundation" Selector "invalidateIntrinsicContentSize" (obj As ptr)
 		    
@@ -948,7 +950,8 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
 		Sub LayoutIfNeeded(extends view as DesktopWindow)
-		  #if TargetMacOS
+		  // Asks the OS to update the window's layout if necessary.
+		  #If TargetMacOS
 		    // - (void)layoutIfNeeded;
 		    Declare Sub layoutIfNeeded Lib "Foundation" Selector "layoutIfNeeded" (obj As ptr)
 		    
@@ -959,60 +962,71 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
 		Function LayoutMargins(extends view as DesktopUIControl) As UIEdgeInsets
-		  // @property(nonatomic) UIEdgeInsets layoutMargins;
-		  Declare Function getLayoutMargins Lib "Foundation" Selector "layoutMargins" (obj As ptr) As UIEdgeInsets
-		  
-		  return getLayoutMargins(view.Handle)
+		  // Gets the Layout Margins for the control.
+		  #If TargetMacOS
+		    // @property(nonatomic) UIEdgeInsets layoutMargins;
+		    Declare Function getLayoutMargins Lib "Foundation" Selector "layoutMargins" (obj As ptr) As UIEdgeInsets
+		    
+		    Return getLayoutMargins(view.Handle)
+		  #EndIf
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
 		Sub LayoutMargins(extends view as DesktopUIControl, assigns value as UIEdgeInsets)
-		  // @property(nonatomic) UIEdgeInsets layoutMargins;
-		  Declare Sub setLayoutMargins Lib "Foundation" Selector "setLayoutMargins:" (obj As ptr, value As UIEdgeInsets)
-		  
-		  setLayoutMargins(view.Handle, value)
+		  // Sets the Layout Margins for the control.
+		  #If TargetMacOS
+		    // @property(nonatomic) UIEdgeInsets layoutMargins;
+		    Declare Sub setLayoutMargins Lib "Foundation" Selector "setLayoutMargins:" (obj As ptr, value As UIEdgeInsets)
+		    
+		    setLayoutMargins(view.Handle, value)
+		  #EndIf
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
 		Function LayoutMargins(extends view as DesktopWindow) As UIEdgeInsets
-		  // @property(nonatomic) UIEdgeInsets layoutMargins;
-		  Declare Function getLayoutMargins Lib "Foundation" Selector "layoutMargins" (obj As ptr) As UIEdgeInsets
+		  // Gets the Layout Margins for the window.
 		  
-		  return getLayoutMargins(view.Handle)
+		  #If TargetMacOS
+		    // @property(nonatomic) UIEdgeInsets layoutMargins;
+		    Declare Function getLayoutMargins Lib "Foundation" Selector "layoutMargins" (obj As ptr) As UIEdgeInsets
+		    
+		    Return getLayoutMargins(view.Handle)
+		  #EndIf
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
 		Sub LayoutMargins(extends view as DesktopWindow, assigns value as UIEdgeInsets)
-		  // @property(nonatomic) UIEdgeInsets layoutMargins;
-		  Declare Sub setLayoutMargins Lib "Foundation" Selector "setLayoutMargins:" (obj As ptr, value As UIEdgeInsets)
+		  // Gets the Layout Margins for the window.
 		  
-		  setLayoutMargins(view.Handle, value)
+		  #If TargetMacOS
+		    // @property(nonatomic) UIEdgeInsets layoutMargins;
+		    
+		    Declare Sub setLayoutMargins Lib "Foundation" Selector "setLayoutMargins:" (obj As ptr, value As UIEdgeInsets)
+		    
+		    setLayoutMargins(view.Handle, value)
+		  #EndIf
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
 		Function PreservesSuperviewLayoutMargins(extends view as DesktopContainer) As Boolean
-		  #if TargetMacOS
+		  // Returns True if the container preserves its superview's layout margins
+		  #If TargetMacOS
 		    // @property(nonatomic) BOOL preservesSuperviewLayoutMargins;
 		    Declare Function getPreservesSuperviewLayoutMargins Lib "Foundation" Selector "preservesSuperviewLayoutMargins" (obj As ptr) As Boolean
 		    
 		    Return getPreservesSuperviewLayoutMargins(view.handle)
-		    
-		    // // @property(nonatomic) BOOL preservesSuperviewLayoutMargins;
-		    // Declare Sub setPreservesSuperviewLayoutMargins Lib "Foundation" Selector "setPreservesSuperviewLayoutMargins:" (obj As ptr, value As Boolean)
-		    // 
-		    // setPreservesSuperviewLayoutMargins(mObj, value)
-		    
 		  #EndIf
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
 		Sub PreservesSuperviewLayoutMargins(extends view as DesktopContainer, assigns value as boolean)
-		  #if TargetMacOS
+		  // Set to True if the container should preserve its superview's layout margins
+		  #If TargetMacOS
 		    
 		    // @property(nonatomic) BOOL preservesSuperviewLayoutMargins;
 		    Declare Sub setPreservesSuperviewLayoutMargins Lib "Foundation" Selector "setPreservesSuperviewLayoutMargins:" (obj As ptr, value As Boolean)
@@ -1025,16 +1039,12 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
 		Function PreservesSuperviewLayoutMargins(extends view as DesktopUIControl) As Boolean
-		  #if TargetMacOS
+		  // Returns True if the control preserves its superview's layout margins
+		  #If TargetMacOS
 		    // @property(nonatomic) BOOL preservesSuperviewLayoutMargins;
 		    Declare Function getPreservesSuperviewLayoutMargins Lib "Foundation" Selector "preservesSuperviewLayoutMargins" (obj As ptr) As Boolean
 		    
 		    Return getPreservesSuperviewLayoutMargins(view.handle)
-		    
-		    // // @property(nonatomic) BOOL preservesSuperviewLayoutMargins;
-		    // Declare Sub setPreservesSuperviewLayoutMargins Lib "Foundation" Selector "setPreservesSuperviewLayoutMargins:" (obj As ptr, value As Boolean)
-		    // 
-		    // setPreservesSuperviewLayoutMargins(mObj, value)
 		    
 		  #EndIf
 		End Function
@@ -1042,7 +1052,8 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
 		Sub PreservesSuperviewLayoutMargins(extends view as DesktopUIControl, assigns value as boolean)
-		  #if TargetMacOS
+		  // Set to True if the control should preserve its superview's layout margins
+		  #If TargetMacOS
 		    
 		    // @property(nonatomic) BOOL preservesSuperviewLayoutMargins;
 		    Declare Sub setPreservesSuperviewLayoutMargins Lib "Foundation" Selector "setPreservesSuperviewLayoutMargins:" (obj As ptr, value As Boolean)
@@ -1055,125 +1066,163 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
 		Sub RecreateConstraintsForAllControls(extends view as DesktopWindow)
-		  Dim ca() As SOSConstraintKit.SOSLayoutConstraint = view.constraints
-		  
-		  Dim newConstraints() As SOSLayoutConstraint
-		  
-		  For i As Integer = UBound(ca) DownTo 0
-		    Dim c As New SOSLayoutConstraint(ca(i).FirstItem, ca(i).FirstAttribute, ca(i).relation, ca(i).SecondItem, ca(i).SecondAttribute, ca(i).Multiplier, ca(i).Offset)
-		    c.Identifier = ca(i).identifier
-		    c.Priority = ca(i).priority
-		    c.Active = True
-		    newConstraints.add c
+		  // Recreates constrains for all controls on the view
+		  #If TargetMacOS
+		    Dim ca() As SOSConstraintKit.SOSLayoutConstraint = view.constraints
 		    
-		    ca(i).active = False
-		  Next
-		  
-		  For i As Integer = 0 To UBound(newConstraints)
-		    view.AddConstraint(newConstraints(i))
-		  Next
+		    Dim newConstraints() As SOSLayoutConstraint
+		    
+		    For i As Integer = UBound(ca) DownTo 0
+		      Dim c As New SOSLayoutConstraint(ca(i).FirstItem, ca(i).FirstAttribute, ca(i).relation, ca(i).SecondItem, ca(i).SecondAttribute, ca(i).Multiplier, ca(i).Offset)
+		      c.Identifier = ca(i).identifier
+		      c.Priority = ca(i).priority
+		      c.Active = True
+		      newConstraints.add c
+		      
+		      ca(i).active = False
+		    Next
+		    
+		    For i As Integer = 0 To UBound(newConstraints)
+		      view.AddConstraint(newConstraints(i))
+		    Next
+		  #EndIf
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
 		Sub RecreateConstraintsForAllControls(extends view As DesktopWindow, newPriority As Double)
-		  Dim ca() As SOSConstraintKit.SOSLayoutConstraint = view.constraints
-		  
-		  Dim newConstraints() As SOSLayoutConstraint
-		  
-		  // clip the value to be between 1 and 999 so it'll be editable later
-		  If newPriority > 0 Then
-		    newPriority = Min(DefaultPriority, Max(1, newPriority))
-		  End If
-		  
-		  For i As Integer = UBound(ca) DownTo 0
-		    Dim c As New SOSLayoutConstraint(ca(i).FirstItem, ca(i).FirstAttribute, ca(i).relation, ca(i).SecondItem, ca(i).SecondAttribute, ca(i).Multiplier, ca(i).Offset)
-		    c.Identifier = ca(i).identifier
-		    c.Priority = newPriority
-		    c.Active = True
-		    newConstraints.add c
+		  // Recreates constrains for all controls on the view, with a specific priority
+		  #If TargetMacOS
+		    Dim ca() As SOSConstraintKit.SOSLayoutConstraint = view.constraints
 		    
-		    ca(i).active = False
-		  Next
-		  
-		  For i As Integer = 0 To UBound(newConstraints)
-		    view.AddConstraint(newConstraints(i))
-		  Next
+		    Dim newConstraints() As SOSLayoutConstraint
+		    
+		    // clip the value to be between 1 and 999 so it'll be editable later
+		    If newPriority > 0 Then
+		      newPriority = Min(DefaultPriority, Max(1, newPriority))
+		    End If
+		    
+		    For i As Integer = UBound(ca) DownTo 0
+		      Dim c As New SOSLayoutConstraint(ca(i).FirstItem, ca(i).FirstAttribute, ca(i).relation, ca(i).SecondItem, ca(i).SecondAttribute, ca(i).Multiplier, ca(i).Offset)
+		      c.Identifier = ca(i).identifier
+		      c.Priority = newPriority
+		      c.Active = True
+		      newConstraints.add c
+		      
+		      ca(i).active = False
+		    Next
+		    
+		    For i As Integer = 0 To UBound(newConstraints)
+		      view.AddConstraint(newConstraints(i))
+		    Next
+		  #EndIf
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
 		Sub RemoveConstraint(extends control as DesktopUIControl, constraint as SOSLayoutConstraint)
-		  // Bail if the constraint is nil because the app will crash
-		  If constraint = Nil Then
-		    Return
-		  End If
-		  
-		  #if TargetMacOS
-		    // - (void)removeConstraint:(NSLayoutConstraint *)constraint;
-		    Declare Sub removeConstraint Lib "Foundation" Selector "removeConstraint:" ( obj As ptr , constraint As Ptr )
+		  // Removes the specified constraint from the control
+		  #If TargetMacOS
+		    // Bail if the constraint is nil because the app will crash
+		    If constraint = Nil Then
+		      Return
+		    End If
 		    
-		    removeConstraint(control.Handle, constraint.Handle)
+		    #If TargetMacOS
+		      // - (void)removeConstraint:(NSLayoutConstraint *)constraint;
+		      Declare Sub removeConstraint Lib "Foundation" Selector "removeConstraint:" ( obj As ptr , constraint As Ptr )
+		      
+		      removeConstraint(control.Handle, constraint.Handle)
+		    #EndIf
 		  #EndIf
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
 		Sub RemoveConstraint(extends screen as DesktopWindow, constraint as SOSLayoutConstraint)
-		  // Bail if the constraint is nil because the app will crash
-		  If constraint = Nil Then
-		    Return
-		  End If
-		  
-		  #if TargetMacOS
-		    // - (void)removeConstraint:(NSLayoutConstraint *)constraint;
-		    Declare Sub removeConstraint Lib "Foundation" Selector "removeConstraint:" ( obj As ptr , constraint As Ptr )
+		  // Removes the specified constraint from the window
+		  #If TargetMacOS
+		    // Bail if the constraint is nil because the app will crash
+		    If constraint = Nil Then
+		      Return
+		    End If
 		    
-		    removeConstraint(screen.Handle, constraint.Handle)
+		    #If TargetMacOS
+		      // - (void)removeConstraint:(NSLayoutConstraint *)constraint;
+		      Declare Sub removeConstraint Lib "Foundation" Selector "removeConstraint:" ( obj As ptr , constraint As Ptr )
+		      
+		      removeConstraint(Screen.Handle, constraint.Handle)
+		    #EndIf
 		  #EndIf
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
-		Sub RemoveConstraintsForControl(extends view as DesktopUIControl, ctl as DesktopUIControl)
-		  Dim ca() As SOSLayoutConstraint = view.constraints
-		  
-		  For i As Integer = 0 To UBound(ca)
-		    If ca(i).FirstItem = ctl.Handle Then
-		      view.RemoveConstraint(ca(i))
-		    End If
-		  Next
+		Sub RemoveConstraintsForControl(extends view as DesktopContainer, ctl as DesktopUIControl)
+		  // Removes constraints for a control from a particular container
+		  #If TargetMacOS
+		    Dim ca() As SOSLayoutConstraint = view.constraints
+		    
+		    For i As Integer = 0 To UBound(ca)
+		      If ca(i).FirstItem = ctl.Handle Then
+		        view.RemoveConstraint(ca(i))
+		      End If
+		    Next
+		  #EndIf
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
 		Sub RemoveConstraintsForControl(extends view as DesktopWindow, ctl as DesktopUIControl)
-		  Dim ca() As SOSLayoutConstraint = view.constraints
-		  
-		  For i As Integer = 0 To UBound(ca)
-		    If ca(i).FirstItem = ctl.Handle Then
-		      view.RemoveConstraint(ca(i))
-		    End If
-		  Next
+		  // Removes constraints for a control from a particular window
+		  #If TargetMacOS
+		    Dim ca() As SOSLayoutConstraint = view.constraints
+		    
+		    For i As Integer = 0 To UBound(ca)
+		      If ca(i).FirstItem = ctl.Handle Then
+		        view.RemoveConstraint(ca(i))
+		      End If
+		    Next
+		  #EndIf
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
 		Function SafeAreaInsets(view as DesktopWindow) As UIEdgeInsets
-		  #if TargetMacOS
+		  // Returns the safe area insets for the specified window
+		  #If TargetMacOS
 		    // @property(nonatomic, readonly) UIEdgeInsets safeAreaInsets;
 		    Declare Function getSafeAreaInsets Lib "Foundation" Selector "safeAreaInsets" (obj As ptr) As UIEdgeInsets
 		    
 		    Return getSafeAreaInsets(view.Handle)
 		    
+		  #EndIf
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function SystemIsRTL() As Boolean
+		  // Returns True if the system is set up to use a Left to Right text orientation.
+		  #If TargetMacOS
+		    // @property(class, readonly, strong) NSUserDefaults *standardUserDefaults;
+		    Declare Function getStandardUserDefaults Lib "Foundation" Selector "standardUserDefaults" (cls As ptr) As Ptr
+		    Declare Function NSClassFromString Lib "Foundation" (name As cfstringref) As ptr
+		    // - (BOOL)boolForKey:(NSString *)defaultName;
+		    Declare Function boolForKey Lib "Foundation" Selector "boolForKey:" ( obj As ptr , defaultName As CFStringRef ) As Boolean
 		    
+		    Dim sharedDefaults As ptr = getStandardUserDefaults(NSClassFromString("NSUserDefaults"))
+		    
+		    Dim isRTL As Boolean  = boolForKey(sharedDefaults, "AppleTextDirection")
+		    
+		    Return isRTL
 		  #EndIf
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
 		Sub UpdateConstraints(extends control as DesktopUIControl)
-		  #if TargetMacOS
+		  // Asks the OS to update the constraints for a particular control.
+		  #If TargetMacOS
 		    // - (void)updateConstraintsIfNeeded;
 		    Declare Sub updateConstraintsIfNeeded Lib "Foundation" Selector "updateConstraintsIfNeeded" (obj As ptr)
 		    
@@ -1184,12 +1233,29 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
 		Sub UpdateConstraints(extends screen as DesktopWindow)
+		  // Asks the OS to update the constraints for a particular window.
 		  #If TargetMacOS
 		    // - (void)updateConstraintsIfNeeded;
 		    Declare Sub updateConstraintsIfNeeded Lib "Foundation" Selector "updateConstraintsIfNeeded" (obj As ptr)
 		    
 		    updateConstraintsIfNeeded(screen.Handle)
 		  #EndIf
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub UseIntrinsicWidth(extends ctl as DesktopUIControl)
+		  // Removes the width constraint(s) so the control will use the intrinsic size
+		  
+		  
+		  Dim ca() As SOSLayoutConstraint = ctl.Constraints
+		  For i As Integer = 0 To UBound(ca)
+		    If ca(i).FirstItem = ctl.handle And ca(i).FirstAttribute = SOSLayoutConstraint.LayoutAttributes.Width And ca(i).SecondItem = Nil Then
+		      ca(i).Active = False
+		    End If
+		  Next
+		  
+		  ctl.WidthAnchor.ConstraintEqualToConstant(ctl.IntrinsicContentSize.Width).Active = True
 		End Sub
 	#tag EndMethod
 
@@ -1209,7 +1275,7 @@ Protected Module AutolayoutExtensions
 	#tag EndMethod
 
 
-	#tag Property, Flags = &h1
+	#tag Property, Flags = &h1, Description = 53657420746869732070726F706572747920746F20636F6E74726F6C20746865207072696F726974792074686174206973207573656420666F72206D6574686F647320776869636820646F6E277420686176652061207072696F7269747920706172616D657465722E
 		Protected DefaultPriority As Double = 999.0
 	#tag EndProperty
 
@@ -1219,14 +1285,21 @@ Protected Module AutolayoutExtensions
 		height as cgfloat
 	#tag EndStructure
 
-	#tag Structure, Name = NSDirectionalEdgeInsets, Flags = &h0
+	#tag Structure, Name = NSDirectionalEdgeInsets, Flags = &h0, Description = 53747275637475726520666F722073706563696679696E6720646972656374696F6E616C206564676520696E7365742076616C7565732E
 		Bottom as CGFloat
 		  Leading as CGFloat
 		  Top as CGFloat
 		Trailing as CGFloat
 	#tag EndStructure
 
-	#tag Structure, Name = UIEdgeInsets, Flags = &h0
+	#tag Structure, Name = NSRect, Flags = &h21
+		X as CGFloat
+		  Y as CGFloat
+		  Width as CGFloat
+		Height as CGFloat
+	#tag EndStructure
+
+	#tag Structure, Name = UIEdgeInsets, Flags = &h0, Description = 53747275637475726520666F722073706563696679696E67206162736F6C757465206564676520696E7365742076616C7565732E
 		bottom as CGFloat
 		  left as CGFloat
 		  right as CGFloat
