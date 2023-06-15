@@ -1,6 +1,6 @@
 #tag Module
 Protected Module AutolayoutExtensions
-	#tag CompatibilityFlags = (TargetDesktop and (Target64Bit)) or  (TargetIOS and (Target64Bit))
+	#tag CompatibilityFlags = ( TargetDesktop and ( Target64Bit ) ) or ( TargetIOS and ( Target64Bit ) )
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target64Bit))
 		Sub AddConstraint(extends screen as MobileScreen, constraint as SOSLayoutConstraint)
 		  // Adds an SOSLayoutConstraint to the MobileScreen or MobileUIControl
