@@ -7,7 +7,6 @@ iOSLayout=iPhoneLayout;iPhoneLayout.xojo_code;&h00000000423777FF;&h0000000000000
 iOSLayout=iPadLayout;iPadLayout.xojo_code;&h00000000799B07FF;&h0000000000000000;false
 AppIcons=App Icon;App Icon.xojo_image;&h000000001FE877FF;&h0000000000000000;false
 iOSLaunchScreen=LaunchScreen;LaunchScreen.xojo_code;&h000000002CF2E7FF;&h0000000000000000;false
-ColorAsset=ColorGroup1;ColorGroup1.xojo_color;&h000000004B7B77FF;&h0000000000000000;false
 BuildSteps=Build Automation;Build Automation.xojo_code;&h000000004B58FFFF;&h0000000000000000;false
 Class=SOSLayoutConstraint;../Common Files/CopyThisFolder/SOSConstraintKit/SOSLayoutConstraint.xojo_code;&h00000000106F4FFF;&h00000000436A3FFF;false
 Folder=Examples;Examples;&h0000000065C14FFF;&h0000000000000000;false
