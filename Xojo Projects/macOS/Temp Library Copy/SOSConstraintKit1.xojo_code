@@ -1,6 +1,6 @@
 #tag Module
 Protected Module SOSConstraintKit1
-	#tag CompatibilityFlags = ( TargetDesktop and ( Target64Bit ) ) or ( TargetIOS and ( Target64Bit ) )
+	#tag CompatibilityFlags = false
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
 		Function BottomAnchor(extends view as DesktopUIControl) As SOSLayoutYAxisAnchor
 		  // The bottom anchor of the DesktopUIControl

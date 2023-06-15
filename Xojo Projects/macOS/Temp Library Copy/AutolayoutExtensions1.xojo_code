@@ -1,6 +1,6 @@
 #tag Module
 Protected Module AutolayoutExtensions1
-	#tag CompatibilityFlags = ( TargetDesktop and ( Target64Bit ) )
+	#tag CompatibilityFlags = false
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit)) or  (TargetIOS and (Target64Bit))
 		Sub AddConstraint(extends control as DesktopUIControl, constraint as SOSLayoutConstraint)
 		  // adds an SOSLayoutConstraint to the DesktopUIControl
