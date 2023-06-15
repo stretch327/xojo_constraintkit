@@ -16,14 +16,6 @@ Class SOSDirectionalEdgeInsets
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function Handle1() As Ptr
-		  // Returns a Ptr to the current object
-		  Return mObj
-		  
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
 		Shared Function Make(top as Double, leading as Double, bottom as Double, trailing as Double) As SOSDirectionalEdgeInsets
 		  // Makes a new SOSDirectionEdgeInsets object, given the top, leading, bottom and trailing values
 		  #If TargetMacOS Or TargetIOS
