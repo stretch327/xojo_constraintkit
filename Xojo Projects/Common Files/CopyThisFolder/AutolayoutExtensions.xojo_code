@@ -1,6 +1,6 @@
 #tag Module
 Protected Module AutolayoutExtensions
-	#tag CompatibilityFlags = ( TargetIOS and ( Target64Bit ) )
+	#tag CompatibilityFlags = (TargetDesktop and (Target64Bit)) or  (TargetIOS and (Target64Bit))
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target64Bit))
 		Sub AddConstraint(extends screen as MobileScreen, constraint as SOSLayoutConstraint)
 		  // Adds an SOSLayoutConstraint to the MobileScreen or MobileUIControl
@@ -355,6 +355,133 @@ Protected Module AutolayoutExtensions
 		  #If TargetiOS
 		    view.ConvertConstraintsForControl(item, CType(newPriority, Double))
 		  #EndIf
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
+		Sub ConvertToAutolayout(Extends w as DesktopWindow, useLeadingTrailing as Boolean = False, unconstrainWindow as boolean = False)
+		  // Converts the DesktopWindow layout to one that's using constraints
+		  
+		  #If TargetMacOS
+		    // Make the constraints for each of the items based on their sizes, before we change anything
+		    Declare Sub setTranslatesAutoresizingMaskIntoConstraints Lib "Foundation" Selector "setTranslatesAutoresizingMaskIntoConstraints:" (obj As ptr, value As Boolean)
+		    
+		    // Grab the info about each of the controls before we make any changes
+		    // Turn off the autoresizing conversion as we go
+		    Dim ctlArray() As ControlInfo
+		    For Each tmp As Object In w.Controls
+		      Select Case True
+		      Case tmp IsA DesktopUIControl
+		        ctlArray.Add New ControlInfo(DesktopUIControl(tmp))
+		        setTranslatesAutoresizingMaskIntoConstraints(DesktopUIControl(tmp).Handle, False)
+		      Case tmp IsA DesktopContainer
+		        ctlArray.Add New ControlInfo(DesktopContainer(tmp))
+		        setTranslatesAutoresizingMaskIntoConstraints(DesktopContainer(tmp).Handle, False)
+		      End Select
+		    Next
+		    
+		    // @property BOOL autoresizesSubviews;
+		    If Not w IsA DesktopContainer Then
+		      Declare Sub setAutoresizesSubviews Lib "Foundation" Selector "setAutoresizesSubviews:" (obj As ptr, value As Boolean)
+		      Declare Function getContentView Lib "Foundation" Selector "contentView" (obj As ptr) As Ptr
+		      
+		      Dim cv As ptr = getContentView(w.Handle)
+		      setAutoresizesSubviews(cv, False)
+		      
+		      // @property(getter=isFlipped, readonly) BOOL flipped;
+		      Declare Sub setFlipped Lib "Foundation" Selector "setFlipped:" (obj As ptr, value As Boolean)
+		      setFlipped(cv, True)
+		      
+		      If unconstrainWindow Then
+		        w.MinimumWidth = 0
+		        w.MinimumHeight = 0
+		        w.MaximumWidth = 32000
+		        w.MaximumHeight = 32000
+		      End If
+		    End If
+		    
+		    For Each item As ControlInfo In ctlArray
+		      Dim ctl As Object = item.control
+		      
+		      // Horizontal
+		      If Not item.LockLeft = item.LockRight Then
+		        If ctl IsA DesktopUIControl Then
+		          DesktopUIControl(ctl).WidthAnchor.ConstraintEqualToConstant(item.Width).Active = True
+		        ElseIf ctl IsA DesktopContainer Then
+		          DesktopContainer(ctl).WidthAnchor.ConstraintEqualToConstant(item.Width).Active = True
+		        End If
+		      End If
+		      If item.LockLeft Then
+		        If useLeadingTrailing Then
+		          If ctl IsA DesktopUIControl Then
+		            DesktopUIControl(ctl).LeadingAnchor.ConstraintEqualToAnchor(w.LeadingAnchor, item.Left).Active = True
+		          ElseIf ctl IsA DesktopContainer Then
+		            DesktopContainer(ctl).LeadingAnchor.ConstraintEqualToAnchor(w.LeadingAnchor, item.Left).Active = True
+		          End If
+		        Else
+		          If ctl IsA DesktopUIControl Then
+		            DesktopUIControl(ctl).LeftAnchor.ConstraintEqualToAnchor(w.LeftAnchor, item.Left).Active = True
+		          ElseIf ctl IsA DesktopContainer Then
+		            DesktopContainer(ctl).LeftAnchor.ConstraintEqualToAnchor(w.LeftAnchor, item.Left).Active = True
+		          End If
+		        End If
+		      End If
+		      If item.LockRight Then
+		        If useLeadingTrailing Then
+		          If ctl IsA DesktopUIControl Then
+		            w.TrailingAnchor.ConstraintEqualToAnchor(DesktopUIControl(ctl).TrailingAnchor, w.Width - (item.Left + item.width)).Active = True
+		          ElseIf ctl IsA DesktopContainer Then
+		            w.TrailingAnchor.ConstraintEqualToAnchor(DesktopContainer(ctl).TrailingAnchor, w.Width - (item.Left + item.width)).Active = True
+		          End If
+		        Else
+		          If ctl IsA DesktopUIControl Then
+		            // inverted so the constant would be positive
+		            w.RightAnchor.ConstraintEqualToAnchor(DesktopUIControl(ctl).RightAnchor, w.Width - (item.Left + item.width)).Active = True
+		          ElseIf ctl IsA DesktopContainer Then
+		            // inverted so the constant would be positive
+		            w.RightAnchor.ConstraintEqualToAnchor(DesktopContainer(ctl).RightAnchor, w.Width - (item.Left + item.width)).Active = True
+		          End If
+		        End If
+		      End If
+		      
+		      // Vertical
+		      If Not item.LockTop = item.LockBottom Then
+		        If ctl IsA DesktopUIControl Then
+		          DesktopUIControl(ctl).HeightAnchor.ConstraintEqualToConstant(item.Height).Active = True
+		        ElseIf ctl IsA DesktopContainer Then
+		          DesktopContainer(ctl).HeightAnchor.ConstraintEqualToConstant(item.Height).Active = True
+		        End If
+		      End If
+		      If item.LockTop Then
+		        If ctl IsA DesktopUIControl Then
+		          DesktopUIControl(ctl).TopAnchor.ConstraintEqualToAnchor(w.TopAnchor, item.Top).Active = True
+		        ElseIf ctl IsA DesktopContainer Then
+		          DesktopContainer(ctl).TopAnchor.ConstraintEqualToAnchor(w.TopAnchor, item.Top).Active = True
+		        End If
+		      End If
+		      If item.LockBottom Then
+		        If ctl IsA DesktopUIControl Then
+		          // inverted so the constant would be positive
+		          w.BottomAnchor.ConstraintEqualToAnchor(DesktopUIControl(ctl).BottomAnchor, w.Height - (item.top + item.height)).Active = True
+		        ElseIf ctl IsA DesktopContainer Then
+		          // inverted so the constant would be positive
+		          w.BottomAnchor.ConstraintEqualToAnchor(DesktopContainer(ctl).BottomAnchor, w.Height - (item.top + item.height)).Active = True
+		        End If
+		      End If
+		      
+		      // Do special things
+		      Select Case item.control
+		      Case IsA DesktopContainer
+		        DesktopContainer(item.control).ConvertToAutolayout(useLeadingTrailing)
+		      Case Else
+		        If item.control IsA DesktopUIControl Then
+		          ConvertControlToAutolayout(DesktopUIControl(item.control))
+		        End If
+		      End Select
+		    Next
+		    
+		  #EndIf
+		  
 		End Sub
 	#tag EndMethod
 
@@ -757,7 +884,7 @@ Protected Module AutolayoutExtensions
 	#tag EndMethod
 
 
-	#tag Property, Flags = &h1, Description = 5468652064656661756C74207072696F726974792075736564206279206D6574686F647320776869636820637265617465206F7220726563726561746520636F6E73747261696E74732E
+	#tag Property, Flags = &h1, CompatibilityFlags = (TargetConsole and (Target64Bit)) or  (TargetWeb and (Target64Bit)) or  (TargetDesktop and (Target64Bit)) or  (TargetIOS and (Target64Bit)), Description = 5468652064656661756C74207072696F726974792075736564206279206D6574686F647320776869636820637265617465206F7220726563726561746520636F6E73747261696E74732E
 		Protected DefaultPriority As Double = 999.0
 	#tag EndProperty
 

@@ -1,7 +1,7 @@
 #tag Module
 Protected Module ControlExtensions
-	#tag CompatibilityFlags = ( TargetIOS and ( Target64Bit ) )
-	#tag Method, Flags = &h0
+	#tag CompatibilityFlags = (TargetDesktop and (Target64Bit)) or  (TargetIOS and (Target64Bit))
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target64Bit))
 		Sub LineBreakEnabled(extends label as MobileLabel, assigns value as Boolean)
 		  // Enables/Disables line breaks in the specified label control
 		  #If TargetiOS
@@ -13,7 +13,7 @@ Protected Module ControlExtensions
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target64Bit))
 		Function NumberOfLines(extends label as MobileLabel) As Integer
 		  // Sets or Returns the number of lines in the label control
 		  #If TargetiOS
@@ -25,7 +25,7 @@ Protected Module ControlExtensions
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target64Bit))
 		Sub NumberOfLines(extends label as MobileLabel, assigns value as integer)
 		  // Sets the number of lines in the label control. Use zero for "infinite"
 		  #If TargetiOS
