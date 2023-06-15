@@ -58,7 +58,7 @@ Inherits SOSLayoutAnchor
 	#tag Method, Flags = &h0
 		Function ConstraintGreaterThanOrEqualToConstant(c as Double) As SOSLayoutConstraint
 		  // Creates a constraint greater than or equal to a constant value
-		  #If TargetiOS
+		  #If TargetiOS or TargetMacOS
 		    // - (NSLayoutConstraint *)constraintGreaterThanOrEqualToConstant:(CGFloat)c;
 		    Declare Function constraintGreaterThanOrEqualToConstant Lib "Foundation" Selector "constraintGreaterThanOrEqualToConstant:" ( obj As ptr , c As Double ) As Ptr
 		    Dim p As ptr = constraintGreaterThanOrEqualToConstant(mObj, c)

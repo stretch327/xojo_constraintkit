@@ -1,6 +1,6 @@
 #tag Module
 Protected Module Animation
-	#tag CompatibilityFlags = ( TargetDesktop and ( Target64Bit ) ) or ( TargetIOS and ( Target64Bit ) )
+	#tag CompatibilityFlags = (TargetIOS and (Target64Bit))
 	#tag DelegateDeclaration, Flags = &h0, Description = 436F6D6D616E647320746F206578656375746520647572696E672074686520616E696D6174696F6E2073657175656E6365
 		Delegate Sub AnimateDelegate()
 	#tag EndDelegateDeclaration

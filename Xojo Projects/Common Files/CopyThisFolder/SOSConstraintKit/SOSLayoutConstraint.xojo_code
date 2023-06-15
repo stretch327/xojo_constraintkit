@@ -1,6 +1,6 @@
 #tag Class
 Class SOSLayoutConstraint
-	#tag CompatibilityFlags = (TargetDesktop and (Target64Bit)) or  (TargetIOS and (Target64Bit))
+	#tag CompatibilityFlags = ( TargetDesktop and ( Target64Bit ) ) or ( TargetIOS and ( Target64Bit ) )
 	#tag Method, Flags = &h21
 		Private Sub Constructor(p as ptr)
 		  
