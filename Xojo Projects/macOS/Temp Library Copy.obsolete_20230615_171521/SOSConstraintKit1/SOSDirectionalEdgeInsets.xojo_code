@@ -1,6 +1,5 @@
 #tag Class
 Class SOSDirectionalEdgeInsets
-	#tag CompatibilityFlags = ( TargetDesktop and ( Target64Bit ) ) or ( TargetIOS and ( Target64Bit ) )
 	#tag Method, Flags = &h21
 		Attributes( Hidden ) Private Sub Constructor(p as ptr)
 		  
@@ -9,7 +8,6 @@ Class SOSDirectionalEdgeInsets
 
 	#tag Method, Flags = &h0
 		Function Handle() As Ptr
-		  // Returns a Ptr to the current object
 		  Return mObj
 		  
 		End Function
@@ -17,19 +15,16 @@ Class SOSDirectionalEdgeInsets
 
 	#tag Method, Flags = &h0
 		Shared Function Make(top as Double, leading as Double, bottom as Double, trailing as Double) As SOSDirectionalEdgeInsets
-		  // Makes a new SOSDirectionEdgeInsets object, given the top, leading, bottom and trailing values
-		  #If TargetMacOS Or TargetIOS
-		    // NSDirectionalEdgeInsets NSDirectionalEdgeInsetsMake(CGFloat top, CGFloat leading, CGFloat bottom, CGFloat trailing);
-		    Declare Function NSDirectionalEdgeInsetsMake Lib "Foundation" ( top As CGFloat, leading As CGFloat, bottom As CGFloat, trailing As CGFloat ) As Ptr
-		    
-		    
-		    Dim p As ptr = NSDirectionalEdgeInsetsMake(top, leading, bottom, trailing)
-		    If p = Nil Then
-		      Return Nil
-		    End If
-		    
-		    Return New SOSDirectionalEdgeInsets(p)
-		  #EndIf
+		  // NSDirectionalEdgeInsets NSDirectionalEdgeInsetsMake(CGFloat top, CGFloat leading, CGFloat bottom, CGFloat trailing);
+		  Declare Function NSDirectionalEdgeInsetsMake Lib "Foundation" ( top As CGFloat, leading As CGFloat, bottom As CGFloat, trailing As CGFloat ) As Ptr
+		  
+		  
+		  Dim p As ptr = NSDirectionalEdgeInsetsMake(top, leading, bottom, trailing)
+		  If p = Nil Then
+		    Return Nil
+		  End If
+		  
+		  return new SOSDirectionalEdgeInsets(p)
 		End Function
 	#tag EndMethod
 
@@ -38,7 +33,7 @@ Class SOSDirectionalEdgeInsets
 		#tag Getter
 			Get
 			  // Bottom of the object
-			  #If TargetiOS
+			  #If TargetMacOS
 			    Declare Function getBottom Lib "Foundation" Selector "bottom" (obj As ptr) As CGFloat
 			    
 			    Return getBottom(mObj)
@@ -48,7 +43,7 @@ Class SOSDirectionalEdgeInsets
 		#tag Setter
 			Set
 			  // Bottom of the object
-			  #If TargetiOS
+			  #If TargetMacOS
 			    Declare Sub setBottom Lib "Foundation" Selector "setBottom:" (obj As ptr, value as CGFloat)
 			    
 			    setBottom(mObj, value)
@@ -62,7 +57,7 @@ Class SOSDirectionalEdgeInsets
 		#tag Getter
 			Get
 			  // Leading edge of the object
-			  #If TargetiOS
+			  #If TargetMacOS
 			    Declare Function getLeading Lib "Foundation" Selector "leading" (obj As ptr) As CGFloat
 			    
 			    Return getLeading(mObj)
@@ -72,7 +67,7 @@ Class SOSDirectionalEdgeInsets
 		#tag Setter
 			Set
 			  // Leading edge of the object
-			  #If TargetiOS
+			  #If TargetMacOS
 			    Declare Sub setLeading Lib "Foundation" Selector "setLeading:" (obj As ptr, value As CGFloat)
 			    
 			    setLeading(mObj, value)
@@ -90,7 +85,7 @@ Class SOSDirectionalEdgeInsets
 		#tag Getter
 			Get
 			  // Top edge of the object
-			  #If TargetiOS
+			  #If TargetMacOS
 			    Declare Function getTop Lib "Foundation" Selector "top" (obj As ptr) As CGFloat
 			    
 			    Return getTop(mObj)
@@ -100,7 +95,7 @@ Class SOSDirectionalEdgeInsets
 		#tag Setter
 			Set
 			  // Top edge of the object
-			  #If TargetiOS
+			  #If TargetMacOS
 			    Declare Sub setTop Lib "Foundation" Selector "setTop:" (obj As ptr, value As CGFloat)
 			    
 			    setTop(mObj, value)
@@ -114,7 +109,7 @@ Class SOSDirectionalEdgeInsets
 		#tag Getter
 			Get
 			  // Trailing edge of the object
-			  #If TargetiOS
+			  #If TargetMacOS
 			    Declare Function getTrailing Lib "Foundation" Selector "trailing" (obj As ptr) As CGFloat
 			    
 			    Return getTrailing(mObj)
@@ -124,7 +119,7 @@ Class SOSDirectionalEdgeInsets
 		#tag Setter
 			Set
 			  // Trailing edgs of the object
-			  #If TargetiOS
+			  #If TargetMacOS
 			    Declare Sub setTrailing Lib "Foundation" Selector "setTrailing:" (obj As ptr, value As CGFloat)
 			    
 			    setTrailing(mObj, value)
