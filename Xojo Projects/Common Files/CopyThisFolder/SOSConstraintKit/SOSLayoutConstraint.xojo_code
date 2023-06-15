@@ -11,7 +11,7 @@ Class SOSLayoutConstraint
 	#tag Method, Flags = &h0
 		Sub Constructor(item1 as ptr, attr1 as LayoutAttributes, relation as relations, offset as Double)
 		  // Creates a new constraint given the two items, the linked attribute, a relation and an offset constant.
-		  #If TargetIOS
+		  #If TargetIOS or TargetMacOS
 		    // + (instancetype)constraintWithItem:(id)view1 attribute:(NSLayoutAttribute)attr1 relatedBy:(NSLayoutRelation)relation toItem:(id)view2 attribute:(NSLayoutAttribute)attr2 multiplier:(CGFloat)multiplier constant:(CGFloat)c;
 		    Declare Function constraintWithItem_attribute_relatedBy_toItem_attribute_multiplier_constant Lib "Foundation" Selector "constraintWithItem:attribute:relatedBy:toItem:attribute:multiplier:constant:" ( cls As ptr , view1 As Ptr , attr1 As Integer , relation As Integer , view2 As Ptr , attr2 As Integer , multiplier As Double , c As Double ) As Ptr
 		    
@@ -29,7 +29,7 @@ Class SOSLayoutConstraint
 	#tag Method, Flags = &h0
 		Sub Constructor(item1 as ptr, attr1 as LayoutAttributes, relation as relations, item2 as ptr, attr2 as LayoutAttributes, multiplier as Double = 1.0, offset as Double = 0.0)
 		  // Creates a new constraint given the two items, their linked attributes, the relationship, a multiplier and an offset.
-		  #If TargetIOS
+		  #If TargetIOS or TargetMacOS
 		    // + (instancetype)constraintWithItem:(id)view1 attribute:(NSLayoutAttribute)attr1 relatedBy:(NSLayoutRelation)relation toItem:(id)view2 attribute:(NSLayoutAttribute)attr2 multiplier:(CGFloat)multiplier constant:(CGFloat)c;
 		    Declare Function constraintWithItem_attribute_relatedBy_toItem_attribute_multiplier_constant Lib "Foundation" Selector "constraintWithItem:attribute:relatedBy:toItem:attribute:multiplier:constant:" ( cls As ptr , view1 As Ptr , attr1 As integer , relation As integer , view2 As Ptr , attr2 As integer , multiplier As Double , c As Double ) As Ptr
 		    
@@ -47,7 +47,7 @@ Class SOSLayoutConstraint
 	#tag Method, Flags = &h0
 		Sub Constructor(item1 as ptr, item2 as ptr, attr as LayoutAttributes, relation as Relations = Relations.Equal)
 		  // Creates a new constraint given the two items and an attribute.
-		  #If TargetIOS
+		  #If TargetIOS or TargetMacOS
 		    // + (instancetype)constraintWithItem:(id)view1 attribute:(NSLayoutAttribute)attr1 relatedBy:(NSLayoutRelation)relation toItem:(id)view2 attribute:(NSLayoutAttribute)attr2 multiplier:(CGFloat)multiplier constant:(CGFloat)c;
 		    Declare Function constraintWithItem_attribute_relatedBy_toItem_attribute_multiplier_constant Lib "Foundation" Selector "constraintWithItem:attribute:relatedBy:toItem:attribute:multiplier:constant:" ( cls As ptr , view1 As Ptr , attr1 As integer , relation As integer , view2 As Ptr , attr2 As integer , multiplier As Double , c As Double ) As Ptr
 		    
@@ -103,7 +103,7 @@ Class SOSLayoutConstraint
 	#tag Method, Flags = &h0
 		Sub Release()
 		  // Releases the underlying NSLayoutConstraint
-		  #If TargetiOS
+		  #If TargetIOS or TargetMacOS
 		    Declare Sub Release Lib "Foundation" Selector "release" (obj As Ptr)
 		    
 		    Release(mObj)
@@ -124,7 +124,7 @@ Class SOSLayoutConstraint
 
 	#tag Method, Flags = &h21
 		Attributes( Hidden ) Private Sub SetPriority(value as Double, updateActivePriority as Boolean)
-		  #If TargetIOS
+		  #If TargetIOS or TargetMacOS
 		    // throttle to valid values
 		    value = Min(1000.0, Max(1.0, value))
 		    
@@ -155,7 +155,7 @@ Class SOSLayoutConstraint
 		#tag Getter
 			Get
 			  // The Active status of the constraint
-			  #If TargetiOS
+			  #If TargetIOS or TargetMacOS
 			    // @property(getter=isActive) BOOL active;
 			    Declare Function isActive Lib "Foundation" Selector "isActive" (obj As ptr) As Boolean
 			    
@@ -166,7 +166,7 @@ Class SOSLayoutConstraint
 		#tag Setter
 			Set
 			  // Sets the Active status of the constraint. Setting this value to True adds the constraint to its containing view. Setting the value to False removes it from its containing view.
-			  #If TargetiOS
+			  #If TargetIOS or TargetMacOS
 			    Declare Sub setActive Lib "Foundation" Selector "setActive:" (obj As ptr, value As Boolean)
 			    setActive(mObj, value)
 			  #EndIf
@@ -179,7 +179,7 @@ Class SOSLayoutConstraint
 		#tag Getter
 			Get
 			  // The first anchor of the constraint
-			  #If TargetIOS
+			  #If TargetIOS or TargetMacOS
 			    // @property(readonly, copy) NSLayoutAnchor *firstAnchor;
 			    Declare Function getFirstAnchor Lib "Foundation" Selector "firstAnchor" (obj As ptr) As Ptr
 			    
@@ -206,7 +206,7 @@ Class SOSLayoutConstraint
 		#tag Getter
 			Get
 			  // The first attribute for the constraint
-			  #If TargetIOS
+			  #If TargetIOS or TargetMacOS
 			    // @property(readonly) NSLayoutAttribute firstAttribute;
 			    Declare Function getFirstAttribute Lib "Foundation" Selector "firstAttribute" (obj As ptr) As Integer
 			    
@@ -221,7 +221,7 @@ Class SOSLayoutConstraint
 		#tag Getter
 			Get
 			  // Pointer to the first item of the constraint
-			  #If TargetIOS
+			  #If TargetIOS or TargetMacOS
 			    // @property(nullable, readonly, assign) id firstItem;
 			    Declare Function getFirstItem Lib "Foundation" Selector "firstItem" (obj As ptr) As Ptr
 			    
@@ -246,7 +246,7 @@ Class SOSLayoutConstraint
 		#tag Getter
 			Get
 			  // Returns the identifier for the constraint
-			  #If TargetIOS
+			  #If TargetIOS or TargetMacOS
 			    // @property(copy) NSString *identifier;
 			    Declare Function getIdentifier Lib "Foundation" Selector "identifier" (obj As ptr) As CFStringRef
 			    
@@ -259,7 +259,7 @@ Class SOSLayoutConstraint
 		#tag Setter
 			Set
 			  // Sets the identifier for the constraint
-			  #If TargetIOS
+			  #If TargetIOS or TargetMacOS
 			    Declare Sub setIdentifier Lib "Foundation" Selector "setIdentifier:" (obj As ptr, value As CFStringRef)
 			    
 			    setIdentifier(mObj, value)
@@ -286,7 +286,7 @@ Class SOSLayoutConstraint
 		#tag Getter
 			Get
 			  // The multiplier for the constraint
-			  #If TargetIOS
+			  #If TargetIOS or TargetMacOS
 			    // @property(readonly) CGFloat multiplier;
 			    Declare Function getMultiplier Lib "Foundation" Selector "multiplier" (obj As ptr) As Double
 			    
@@ -301,7 +301,7 @@ Class SOSLayoutConstraint
 		#tag Getter
 			Get
 			  // The offset constant of the constraint
-			  #If TargetIOS
+			  #If TargetIOS or TargetMacOS
 			    // @property CGFloat constant;
 			    Declare Function getConstant Lib "Foundation" Selector "constant" (obj As ptr) As Double
 			    return getConstant(mObj)
@@ -311,7 +311,7 @@ Class SOSLayoutConstraint
 		#tag Setter
 			Set
 			  // The  offset for the constraint
-			  #If TargetIOS
+			  #If TargetIOS or TargetMacOS
 			    Declare Sub setConstant Lib "Foundation" Selector "setConstant:" (obj As ptr, value As Double)
 			    setConstant(mObj, value)
 			  #EndIf
@@ -324,7 +324,7 @@ Class SOSLayoutConstraint
 		#tag Getter
 			Get
 			  // The priority of the constraint
-			  #If TargetIOS
+			  #If TargetIOS or TargetMacOS
 			    // @property UILayoutPriority priority;
 			    Declare Function getPriority Lib "Foundation" Selector "priority" (obj As Ptr) As single
 			    
@@ -346,7 +346,7 @@ Class SOSLayoutConstraint
 		#tag Getter
 			Get
 			  // The  relationship for the constraint
-			  #If TargetIOS
+			  #If TargetIOS or TargetMacOS
 			    // @property(readonly) NSLayoutRelation relation;
 			    Declare Function getRelation Lib "Foundation" Selector "relation" (obj As ptr) As Integer
 			    
@@ -363,7 +363,7 @@ Class SOSLayoutConstraint
 			Get
 			  // The second anchor of the constraint
 			  
-			  #If TargetIOS
+			  #If TargetIOS or TargetMacOS
 			    // @property(readonly, copy) NSLayoutAnchor *firstAnchor;
 			    Declare Function getSecondAnchor Lib "Foundation" Selector "secondAnchor" (obj As ptr) As Ptr
 			    
@@ -390,7 +390,7 @@ Class SOSLayoutConstraint
 		#tag Getter
 			Get
 			  // The second attribute of the constraint
-			  #If TargetIOS
+			  #If TargetIOS or TargetMacOS
 			    // @property(readonly) NSLayoutAttribute firstAttribute;
 			    Declare Function getSecondAttribute Lib "Foundation" Selector "secondAttribute" (obj As ptr) As Integer
 			    
@@ -405,7 +405,7 @@ Class SOSLayoutConstraint
 		#tag Getter
 			Get
 			  // Pointer to the second item of the constraint
-			  #If TargetIOS
+			  #If TargetIOS or TargetMacOS
 			    // @property(nullable, readonly, assign) id firstItem;
 			    Declare Function getSecondItem Lib "Foundation" Selector "secondItem" (obj As ptr) As Ptr
 			    
