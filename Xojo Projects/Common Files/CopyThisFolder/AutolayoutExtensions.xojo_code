@@ -1,7 +1,7 @@
 #tag Module
 Protected Module AutolayoutExtensions
 	#tag CompatibilityFlags = ( TargetDesktop and ( Target64Bit ) ) or ( TargetIOS and ( Target64Bit ) )
-	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit)) or  (TargetIOS and (Target64Bit))
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
 		Sub AddConstraint(extends control as DesktopUIControl, constraint as SOSLayoutConstraint)
 		  // adds an SOSLayoutConstraint to the DesktopUIControl
 		  #if TargetMacOS
@@ -1945,19 +1945,20 @@ Protected Module AutolayoutExtensions
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
 		Sub UseIntrinsicWidth(extends ctl as DesktopUIControl)
 		  // Removes the width constraint(s) so the control will use the intrinsic size
 		  
-		  
-		  Dim ca() As SOSLayoutConstraint = ctl.Constraints
-		  For i As Integer = 0 To UBound(ca)
-		    If ca(i).FirstItem = ctl.handle And ca(i).FirstAttribute = SOSLayoutConstraint.LayoutAttributes.Width And ca(i).SecondItem = Nil Then
-		      ca(i).Active = False
-		    End If
-		  Next
-		  
-		  ctl.WidthAnchor.ConstraintEqualToConstant(ctl.IntrinsicContentSize.Width).Active = True
+		  #If TargetMacOS
+		    Dim ca() As SOSLayoutConstraint = ctl.Constraints
+		    For i As Integer = 0 To UBound(ca)
+		      If ca(i).FirstItem = ctl.handle And ca(i).FirstAttribute = SOSLayoutConstraint.LayoutAttributes.Width And ca(i).SecondItem = Nil Then
+		        ca(i).Active = False
+		      End If
+		    Next
+		    
+		    ctl.WidthAnchor.ConstraintEqualToConstant(ctl.IntrinsicContentSize.Width).Active = True
+		  #EndIf
 		End Sub
 	#tag EndMethod
 

@@ -281,7 +281,7 @@ Protected Module SOSConstraintKit
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetConsole and (Target64Bit)) or  (TargetWeb and (Target64Bit)) or  (TargetDesktop and (Target64Bit))
 		Function LeadingAnchor(extends view as DesktopUIControl) As SOSLayoutXAxisAnchor
 		  // The Leading anchor of the control
 		  
@@ -683,6 +683,11 @@ Protected Module SOSConstraintKit
 		  Y as CGFloat
 		  Width as CGFloat
 		Height as CGFloat
+	#tag EndStructure
+
+	#tag Structure, Name = CGSize, Flags = &h21
+		width as cgfloat
+		height as cgfloat
 	#tag EndStructure
 
 
