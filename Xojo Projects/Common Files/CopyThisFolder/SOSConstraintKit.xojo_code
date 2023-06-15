@@ -1,7 +1,7 @@
 #tag Module
 Protected Module SOSConstraintKit
 	#tag CompatibilityFlags = ( TargetDesktop and ( Target64Bit ) ) or ( TargetIOS and ( Target64Bit ) )
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target64Bit))
 		Function BottomAnchor(extends view as MobileScreen) As SOSLayoutYAxisAnchor
 		  // The bottom anchor of the MobileScreen
 		  
@@ -14,7 +14,7 @@ Protected Module SOSConstraintKit
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target64Bit))
 		Function BottomAnchor(extends view as MobileUIControl) As SOSLayoutYAxisAnchor
 		  // The bottom anchor of the MobileUIControl
 		  
@@ -27,7 +27,7 @@ Protected Module SOSConstraintKit
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target64Bit))
 		Function CenterXAnchor(extends view as MobileScreen) As SOSLayoutXAxisAnchor
 		  // The Center X anchor of the MobileScreen
 		  
@@ -40,7 +40,7 @@ Protected Module SOSConstraintKit
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target64Bit))
 		Function CenterXAnchor(extends view as MobileUIControl) As SOSLayoutXAxisAnchor
 		  // The Center X anchor of the MobileUIControl
 		  
@@ -53,7 +53,7 @@ Protected Module SOSConstraintKit
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target64Bit))
 		Function CenterYAnchor(extends view as MobileScreen) As SOSLayoutYAxisAnchor
 		  // The Center Y anchor of the MobileScreen
 		  
@@ -66,7 +66,7 @@ Protected Module SOSConstraintKit
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target64Bit))
 		Function CenterYAnchor(extends view as MobileUIControl) As SOSLayoutYAxisAnchor
 		  // The Center Y anchor of the MobileUIControl
 		  
@@ -79,7 +79,7 @@ Protected Module SOSConstraintKit
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target64Bit))
 		Function FirstBaselineAnchor(extends view as MobileUIControl) As SOSLayoutYAxisAnchor
 		  // The First Baseline anchor of the MobileUIControl
 		  
@@ -92,7 +92,7 @@ Protected Module SOSConstraintKit
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target64Bit))
 		Function HeightAnchor(extends view as MobileScreen) As SOSLayoutDimension
 		  // The Height anchor of the MobileScreen
 		  
@@ -106,7 +106,7 @@ Protected Module SOSConstraintKit
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target64Bit))
 		Function HeightAnchor(extends view as MobileUIControl) As SOSLayoutDimension
 		  // The Height anchor of the MobileUIControl
 		  
@@ -120,7 +120,7 @@ Protected Module SOSConstraintKit
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target64Bit))
 		Function LastBaselineAnchor(extends view as MobileUIControl) As SOSLayoutYAxisAnchor
 		  // The Last Baseline anchor of the MobileUIControl
 		  
@@ -133,7 +133,7 @@ Protected Module SOSConstraintKit
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target64Bit))
 		Function LeadingAnchor(extends view as MobileScreen) As SOSLayoutXAxisAnchor
 		  // The Leading anchor of the control
 		  
@@ -146,7 +146,7 @@ Protected Module SOSConstraintKit
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target64Bit))
 		Function LeadingAnchor(extends view as MobileUIControl) As SOSLayoutXAxisAnchor
 		  // The Leading anchor of the control
 		  
@@ -159,7 +159,7 @@ Protected Module SOSConstraintKit
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target64Bit))
 		Function LeftAnchor(extends view as MobileScreen) As SOSLayoutXAxisAnchor
 		  // The Left anchor of the MobileScreen
 		  
@@ -167,7 +167,7 @@ Protected Module SOSConstraintKit
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target64Bit))
 		Function LeftAnchor(extends view as MobileUIControl) As SOSLayoutXAxisAnchor
 		  // The Left anchor of the MobileUIControl
 		  
@@ -175,7 +175,7 @@ Protected Module SOSConstraintKit
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h21
+	#tag Method, Flags = &h21, CompatibilityFlags = (TargetIOS and (Target64Bit))
 		Attributes( Hidden ) Private Function LeftAnchor(view as ptr) As SOSLayoutXAxisAnchor
 		  #If TargetiOS
 		    // @property(nonatomic, readonly, strong) NSLayoutXAxisAnchor *leftAnchor;
@@ -191,7 +191,7 @@ Protected Module SOSConstraintKit
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target64Bit))
 		Function RightAnchor(extends view as MobileScreen) As SOSLayoutXAxisAnchor
 		  // The Right anchor of the MobileScreen
 		  
@@ -199,7 +199,7 @@ Protected Module SOSConstraintKit
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target64Bit))
 		Function RightAnchor(extends view as MobileUIControl) As SOSLayoutXAxisAnchor
 		  // The Right anchor of the MobileUIControl
 		  
@@ -207,7 +207,7 @@ Protected Module SOSConstraintKit
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h21
+	#tag Method, Flags = &h21, CompatibilityFlags = (TargetIOS and (Target64Bit))
 		Attributes( Hidden ) Private Function RightAnchor(view as ptr) As SOSLayoutXAxisAnchor
 		  #If TargetiOS
 		    // @property(nonatomic, readonly, strong) NSLayoutXAxisAnchor *rightAnchor;
@@ -223,7 +223,7 @@ Protected Module SOSConstraintKit
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target64Bit))
 		Function SafeAreaLayoutGuide(extends view as MobileScreen) As SOSLayoutGuide
 		  // The Safe Area Layout Guide anchor of the MobileScreen
 		  
@@ -231,7 +231,7 @@ Protected Module SOSConstraintKit
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target64Bit))
 		Function SafeAreaLayoutGuide(extends view as MobileUIControl) As SOSLayoutGuide
 		  // The Safe Area Layout Guide anchor of the MobileUIControl
 		  
@@ -239,7 +239,7 @@ Protected Module SOSConstraintKit
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h21
+	#tag Method, Flags = &h21, CompatibilityFlags = (TargetIOS and (Target64Bit))
 		Attributes( Hidden ) Private Function SafeAreaLayoutGuide(view as ptr) As SOSLayoutGuide
 		  #If TargetiOS
 		    // @property(nonatomic, readonly, strong) UILayoutGuide *safeAreaLayoutGuide;
@@ -251,7 +251,7 @@ Protected Module SOSConstraintKit
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target64Bit))
 		Function TopAnchor(extends view as MobileScreen) As SOSLayoutYAxisAnchor
 		  // The Top anchor of the MobileScreen
 		  
@@ -264,7 +264,7 @@ Protected Module SOSConstraintKit
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target64Bit))
 		Function TopAnchor(extends view as MobileUIControl) As SOSLayoutYAxisAnchor
 		  // The Top anchor of the MobileUIControl
 		  
@@ -277,7 +277,7 @@ Protected Module SOSConstraintKit
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target64Bit))
 		Function TrailingAnchor(extends view as MobileScreen) As SOSLayoutXAxisAnchor
 		  // The Trailing anchor of the MobileScreen
 		  
@@ -290,7 +290,7 @@ Protected Module SOSConstraintKit
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target64Bit))
 		Function TrailingAnchor(extends view as MobileUIControl) As SOSLayoutXAxisAnchor
 		  // The Trailing anchor of the MobileUIControl
 		  
