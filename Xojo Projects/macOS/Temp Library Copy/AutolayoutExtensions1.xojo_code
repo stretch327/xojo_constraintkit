@@ -74,63 +74,6 @@ Protected Module AutolayoutExtensions1
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
-		Sub AlignToLabel(extends ctl as DesktopUIControl, label as DesktopLabel)
-		  // Creates leading constraint and either a baseline or top constraint between the controls and the label
-		  
-		  #If TargetMacOS
-		    
-		    Select Case ctl
-		    Case IsA DesktopRadioButton
-		      Return
-		      
-		    Case IsA DesktopTextField 
-		      ctl.FirstBaselineAnchor.ConstraintEqualToAnchor(label.FirstBaselineAnchor, 1).Active = True
-		      
-		    Case IsA DesktopButton, IsA DesktopComboBox, IsA DesktopDateTimePicker, IsA DesktopPopupMenu
-		      ctl.FirstBaselineAnchor.ConstraintEqualToAnchor(label.FirstBaselineAnchor, 2).Active = True
-		      
-		    Case IsA DesktopRadioButton, IsA DesktopCheckBox, IsA DesktopLabel
-		      ctl.FirstBaselineAnchor.ConstraintEqualToAnchor(label.FirstBaselineAnchor).Active = True
-		      
-		    Case IsA DesktopRadioGroup
-		      Declare Function subviews Lib "Foundation" Selector "subviews" (obj As ptr) As ptr
-		      Declare Function objectAtIndex Lib "Foundation" Selector "objectAtIndex:" (obj As ptr, index As Integer) As ptr
-		      
-		      Dim sv As ptr = subviews(ctl.handle)
-		      Dim firstview As ptr = objectAtIndex(sv, 0)
-		      
-		      Dim c As New SOSLayoutConstraint(firstview, SOSLayoutConstraint.LayoutAttributes.FirstBaseline, _
-		      SOSLayoutConstraint.Relations.Equal, label.handle, SOSLayoutConstraint.LayoutAttributes.FirstBaseline, _
-		      1.0, 2)
-		      c.active = True 
-		      
-		    Case IsA DesktopTextArea
-		      // this text component doesn't get special treatment because if it scrolled
-		      // the label would move up with the first line in the text. We can however
-		      // move the control down a pixel to get the alignment right.
-		      ctl.TopAnchor.ConstraintEqualToAnchor(label.TopAnchor, 1).Active = True
-		      
-		    Case Else
-		      ctl.TopAnchor.ConstraintEqualToAnchor(label.TopAnchor).Active = True
-		      
-		    End Select
-		    
-		    
-		    Declare Sub setAlignment Lib "Foundation" Selector "setAlignment:" (obj As ptr, value As Integer)
-		    If SystemIsRTL Then
-		      setAlignment(label.Handle, 1)
-		    Else
-		      setAlignment(label.Handle, 3) 
-		    End If
-		    
-		    label.UseIntrinsicWidth
-		    ctl.LeadingAnchor.ConstraintEqualToSystemSpacingAfterAnchor(label.TrailingAnchor).Active = True
-		    
-		  #EndIf
-		End Sub
-	#tag EndMethod
-
 	#tag Method, Flags = &h21
 		Private Function AttributeName(attr as SOSLayoutConstraint.LayoutAttributes) As String
 		  #if TargetMacOS
