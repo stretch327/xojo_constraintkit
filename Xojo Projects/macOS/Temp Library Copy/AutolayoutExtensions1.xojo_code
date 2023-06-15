@@ -322,20 +322,6 @@ Protected Module AutolayoutExtensions1
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
-		Sub ConvertConstraintsForAllControls(extends view as DesktopWindow, newPriority as Double)
-		  // Converts all constraints on a particular DesktopWindow to SOSLayoutConstraints, changing them all to a particular priority
-		  
-		  #If TargetMacOS
-		    For Each ctl As Object In view.controls
-		      If ctl IsA DesktopUIControl Then
-		        view.ConvertConstraintsForControl(DesktopUIControl(ctl), newPriority)
-		      End If
-		    Next
-		  #EndIf
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
 		Sub ConvertConstraintsForControl(extends view as DesktopWindow, item as DesktopUIControl, newPriority as Double = 0)
 		  // Converts all constraints for a specific DesktopUIControl on a particular DesktopWindow to SOSLayoutConstraints, changing them all to a particular Priority
 		  
