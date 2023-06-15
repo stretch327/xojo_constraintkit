@@ -303,7 +303,38 @@ Protected Module SOSConstraintKit
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
+		Function WidthAnchor(extends view as DesktopUIControl) As SOSLayoutDimension
+		  // The Width anchor of the DesktopUIControl
+		  
+		  #If TargetMacOS
+		    // @property(nonatomic, readonly, strong) NSLayoutDimension *widthAnchor;
+		    Declare Function getWidthAnchor Lib "Foundation" Selector "widthAnchor" (obj As ptr) As Ptr
+		    
+		    Return SOSLayoutDimension.Create(getWidthAnchor(view.Handle))
+		  #EndIf
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
+		Function WidthAnchor(extends view as DesktopWindow) As SOSLayoutDimension
+		  // The Width anchor of the DesktopWindow
+		  
+		  #If TargetMacOS
+		    // @property(nonatomic, readonly, strong) NSLayoutDimension *widthAnchor;
+		    Declare Function getWidthAnchor Lib "Foundation" Selector "widthAnchor" (obj As ptr) As Ptr
+		    
+		    If view IsA DesktopWindow Then
+		      Return SOSLayoutDimension.Create(getWidthAnchor(WindowToView(view)))
+		    Else
+		      Return SOSLayoutDimension.Create(getWidthAnchor(view.Handle))
+		    End If
+		  #EndIf
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target64Bit))
 		Function WidthAnchor(extends view as MobileScreen) As SOSLayoutDimension
 		  // The Width anchor of the MobileScreen
 		  
@@ -317,7 +348,7 @@ Protected Module SOSConstraintKit
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target64Bit))
 		Function WidthAnchor(extends view as MobileUIControl) As SOSLayoutDimension
 		  // The Width anchor of the MobileUIControl
 		  
