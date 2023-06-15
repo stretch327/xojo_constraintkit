@@ -118,13 +118,12 @@ End
 		Sub Opening()
 		  
 		  Self.ConvertConstraintsForAllControls(999)
-		  // Self.ConvertConstraintsForControl(oval1, 751)
-		  // Self.ConvertConstraintsForControl(RadioGroup1, 751)
+		  Self.ConvertConstraintsForControl(oval1, 751)
+		  Self.ConvertConstraintsForControl(RadioGroup1, 751)
 		  
 		  oval1.WidthAnchor.ConstraintGreaterThanOrEqualToConstant(200).Active = True
 		  oval1.WidthAnchor.ConstraintLessThanOrEqualToConstant(400).Active = True
 		  oval1.HeightAnchor.ConstraintGreaterThanOrEqualToConstant(50).Active = True
-		  
 		  
 		End Sub
 	#tag EndEvent

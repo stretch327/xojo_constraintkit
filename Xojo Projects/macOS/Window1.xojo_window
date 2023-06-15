@@ -745,6 +745,7 @@ End
 		  // don't let the text area get any smaller
 		  textarea1.HeightAnchor.ConstraintGreaterThanOrEqualToConstant(textarea1.Height).Active = True
 		  textarea1.WidthAnchor.ConstraintGreaterThanOrEqualToConstant(textarea1.Width).Active = True
+		  textarea1.WidthAnchor.ConstraintLessThanOrEqualToConstant(300).Active = True
 		End Sub
 	#tag EndEvent
 
