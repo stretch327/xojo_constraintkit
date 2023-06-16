@@ -714,9 +714,6 @@ End
 #tag WindowCode
 	#tag Event
 		Sub Opening()
-		  AutolayoutExtensions.DefaultPriority = 1000
-		  
-		  
 		  
 		  Self.ConvertToAutolayout(True, True)
 		  
@@ -746,6 +743,10 @@ End
 		  textarea1.HeightAnchor.ConstraintGreaterThanOrEqualToConstant(textarea1.Height).Active = True
 		  textarea1.WidthAnchor.ConstraintGreaterThanOrEqualToConstant(textarea1.Width).Active = True
 		  textarea1.WidthAnchor.ConstraintLessThanOrEqualToConstant(300).Active = True
+		  
+		  
+		  
+		  
 		End Sub
 	#tag EndEvent
 
