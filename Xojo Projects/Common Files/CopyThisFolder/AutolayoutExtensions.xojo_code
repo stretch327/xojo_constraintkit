@@ -52,21 +52,10 @@ Protected Module AutolayoutExtensions
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
-		Sub AddConstraints(extends view as DesktopUIControl, constraints() as SOSLayoutConstraint)
-		  // adds an array of SOSLayoutConstraints to the DesktopUIControl
-		  
-		  For i As Integer = 0 To UBound(constraints)
-		    constraints(i).Priority = DefaultPriority
-		    view.AddConstraint(constraints(i))
-		  Next
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
-		Sub AddConstraints(extends view as DesktopUIControl, constraints() as SOSLayoutConstraint, priority as Double)
+		Sub AddConstraints(extends view as DesktopUIControl, constraints() as SOSLayoutConstraint, priority as Double = 1000.0)
 		  // adds an array of SOSLayoutConstraints to the DesktopUIControl with a specific priority
 		  // throttle to valid values
-		  priority = Min(Max(priority, 1.0), 1000.0)
+		  ThrottlePriority(priority)
 		  
 		  For i As Integer = 0 To UBound(constraints)
 		    constraints(i).Priority = priority
@@ -76,21 +65,11 @@ Protected Module AutolayoutExtensions
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
-		Sub AddConstraints(extends view as DesktopWindow, constraints() as SOSLayoutConstraint)
-		  // adds an array of SOSLayoutConstraints to the DesktopWindow
-		  For i As Integer = 0 To UBound(constraints)
-		    constraints(i).Priority = DefaultPriority
-		    view.AddConstraint(constraints(i))
-		  Next
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
-		Sub AddConstraints(extends view as DesktopWindow, constraints() as SOSLayoutConstraint, priority as Double)
+		Sub AddConstraints(extends view as DesktopWindow, constraints() as SOSLayoutConstraint, priority as Double = 1000.0)
 		  // adds an array of SOSLayoutConstraints to the DesktopWindow with a particular priority
 		  
 		  // throttle to valid values
-		  priority = Min(Max(priority, 1.0), DefaultPriority)
+		  ThrottlePriority(priority)
 		  
 		  For i As Integer = 0 To UBound(constraints)
 		    constraints(i).Priority = priority
@@ -100,21 +79,11 @@ Protected Module AutolayoutExtensions
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target64Bit))
-		Sub AddConstraints(extends view as MobileScreen, constraints() as SOSLayoutConstraint)
-		  // Adds an array of SOSLayoutConstraints to the MobileScreen
-		  For i As Integer = 0 To UBound(constraints)
-		    constraints(i).Priority = DefaultPriority
-		    view.AddConstraint(constraints(i))
-		  Next
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target64Bit))
-		Sub AddConstraints(extends view as MobileScreen, constraints() as SOSLayoutConstraint, priority as Double)
+		Sub AddConstraints(extends view as MobileScreen, constraints() as SOSLayoutConstraint, priority as Double = 1000.0)
 		  // Adds an array of SOSLayoutConstraints to the MobileScreen with a specific priority
 		  
 		  // throttle to valid values
-		  priority = Min(Max(priority, 1.0), DefaultPriority)
+		  ThrottlePriority(priority)
 		  
 		  For i As Integer = 0 To UBound(constraints)
 		    constraints(i).Priority = priority
@@ -124,21 +93,10 @@ Protected Module AutolayoutExtensions
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target64Bit))
-		Sub AddConstraints(extends view as MobileUIControl, constraints() as SOSLayoutConstraint)
-		  // Adds an array of SOSLayoutConstraints to the MobileUIControl
-		  
-		  For i As Integer = 0 To UBound(constraints)
-		    constraints(i).Priority = DefaultPriority
-		    view.AddConstraint(constraints(i))
-		  Next
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target64Bit))
-		Sub AddConstraints(extends view as MobileUIControl, constraints() as SOSLayoutConstraint, priority as Double)
+		Sub AddConstraints(extends view as MobileUIControl, constraints() as SOSLayoutConstraint, priority as Double = 1000.0)
 		  // Adds an array of SOSLayoutConstraints to the MobileUIControl with a specific priority
 		  // throttle to valid values
-		  priority = Min(Max(priority, 1.0), 1000.0)
+		  ThrottlePriority(priority)
 		  
 		  For i As Integer = 0 To UBound(constraints)
 		    constraints(i).Priority = priority
@@ -640,16 +598,13 @@ Protected Module AutolayoutExtensions
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
-		Sub ConvertConstraintsForControl(extends view as DesktopWindow, item as DesktopUIControl, newPriority as Double = 0)
+		Sub ConvertConstraintsForControl(extends view as DesktopWindow, item as DesktopUIControl, newPriority as Double = 1000.0)
 		  // Converts all constraints for a specific DesktopUIControl on a particular DesktopWindow to SOSLayoutConstraints, changing them all to a particular Priority
 		  
 		  #If TargetMacOS
 		    Dim ca() As SOSConstraintKit.SOSLayoutConstraint = view.constraints
 		    
-		    // clip the value to be between 1 and 999 so it'll be editable later
-		    If newPriority > 0 Then
-		      newPriority = Min(DefaultPriority, Max(1, newPriority))
-		    End If
+		    ThrottlePriority(newPriority)
 		    
 		    For i As Integer = UBound(ca) DownTo 0
 		      If ca(i).FirstItem = item.Handle Then
@@ -688,7 +643,7 @@ Protected Module AutolayoutExtensions
 		    Dim priority As Double = CType(newPriority, Double)
 		    
 		    // clip the value to be between 1 and 999 so it'll be editable later
-		    priority = Min(DefaultPriority, Max(1, priority))
+		    ThrottlePriority(priority)
 		    
 		    For i As Integer = UBound(ca) DownTo 0
 		      If ca(i).FirstItem = item.Handle Then
@@ -717,7 +672,7 @@ Protected Module AutolayoutExtensions
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target64Bit))
-		Sub ConvertConstraintsForControl(extends view as MobileScreen, item as MobileUIControl, newPriority as Double = 0)
+		Sub ConvertConstraintsForControl(extends view as MobileScreen, item as MobileUIControl, newPriority as Double = 1000.0)
 		  // Converts all constraints for a specific MobileUIControl on a particular MobileScreen to SOSLayoutConstraints, changing them all to a particular Priority
 		  
 		  #If TargetiOS
@@ -725,9 +680,7 @@ Protected Module AutolayoutExtensions
 		    Dim ca() As SOSConstraintKit.SOSLayoutConstraint = view.constraints
 		    
 		    // clip the value to be between 1 and 999 so it'll be editable later
-		    If newPriority > 0 Then
-		      newPriority = Min(DefaultPriority, Max(1, newPriority))
-		    End If
+		    ThrottlePriority(newPriority)
 		    
 		    For i As Integer = UBound(ca) DownTo 0
 		      Dim attr1value As Integer = CType(ca(i).FirstAttribute, Integer)
@@ -1616,7 +1569,7 @@ Protected Module AutolayoutExtensions
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
-		Sub RecreateConstraintsForAllControls(extends view As DesktopWindow, newPriority As Double)
+		Sub RecreateConstraintsForAllControls(extends view As DesktopWindow, newPriority As Double = 1000.0)
 		  // Recreates constrains for all controls on the view, with a specific priority
 		  #If TargetMacOS
 		    Dim ca() As SOSConstraintKit.SOSLayoutConstraint = view.constraints
@@ -1624,9 +1577,7 @@ Protected Module AutolayoutExtensions
 		    Dim newConstraints() As SOSLayoutConstraint
 		    
 		    // clip the value to be between 1 and 999 so it'll be editable later
-		    If newPriority > 0 Then
-		      newPriority = Min(DefaultPriority, Max(1, newPriority))
-		    End If
+		    ThrottlePriority(newPriority)
 		    
 		    For i As Integer = UBound(ca) DownTo 0
 		      Dim c As New SOSLayoutConstraint(ca(i).FirstItem, ca(i).FirstAttribute, ca(i).relation, ca(i).SecondItem, ca(i).SecondAttribute, ca(i).Multiplier, ca(i).Offset)
@@ -1669,15 +1620,12 @@ Protected Module AutolayoutExtensions
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target64Bit))
-		Sub RecreateConstraintsForAllControls(extends view As mobilescreen, newPriority As Double)
+		Sub RecreateConstraintsForAllControls(extends view As mobilescreen, newPriority As Double = 1000.0)
 		  Dim ca() As SOSConstraintKit.SOSLayoutConstraint = view.constraints
 		  
 		  Dim newConstraints() As SOSLayoutConstraint
 		  
-		  // clip the value to be between 1 and 999 so it'll be editable later
-		  If newPriority > 0 Then
-		    newPriority = Min(DefaultPriority, Max(1, newPriority))
-		  End If
+		  ThrottlePriority(newPriority)
 		  
 		  For i As Integer = UBound(ca) DownTo 0
 		    Dim c As New SOSLayoutConstraint(ca(i).FirstItem, ca(i).FirstAttribute, ca(i).relation, ca(i).SecondItem, ca(i).SecondAttribute, ca(i).Multiplier, ca(i).Offset)
@@ -1897,6 +1845,12 @@ Protected Module AutolayoutExtensions
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h21
+		Private Sub ThrottlePriority(byref value as Double)
+		  value = max(kMinPriority, min(kMaxPriority, value))
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
 		Sub UpdateConstraints(extends control as DesktopUIControl)
 		  // Asks the OS to update the constraints for a particular control.
@@ -1978,9 +1932,11 @@ Protected Module AutolayoutExtensions
 	#tag EndMethod
 
 
-	#tag Property, Flags = &h1, CompatibilityFlags = (TargetConsole and (Target64Bit)) or  (TargetWeb and (Target64Bit)) or  (TargetDesktop and (Target64Bit)) or  (TargetIOS and (Target64Bit)), Description = 5468652064656661756C74207072696F726974792075736564206279206D6574686F647320776869636820637265617465206F7220726563726561746520636F6E73747261696E74732E
-		Protected DefaultPriority As Double = 999.0
-	#tag EndProperty
+	#tag Constant, Name = kMaxPriority, Type = Double, Dynamic = False, Default = \"1000.0", Scope = Private
+	#tag EndConstant
+
+	#tag Constant, Name = kMinPriority, Type = Double, Dynamic = False, Default = \"1.0", Scope = Private
+	#tag EndConstant
 
 
 	#tag Structure, Name = CGSize, Flags = &h21
