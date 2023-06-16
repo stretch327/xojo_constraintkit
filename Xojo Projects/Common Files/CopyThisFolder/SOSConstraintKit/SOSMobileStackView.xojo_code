@@ -201,76 +201,82 @@ Inherits iOSMobileUserControl
 
 	#tag Method, Flags = &h21
 		Private Sub ΩUpdateScrollViewContentConstraints()
-		  // add some constraints
-		  
-		  For i As Integer = 0 To UBound(mScrollViewContentConstraints)
-		    mScrollViewContentConstraints(i).Active = False
-		  Next
-		  
-		  Redim mScrollViewContentConstraints(-1)
-		  
-		  Dim c As SOSLayoutConstraint
-		  If Direction = axis.Horizontal Then
-		    mScrollViewContentConstraints.Add New SOSLayoutConstraint(mObj, mScrollObj, SOSLayoutConstraint.LayoutAttributes.CenterY)
-		    mScrollViewContentConstraints.Add New SOSLayoutConstraint(mObj, mScrollObj, SOSLayoutConstraint.LayoutAttributes.Left)
-		    mScrollViewContentConstraints.Add New SOSLayoutConstraint(mObj, mScrollObj, SOSLayoutConstraint.LayoutAttributes.Right, SOSLayoutConstraint.relations.GreaterThanOrEqual)
-		  ElseIf Direction = axis.Vertical Then
-		    mScrollViewContentConstraints.Add New SOSLayoutConstraint(mObj, mScrollObj, SOSLayoutConstraint.LayoutAttributes.CenterX)
-		    mScrollViewContentConstraints.Add New SOSLayoutConstraint(mObj, mScrollObj, SOSLayoutConstraint.LayoutAttributes.Top)
-		    mScrollViewContentConstraints.Add New SOSLayoutConstraint(mObj, mScrollObj, SOSLayoutConstraint.LayoutAttributes.Bottom, SOSLayoutConstraint.relations.GreaterThanOrEqual)
-		  Else
-		    Break
-		  End If
-		  
+		  #If TargetiOS
+		    // add some constraints
+		    
+		    For i As Integer = 0 To UBound(mScrollViewContentConstraints)
+		      mScrollViewContentConstraints(i).Active = False
+		    Next
+		    
+		    Redim mScrollViewContentConstraints(-1)
+		    
+		    Dim c As SOSLayoutConstraint
+		    If Direction = axis.Horizontal Then
+		      mScrollViewContentConstraints.Add New SOSLayoutConstraint(mObj, mScrollObj, SOSLayoutConstraint.LayoutAttributes.CenterY)
+		      mScrollViewContentConstraints.Add New SOSLayoutConstraint(mObj, mScrollObj, SOSLayoutConstraint.LayoutAttributes.Left)
+		      mScrollViewContentConstraints.Add New SOSLayoutConstraint(mObj, mScrollObj, SOSLayoutConstraint.LayoutAttributes.Right, SOSLayoutConstraint.relations.GreaterThanOrEqual)
+		    ElseIf Direction = axis.Vertical Then
+		      mScrollViewContentConstraints.Add New SOSLayoutConstraint(mObj, mScrollObj, SOSLayoutConstraint.LayoutAttributes.CenterX)
+		      mScrollViewContentConstraints.Add New SOSLayoutConstraint(mObj, mScrollObj, SOSLayoutConstraint.LayoutAttributes.Top)
+		      mScrollViewContentConstraints.Add New SOSLayoutConstraint(mObj, mScrollObj, SOSLayoutConstraint.LayoutAttributes.Bottom, SOSLayoutConstraint.relations.GreaterThanOrEqual)
+		    Else
+		      Break
+		    End If
+		    
+		  #EndIf
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
 		Private Sub ΩUpdateScrollViewSize()
-		  // contentView.layoutIfNeeded() //set a frame based on constraints
-		  // scrollView.contentSize = CGSize(width: contentView.frame.width, height: contentView.frame.height)
-		  
-		  // - (void)layoutIfNeeded;
-		  Declare Sub layoutIfNeeded Lib "Foundation" Selector "layoutIfNeeded" (obj As ptr)
-		  // @property(nonatomic) CGRect frame;
-		  Declare Function getFrame Lib "Foundation" Selector "frame" (obj As ptr) As CGRect
-		  // @property(nonatomic) CGSize contentSize;
-		  Declare Sub setContentSize Lib "Foundation" Selector "setContentSize:" (obj As ptr, value As cgsize)
-		  
-		  // Force the content to redraw
-		  layoutIfNeeded(mObj)
-		  
-		  // Get the rect for the content
-		  Dim frame As cgrect = getFrame(mObj)
-		  
-		  Dim sz As cgsize
-		  sz.width = frame.Width
-		  sz.height = frame.Height
-		  
-		  Dim h As Double = frame.Height
-		  
-		  // set the content size on the scrollview
-		  setContentSize(mScrollObj, sz)
+		  #If TargetiOS
+		    // contentView.layoutIfNeeded() //set a frame based on constraints
+		    // scrollView.contentSize = CGSize(width: contentView.frame.width, height: contentView.frame.height)
+		    
+		    // - (void)layoutIfNeeded;
+		    Declare Sub layoutIfNeeded Lib "Foundation" Selector "layoutIfNeeded" (obj As ptr)
+		    // @property(nonatomic) CGRect frame;
+		    Declare Function getFrame Lib "Foundation" Selector "frame" (obj As ptr) As CGRect
+		    // @property(nonatomic) CGSize contentSize;
+		    Declare Sub setContentSize Lib "Foundation" Selector "setContentSize:" (obj As ptr, value As cgsize)
+		    
+		    // Force the content to redraw
+		    layoutIfNeeded(mObj)
+		    
+		    // Get the rect for the content
+		    Dim frame As cgrect = getFrame(mObj)
+		    
+		    Dim sz As cgsize
+		    sz.width = frame.Width
+		    sz.height = frame.Height
+		    
+		    Dim h As Double = frame.Height
+		    
+		    // set the content size on the scrollview
+		    setContentSize(mScrollObj, sz)
+		  #EndIf
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
 		Attributes( Hidden ) Private Function ΩViewAtIndex(index as integer) As Ptr
-		  // @property(nonatomic, readonly, copy) NSArray<__kindof UIView *> *arrangedSubviews;
-		  Declare Function getArrangedSubviews Lib "Foundation" Selector "arrangedSubviews" (obj As ptr) As Ptr
-		  
-		  Dim p As ptr = getArrangedSubviews(mObj)
-		  
-		  Declare Function count Lib "Foundation" Selector "count" (obj As ptr) As Integer
-		  
-		  Dim c As Integer = count(p)
-		  If index < 0 Or index >= c Then
-		    Return Nil
-		  End If
-		  
-		  Declare Function objectAtIndex Lib "Foundation" Selector "objectAtIndex:" (obj As ptr, index As Integer) As ptr
-		  
-		  return objectAtIndex(p, index)
+		  #If TargetiOS
+		    // @property(nonatomic, readonly, copy) NSArray<__kindof UIView *> *arrangedSubviews;
+		    Declare Function getArrangedSubviews Lib "Foundation" Selector "arrangedSubviews" (obj As ptr) As Ptr
+		    
+		    Dim p As ptr = getArrangedSubviews(mObj)
+		    
+		    Declare Function count Lib "Foundation" Selector "count" (obj As ptr) As Integer
+		    
+		    Dim c As Integer = count(p)
+		    If index < 0 Or index >= c Then
+		      Return Nil
+		    End If
+		    
+		    Declare Function objectAtIndex Lib "Foundation" Selector "objectAtIndex:" (obj As ptr, index As Integer) As ptr
+		    
+		    Return objectAtIndex(p, index)
+		  #EndIf
 		End Function
 	#tag EndMethod
 
@@ -587,22 +593,6 @@ Inherits iOSMobileUserControl
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="Height"
-			Visible=true
-			Group="Position"
-			InitialValue=""
-			Type="Integer"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="Width"
-			Visible=true
-			Group="Position"
-			InitialValue=""
-			Type="Integer"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
 			Name="Left"
 			Visible=true
 			Group="Position"
@@ -619,14 +609,6 @@ Inherits iOSMobileUserControl
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="Visible"
-			Visible=true
-			Group="Behavior"
-			InitialValue="True"
-			Type="Boolean"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
 			Name="ScrollAreaWidth"
 			Visible=false
 			Group="Behavior"
@@ -640,14 +622,6 @@ Inherits iOSMobileUserControl
 			Group="Behavior"
 			InitialValue=""
 			Type="Double"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="Enabled"
-			Visible=true
-			Group="UI Control"
-			InitialValue="True"
-			Type="Boolean"
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
@@ -726,38 +700,6 @@ Inherits iOSMobileUserControl
 			InitialValue="True"
 			Type="Boolean"
 			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="ControlCount"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
-			Type="Integer"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="TintColor"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
-			Type="ColorGroup"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="AccessibilityHint"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
-			Type="String"
-			EditorType="MultiLineEditor"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="AccessibilityLabel"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
-			Type="String"
-			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class
