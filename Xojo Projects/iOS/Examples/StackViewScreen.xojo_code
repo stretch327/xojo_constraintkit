@@ -13,29 +13,23 @@ Begin MobileScreen StackViewScreen
    TintColor       =   &c00000000
    Title           =   "StackViews"
    Top             =   0
-   Begin SOSConstraintKit.SOSStackView SOSStackView1
-      AccessibilityHint=   ""
-      AccessibilityLabel=   ""
-      Alignment       =   0
+   Begin SOSMobileStackView SOSStackView1
+      Alignment       =   1
       AutoLayout      =   SOSStackView1, 4, BottomLayoutGuide, 3, False, +1.00, 4, 1, 0, , True
       AutoLayout      =   SOSStackView1, 1, <Parent>, 1, False, +1.00, 4, 1, *kStdGapCtlToViewH, , True
       AutoLayout      =   SOSStackView1, 2, <Parent>, 2, False, +1.00, 4, 1, -*kStdGapCtlToViewH, , True
       AutoLayout      =   SOSStackView1, 3, TopLayoutGuide, 4, False, +1.00, 4, 1, 0, , True
       BaselineRelativeArrangement=   False
-      ControlCount    =   0
       Direction       =   1
-      Distribution    =   1
+      Distribution    =   0
       Enabled         =   True
       Height          =   503
-      LayoutMarginsRelativeArrangement=   True
+      LayoutMarginsRelativeArrangement=   False
       Left            =   20
       LockedInPosition=   False
       Scope           =   0
-      ScrollAreaHeight=   0.0
-      ScrollAreaWidth =   0.0
       ScrollEnabled   =   True
-      Spacing         =   24.0
-      TintColor       =   &c000000
+      Spacing         =   12.0
       Top             =   65
       Visible         =   True
       Width           =   280
@@ -53,7 +47,7 @@ End
 		  Me.Spacing = 0
 		  Dim w As Double = Me.ScrollAreaWidth
 		  For i As Integer = 1 To 25
-		    Dim ctl As New SOSStackView
+		    Dim ctl As New SOSMobileStackView
 		    
 		    Dim leftStory As New NewsContainer
 		    leftStory.MakeRandomStory
@@ -61,11 +55,11 @@ End
 		    Dim rightStory As New NewsContainer
 		    rightStory.MakeRandomStory
 		    
-		    SOSStackView(ctl).AddArrangedSubview(leftStory)
-		    SOSStackView(ctl).AddArrangedSubview(rightStory)
-		    SOSStackView(ctl).Distribution = SOSStackView.Distributions.FillEqually
+		    SOSMobileStackView(ctl).AddArrangedSubview(leftStory)
+		    SOSMobileStackView(ctl).AddArrangedSubview(rightStory)
+		    SOSMobileStackView(ctl).Distribution = SOSMobileStackView.Distributions.FillEqually
 		    ctl.HeightAnchor.ConstraintGreaterThanOrEqualToConstant(50).Active = True
-		    ctl.Alignment = SOSStackView.Alignments.Center
+		    ctl.Alignment = SOSMobileStackView.Alignments.Center
 		    
 		    Me.AddArrangedSubview(ctl)
 		    ctl.WidthAnchor.ConstraintEqualToConstant(w).Active = True
