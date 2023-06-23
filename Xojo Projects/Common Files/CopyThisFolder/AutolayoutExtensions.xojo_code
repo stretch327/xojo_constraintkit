@@ -900,11 +900,11 @@ Protected Module AutolayoutExtensions
 		      Declare Sub setFlipped Lib "Foundation" Selector "setFlipped:" (obj As ptr, value As Boolean)
 		      setFlipped(cv, True)
 		      
-		      If unconstrainWindow Then
-		        w.MinimumWidth = 0
-		        w.MinimumHeight = 0
-		        w.MaximumWidth = 32000
-		        w.MaximumHeight = 32000
+		      If Not unconstrainWindow Then
+		        w.HeightAnchor.ConstraintGreaterThanOrEqualToConstant(w.MinimumHeight).Active = True
+		        w.HeightAnchor.ConstraintLessThanOrEqualToConstant(w.MaximumHeight).Active = True
+		        w.WidthAnchor.ConstraintGreaterThanOrEqualToConstant(w.MinimumWidth).Active = True
+		        w.WidthAnchor.ConstraintLessThanOrEqualToConstant(w.MaximumWidth).Active = True
 		      End If
 		    End If
 		    
