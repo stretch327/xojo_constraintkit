@@ -1,5 +1,5 @@
 # SOSLayoutConstraint Class
-*This project is supported on iOS projects Only*
+*This project is supported on Desktop and iOS projects only*
 
 ## Methods
 **Constructor(item1 as ptr, attr1 as LayoutAttributes, relation as relations, offset as Double)**

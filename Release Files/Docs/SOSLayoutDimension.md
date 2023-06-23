@@ -1,5 +1,5 @@
 # SOSLayoutDimension Class
-*This project is supported on iOS projects only*
+*This project is supported on Desktop and iOS projects only*
 
 ## Methods
 **ConstraintEqualToAnchor(anchor as SOSLayoutDimension, multiplier as Double = 1.0, offset as Double = 0.0) As SOSLayoutConstraint**

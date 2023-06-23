@@ -1,5 +1,5 @@
 # SOSLayoutYAxisAnchor Class
-*This project is supported on iOS projects Only*
+*This project is supported on Desktop and iOS projects only*
 
 ## Methods
 **AnchorWithOffsetToAnchor(otherAnchor as SOSLayoutYAxisAnchor) As SOSLayoutDimension**

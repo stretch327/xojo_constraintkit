@@ -1,5 +1,5 @@
 # Animation Module
-*This project is supported on iOS projects Only*
+*This project is supported on iOS projects only*
 
 ## Delegates
 **Delegate Sub AnimateDelegate()**
