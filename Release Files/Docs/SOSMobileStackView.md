@@ -1,6 +1,5 @@
-# SOSStackView Class
-
-*This project is supported on iOS projects Only*	
+# SOSMobileStackView Class
+*This project is supported on iOS projects only*
 
 ## Methods
 **AddArrangedSubview(view as MobileUIControl)**
@@ -13,7 +12,7 @@ Sets the spacing after the specified view to the specified distance
 Sets the spacing after the view at the specified inex to the specified distance
 
 **Handle() As Ptr**
-*Description Missing*
+*Pointer to the underlying UIStackView*
 
 **InsertArrangedSubviewAt(view as MobileUIControl, index as integer)**
 Inserts a view into the stack at the specified index
@@ -25,7 +24,7 @@ Removes the specified view from the stack
 Removes the view at the specified index from the stack
 
 **ScrollViewHandle() As Ptr**
-Returns a pointer to the underlying UIStackView
+Returns a pointer to the underlying UIScrollView
 
 ## Properties
 **Alignment As Alignments**
