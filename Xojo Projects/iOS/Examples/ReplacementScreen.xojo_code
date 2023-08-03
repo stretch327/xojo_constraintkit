@@ -40,7 +40,7 @@ Begin MobileScreen ReplacementScreen
       AccessibilityLabel=   ""
       AutoLayout      =   Button2, 1, <Parent>, 1, False, +1.00, 4, 1, 62, , True
       AutoLayout      =   Button2, 7, , 0, False, +1.00, 4, 1, 100, , True
-      AutoLayout      =   Button2, 3, <Parent>, 3, False, +1.00, 4, 1, 472, , True
+      AutoLayout      =   Button2, 3, <Parent>, 3, False, +1.00, 4, 1, 415, , True
       AutoLayout      =   Button2, 8, , 0, False, +1.00, 4, 1, 30, , True
       Caption         =   "TopRight"
       CaptionColor    =   &c007AFF00
@@ -53,14 +53,14 @@ Begin MobileScreen ReplacementScreen
       TextFont        =   ""
       TextSize        =   0
       TintColor       =   &c000000
-      Top             =   472
+      Top             =   415
       Visible         =   True
       Width           =   100
    End
    Begin MobileButton Button3
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
-      AutoLayout      =   Button3, 1, Button2, 1, False, +1.00, 4, 1, 0, , True
+      AutoLayout      =   Button3, 1, <Parent>, 1, False, +1.00, 4, 1, 62, , True
       AutoLayout      =   Button3, 7, , 0, False, +1.00, 4, 1, 100, , True
       AutoLayout      =   Button3, 8, , 0, False, +1.00, 4, 1, 30, , True
       AutoLayout      =   Button3, 3, <Parent>, 3, False, +1.00, 4, 1, 285, , True
@@ -101,17 +101,34 @@ Begin MobileScreen ReplacementScreen
       Visible         =   True
       Width           =   100
    End
+   Begin MobileLabel InstructionsLabel
+      AccessibilityHint=   ""
+      AccessibilityLabel=   ""
+      Alignment       =   0
+      AutoLayout      =   InstructionsLabel, 4, BottomLayoutGuide, 3, False, +1.00, 4, 1, -*kStdControlGapV, , True
+      AutoLayout      =   InstructionsLabel, 8, , 0, False, +1.00, 4, 1, 63, , True
+      AutoLayout      =   InstructionsLabel, 1, Button1, 1, False, +1.00, 4, 1, 0, , True
+      AutoLayout      =   InstructionsLabel, 2, <Parent>, 2, False, +1.00, 4, 1, -*kStdGapCtlToViewH, , True
+      ControlCount    =   0
+      Enabled         =   True
+      Height          =   63
+      Left            =   20
+      LineBreakMode   =   0
+      LockedInPosition=   False
+      Scope           =   2
+      Text            =   "This is an example of replacing a view's constraints with anchors and animating the result."
+      TextColor       =   &c000000
+      TextFont        =   ""
+      TextSize        =   0
+      TintColor       =   &c000000
+      Top             =   497
+      Visible         =   True
+      Width           =   280
+   End
 End
 #tag EndMobileScreen
 
 #tag WindowCode
-	#tag Event
-		Sub Opening()
-		  
-		End Sub
-	#tag EndEvent
-
-
 	#tag Method, Flags = &h21
 		Private Sub ReplaceConstraints()
 		  // convert the Xojo constraints into NSLayoutConstraints
@@ -119,6 +136,9 @@ End
 		  // which we do not want, so we're converting them all
 		  // to a priority of 1 (almost ignored)
 		  Self.ConvertConstraintsForAllControls(1)
+		  
+		  // Make sure the instructions don't move
+		  Self.ConvertConstraintsForControl(InstructionsLabel, 999)
 		  
 		  // Get the safe area boundaries
 		  Dim safeArea As SOSLayoutGuide = Self.SafeAreaLayoutGuide

@@ -113,27 +113,27 @@ Begin MobileScreen AnimationScreen
       Visible         =   True
       Width           =   137
    End
-   Begin MobileLabel Label2
+   Begin MobileLabel InstructionsLabel
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
       Alignment       =   0
-      AutoLayout      =   Label2, 1, Label1, 1, False, +1.00, 4, 1, 0, , True
-      AutoLayout      =   Label2, 2, AnimateButton, 2, False, +1.00, 4, 1, 0, , True
-      AutoLayout      =   Label2, 3, , 0, False, +1.00, 4, 1, 343, , True
-      AutoLayout      =   Label2, 8, , 0, False, +1.00, 4, 1, 30, , True
+      AutoLayout      =   InstructionsLabel, 8, , 0, False, +1.00, 4, 1, 93, , True
+      AutoLayout      =   InstructionsLabel, 1, <Parent>, 1, False, +1.00, 4, 1, *kStdGapCtlToViewH, , True
+      AutoLayout      =   InstructionsLabel, 2, <Parent>, 2, False, +1.00, 4, 1, -*kStdGapCtlToViewH, , True
+      AutoLayout      =   InstructionsLabel, 10, <Parent>, 10, False, +1.00, 4, 1, 0, , True
       ControlCount    =   0
       Enabled         =   True
-      Height          =   30
+      Height          =   93
       Left            =   20
       LineBreakMode   =   0
       LockedInPosition=   False
       Scope           =   2
-      Text            =   "This screen shows an example of "
+      Text            =   "This screen shows an example of changing constraints at runtime with an animation effect applied. Click the Toggle Constraint to show the changes immediately and the Animate Constraint to see them change slowly over time."
       TextColor       =   &c000000
       TextFont        =   ""
       TextSize        =   0
       TintColor       =   &c000000
-      Top             =   343
+      Top             =   401
       Visible         =   True
       Width           =   374
    End
@@ -151,6 +151,7 @@ End
 		  // NOTE: don't use 1000 (required) for priority if you need to change priorities at runtime.
 		  // iOS will prevent changing priorities to/from 1000 at runtime.
 		  Self.ConvertConstraintsForControl(label1, 999) 
+		  Self.ConvertConstraintsForControl(InstructionsLabel, 999) 
 		  
 		  Dim c As SOSLayoutConstraint
 		  

@@ -219,7 +219,7 @@ Begin MobileScreen HuggingCompressionScreen
       Scope           =   2
       TintColor       =   &c000000
       Top             =   307
-      Value           =   100.0
+      Value           =   200.0
       Visible         =   True
       Width           =   225
    End
@@ -238,7 +238,7 @@ Begin MobileScreen HuggingCompressionScreen
       LineBreakMode   =   0
       LockedInPosition=   False
       Scope           =   2
-      Text            =   "1000"
+      Text            =   "999"
       TextColor       =   &c000000
       TextFont        =   ""
       TextSize        =   0
@@ -271,13 +271,37 @@ Begin MobileScreen HuggingCompressionScreen
       Visible         =   True
       Width           =   225
    End
+   Begin MobileLabel InstructionsLabel
+      AccessibilityHint=   ""
+      AccessibilityLabel=   ""
+      Alignment       =   0
+      AutoLayout      =   InstructionsLabel, 4, SegmentedButton1, 3, False, +1.00, 4, 1, -*kStdControlGapV, , True
+      AutoLayout      =   InstructionsLabel, 8, , 0, False, +1.00, 4, 1, 88, , True
+      AutoLayout      =   InstructionsLabel, 1, <Parent>, 1, False, +1.00, 4, 1, *kStdGapCtlToViewH, , True
+      AutoLayout      =   InstructionsLabel, 2, <Parent>, 2, False, +1.00, 4, 1, -*kStdGapCtlToViewH, , True
+      ControlCount    =   0
+      Enabled         =   True
+      Height          =   88
+      Left            =   20
+      LineBreakMode   =   0
+      LockedInPosition=   False
+      Scope           =   2
+      Text            =   "This example shows how hugging and compression affect constraints, how intrinsic width can help with localized apps and how to update localized text at runtime."
+      TextColor       =   &c000000
+      TextFont        =   ""
+      TextSize        =   0
+      TintColor       =   &c000000
+      Top             =   435
+      Visible         =   True
+      Width           =   280
+   End
 End
 #tag EndMobileScreen
 
 #tag WindowCode
 	#tag Event
 		Sub Opening()
-		  FixConstraints
+		  SetBaselines
 		  
 		  // turn off wrapping and set number of lines to 1 for each of the labels
 		  label1.LineBreakEnabled = False
@@ -293,12 +317,15 @@ End
 		  
 		  // make sure everything starts out set to english
 		  UpdateLabels("en")
+		  
+		  // Make sure the instructions don't move
+		  Self.ConvertConstraintsForControl(InstructionsLabel, 999)
 		End Sub
 	#tag EndEvent
 
 
 	#tag Method, Flags = &h21
-		Private Sub FixConstraints()
+		Private Sub SetBaselines()
 		  // add three constraints for the baselines between the text fields and the labels
 		  TextField1.FirstBaselineAnchor.constraintEqualToAnchor(label1.FirstBaselineAnchor).Active = True
 		  TextField2.FirstBaselineAnchor.constraintEqualToAnchor(label2.FirstBaselineAnchor).active = True
@@ -310,6 +337,10 @@ End
 		Private Sub SliderAdjusted()
 		  Dim n As Double = Floor(Slider1.Value)*5
 		  If n < 1000 Then n = n + 1 // don't use the exact numbers because that just causes issues
+		  
+		  // throttle to the values we want
+		  n = Max(1, Min(n, 999))
+		  
 		  PriorityLabel.Text = n.ToString("0")
 		  UpdateConstraints
 		End Sub

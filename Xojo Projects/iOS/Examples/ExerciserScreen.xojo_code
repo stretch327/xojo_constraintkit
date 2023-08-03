@@ -357,28 +357,6 @@ End
 #tag WindowCode
 	#tag Event
 		Sub Opening()
-		  // // Convert all constraints from iOSLayoutConstraints to SOSLayoutConstraints,
-		  // // with a priority of 750 instead of 1000 so they can be changed at runtime
-		  // Self.ConvertConstraintsForAllControls(990)
-		  // 
-		  // // add a baseline anchor between TextField1 and Label1
-		  // label1.FirstBaselineAnchor.ConstraintEqualToAnchor(TextField1.FirstBaselineAnchor).Active = True
-		  // 
-		  // // fix the label so the baselines will line up
-		  // label1.NumberOfLines = 1
-		  // label1.LineBreakEnabled = False
-		  // 
-		  // 
-		  // // create new leading/trailing constraints
-		  // Self.TrailingAnchor.ConstraintEqualToSystemSpacingAfterAnchor(TextField1.TrailingAnchor).Active = True
-		  // TextField1.LeadingAnchor.ConstraintEqualToSystemSpacingAfterAnchor(label1.TrailingAnchor).Active = True
-		  // label1.LeadingAnchor.ConstraintEqualToSystemSpacingAfterAnchor(Self.LeadingAnchor).Active = True
-		  // 
-		  // label1.RemoveHeightConstraints
-		  // label1.RemoveWidthConstraints
-		  // 
-		  // label1.HuggingPriorityForAxis(axis.Horizontal) = 251
-		  // TextField1.HuggingPriorityForAxis(axis.Horizontal) = 250
 		  
 		  MakeConstraints
 		End Sub
