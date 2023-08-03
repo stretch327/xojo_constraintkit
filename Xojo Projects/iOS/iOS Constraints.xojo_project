@@ -10,7 +10,6 @@ iOSLaunchScreen=LaunchScreen;LaunchScreen.xojo_code;&h000000002CF2E7FF;&h0000000
 BuildSteps=Build Automation;Build Automation.xojo_code;&h000000004B58FFFF;&h0000000000000000;false
 Class=SOSLayoutConstraint;../Common Files/CopyThisFolder/SOSConstraintKit/SOSLayoutConstraint.xojo_code;&h00000000106F4FFF;&h00000000436A3FFF;false
 Folder=Examples;Examples;&h0000000065C14FFF;&h0000000000000000;false
-Module=FrameworkLoaders;FrameworkLoaders.xojo_code;&h000000006DBF17FF;&h0000000000000000;false
 MobileScreen=AnimationScreen;Examples/AnimationScreen.xojo_code;&h000000002D04C7FF;&h0000000065C14FFF;false
 MobileScreen=ReplacementScreen;Examples/ReplacementScreen.xojo_code;&h00000000513017FF;&h0000000065C14FFF;false
 Module=Localizations;Examples/Localizations.xojo_code;&h00000000284147FF;&h0000000065C14FFF;false

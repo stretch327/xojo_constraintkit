@@ -2,16 +2,6 @@
 Protected Class App
 Inherits MobileApplication
 	#tag CompatibilityFlags = TargetIOS
-	#tag Event
-		Sub Opening()
-		  #If DebugBuild And TargetMobileSimulator and TargetIOS
-		    LoadRevealFramework
-		  #EndIf
-		  
-		End Sub
-	#tag EndEvent
-
-
 	#tag ViewBehavior
 		#tag ViewProperty
 			Name="Name"
