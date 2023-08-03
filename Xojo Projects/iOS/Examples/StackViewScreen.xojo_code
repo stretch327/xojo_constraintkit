@@ -23,7 +23,6 @@ Begin MobileScreen StackViewScreen
       AutoLayout      =   SOSStackView1, 3, TopLayoutGuide, 4, False, +1.00, 4, 1, 0, , True
       BaselineRelativeArrangement=   False
       ControlCount    =   0
-      Direction       =   1
       Distribution    =   0
       Enabled         =   True
       Height          =   503

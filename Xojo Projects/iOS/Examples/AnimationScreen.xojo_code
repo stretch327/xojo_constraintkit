@@ -113,6 +113,30 @@ Begin MobileScreen AnimationScreen
       Visible         =   True
       Width           =   137
    End
+   Begin MobileLabel Label2
+      AccessibilityHint=   ""
+      AccessibilityLabel=   ""
+      Alignment       =   0
+      AutoLayout      =   Label2, 1, Label1, 1, False, +1.00, 4, 1, 0, , True
+      AutoLayout      =   Label2, 2, AnimateButton, 2, False, +1.00, 4, 1, 0, , True
+      AutoLayout      =   Label2, 3, , 0, False, +1.00, 4, 1, 343, , True
+      AutoLayout      =   Label2, 8, , 0, False, +1.00, 4, 1, 30, , True
+      ControlCount    =   0
+      Enabled         =   True
+      Height          =   30
+      Left            =   20
+      LineBreakMode   =   0
+      LockedInPosition=   False
+      Scope           =   2
+      Text            =   "This screen shows an example of "
+      TextColor       =   &c000000
+      TextFont        =   ""
+      TextSize        =   0
+      TintColor       =   &c000000
+      Top             =   343
+      Visible         =   True
+      Width           =   374
+   End
 End
 #tag EndMobileScreen
 
@@ -124,7 +148,7 @@ End
 		  // textfield
 		  Self.ConvertConstraintsForAllControls(750)
 		  
-		  // NOTE: don't use 1000 (required) for priority if you don't need to.
+		  // NOTE: don't use 1000 (required) for priority if you need to change priorities at runtime.
 		  // iOS will prevent changing priorities to/from 1000 at runtime.
 		  Self.ConvertConstraintsForControl(label1, 999) 
 		  
