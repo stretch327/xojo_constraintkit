@@ -715,15 +715,23 @@ End
 	#tag Event
 		Sub Opening()
 		  
+		  // Convert the window to autolayout
 		  Self.ConvertToAutolayout(True, True)
 		  
+		  // Convert the constraints with particular priorities
 		  Self.ConvertConstraintsForAllControls(1000)
-		  Self.ConvertConstraintsForControl(CityField, 751)
 		  
+		  Self.ConvertConstraintsForControl(CityField, 751)
+		  CityField.RightAnchor.ConstraintEqualToAnchor(Container11.RightAnchor).Active = True
+		  
+		  // Tell the container that it should not be taller than 600
 		  container11.HeightAnchor.ConstraintLessThanOrEqualToConstant(600).Active = True
 		  
+		  // Tell the CityLabel and Button1 to use Intrinsic Width
 		  CityLabel.UseIntrinsicWidth
+		  button1.UseIntrinsicWidth
 		  
+		  // Tell each of the "controls" to align to their respective labels
 		  CityField.AlignToLabel(CityLabel)
 		  label2.AlignToLabel(label1)
 		  Button1.AlignToLabel(label3)
@@ -735,16 +743,15 @@ End
 		  TextArea1.AlignToLabel(label9)
 		  RadioGroup1.AlignToLabel(RadioGroupLabel)
 		  
-		  button1.UseIntrinsicWidth
-		  
+		  // Tell the bottom of the view to always be the System Spacing distance from the bottom of textarea1
 		  Self.BottomAnchor.ConstraintGreaterThanOrEqualToSystemSpacingBelowAnchor(textarea1.BottomAnchor).Active = True
 		  
-		  // don't let the text area get any smaller
+		  // don't let the text area get any smaller than the design-time size
 		  textarea1.HeightAnchor.ConstraintGreaterThanOrEqualToConstant(textarea1.Height).Active = True
 		  textarea1.WidthAnchor.ConstraintGreaterThanOrEqualToConstant(textarea1.Width).Active = True
+		  
+		  // ...but not wider than 300
 		  textarea1.WidthAnchor.ConstraintLessThanOrEqualToConstant(300).Active = True
-		  
-		  
 		  
 		  
 		End Sub
