@@ -649,6 +649,18 @@ Inherits iOSMobileUserControl
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="Direction"
+			Visible=true
+			Group="Behavior"
+			InitialValue=""
+			Type="Axis"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - Horizontal"
+				"1 - Vertical"
+			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Enabled"
 			Visible=true
 			Group="UI Control"
@@ -672,18 +684,6 @@ Inherits iOSMobileUserControl
 				"5 - Bottom"
 				"6 - FirstBaseline"
 				"7 - LastBaseline"
-			#tag EndEnumValues
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="Direction"
-			Visible=true
-			Group="SOSStackView"
-			InitialValue=""
-			Type="Axis"
-			EditorType="Enum"
-			#tag EnumValues
-				"0 - Horizontal"
-				"1 - Vertical"
 			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
