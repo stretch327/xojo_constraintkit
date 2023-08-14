@@ -222,11 +222,12 @@ Protected Module AutolayoutExtensions
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
 		Function CompressionResistancePriorityForAxis(Extends item as DesktopContainer, axis as SOSConstraintKit.Axis) As Double
 		  // Gets the Compression Resistance priority for the specified Axis
-		  #if TargetMacOS
-		    // - (UILayoutPriority)contentCompressionResistancePriorityForAxis:(UILayoutConstraintAxis)axis;
-		    Declare Function contentCompressionResistancePriorityForAxis Lib "Foundation" Selector "contentCompressionResistancePriorityForAxis:" ( obj As ptr , axis As integer ) As single
+		  
+		  #If TargetMacOS
+		    // - (NSLayoutPriority)contentCompressionResistancePriorityForOrientation:(NSLayoutConstraintOrientation)orientation;
+		    Declare Function contentCompressionResistancePriorityForOrientation Lib "Foundation" Selector "contentCompressionResistancePriorityForOrientation:" ( obj As ptr , orientation As Integer ) As Single
 		    
-		    Return contentCompressionResistancePriorityForAxis(item.handle, CType(axis, Integer))
+		    Return contentCompressionResistancePriorityForOrientation(item.Handle, CType(axis, Integer))
 		  #EndIf
 		End Function
 	#tag EndMethod
@@ -234,11 +235,11 @@ Protected Module AutolayoutExtensions
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
 		Sub CompressionResistancePriorityForAxis(Extends item as DesktopContainer, axis as SOSConstraintKit.Axis, assigns priority as double)
 		  // Sets the Compression Resistance priority for the specified Axis
-		  #if TargetMacOS
-		    // - (void)setContentCompressionResistancePriority:(UILayoutPriority)priority forAxis:(UILayoutConstraintAxis)axis;
-		    Declare Sub setContentCompressionResistancePriority_forAxis Lib "Foundation" Selector "setContentCompressionResistancePriority:forAxis:" ( obj As ptr , priority As single , axis As integer )
-		    
-		    setContentCompressionResistancePriority_forAxis(item.handle, priority, CType(axis, Integer))
+		  
+		  #If TargetMacOS
+		    // - (void)setContentCompressionResistancePriority:(NSLayoutPriority)priority forOrientation:(NSLayoutConstraintOrientation)orientation;
+		    Declare Sub setContentCompressionResistancePriority_forOrientation Lib "Foundation" Selector "setContentCompressionResistancePriority:forOrientation:" ( obj As ptr , priority As Single , orientation As Integer )
+		    setContentCompressionResistancePriority_forOrientation(item.Handle, Priority, CType(axis, Integer))
 		  #EndIf
 		End Sub
 	#tag EndMethod
@@ -246,11 +247,11 @@ Protected Module AutolayoutExtensions
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
 		Function CompressionResistancePriorityForAxis(Extends item as DesktopUIControl, axis as SOSConstraintKit.Axis) As Double
 		  // Gets the Compression Resistance priority for the specified Axis
-		  #if TargetMacOS
-		    // - (UILayoutPriority)contentCompressionResistancePriorityForAxis:(UILayoutConstraintAxis)axis;
-		    Declare Function contentCompressionResistancePriorityForAxis Lib "Foundation" Selector "contentCompressionResistancePriorityForAxis:" ( obj As ptr , axis As integer ) As single
+		  #If TargetMacOS
+		    // - (NSLayoutPriority)contentCompressionResistancePriorityForOrientation:(NSLayoutConstraintOrientation)orientation;
+		    Declare Function contentCompressionResistancePriorityForOrientation Lib "Foundation" Selector "contentCompressionResistancePriorityForOrientation:" ( obj As ptr , orientation As Integer ) As Single
 		    
-		    Return contentCompressionResistancePriorityForAxis(item.handle, CType(axis, Integer))
+		    Return contentCompressionResistancePriorityForOrientation(item.Handle, CType(axis, Integer))
 		  #EndIf
 		End Function
 	#tag EndMethod
@@ -258,11 +259,11 @@ Protected Module AutolayoutExtensions
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
 		Sub CompressionResistancePriorityForAxis(Extends item as DesktopUIControl, axis as SOSConstraintKit.Axis, assigns priority as double)
 		  // Sets the Compression Resistance priority for the specified Axis
-		  #if TargetMacOS
-		    // - (void)setContentCompressionResistancePriority:(UILayoutPriority)priority forAxis:(UILayoutConstraintAxis)axis;
-		    Declare Sub setContentCompressionResistancePriority_forAxis Lib "Foundation" Selector "setContentCompressionResistancePriority:forAxis:" ( obj As ptr , priority As single , axis As integer )
-		    
-		    setContentCompressionResistancePriority_forAxis(item.handle, priority, CType(axis, Integer))
+		  
+		  #If TargetMacOS
+		    // - (void)setContentCompressionResistancePriority:(NSLayoutPriority)priority forOrientation:(NSLayoutConstraintOrientation)orientation;
+		    Declare Sub setContentCompressionResistancePriority_forOrientation Lib "Foundation" Selector "setContentCompressionResistancePriority:forOrientation:" ( obj As ptr , priority As Single , orientation As Integer )
+		    setContentCompressionResistancePriority_forOrientation(item.Handle, Priority, CType(axis, Integer))
 		  #EndIf
 		End Sub
 	#tag EndMethod
@@ -1113,12 +1114,12 @@ Protected Module AutolayoutExtensions
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
 		Function HuggingPriorityForAxis(Extends item as DesktopContainer, axis as SOSConstraintKit.Axis) As Double
-		  #if TargetMacOS
-		    // - (UILayoutPriority)contentHuggingPriorityForAxis:(UILayoutConstraintAxis)axis;
-		    Declare Function contentHuggingPriorityForAxis Lib "Foundation" Selector "contentHuggingPriorityForAxis:" ( obj As ptr , axis As Integer ) As Single
+		  #If TargetMacOS
 		    
-		    Return contentHuggingPriorityForAxis( item.Handle, CType(axis, Integer))
+		    // - (NSLayoutPriority)contentHuggingPriorityForOrientation:(NSLayoutConstraintOrientation)orientation;
+		    Declare Function contentHuggingPriorityForOrientation Lib "Foundation" Selector "contentHuggingPriorityForOrientation:" ( obj As ptr , orientation As Integer ) As Single
 		    
+		    Return contentHuggingPriorityForOrientation(item.Handle, CType(axis, Integer))
 		  #EndIf
 		End Function
 	#tag EndMethod
@@ -1126,33 +1127,33 @@ Protected Module AutolayoutExtensions
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
 		Sub HuggingPriorityForAxis(Extends item as DesktopContainer, Axis as SOSConstraintKit.Axis, assigns priority as Double)
 		  #If TargetMacOS
-		    // - (void)setContentHuggingPriority:(UILayoutPriority)priority forAxis:(UILayoutConstraintAxis)axis;
-		    Declare Sub setContentHuggingPriority_forAxis Lib "Foundation" Selector "setContentHuggingPriority:forAxis:" ( obj As ptr , priority As single , axis As integer )
+		    // - (void)setContentHuggingPriority:(NSLayoutPriority)priority forOrientation:(NSLayoutConstraintOrientation)orientation;
+		    Declare Sub setContentHuggingPriority_forOrientation Lib "Foundation" Selector "setContentHuggingPriority:forOrientation:" ( obj As ptr , priority As Single , orientation As Integer )
 		    
-		    setContentHuggingPriority_forAxis( item.handle, priority, CType(axis, Integer))
+		    setContentHuggingPriority_forOrientation(item.Handle, Priority, CType(Axis, Integer))
 		  #EndIf
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
 		Function HuggingPriorityForAxis(Extends item as DesktopUIControl, axis as SOSConstraintKit.Axis) As Double
-		  #if TargetMacOS
-		    // - (UILayoutPriority)contentHuggingPriorityForAxis:(UILayoutConstraintAxis)axis;
-		    Declare Function contentHuggingPriorityForAxis Lib "Foundation" Selector "contentHuggingPriorityForAxis:" ( obj As ptr , axis As Integer ) As Single
+		  #If TargetMacOS
 		    
-		    Return contentHuggingPriorityForAxis( item.Handle, CType(axis, Integer))
+		    // - (NSLayoutPriority)contentHuggingPriorityForOrientation:(NSLayoutConstraintOrientation)orientation;
+		    Declare Function contentHuggingPriorityForOrientation Lib "Foundation" Selector "contentHuggingPriorityForOrientation:" ( obj As ptr , orientation As Integer ) As Single
 		    
+		    Return contentHuggingPriorityForOrientation(item.Handle, CType(axis, Integer))
 		  #EndIf
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
 		Sub HuggingPriorityForAxis(Extends item as DesktopUIControl, Axis as SOSConstraintKit.Axis, assigns priority as Double)
-		  #if TargetMacOS
-		    // - (void)setContentHuggingPriority:(UILayoutPriority)priority forAxis:(UILayoutConstraintAxis)axis;
-		    Declare Sub setContentHuggingPriority_forAxis Lib "Foundation" Selector "setContentHuggingPriority:forAxis:" ( obj As ptr , priority As single , axis As integer )
+		  #If TargetMacOS
+		    // - (void)setContentHuggingPriority:(NSLayoutPriority)priority forOrientation:(NSLayoutConstraintOrientation)orientation;
+		    Declare Sub setContentHuggingPriority_forOrientation Lib "Foundation" Selector "setContentHuggingPriority:forOrientation:" ( obj As ptr , priority As Single , orientation As Integer )
 		    
-		    setContentHuggingPriority_forAxis( item.handle, priority, CType(axis, Integer))
+		    setContentHuggingPriority_forOrientation(item.Handle, Priority, CType(Axis, Integer))
 		  #EndIf
 		End Sub
 	#tag EndMethod
