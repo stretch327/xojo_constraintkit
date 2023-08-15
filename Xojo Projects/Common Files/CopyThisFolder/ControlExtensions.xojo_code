@@ -109,6 +109,38 @@ Protected Module ControlExtensions
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Sub VisualizeConstraints(extends w as DesktopWindow, axis as SOSConstraintKit.Axis)
+		  #If DebugBuild
+		    #If TargetMacOS
+		      // - (NSArray<NSLayoutConstraint *> *)constraintsAffectingLayoutForOrientation:(NSLayoutConstraintOrientation)orientation;
+		      Declare Function constraintsAffectingLayoutForOrientation Lib "Foundation" Selector "constraintsAffectingLayoutForOrientation:" ( obj As ptr , orientation As Integer ) As Ptr
+		      // - (void)visualizeConstraints:(NSArray<NSLayoutConstraint *> *)constraints;
+		      Declare Sub visualizeConstraints Lib "Foundation" Selector "visualizeConstraints:" ( obj As ptr , constraints As Ptr )
+		      // @property(strong) NSView *contentView;
+		      Declare Function getContentView Lib "Foundation" Selector "contentView" (obj As ptr) As Ptr
+		      
+		      Dim view As ptr 
+		      Dim target As ptr
+		      If w IsA DesktopContainer Then
+		        view = w.Handle
+		        target = DesktopContainer(w).Window.Handle
+		      ElseIf w IsA DesktopWindow Then
+		        view = getContentView(w.Handle)
+		        target = w.Handle
+		      End If
+		      
+		      Dim c As ptr = constraintsAffectingLayoutForOrientation(view, CType(axis, Integer))
+		      visualizeConstraints(target, c)
+		    #EndIf
+		  #EndIf
+		  
+		  
+		  
+		  
+		End Sub
+	#tag EndMethod
+
 
 	#tag ViewBehavior
 		#tag ViewProperty
