@@ -18,6 +18,11 @@ For a macOS project, your locks will be converted to SOSLayoutConstraints and fr
 ## Support
 Please file questions, bug reports and feature requests as Issues on this repo. If you would like ask a more direct question, you can message me directly on Xojo's user forum at https://forum.xojo.com. My username there is Greg_O.
 
+## Known Issues
+
+- While API 1 compatibility has been added, there is no support for mixed views, that is, API 1 controls on an API 2 layout or vice-versa.
+- I don't intend to merge this branch containing the API 1 changes back into main as it just adds unnecessary complexity to the main project. However I do intend to merge any fixes made on the main branch to the API 1 branch. 
+
 ## Contributing
 At the moment, this library covers almost all of Apple's constraint capabilities for iOS and macOS, but if Apple does something new, we will try to keep up. If you feel that the library is missing something please file an issue or fork the project, *create a branch for your idea* and then create a pull request. We will not accept pull requests that go directly into main.
 
