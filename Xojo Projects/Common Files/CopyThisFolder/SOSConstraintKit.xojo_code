@@ -79,7 +79,11 @@ Protected Module SOSConstraintKit
 		    // @property(nonatomic, readonly, strong) NSLayoutYAxisAnchor *bottomAnchor
 		    Declare Function getBottomAnchor Lib "Foundation" Selector "bottomAnchor" (obj As Integer) As Ptr
 		    
-		    Return SOSLayoutYAxisAnchor.Create(getBottomAnchor(view.Handle))
+		    If view IsA Window Then
+		      Return SOSLayoutYAxisAnchor.Create(getBottomAnchor(WindowToView(view)))
+		    Else
+		      Return SOSLayoutYAxisAnchor.Create(getBottomAnchor(view.Handle))
+		    End If
 		  #EndIf
 		End Function
 	#tag EndMethod
