@@ -25,12 +25,36 @@ Protected Module ControlExtensions
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
+		Sub LineBreakEnabled(extends label as Label, assigns value as Boolean)
+		  // Enables/Disables line breaks in the specified label control
+		  #If TargetMacOS
+		    // @property(nonatomic) NSLineBreakStrategy lineBreakStrategy;
+		    Declare Sub setLineBreakStrategy Lib "Foundation" Selector "setLineBreakStrategy:" (obj As integer, value As Integer)
+		    
+		    setLineBreakStrategy(label.Handle, If(value, &hFFFF, 0))
+		  #EndIf
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target64Bit))
 		Sub LineBreakEnabled(extends label as MobileLabel, assigns value as Boolean)
 		  // Enables/Disables line breaks in the specified label control
 		  #If TargetiOS
 		    // @property(nonatomic) NSLineBreakStrategy lineBreakStrategy;
 		    Declare Sub setLineBreakStrategy Lib "Foundation" Selector "setLineBreakStrategy:" (obj As ptr, value As Integer)
+		    
+		    setLineBreakStrategy(label.Handle, If(value, &hFFFF, 0))
+		  #EndIf
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
+		Sub LineBreakEnabled(extends label as TextEdit, assigns value as Boolean)
+		  // Enables/Disables line breaks in the specified label control
+		  #If TargetMacOS
+		    // @property(nonatomic) NSLineBreakStrategy lineBreakStrategy;
+		    Declare Sub setLineBreakStrategy Lib "Foundation" Selector "setLineBreakStrategy:" (obj As integer, value As Integer)
 		    
 		    setLineBreakStrategy(label.Handle, If(value, &hFFFF, 0))
 		  #EndIf
@@ -85,6 +109,30 @@ Protected Module ControlExtensions
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetConsole and (Target32Bit or Target64Bit)) or  (TargetWeb and (Target32Bit or Target64Bit)) or  (TargetDesktop and (Target32Bit or Target64Bit))
+		Function NumberOfLines(extends label as Label) As Integer
+		  // Returns the number of lines in the label control
+		  #If TargetMacOS
+		    // @property(nonatomic) NSInteger numberOfLines;
+		    Declare Function getNumberOfLines Lib "Foundation" Selector "numberOfLines" (obj As Integer) As Integer
+		    
+		    Return getNumberOfLines(label.Handle)
+		  #EndIf
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetConsole and (Target32Bit or Target64Bit)) or  (TargetWeb and (Target32Bit or Target64Bit)) or  (TargetDesktop and (Target32Bit or Target64Bit))
+		Sub NumberOfLines(extends label as Label, assigns value as integer)
+		  // Sets the number of lines in the label control
+		  #If TargetMacOS
+		    // @property(nonatomic) NSInteger numberOfLines;
+		    Declare Sub setNumberOfLines Lib "Foundation" Selector "setNumberOfLines:" (obj As Integer, value As Integer)
+		    
+		    setNumberOfLines(label.Handle, value) // infinite = 0
+		  #EndIf
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target64Bit))
 		Function NumberOfLines(extends label as MobileLabel) As Integer
 		  // Sets or Returns the number of lines in the label control
@@ -103,6 +151,30 @@ Protected Module ControlExtensions
 		  #If TargetiOS
 		    // @property(nonatomic) NSInteger numberOfLines;
 		    Declare Sub setNumberOfLines Lib "Foundation" Selector "setNumberOfLines:" (obj As ptr, value As Integer)
+		    
+		    setNumberOfLines(label.Handle, value) // infinite = 0
+		  #EndIf
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetConsole and (Target32Bit or Target64Bit)) or  (TargetWeb and (Target32Bit or Target64Bit)) or  (TargetDesktop and (Target32Bit or Target64Bit))
+		Function NumberOfLines(extends label as TextEdit) As Integer
+		  // Returns the number of lines in the label control
+		  #If TargetMacOS
+		    // @property(nonatomic) NSInteger numberOfLines;
+		    Declare Function getNumberOfLines Lib "Foundation" Selector "numberOfLines" (obj As Integer) As Integer
+		    
+		    Return getNumberOfLines(label.Handle)
+		  #EndIf
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetConsole and (Target32Bit or Target64Bit)) or  (TargetWeb and (Target32Bit or Target64Bit)) or  (TargetDesktop and (Target32Bit or Target64Bit))
+		Sub NumberOfLines(extends label as TextEdit, assigns value as integer)
+		  // Sets the number of lines in the label control
+		  #If TargetMacOS
+		    // @property(nonatomic) NSInteger numberOfLines;
+		    Declare Sub setNumberOfLines Lib "Foundation" Selector "setNumberOfLines:" (obj As Integer, value As Integer)
 		    
 		    setNumberOfLines(label.Handle, value) // infinite = 0
 		  #EndIf
@@ -131,6 +203,38 @@ Protected Module ControlExtensions
 		      End If
 		      
 		      Dim c As ptr = constraintsAffectingLayoutForOrientation(view, CType(axis, Integer))
+		      visualizeConstraints(target, c)
+		    #EndIf
+		  #EndIf
+		  
+		  
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub VisualizeConstraints(extends w as Window, axis as SOSConstraintKit.Axis)
+		  #If DebugBuild
+		    #If TargetMacOS
+		      // - (NSArray<NSLayoutConstraint *> *)constraintsAffectingLayoutForOrientation:(NSLayoutConstraintOrientation)orientation;
+		      Declare Function constraintsAffectingLayoutForOrientation Lib "Foundation" Selector "constraintsAffectingLayoutForOrientation:" ( obj As ptr , orientation As Integer ) As Ptr
+		      // - (void)visualizeConstraints:(NSArray<NSLayoutConstraint *> *)constraints;
+		      Declare Sub visualizeConstraints Lib "Foundation" Selector "visualizeConstraints:" ( obj As integer , constraints As Ptr )
+		      // @property(strong) NSView *contentView;
+		      Declare Function getContentView Lib "Foundation" Selector "contentView" (obj As Integer) As integer
+		      
+		      Dim view As Integer 
+		      Dim target As Integer
+		      If w IsA ContainerControl Then
+		        view = w.Handle
+		        target = ContainerControl(w).Window.Handle
+		      ElseIf w IsA Window Then
+		        view = getContentView(w.Handle)
+		        target = w.Handle
+		      End If
+		      
+		      Dim c As ptr = constraintsAffectingLayoutForOrientation(Ptr(view), CType(axis, Integer))
 		      visualizeConstraints(target, c)
 		    #EndIf
 		  #EndIf
