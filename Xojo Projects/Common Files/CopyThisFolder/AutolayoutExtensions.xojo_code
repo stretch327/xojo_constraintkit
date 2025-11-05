@@ -1587,7 +1587,7 @@ Protected Module AutolayoutExtensions
 		        ContainerControl(item.control).ConvertToAutolayout(useLeadingTrailing)
 		      Case Else
 		        If item.control IsA RectControl Then
-		          ConvertControlToAutolayout(RectControl(item.control))
+		          ConvertControlToAutolayout(RectControl(item.control), useLeadingTrailing)
 		        End If
 		      End Select
 		    Next
