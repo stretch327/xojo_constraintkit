@@ -1,6 +1,22 @@
 #tag Class
 Private Class ControlInfo
-	#tag CompatibilityFlags = (TargetDesktop and (Target64Bit))
+	#tag CompatibilityFlags = ( TargetDesktop and ( Target64Bit ) )
+	#tag Method, Flags = &h0
+		Sub Constructor(ctl as ContainerControl)
+		  mTop = ctl.top
+		  mLeft = ctl.Left
+		  mWidth = ctl.Width
+		  mHeight = ctl.Height
+		  
+		  mLockBottom = ctl.LockBottom
+		  mLockLeft = ctl.LockLeft
+		  mLockRight = ctl.LockRight
+		  mLockTop = ctl.LockTop
+		  
+		  mControl = ctl
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h0
 		Sub Constructor(ctl as DesktopContainer)
 		  mTop = ctl.top
@@ -19,6 +35,22 @@ Private Class ControlInfo
 
 	#tag Method, Flags = &h0
 		Sub Constructor(ctl as DesktopUIControl)
+		  mTop = ctl.top
+		  mLeft = ctl.Left
+		  mWidth = ctl.Width
+		  mHeight = ctl.Height
+		  
+		  mLockBottom = ctl.LockBottom
+		  mLockLeft = ctl.LockLeft
+		  mLockRight = ctl.LockRight
+		  mLockTop = ctl.LockTop
+		  
+		  mControl = ctl
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub Constructor(ctl as RectControl)
 		  mTop = ctl.top
 		  mLeft = ctl.Left
 		  mWidth = ctl.Width
