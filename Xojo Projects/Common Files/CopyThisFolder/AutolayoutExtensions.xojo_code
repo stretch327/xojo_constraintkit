@@ -984,7 +984,7 @@ Protected Module AutolayoutExtensions
 		        DesktopContainer(item.control).ConvertToAutolayout(useLeadingTrailing)
 		      Case Else
 		        If item.control IsA DesktopUIControl Then
-		          ConvertControlToAutolayout(DesktopUIControl(item.control), useLeadingTrailing)
+		          ConvertControlToAutolayout(DesktopUIControl(item.control))
 		        End If
 		      End Select
 		    Next
