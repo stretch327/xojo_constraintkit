@@ -109,7 +109,7 @@ Protected Module ControlExtensions
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target32Bit or Target64Bit))
 		Sub VisualizeConstraints(extends w as DesktopWindow, axis as SOSConstraintKit.Axis)
 		  #If DebugBuild
 		    #If TargetMacOS
