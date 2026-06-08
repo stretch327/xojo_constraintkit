@@ -1,30 +1,41 @@
 #tag MobileScreen
 Begin MobileScreen ReplacementScreen
    BackButtonCaption=   ""
+   BackgroundColor =   
    Compatibility   =   ""
    ControlCount    =   0
    Device = 1
    HasNavigationBar=   True
    LargeTitleDisplayMode=   0
    Left            =   0
+   NavigationBarColor=   
+   NavigationBarTextColor=   
    Orientation = 0
+   ScaleFactor     =   0.0
    TabBarVisible   =   True
    TabIcon         =   0
    TintColor       =   &c00000000
-   Title           =   "Untitled"
+   Title           =   "Replacement"
    Top             =   0
+   _mTabBarVisible =   False
    Begin MobileButton Button1
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
+      AdjustTextSizeToFit=   False
       AutoLayout      =   Button1, 1, <Parent>, 1, False, +1.00, 4, 1, *kStdGapCtlToViewH, , True
       AutoLayout      =   Button1, 7, , 0, False, +1.00, 4, 1, 100, , True
       AutoLayout      =   Button1, 3, TopLayoutGuide, 4, False, +1.00, 4, 1, *kStdControlGapV, , True
       AutoLayout      =   Button1, 8, , 0, False, +1.00, 4, 1, 30, , True
+      BackgroundColor =   
+      BorderColor     =   
+      BorderWidth     =   0
       Caption         =   "Click Here"
       CaptionColor    =   &c007AFF00
       ControlCount    =   0
+      CornerSize      =   0
       Enabled         =   True
       Height          =   30
+      Icon            =   0
       Left            =   20
       LockedInPosition=   False
       Scope           =   0
@@ -34,19 +45,26 @@ Begin MobileScreen ReplacementScreen
       Top             =   73
       Visible         =   True
       Width           =   100
+      _ClosingFired   =   False
    End
    Begin MobileButton Button2
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
+      AdjustTextSizeToFit=   False
       AutoLayout      =   Button2, 1, <Parent>, 1, False, +1.00, 4, 1, 62, , True
       AutoLayout      =   Button2, 7, , 0, False, +1.00, 4, 1, 100, , True
       AutoLayout      =   Button2, 3, <Parent>, 3, False, +1.00, 4, 1, 415, , True
       AutoLayout      =   Button2, 8, , 0, False, +1.00, 4, 1, 30, , True
+      BackgroundColor =   
+      BorderColor     =   
+      BorderWidth     =   0
       Caption         =   "TopRight"
       CaptionColor    =   &c007AFF00
       ControlCount    =   0
+      CornerSize      =   0
       Enabled         =   True
       Height          =   30
+      Icon            =   0
       Left            =   62
       LockedInPosition=   False
       Scope           =   0
@@ -56,19 +74,26 @@ Begin MobileScreen ReplacementScreen
       Top             =   415
       Visible         =   True
       Width           =   100
+      _ClosingFired   =   False
    End
    Begin MobileButton Button3
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
+      AdjustTextSizeToFit=   False
       AutoLayout      =   Button3, 1, <Parent>, 1, False, +1.00, 4, 1, 62, , True
       AutoLayout      =   Button3, 7, , 0, False, +1.00, 4, 1, 100, , True
       AutoLayout      =   Button3, 8, , 0, False, +1.00, 4, 1, 30, , True
       AutoLayout      =   Button3, 3, <Parent>, 3, False, +1.00, 4, 1, 285, , True
+      BackgroundColor =   
+      BorderColor     =   
+      BorderWidth     =   0
       Caption         =   "BottomRight"
       CaptionColor    =   &c007AFF00
       ControlCount    =   0
+      CornerSize      =   0
       Enabled         =   True
       Height          =   30
+      Icon            =   0
       Left            =   62
       LockedInPosition=   False
       Scope           =   0
@@ -78,19 +103,26 @@ Begin MobileScreen ReplacementScreen
       Top             =   285
       Visible         =   True
       Width           =   100
+      _ClosingFired   =   False
    End
    Begin MobileButton Button4
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
+      AdjustTextSizeToFit=   False
       AutoLayout      =   Button4, 1, <Parent>, 1, False, +1.00, 4, 1, 185, , True
       AutoLayout      =   Button4, 7, , 0, False, +1.00, 4, 1, 100, , True
       AutoLayout      =   Button4, 3, <Parent>, 3, False, +1.00, 4, 1, 214, , True
       AutoLayout      =   Button4, 8, , 0, False, +1.00, 4, 1, 30, , True
+      BackgroundColor =   
+      BorderColor     =   
+      BorderWidth     =   0
       Caption         =   "BottomLeft"
       CaptionColor    =   &c007AFF00
       ControlCount    =   0
+      CornerSize      =   0
       Enabled         =   True
       Height          =   30
+      Icon            =   0
       Left            =   185
       LockedInPosition=   False
       Scope           =   0
@@ -100,10 +132,12 @@ Begin MobileScreen ReplacementScreen
       Top             =   214
       Visible         =   True
       Width           =   100
+      _ClosingFired   =   False
    End
    Begin MobileLabel InstructionsLabel
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
+      AdjustTextSizeToFit=   False
       Alignment       =   0
       AutoLayout      =   InstructionsLabel, 4, BottomLayoutGuide, 3, False, +1.00, 4, 1, -*kStdControlGapV, , True
       AutoLayout      =   InstructionsLabel, 8, , 0, False, +1.00, 4, 1, 63, , True
@@ -115,7 +149,11 @@ Begin MobileScreen ReplacementScreen
       Left            =   20
       LineBreakMode   =   0
       LockedInPosition=   False
+      MaximumCharactersAllowed=   0
       Scope           =   2
+      SelectedText    =   ""
+      SelectionLength =   0
+      SelectionStart  =   0
       Text            =   "This is an example of replacing a view's constraints with anchors and animating the result."
       TextColor       =   &c000000
       TextFont        =   ""
@@ -124,6 +162,7 @@ Begin MobileScreen ReplacementScreen
       Top             =   497
       Visible         =   True
       Width           =   280
+      _ClosingFired   =   False
    End
 End
 #tag EndMobileScreen
@@ -182,6 +221,46 @@ End
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior
+	#tag ViewProperty
+		Name="ScaleFactor"
+		Visible=false
+		Group="Behavior"
+		InitialValue=""
+		Type="Double"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="_mTabBarVisible"
+		Visible=false
+		Group="Behavior"
+		InitialValue=""
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="BackgroundColor"
+		Visible=false
+		Group="Behavior"
+		InitialValue=""
+		Type="ColorGroup"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="NavigationBarColor"
+		Visible=false
+		Group="Behavior"
+		InitialValue=""
+		Type="ColorGroup"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="NavigationBarTextColor"
+		Visible=false
+		Group="Behavior"
+		InitialValue=""
+		Type="ColorGroup"
+		EditorType=""
+	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Index"
 		Visible=true
