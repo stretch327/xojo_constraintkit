@@ -81,7 +81,7 @@ Begin MobileScreen KeyboardScreen
       TextFont        =   ""
       TextSize        =   0
       TintColor       =   
-      Top             =   520
+      Top             =   764
       Visible         =   True
       Width           =   280
       _ClosingFired   =   False
@@ -128,37 +128,6 @@ End
 #tag EndWindowCode
 
 #tag Events TextField1
-	#tag Event
-		Sub FocusLost()
-		  '
-		  'if bt_bottomAnchor <> nil then
-		  'bt_bottomAnchor.Active = False
-		  '
-		  'bt_bottomAnchor = nil
-		  '
-		  'self.Constraint("bt_bottom").Active = True
-		  '
-		  'end if
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub FocusReceived()
-		  
-		  
-		  '//Keep a reference to remove it afterwards
-		  'bt_bottomAnchor = me.BottomAnchor.ConstraintEqualToAnchor(self.KeyboardLayoutGuide.TopAnchor, -16)
-		  '
-		  '
-		  'bt_bottomAnchor.Active = True
-		  '
-		  'self.Constraint("bt_bottom").Active = False
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub Opening()
-		  
-		End Sub
-	#tag EndEvent
 #tag EndEvents
 #tag Events Button1
 	#tag Event
