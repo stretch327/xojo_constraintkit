@@ -255,6 +255,35 @@ Protected Module SOSConstraintKit
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target64Bit))
+		Function KeyboardLayoutGuide(extends view as MobileScreen) As SOSLayoutGuide
+		  // The Keyboard Layout Guide anchor of the MobileScreen
+		  
+		  
+		  Return KeyboardLayoutGuide(view.Handle)
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h21, CompatibilityFlags = (TargetIOS and (Target64Bit))
+		Attributes( Hidden ) Private Function KeyboardLayoutGuide(view as ptr) As SOSLayoutGuide
+		  #If TargetiOS
+		    
+		    if System.Version.MajorVersion >= 15 then
+		      
+		      // @property(nonatomic, readonly, strong) UILayoutGuide *safeAreaLayoutGuide;
+		      Declare Function getkeyboardLayoutGuide Lib "Foundation" Selector "keyboardLayoutGuide" (obj As ptr) As Ptr
+		      
+		      Return SOSLayoutGuide.Create(getkeyboardLayoutGuide(view))
+		      
+		    Else
+		      Break
+		      
+		    end if
+		  #EndIf
+		  
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target64Bit))
 		Function LastBaselineAnchor(extends view as DesktopUIControl) As SOSLayoutYAxisAnchor
 		  // The Last Baseline anchor of the DesktopUIControl

@@ -1,21 +1,27 @@
 #tag MobileScreen
 Begin MobileScreen ExerciserScreen
    BackButtonCaption=   ""
+   BackgroundColor =   
    Compatibility   =   ""
    ControlCount    =   0
    Device = 1
    HasNavigationBar=   True
    LargeTitleDisplayMode=   2
    Left            =   0
+   NavigationBarColor=   
+   NavigationBarTextColor=   
    Orientation = 0
+   ScaleFactor     =   0.0
    TabBarVisible   =   True
    TabIcon         =   0
    TintColor       =   &c00000000
-   Title           =   "Untitled"
+   Title           =   "Exerciser"
    Top             =   0
+   _mTabBarVisible =   False
    Begin MobileTextField ZipField
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
+      AdjustTextSizeToFit=   False
       Alignment       =   0
       AllowAutoCorrection=   False
       AllowSpellChecking=   False
@@ -30,13 +36,18 @@ Begin MobileScreen ExerciserScreen
       Enabled         =   True
       Height          =   29
       Hint            =   "Zip Code"
+      HintColor       =   
       InputType       =   0
       Left            =   128
       LockedInPosition=   False
+      MaximumCharactersAllowed=   0
       Password        =   False
       ReadOnly        =   False
       ReturnCaption   =   0
       Scope           =   2
+      SelectedText    =   ""
+      SelectionLength =   0
+      SelectionStart  =   0
       Text            =   ""
       TextColor       =   &c000000
       TextFont        =   ""
@@ -45,10 +56,12 @@ Begin MobileScreen ExerciserScreen
       Top             =   264
       Visible         =   True
       Width           =   172
+      _ClosingFired   =   False
    End
    Begin MobileLabel ZipLabel
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
+      AdjustTextSizeToFit=   False
       Alignment       =   2
       AutoLayout      =   ZipLabel, 1, StateLabel, 1, False, +1.00, 4, 1, 0, , True
       AutoLayout      =   ZipLabel, 7, , 0, False, +1.00, 4, 1, 100, , True
@@ -60,7 +73,11 @@ Begin MobileScreen ExerciserScreen
       Left            =   20
       LineBreakMode   =   0
       LockedInPosition=   False
+      MaximumCharactersAllowed=   0
       Scope           =   2
+      SelectedText    =   ""
+      SelectionLength =   0
+      SelectionStart  =   0
       Text            =   "Zip"
       TextColor       =   &c000000
       TextFont        =   ""
@@ -69,10 +86,12 @@ Begin MobileScreen ExerciserScreen
       Top             =   263
       Visible         =   True
       Width           =   100
+      _ClosingFired   =   False
    End
    Begin MobileTextField StateField
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
+      AdjustTextSizeToFit=   False
       Alignment       =   0
       AllowAutoCorrection=   False
       AllowSpellChecking=   False
@@ -87,13 +106,18 @@ Begin MobileScreen ExerciserScreen
       Enabled         =   True
       Height          =   31
       Hint            =   "State"
+      HintColor       =   
       InputType       =   0
       Left            =   128
       LockedInPosition=   False
+      MaximumCharactersAllowed=   0
       Password        =   False
       ReadOnly        =   False
       ReturnCaption   =   0
       Scope           =   2
+      SelectedText    =   ""
+      SelectionLength =   0
+      SelectionStart  =   0
       Text            =   ""
       TextColor       =   &c000000
       TextFont        =   ""
@@ -102,10 +126,12 @@ Begin MobileScreen ExerciserScreen
       Top             =   225
       Visible         =   True
       Width           =   172
+      _ClosingFired   =   False
    End
    Begin MobileLabel StateLabel
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
+      AdjustTextSizeToFit=   False
       Alignment       =   2
       AutoLayout      =   StateLabel, 1, CityLabel, 1, False, +1.00, 4, 1, 0, , True
       AutoLayout      =   StateLabel, 7, , 0, False, +1.00, 4, 1, 100, , True
@@ -117,7 +143,11 @@ Begin MobileScreen ExerciserScreen
       Left            =   20
       LineBreakMode   =   0
       LockedInPosition=   False
+      MaximumCharactersAllowed=   0
       Scope           =   2
+      SelectedText    =   ""
+      SelectionLength =   0
+      SelectionStart  =   0
       Text            =   "State"
       TextColor       =   &c000000
       TextFont        =   ""
@@ -126,10 +156,12 @@ Begin MobileScreen ExerciserScreen
       Top             =   225
       Visible         =   True
       Width           =   100
+      _ClosingFired   =   False
    End
    Begin MobileTextField CityField
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
+      AdjustTextSizeToFit=   False
       Alignment       =   0
       AllowAutoCorrection=   False
       AllowSpellChecking=   False
@@ -143,13 +175,18 @@ Begin MobileScreen ExerciserScreen
       Enabled         =   True
       Height          =   31
       Hint            =   "City Name"
+      HintColor       =   
       InputType       =   0
       Left            =   128
       LockedInPosition=   False
+      MaximumCharactersAllowed=   0
       Password        =   False
       ReadOnly        =   False
       ReturnCaption   =   0
       Scope           =   2
+      SelectedText    =   ""
+      SelectionLength =   0
+      SelectionStart  =   0
       Text            =   ""
       TextColor       =   &c000000
       TextFont        =   ""
@@ -158,10 +195,12 @@ Begin MobileScreen ExerciserScreen
       Top             =   186
       Visible         =   True
       Width           =   172
+      _ClosingFired   =   False
    End
    Begin MobileLabel CityLabel
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
+      AdjustTextSizeToFit=   False
       Alignment       =   2
       AutoLayout      =   CityLabel, 1, Addr2Label, 1, False, +1.00, 4, 1, 0, , True
       AutoLayout      =   CityLabel, 7, , 0, False, +1.00, 4, 1, 100, , True
@@ -173,7 +212,11 @@ Begin MobileScreen ExerciserScreen
       Left            =   20
       LineBreakMode   =   0
       LockedInPosition=   False
+      MaximumCharactersAllowed=   0
       Scope           =   2
+      SelectedText    =   ""
+      SelectionLength =   0
+      SelectionStart  =   0
       Text            =   "City"
       TextColor       =   &c000000
       TextFont        =   ""
@@ -182,10 +225,12 @@ Begin MobileScreen ExerciserScreen
       Top             =   187
       Visible         =   True
       Width           =   100
+      _ClosingFired   =   False
    End
    Begin MobileTextField Addr2Field
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
+      AdjustTextSizeToFit=   False
       Alignment       =   0
       AllowAutoCorrection=   False
       AllowSpellChecking=   False
@@ -198,13 +243,18 @@ Begin MobileScreen ExerciserScreen
       Enabled         =   True
       Height          =   29
       Hint            =   "Address 2"
+      HintColor       =   
       InputType       =   0
       Left            =   128
       LockedInPosition=   False
+      MaximumCharactersAllowed=   0
       Password        =   False
       ReadOnly        =   False
       ReturnCaption   =   0
       Scope           =   2
+      SelectedText    =   ""
+      SelectionLength =   0
+      SelectionStart  =   0
       Text            =   ""
       TextColor       =   &c000000
       TextFont        =   ""
@@ -213,10 +263,12 @@ Begin MobileScreen ExerciserScreen
       Top             =   149
       Visible         =   True
       Width           =   172
+      _ClosingFired   =   False
    End
    Begin MobileLabel Addr2Label
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
+      AdjustTextSizeToFit=   False
       Alignment       =   2
       AutoLayout      =   Addr2Label, 1, Addr1Label, 1, False, +1.00, 4, 1, 0, , True
       AutoLayout      =   Addr2Label, 7, , 0, False, +1.00, 4, 1, 100, , True
@@ -228,7 +280,11 @@ Begin MobileScreen ExerciserScreen
       Left            =   20
       LineBreakMode   =   0
       LockedInPosition=   False
+      MaximumCharactersAllowed=   0
       Scope           =   2
+      SelectedText    =   ""
+      SelectionLength =   0
+      SelectionStart  =   0
       Text            =   "Address 2"
       TextColor       =   &c000000
       TextFont        =   ""
@@ -237,10 +293,12 @@ Begin MobileScreen ExerciserScreen
       Top             =   149
       Visible         =   True
       Width           =   100
+      _ClosingFired   =   False
    End
    Begin MobileTextField Addr1Field
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
+      AdjustTextSizeToFit=   False
       Alignment       =   0
       AllowAutoCorrection=   False
       AllowSpellChecking=   False
@@ -255,13 +313,18 @@ Begin MobileScreen ExerciserScreen
       Enabled         =   True
       Height          =   29
       Hint            =   "Address 1"
+      HintColor       =   
       InputType       =   0
       Left            =   128
       LockedInPosition=   False
+      MaximumCharactersAllowed=   0
       Password        =   False
       ReadOnly        =   False
       ReturnCaption   =   0
       Scope           =   2
+      SelectedText    =   ""
+      SelectionLength =   0
+      SelectionStart  =   0
       Text            =   ""
       TextColor       =   &c000000
       TextFont        =   ""
@@ -270,10 +333,12 @@ Begin MobileScreen ExerciserScreen
       Top             =   112
       Visible         =   True
       Width           =   172
+      _ClosingFired   =   False
    End
    Begin MobileLabel Addr1Label
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
+      AdjustTextSizeToFit=   False
       Alignment       =   2
       AutoLayout      =   Addr1Label, 8, , 0, False, +1.00, 4, 1, 30, , True
       AutoLayout      =   Addr1Label, 1, NameLabel, 1, False, +1.00, 4, 1, 0, , True
@@ -285,7 +350,11 @@ Begin MobileScreen ExerciserScreen
       Left            =   20
       LineBreakMode   =   0
       LockedInPosition=   False
+      MaximumCharactersAllowed=   0
       Scope           =   2
+      SelectedText    =   ""
+      SelectionLength =   0
+      SelectionStart  =   0
       Text            =   "Address 1"
       TextColor       =   &c000000
       TextFont        =   ""
@@ -294,10 +363,12 @@ Begin MobileScreen ExerciserScreen
       Top             =   111
       Visible         =   True
       Width           =   100
+      _ClosingFired   =   False
    End
    Begin MobileLabel NameLabel
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
+      AdjustTextSizeToFit=   False
       Alignment       =   2
       AutoLayout      =   NameLabel, 11, NameField, 11, False, +1.00, 4, 1, 0, , True
       AutoLayout      =   NameLabel, 8, , 0, False, +1.00, 4, 1, 30, , True
@@ -309,7 +380,11 @@ Begin MobileScreen ExerciserScreen
       Left            =   20
       LineBreakMode   =   0
       LockedInPosition=   False
+      MaximumCharactersAllowed=   0
       Scope           =   2
+      SelectedText    =   ""
+      SelectionLength =   0
+      SelectionStart  =   0
       Text            =   "Name"
       TextColor       =   &c000000
       TextFont        =   ""
@@ -318,10 +393,12 @@ Begin MobileScreen ExerciserScreen
       Top             =   73
       Visible         =   True
       Width           =   100
+      _ClosingFired   =   False
    End
    Begin MobileTextField NameField
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
+      AdjustTextSizeToFit=   False
       Alignment       =   0
       AllowAutoCorrection=   False
       AllowSpellChecking=   False
@@ -335,13 +412,18 @@ Begin MobileScreen ExerciserScreen
       Enabled         =   True
       Height          =   31
       Hint            =   "Full Name"
+      HintColor       =   
       InputType       =   0
       Left            =   128
       LockedInPosition=   False
+      MaximumCharactersAllowed=   0
       Password        =   False
       ReadOnly        =   False
       ReturnCaption   =   0
       Scope           =   2
+      SelectedText    =   ""
+      SelectionLength =   0
+      SelectionStart  =   0
       Text            =   ""
       TextColor       =   &c000000
       TextFont        =   ""
@@ -350,6 +432,7 @@ Begin MobileScreen ExerciserScreen
       Top             =   73
       Visible         =   True
       Width           =   172
+      _ClosingFired   =   False
    End
 End
 #tag EndMobileScreen
@@ -450,6 +533,46 @@ End
 #tag EndWindowCode
 
 #tag ViewBehavior
+	#tag ViewProperty
+		Name="ScaleFactor"
+		Visible=false
+		Group="Behavior"
+		InitialValue=""
+		Type="Double"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="_mTabBarVisible"
+		Visible=false
+		Group="Behavior"
+		InitialValue=""
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="BackgroundColor"
+		Visible=false
+		Group="Behavior"
+		InitialValue=""
+		Type="ColorGroup"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="NavigationBarColor"
+		Visible=false
+		Group="Behavior"
+		InitialValue=""
+		Type="ColorGroup"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="NavigationBarTextColor"
+		Visible=false
+		Group="Behavior"
+		InitialValue=""
+		Type="ColorGroup"
+		EditorType=""
+	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Index"
 		Visible=true

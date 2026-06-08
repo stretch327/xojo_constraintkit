@@ -13,12 +13,12 @@
 				Icon = 0
 			End ScreenContent
 			Begin ScreenContent
-				ItemName = Replacement
+				ItemName = Replace
 				Target = 1362106367
 				Icon = 0
 			End ScreenContent
 			Begin ScreenContent
-				ItemName = Compress & Hug
+				ItemName = H&C
 				Target = 234883071
 				Icon = 0
 			End ScreenContent
@@ -28,8 +28,8 @@
 				Icon = 0
 			End ScreenContent
 			Begin ScreenContent
-				ItemName = Keyboard
-				Target = 1623302143
+				ItemName = Exerciser
+				Target = 220688383
 				Icon = 0
 			End ScreenContent
 	End ScreenContent
